@@ -299,4 +299,262 @@ var __extends = this.__extends || function (d, b) {
 
 
 ### 箭头函数
+1. [x] 不用声明式的去定义函数，是的定义函数的方式更加简洁
+2. [x] 不用担心所定义的函数中的this丢失真正的含义
+3. [x] 如果您希望this成为调用上下文，则不应该使用箭头函数。同样，如果打算使用一些参数，也不建议使用箭头函数
+```javascript
+function Person(age) {
+    this.age = age;
+    this.growOld = () => {
+        this.age++;
+    }
+}
+var person = new Person(1);
+setTimeout(person.growOld,1000);
+// this的意义丢失
+setTimeout(function() { console.log(person.age); },2000); // 2
+```
+```javascript
+function Person(age) {
+    // 传统箭头函数的作用。捕获对this的引用
+    this.age = age;
+    var _this = this;  // capture this
+    this.growOld = function() {
+        _this.age++;   // use the captured this
+    }
+}
+var person = new Person(1);
+setTimeout(person.growOld,1000);
 
+setTimeout(function() { console.log(person.age); },2000); // 2
+```
+
+## es6
+1. [x] let  
+`var`变量时函数作用域，`let`是块作用域；
+```javascript
+var foo = 123;
+if (true) {
+    var foo = 456;
+}
+console.log(foo); // 456
+```
+使用`let`定义时：
+```javascript
+let foo = 123;
+if (true) {
+    let foo = 456;
+}
+console.log(foo); // 123
+```
+证明函数创建了一个新的作用域范围
+```javascript
+var foo = 123;
+function test() {
+    var foo = 456;
+}
+test();
+console.log(foo); // 123
+```
+1. [x] `const`  
+定义静态变量，值始终保持不变，const在可读性和可维护性方面的做法都很好；
+   避免使用魔法数字；
+```javascript
+// Low readability
+if (x > 10) {
+}
+
+// Better!
+const maxRows = 10;
+if (x > maxRows) {
+}
+```
+`const`声明必须初始化，仅在块作用域中有效声明,建议始终使用const进行声明，除非该值有改变的必要性；
+
++ [x] 解构，很容易将解构视为结构化的逆向；解构让代码的数量更少，具有更好的可读性和可维护性；
+1. 数组解构
+2. 对象解构   
+
++ [x] 扩展运算符`(...)`
+1. 传参
+2. 解构
+3. 数组赋值
+4. 对象赋值
+
++ [x] `for···of` 意图更清晰，减少代码量
+1. 迭代数组
+
++ [x] 迭代器
+1. `iterators` 不是ts或者es6的功能，他是面向对象编程语言常见的一种行为设计模式
+该接口允许从属于该对象的某个集合中检索一个值；
+```typescript
+interface Iterator<T> {
+    next(value?: any): IteratorResult<T>;
+    return?(value?: any): IteratorResult<T>;
+    throw?(e?: any): IteratorResult<T>;
+}
+```
+2. `IteratorResult` 
+```typescript
+interface IteratorResult<T> {
+    done: boolean;
+    value: T;
+}
+```
+3. 实现一个迭代器函数
+```typescript
+class Component {
+    constructor (public name: string) {}
+}
+
+// 定义迭代器的返回类型
+interface IteratorResult<T> {
+    done: boolean;
+    value: T;
+}
+
+// 定义迭代器的方法
+interface Iterator<T> {
+    next(value?: any): IteratorResult<T>;
+    return?(value?: any): IteratorResult<T>;
+    throw?(e?: any): IteratorResult<T>;
+}
+
+// Frame实现迭代器
+class Frame implements Iterator<Component>{
+    private pointer = 0
+
+    constructor(public name: string, public components : Component[]) {
+
+    }
+
+    public next(value?: any): IteratorResult<Component> {
+        if(this.pointer< this.components.length) {
+            return {
+                done: false,
+                value: this.components[this.pointer++]
+            }
+        } else {
+            return {
+                done: true,
+                value: null
+            }
+        }
+
+    }
+}
+
+```
+
+4. 改造
+```typescript
+//...
+class Frame implements Iterable<Component> {
+
+  constructor(public name: string, public components: Component[]) {}
+
+  [Symbol.iterator]() {
+    let pointer = 0;
+    let components = this.components;
+
+    return {
+      next(): IteratorResult<Component> {
+        if (pointer < components.length) {
+          return {
+            done: false,
+            value: components[pointer++]
+          }
+        } else {
+          return {
+            done: true,
+            value: null
+          }
+        }
+      }
+    }
+  }
+}
+
+let frame = new Frame("Door", [new Component("top"), new Component("bottom"), new Component("left"), new Component("right")]);
+for (let cmp of frame) {
+  console.log(cmp);
+}
+```
+```typescript
+//...
+class Frame implements IterableIterator<Component> {
+
+  private pointer = 0;
+
+  constructor(public name: string, public components: Component[]) {}
+
+  public next(): IteratorResult<Component> {
+    if (this.pointer < this.components.length) {
+      return {
+        done: false,
+        value: this.components[this.pointer++]
+      }
+    } else {
+      return {
+        done: true,
+        value: null
+      }
+    }
+  }
+
+  [Symbol.iterator](): IterableIterator<Component> {
+    return this;
+  }
+
+}
+//...
+```
++ [x] 模板字符串
+1. 字符串插值
+```javascript
+var lyrics = 'Never gonna give you up';
+var html = '<div>' + lyrics + '</div>';
+```
+now:
+```javascript
+var lyrics = 'Never gonna give you up';
+var html = `<div>${lyrics}</div>`;
+```
+2. 多行字符
+```javascript
+var lyrics = "Never gonna give you up \
+\nNever gonna let you down";
+```
+now
+```javascript
+var lyrics = `Never gonna give you up
+Never gonna let you down`;
+```
+3. 标记模板
+```javascript
+var say = "a bird in hand > two in the bush";
+var html = htmlEscape `<div> I would just like to say : ${say}</div>`;
+
+// a sample tag function
+function htmlEscape(literals: TemplateStringsArray, ...placeholders: string[]) {
+    let result = "";
+
+    // interleave the literals with the placeholders
+    for (let i = 0; i < placeholders.length; i++) {
+        result += literals[i];
+        result += placeholders[i]
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+
+    // add the last literal
+    result += literals[literals.length - 1];
+    return result;
+}
+```
+
++ [x] Promise
+1.
