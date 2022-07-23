@@ -1,4 +1,4 @@
-[# 《精解》Typescript
+# 《精解》Typescript
 typescript被编译成javascript在浏览器上执行，所以需要两个条件：  
 + [typescript编译器](https://www.npmjs.com/package/typescript)
 + [typescript编辑器](https://code.visualstudio.com/)
@@ -294,9 +294,8 @@ var __extends = this.__extends || function (d, b) {
 };
 ```
 1. [x] extends的作用就是将改变子类原型未某个对象实例，该对象原型指向的是基类，该对象的构造器
-实际是子类；所以保证了构造子类时调用的构造函数是子类方法；保证了查找属性时，
-首先会在自身__proto__上查找，此时没有找到就会从__proto__.__proto__(即基类原型链)
-查找；
+   实际是子类；所以保证了构造子类时调用的构造函数是子类方法；保证了查找属性时，
+   首先会在自身__proto__上查找，此时没有找到就会从__proto__.__proto____（即基类原型链）查找；
 
 
 ### 箭头函数
