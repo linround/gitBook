@@ -1,6 +1,1 @@
----
-layout: editorial
----
-
-# react
-
+# 《精解》React
