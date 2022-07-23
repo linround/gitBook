@@ -1,4 +1,4 @@
-# 《精解》Typescript
+[# 《精解》Typescript
 typescript被编译成javascript在浏览器上执行，所以需要两个条件：  
 + [typescript编译器](https://www.npmjs.com/package/typescript)
 + [typescript编辑器](https://code.visualstudio.com/)
@@ -8,9 +8,9 @@ typescript被编译成javascript在浏览器上执行，所以需要两个条件
 npm install -g typescript@next
 ````
 ##  typescript与javascript的关系
-+ typescript帮助你编写更清晰，错误更少的代码
-+ typescript一种新的抽象语言，但是与javascript风格相差不大，可以快速的学习并运用  
-+ typescript本质上相当于一份javascript的严格的检查文档
+1. [x] typescript帮助你编写更清晰，错误更少的代码
+2. [x] typescript一种新的抽象语言，但是与javascript风格相差不大，可以快速的学习并运用
+3. [x] typescript本质上相当于一份javascript的严格的检查文档
 
 ```javascript
 []+[]; // javascript中的结果为 '',typescript中会报error
@@ -133,4 +133,171 @@ var innerFunction = outerFunction("hello closure");
 innerFunction(); // 输出 hello closure
 ```
 
+## Number
+javascript只有一种数字类型，他是一个双精度64位数字；
++ 二进制浮点数不能正确映射到十进制数目,对于真正的十进制数，可以使用big.js
+```javascript
+console.log(.1 + .2); // 0.30000000000000004 
+```  
+
++ 内置数字类型表示的整数限制是 Number.MAX_SAFE_INTEGER 和 Number.MIN_SAFE_INTEGER.
+
+```javascript
+console.log({max: Number.MAX_SAFE_INTEGER, min: Number.MIN_SAFE_INTEGER});
+// {max: 9007199254740991, min: -9007199254740991}
+
+```
++ 不安全的值与这些安全值相差+1或者-1，任何数的加法/减法都会对结果进行四舍五入；
+```javascript
+
+console.log(Number.MAX_SAFE_INTEGER + 1 === Number.MAX_SAFE_INTEGER + 2); // true!
+console.log(Number.MIN_SAFE_INTEGER - 1 === Number.MIN_SAFE_INTEGER - 2); // true!
+
+console.log(Number.MAX_SAFE_INTEGER);      // 9007199254740991
+console.log(Number.MAX_SAFE_INTEGER + 1);  // 9007199254740992 - Correct
+console.log(Number.MAX_SAFE_INTEGER + 2);  // 9007199254740992 - Rounded!
+console.log(Number.MAX_SAFE_INTEGER + 3);  // 9007199254740994 - Rounded - correct by luck
+console.log(Number.MAX_SAFE_INTEGER + 4);  // 9007199254740996 - Rounded!
+```
++ 可以使用es6的Number.isSafeInteger来检查数字的安全性
+```javascript
+// Safe value
+console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER)); // true
+
+// Unsafe value
+console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 1)); // false
+
+// Because it might have been rounded to it due to overflow
+console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 10)); // false
+```
+
++  [Big.js](https://github.com/MikeMcl/big.js/)支持任意精度的数字
+2. [x] 完美的十进制数、案犯范围超出的整数值；
+3. [x] + 避免将这个库用于UI/性能密集型的运算，chart、canvas等；
+4. [x] 当某些数字计算不能用有效数字表示时，javascript会返回一个**NaN**值
+
+5. [x] 超出精度范围的值解析为 Infinity/-Infinity，
+6. [x] 特殊情况下的无穷大也会被记录为 Infinity/-Infinity
+7. [x] 最小的非零值为 Number.MIN_VALUE
+8. [x] 比非零值小的转化为0 
+  ` console.log(Number.MIN_VALUE / 10);  // 0`
+
+## Classes
+1. [x] classes提供了一个很有用的抽象结构
+2. [x] 为开发者提供了一种固定的方式去定义类
+3. [x] 便于面向对象的开发者进行理解
+
++ 基本的使用方式
+
+````javascript
+class Point {
+    x: number;
+    y: number;
+    constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+    }
+    add(point: Point) {
+        return new Point(this.x + point.x, this.y + point.y);
+    }
+}
+
+var p1 = new Point(0, 10);
+var p2 = new Point(10, 20);
+var p3 = p1.add(p2); // {x:10,y:30}
+````
+```javascript
+// 映射为es5的代码如下：
+var Point = (function () {
+    function Point(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    Point.prototype.add = function (point) {
+        return new Point(this.x + point.x, this.y + point.y);
+    };
+    return Point;
+})();
+```
++ 继承
++ statics
++ 访问修饰符 public,private and protected  （未指定修饰符的，默认是public）
+
+| accessible on   | public | private | protected |
+|-----------------|--------|---------|-----------|
+| class           | yes    | yes     | yes       |
+| class children  | yes    | yes     | no        |
+| class instances | yes    | no      | no        |
+
+```javascript
+class FooBase {
+    public x: number;
+    private y: number;
+    protected z: number;
+}
+
+// EFFECT ON INSTANCES
+var foo = new FooBase();
+foo.x; // okay
+foo.y; // ERROR : private
+foo.z; // ERROR : protected
+
+// EFFECT ON CHILD CLASSES
+class FooChild extends FooBase {
+    constructor() {
+      super();
+        this.x; // okay
+        this.y; // ERROR: private
+        this.z; // okay
+    }
+}
+```
++ abstract(抽象类)  
+  abstract可以被认为是访问修饰符，与前面提到的修饰符相反，它可以在一个
+类及该类的任何成员上，具有抽象修饰符主要意味着不能直接调用此类功能，并且子类必须提供该功能；
+```javascript
+abstract class FooCommand {
+  abstract execute(): string;
+}
+
+class BarErrorCommand  extends FooCommand {} // 'BarErrorCommand' needs implement abstract member 'execute'.
+
+class BarCommand extends FooCommand {
+  execute() {
+    return `Command Bar executed`;
+  }
+}
+
+const barCommand = new BarCommand();
+
+barCommand.execute(); // Command Bar executed
+```
+
++ extends
+```typescript
+// d是子类 b是基类
+var __extends = this.__extends || function (d, b) {
+    // 将基类成员复制到子类上
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    // 设置一个构造器是子类的构造函数
+    function __() { this.constructor = d; }
+    // 将该构造函数的原型指向基类
+    __.prototype = b.prototype;
+    // 子类函数原型指向 已经以基类为原型的构造函数所构造的一个实例
+    // d.prototype = {__proto__ : __.prototype, constructor : d}
+    // new的实际意义
+    // 实际效果 d.prototype = {__proto__ : __.prototype}
+    // d.prototype = {__proto__ : b.prototype}.
+    // d.prototype.__proto__ = b.prototype.（此处的意义在于：
+    // 子实例查找完成之后，可以继续深度从基类原型中进行查找 ）
+    d.prototype = new __();
+};
+```
+1. [x] extends的作用就是将改变子类原型未某个对象实例，该对象原型指向的是基类，该对象的构造器
+实际是子类；所以保证了构造子类时调用的构造函数是子类方法；保证了查找属性时，
+首先会在自身__proto__上查找，此时没有找到就会从__proto__.__proto__(即基类原型链)
+查找；
+
+
+### 箭头函数
 
