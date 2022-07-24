@@ -30,7 +30,7 @@ function add(a,b) {
   a + b; // JS : undefined, TS Error 'unreachable code detected'
 }
 ```
-![](./static/img/typescript/img.png)
+![](../static/img/typescript/img.png)
 
 ### 相等
 在javascript中有两种不同的符号： == 和 ===;当两个不同的变量类型之间使用 == 时，javascript会对两个变量进行强制类型转换；  
