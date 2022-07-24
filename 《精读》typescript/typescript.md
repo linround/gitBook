@@ -1,4 +1,4 @@
-# 《精解》Typescript
+# 初识
 typescript被编译成javascript在浏览器上执行，所以需要两个条件：  
 + [typescript编译器](https://www.npmjs.com/package/typescript)
 + [typescript编辑器](https://code.visualstudio.com/)
