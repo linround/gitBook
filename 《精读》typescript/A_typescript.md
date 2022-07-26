@@ -555,6 +555,3 @@ function htmlEscape(literals: TemplateStringsArray, ...placeholders: string[]) {
     return result;
 }
 ```
-
-+ [x] Promise
-1.
