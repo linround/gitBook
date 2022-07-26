@@ -7,7 +7,3 @@
 ## stg3
 ## stg5
 ## stg6
-
-
-# stg10
-# stg11
