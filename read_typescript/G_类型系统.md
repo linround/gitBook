@@ -100,3 +100,32 @@ function log(message): void {
 ```
 8. [x] 泛型  
 在函数中，数据结构不依赖于具体的对象类型；
+9. [x] 联合类型
+即一个数据可以是多个类型中的其中一种。
+```typescript
+function formatCommandline(command: string[]|string) {
+    var line = '';
+    if (typeof command === 'string') {
+        line = command.trim();
+    } else {
+        line = command.join(' ').trim();
+    }
+
+    // Do stuff with line: string
+}
+```
+10. [x] 交叉类型
+具有两个对象，并创建具有这两个对象新特性的对象
+```typescript
+function extend<T, U>(first: T, second: U): T & U {
+  return { ...first, ...second };
+}
+
+const x = extend({ a: "hello" }, { b: 42 });
+
+// x now has both `a` and `b`
+const a = x.a;
+const b = x.b;
+```
+11. [x] 元组类型
+合并了不同类型的对象。
