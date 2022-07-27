@@ -129,3 +129,15 @@ const b = x.b;
 ```
 11. [x] 元组类型
 合并了不同类型的对象。
+12. [x] 类型别名
+```typescript
+type StrOrNum = string|number;
+
+// Usage: just like any other notation
+var sample: StrOrNum;
+sample = 123;
+sample = '123';
+
+// Just checking
+sample = true; // Error!
+```
