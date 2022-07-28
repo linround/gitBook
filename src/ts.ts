@@ -1,18 +1,14 @@
-class Singleton {
-    private static instance: Singleton;
-    constructor() {
-        // do something construct...
-    }
-    static getInstance() {
-        if (!Singleton.instance) {
-            Singleton.instance = new Singleton();
-            // ... any one time initialization goes here ...
-        }
-        return Singleton.instance;
-    }
-    someMethod() { }
+// 属性联合
+type Combined = { a: number } & { b: string };
+// 例如
+const t:Combined = {
+    a:0,
+    b:'9'
 }
 
-let something = new Singleton() // Error: constructor of 'Singleton' is private.
 
-let instance = Singleton.getInstance() // do something with the instance...
+type Conflicting = { a: number } & { a: string };
+const o: Conflicting = {
+    a:'',
+    a:9
+}

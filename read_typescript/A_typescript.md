@@ -577,3 +577,5 @@ AST + Checker ~~ emitter ~~> JS
 
 SourceCode ~~Scanner~~> Tokens ~~Parser~~> AST ~~Emitter~~> JavaScript
 ```
+
+
