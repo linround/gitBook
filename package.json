@@ -3,7 +3,7 @@
     "standard-version": "^9.5.0"
   },
   "scripts": {
-    "release": "standard-version",
+    "release": "standard-version --first-release",
     "postrelease": "git push --follow-tags origin master && npm publish"
   },
   "version": null

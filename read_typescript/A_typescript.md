@@ -555,3 +555,25 @@ function htmlEscape(literals: TemplateStringsArray, ...placeholders: string[]) {
     return result;
 }
 ```
+
+## [编译器内部解构](https://basarat.gitbook.io/typescript/overview)
+
+1. [x] Scanner 
+
+2. [x] Parser
+
+3. [x] Binder
+
+4. [x] Checker
+
+5. [x] Emitter  
+
+```
+SourceCode ~~ scanner ~~> Token Stream  
+Token Stream ~~ parser ~~> AST
+AST ~~ binder ~~> Symbols
+AST + Symbols ~~ checker ~~> Type Validation
+AST + Checker ~~ emitter ~~> JS
+
+SourceCode ~~Scanner~~> Tokens ~~Parser~~> AST ~~Emitter~~> JavaScript
+```
