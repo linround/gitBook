@@ -1,5 +1,4 @@
-const user = {
-    name: "Daniel",
-    age: 26,
-};
-user.location = 0
+function liveDangerously(x?: number | null) {
+    // No error
+    console.log(x!.toFixed());
+}
