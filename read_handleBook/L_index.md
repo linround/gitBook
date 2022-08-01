@@ -108,3 +108,132 @@ const o:obj = {
 + 使用`？`进行可选，使用`-`表示去掉可选或者只读性
 + 使用`as`可以更改映射属性名
 + 借助`extends`进行条件映射
++ 使用Required 表示属性必须，这里适用于全局
+```typescript
+interface Props {
+  a?: string
+  b?: string
+}
+const o:Props={}
+const r:Required<Props> = {
+  a:'',
+  b:''
+}
+```
++ 使用Readonly 的方式对类型进行全局只读
+```typescript
+interface Props {
+  a?: string
+  b?: string
+}
+// const o:Props={}
+const r:Readonly<Props> = {
+  a:'',
+  b:''
+}
+```
+
++ 使用Record构造一个多属性的，同解结构的对象  
+cat两个属性rrr和sss，每个属性的结构是CatInfo
+```typescript
+interface CatInfo {
+  age: number
+  name: string
+}
+type Cat = 'www'|'rrr'
+
+const cats:Record<Cat, CatInfo> = {
+  www:{
+    age: 1,
+    name: ''
+  },
+  rrr:{
+    age: 1,
+    name: ''
+  }
+}
+```
+
++ 使用Pick某个类型中选择相应的key，来构造新的一种属性   
+选取age和name两个属性来构造新的类型；
+```typescript
+interface CatInfo {
+  age: number
+  name: string
+  title: string
+}
+type Cat = 'age'|'name'
+
+const cats:Pick<CatInfo,Cat> = {
+  age:0,
+  name: ''
+}
+```
+
++ 使用Omit从某个类型中删除key来构造新的属性
+```typescript
+interface CatInfo {
+  age: number
+  name: string
+  title: string
+}
+type Cat = 'age'|'name'
+
+const cats:Omit<CatInfo,Cat> = {
+  title:''
+}
+```
++ Exclude从联合类型中排除某个类型
+```typescript
+type A = 'a'|'b'|'c'
+type B = Exclude<A,'a'|'c'>
+let b:B = 'b'
+```
+
++ Extract从多个联合类型中提出交集
+````typescript
+type A = 'a'|'b'|'c'
+type B = Extract<A,'a'|'c'|'d'>
+let x:B = 'c'
+let y:B = 'a'
+````
+
++ 使用Parameters 获取函数参数类型
+````typescript
+type f1 = (arg:{a:number,b:number})=>void
+type t0 = Parameters<f1>
+// 获取函数参数
+const e0:t0 = [{a:1,b:2}]
+
+type t1 = Parameters<()=>string>
+// 函数没有参数
+const e1:t1 = []
+
+type t2 = Parameters<(s:string)=>number>
+// 有一个字符串参数
+const e2:t2 = ['s']
+
+````
+
++ ReturnType构造一个由函数返回类型组成的类型
+````typescript
+type f1 = (arg:{a:number,b:number})=>void
+type t0 = ReturnType<f1>
+// 获取函数返回类型
+const e0:t0 = undefined
+
+type t1 = ReturnType<()=>string>
+// 函数返回类型是string
+const e1:t1 = 'sds'
+
+type t2 = ReturnType<(s:string)=>number>
+// 有一个字符串参数
+const e2:t2 = 0
+
+type T3 = ReturnType<<T extends number[]>() => T>;
+// t3 = number[]
+const e3:T3 = [1,2,3]
+
+
+
+````
