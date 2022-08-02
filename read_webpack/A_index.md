@@ -1,6 +1,6 @@
 # 什么是打包？
 **网页：**
-![](../static/img/网页.drawio.png)
+![](https://raw.githubusercontent.com/linyuan1105/gitBook/main/static/img/webpackbundle.png)
 
 本文主要介绍webpack打包编译过程；
 三个文件
