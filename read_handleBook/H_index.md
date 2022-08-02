@@ -1,4 +1,6 @@
 # `keyof`运算符
+
+
 + 键索引（得到键的类型）
 ```typescript
 type Point = { x: number; y: number };

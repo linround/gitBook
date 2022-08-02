@@ -1,4 +1,6 @@
 # 关于函数
+
+
 在ts中，语法`(a: string) => void`表示一个带有一个参名为a的函数，参数a的类型为字符串，该函数没有返回值；
 ```typescript
 function greeter(fn: (a: string) => void) {

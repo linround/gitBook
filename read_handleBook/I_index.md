@@ -1,4 +1,6 @@
 # `typeof`运算符
+
+
 + 使用`typeof`来使用上下文的类型
 ```typescript
 let s = "hello";
