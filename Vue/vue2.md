@@ -202,7 +202,7 @@ function initState(vm) {
 检测传入的data是否会和methods、props发生冲突；根据data来初始化实力的_data，
 在vm上定义一个键，然后代理到_data上对应的键；然后对_data上的数据进行响应式化；
 - initComputed$1  
-![](./static/img/computed.png)
+![](../static/img/computed.png)
 对于computed中的属性，如果是对象，会获取其get;如果是函数，那么就是这个函数本身；
 如果是对象，也可以定义该属性的set函数；最终在vm实例上定义一个键值，其get函数和set函数就是之前处理好的函数（本身，获取自定义的set和get）
 ；这里的get实际被做成了一个computedGetter，这个computedGetter最终返回的是这个watcher的value（这个value是之前被计算缓存好的值）
@@ -227,10 +227,10 @@ function initState(vm) {
 - 编译模板得到render函数 （这里将编译后的render函数进行了缓存）  
 `baseCompile`:  
 1.转换html模板到ast树,ast树描述了当前模板的属性、事件、标签名、子节点、父节点等等；
-  ![img.png](static/img/img.png)
+  ![img.png](../static/img/img.png)
 2.对ast树进行优化，(标记静态节点)  
 3.利用ast生成渲染节点需要的代码,通过new Function的方式得到render函数；
-![img.png](static/img/imgCode.png)  
+![img.png](../static/img/imgCode.png)  
 4.最终对本次的模板编译进行模板和编译结果的map缓存；  
 5.调用mount函数进行挂载  
 
@@ -238,8 +238,8 @@ function initState(vm) {
 调用传入的beforeMount钩子函数；  
 - 调用updateComponent函数进行组件渲染  
 - 调用render函数形成VNode
-![img.png](static/img/imgVnodeFunc.png)
-![img.png](static/img/imgVNode.png)
+![img.png](../static/img/imgVnodeFunc.png)
+![img.png](../static/img/imgVNode.png)
 - 调用patch方法进行VNode转化(如果之前有VNode，会在这个阶段传入并进行对比)  
 - 最终形象真实的node
 - 真实node形成完成后，挂载到旧的node节点的父节点上
