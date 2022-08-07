@@ -7,8 +7,8 @@
 ## 如何让监听路由模块发生的变化？主要是监听历史记录的前进后退操作；
 主要是为了监听浏览器左上角按钮来操作历史记录，这个时候在页面中只有通过监听popStata事件来处理路由变化；常规的路由交互，可以通过相关API来改变历史记录，但是这个改变不触发popStata事件；
 + 方式一：
-当前新版本路中均是监听的[popState事件](./popStataAndHashChange.md)；  
-旧版本使用的是监听[hashChange事件](./popStataAndHashChange.md):
+当前新版本路中均是监听的[popState事件](../Browser/popStataAndHashChange.md)；  
+旧版本使用的是监听[hashChange事件](../Browser/popStataAndHashChange.md):
 ![img.png](../static/img/vue-router/oldHashChange.png)
 + 方式二：监听popstate事件  
 **具体实现方案如下:**  
