@@ -1,6 +1,8 @@
 # 目录
 ## 浏览器
 + [路由事件(hashChange和popState)](Browser/popStataAndHashChange.md)
++ [drag事件](drag/drag.md)
++ [元素位置信息](position/position.md)
 ## vue
 1. [x] [Vue2原理](Vue/vue2.md)
 2. [x] [vueRouter](Vue/vue-router.md)
