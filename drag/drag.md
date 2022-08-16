@@ -38,3 +38,4 @@
 + onDragEnter，onDragLeave 只要有被拖拽的元素进入或离开一次就会执行一次
 + onDrag 只要有拖动的元素会一直执行，但是一直之和source有关
 + 在元素上使用onDrop时，需要阻止元素的默认事件；因此可以使用ondragover来阻止默认事件冒泡的调用；这个时候才会正常的执行onDrop事件
++ 在父元素上设置拖拽操作时，当内部有多个子元素时，会频繁触发dragenter和dragleave事件；这个时候借助point-event可以正常解决该问题；
