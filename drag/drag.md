@@ -36,7 +36,7 @@
 4. [x] onDragOver 只要有拖拽的元素进行拖动的动作就会在当前所在的元素上执行（一百毫秒一次，可能是source上执行，也可能是target上执行）
 5. [x] ondrop只有在放置目标上执行
 6. [x] onDragEnter，onDragLeave 只要有被拖拽的元素进入或离开一次就会执行一次
-7. [x] onDrag 只要有拖动的元素会一直执行，但是一直之和source有关
+7. [x] onDrag 只要有拖动的元素会一直执行，但是一直只和source有关
 
 ## 问题
 9. [x] 在元素上使用onDrop时，需要阻止元素的默认事件；因此可以使用ondragover来阻止默认事件冒泡的调用；这个时候才会正常的执行onDrop事件
