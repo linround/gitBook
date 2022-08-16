@@ -37,3 +37,4 @@
 + ondrop只有在放置目标上执行
 + onDragEnter，onDragLeave 只要有被拖拽的元素进入或离开一次就会执行一次
 + onDrag 只要有拖动的元素会一直执行，但是一直之和source有关
++ 在元素上使用onDrop时，需要阻止元素的默认事件；因此可以使用ondragover来阻止默认事件冒泡的调用；这个时候才会正常的执行onDrop事件
