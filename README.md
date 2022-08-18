@@ -1,6 +1,7 @@
 # 目录
 ## 计算机图形学
 + [计算机图形学第一课](./CG/a.md)
++ [计算机图形学第二课](./CG/b.md)
 ## webgl
 + [ webgl 基础概念](./webgl/A.md)
 + [webgl原理实现](./webgl/B.md)
