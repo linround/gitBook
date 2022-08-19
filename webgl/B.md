@@ -1,5 +1,30 @@
 # webgl工作原理
+最终实现：缩放、旋转、位置
+![img.png](./img/b1.png)
 
+##### tips：
++ 使用插值实现颜色渐变
+```javascript
+// 给矩形的两个三角形
+// 设置颜色值并发到缓冲
+function setColors(gl) {
+  // 给每个顶点定义不同的颜色
+  gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array(
+        [ Math.random(), Math.random(), Math.random(), 1,
+          Math.random(), Math.random(), Math.random(), 1,
+          Math.random(), Math.random(), Math.random(), 1,
+          Math.random(), Math.random(), Math.random(), 1,
+          Math.random(), Math.random(), Math.random(), 1,
+          Math.random(), Math.random(), Math.random(), 1]),
+      gl.STATIC_DRAW);
+}
+```
+
+
+
+- 关于绘制时的参数说明
 ```javascript
 // 因为我们设置primitiveType（图元类型）为 gl.TRIANGLES（三角形）， 顶点着色器每运行三次
   // WebGL将会根据三个gl_Position值绘制一个三角形，
@@ -290,5 +315,7 @@ function setColors(gl) {
 
 ````
 ![img.png](./img/cg2-02.drawio.png)
+
+
 
 
