@@ -2,9 +2,11 @@
 ## 计算机图形学
 + [计算机图形学第一课](./CG/a.md)
 + [计算机图形学第二课](./CG/b.md)
++ [计算机图形学第三课](./CG/c.md)
 ## webgl
 + [ webgl 基础概念](./webgl/A.md)
 + [webgl原理实现](./webgl/B.md)
++ [webgl 着色器和GLSL](./webgl/C.md)
 ## 浏览器
 + [路由事件(hashChange和popState)](Browser/popStataAndHashChange.md)
 + [drag事件](drag/drag.md)
