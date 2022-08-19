@@ -314,8 +314,7 @@ function setColors(gl) {
 }
 
 ````
-![img.png](./img/cg2-02.drawio.png)
-
+![img.png](./img/b3.drawio)
 
 
 
