@@ -2,10 +2,10 @@
 
 
 ## 程序大纲
+## 为什么u_image没有设置还能正常运行?
+全局变量默认为 0 所以 u_image 默认使用纹理单元 0 。 纹理单元 0 默认为当前活跃纹理，所以调用 bindTexture 会将纹理绑定到单元 0 。
 ![](./img/b4.drawio.png)
 ```javascript
-
-
 import { createProgramFromStrings } from '../webglCommon'
 
 export function triangles(canvas, image) {
@@ -102,11 +102,11 @@ export function triangles(canvas, image) {
   const program = createProgramFromStrings(
     gl, vertexShaderSource, fragmentShaderSource
   )
-  
+
   // 找到顶点数据的位置
   const positionLocation = gl.getAttribLocation(program, 'a_position')
   const texcoordLocation = gl.getAttribLocation(program, 'a_texCoord')
-  
+
   // 创建一个缓冲区，防止裁剪空间中的点
   const positionBuffer = gl.createBuffer()
   // 当当缓冲区指向 positionBuffer
@@ -115,7 +115,7 @@ export function triangles(canvas, image) {
   setRectangle(
     gl, 0, 0, image.width, image.height
   )
-  
+
   /**
    * todo
    * 为提供一个纹理坐标缓存区
@@ -140,28 +140,32 @@ export function triangles(canvas, image) {
       1.0,  1.0
     ]), gl.STATIC_DRAW
   )
-  
+
   // =========================================创建图像纹理=============START========================================
   const texture = gl.createTexture()
+  /**
+   * todo
+   * 所有支持WebGL的环境，在片断着色器中至少有8个纹理单元，顶点着色器中可以是0个。
+   */
+  gl.activeTexture(gl.TEXTURE0) // 可写可不写
   gl.bindTexture(gl.TEXTURE_2D, texture)
-  
   // 设置纹理参数
   // target: gl.TEXTURE_2D
   // TEXTURE_WRAP_S 纹理坐标水平填充       默认值 gl.CLAMP_TO_EDGE
   gl.texParameteri(
     gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE
   )
-  
+
   // TEXTURE_WRAP_T纹理坐标垂直填充        默认值 gl.CLAMP_TO_EDGE
   gl.texParameteri(
     gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE
   )
-  
+
   // TEXTURE_MIN_FILTER     纹理缩小滤波器     默认值 gl.CLAMP_TO_EDGE
   gl.texParameteri(
     gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST
   )
-  
+
   // TEXTURE_MAG_FILTER  纹理放大滤波器       默认值 gl.NEAREST
   gl.texParameteri(
     gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST
@@ -177,15 +181,16 @@ export function triangles(canvas, image) {
   gl.texImage2D(
     gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image
   )
+
   // =========================================创建图像纹理=============END========================================
-  
-  
+
+
   // 找到全局变量的位置
   const resolutionLocation = gl.getUniformLocation(program, 'u_resolution')
   const textureSizeLocation = gl.getUniformLocation(program, 'u_textureSize')
   const kernelLocation = gl.getUniformLocation(program, 'u_kernel[0]')
   const kernelWeightLocation = gl.getUniformLocation(program, 'u_kernelWeight')
-  
+
   // 定义卷积核
   const kernels = {
     normal: [
@@ -290,7 +295,7 @@ export function triangles(canvas, image) {
     ],
   }
   const initialSelection = 'edgeDetect2'
-  
+
   // ===============定义一套UI交互=====================================================START===============
   const ui = document.querySelector('#ui')
   const select = document.createElement('select')
@@ -308,42 +313,42 @@ export function triangles(canvas, image) {
   }
   ui.appendChild(select)
   drawWithKernel(initialSelection)
-  
+
   function computeKernelWeight(kernel) {
     const weight = kernel.reduce(function(prev, curr) {
       return prev + curr
     })
     return weight <= 0 ? 1 : weight
   }
-  
+
   // ===============定义一套UI交互=====================================================END===================
-  
+
   function drawWithKernel(name) {
-    
+
     // 裁剪空间到像素空间
     gl.viewport(
       0, 0, gl.canvas.width, gl.canvas.height
     )
-    
+
     // 清除
     gl.clearColor(
       0, 0, 0, 0
     )
     gl.clear(gl.COLOR_BUFFER_BIT)
-    
+
     // 使用着色器程序
     gl.useProgram(program)
-    
+
     // 开启位置属性
     gl.enableVertexAttribArray(positionLocation)
-    
+
     /**
      * todo
      * positionBuffer 缓冲区绑定点
      * positionBuffer存储的是矩形的区域最表点
      */
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
-    
+
     // 设置从positionBuffer中读取数据时的一些参数
     let size = 2          // 每次迭代运行提取两个单位数据
     let type = gl.FLOAT   // 每个单位的数据类型是32位浮点型
@@ -354,10 +359,10 @@ export function triangles(canvas, image) {
     gl.vertexAttribPointer(
       positionLocation, size, type, normalize, stride, offset
     )
-    
+
     // 开启纹理属性
     gl.enableVertexAttribArray(texcoordLocation)
-    
+
     /**
      * todo
      * texcoordBuffer 缓冲区绑定点
@@ -370,12 +375,12 @@ export function triangles(canvas, image) {
     normalize = false // 不需要归一化数据
     stride = 0       // 0 = 移动单位数量 * 每个单位占用内存（sizeof(type)）每次迭代运行运动多少内存到下一个数据开始点
     offset = 0        // 从缓冲起始位置开始读取
-    
+
     // texcoordLocation 得到了 texcoordBuffer的数据
     gl.vertexAttribPointer(
       texcoordLocation, size, type, normalize, stride, offset
     )
-    
+
     /**
      * todo
      * 设置全局变量 该变量用来处理
@@ -386,7 +391,7 @@ export function triangles(canvas, image) {
     gl.uniform2f(
       resolutionLocation, gl.canvas.width, gl.canvas.height
     )
-    
+
     // set the size of the image
     /**
      * todo
@@ -398,12 +403,12 @@ export function triangles(canvas, image) {
     gl.uniform2f(
       textureSizeLocation, image.width, image.height
     )
-    
+
     // 设置全局变量卷积核
     // 设置全局变量卷积核权重
     gl.uniform1fv(kernelLocation, kernels[name])
     gl.uniform1f(kernelWeightLocation, computeKernelWeight(kernels[name]))
-    
+
     // 绘制三角形
     const primitiveType = gl.TRIANGLES
     offset = 0
@@ -432,7 +437,6 @@ function setRectangle(
     ]), gl.STATIC_DRAW
   )
 }
-
 
 
 
