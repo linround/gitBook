@@ -4,18 +4,20 @@
 - [GPU流水线](shader/b.md)
 - [图像编程相关](shader/c.md)
 ## 计算机图形学
+注：`计算机图形学非常复杂，这里只记录相关课程的知识点，不做具体解读`
 + [计算机图形学第一课](./CG/a.md)
 + [计算机图形学第二课](./CG/b.md)
 + [计算机图形学第三课](./CG/c.md)
 + [计算机图形学第四课](./CG/d.md)
++ [计算机图形学第五课](./CG/e.md)
 ## webgl
 关键词：`unity3D`、`vulkan`、`openGL`、`threeJS`、`babylon`、`pixiJS`
 + [ webgl 基础概念](./webgl/A.md)
 + [webgl原理实现](./webgl/B.md)
 + [webgl 着色器和GLSL](./webgl/C.md)
 + [webgl 图像处理](./webgl/D.md)
-# 数学函数相关文章
-`注`：`以下文章链接来源于网上的搜集，非本人所写!`
+# 数学函数相关推导细节文章
+`注`：`以下文章链接来源于网上的搜集，非本人所写!只为方便后续手动推导和整理笔记`
 - [2D平面基本图形SDF推导01](https://zhuanlan.zhihu.com/p/420700051)
 - [2D平面基本图形SDF推导02](https://zhuanlan.zhihu.com/p/421112503)
 ## 浏览器
