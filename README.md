@@ -14,6 +14,10 @@
 + [webgl原理实现](./webgl/B.md)
 + [webgl 着色器和GLSL](./webgl/C.md)
 + [webgl 图像处理](./webgl/D.md)
+# 数学函数相关文章
+`注`：`以下文章链接来源于网上的搜集，非本人所写!`
+- [2D平面基本图形SDF推导01](https://zhuanlan.zhihu.com/p/420700051)
+- [2D平面基本图形SDF推导02](https://zhuanlan.zhihu.com/p/421112503)
 ## 浏览器
 + [路由事件(hashChange和popState)](Browser/popStataAndHashChange.md)
 + [drag事件](drag/drag.md)
