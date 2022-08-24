@@ -1,6 +1,7 @@
 # 目录
 ## Shader
-- [渲染PipLine](shader/a.md)
+- [渲染PipLine概述](shader/a.md)
+- [GPU流水线](shader/b.md)
 ## 计算机图形学
 + [计算机图形学第一课](./CG/a.md)
 + [计算机图形学第二课](./CG/b.md)
