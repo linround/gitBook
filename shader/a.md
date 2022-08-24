@@ -44,4 +44,9 @@
 ![img.png](./img/img4.png)
 - 调用Draw Call   
 根据渲染状态来绘制图形；
+
+## 总结：
+![img.png](./img/shader1.drawio.png)
+
+
    
