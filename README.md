@@ -3,7 +3,8 @@
 - [渲染PipLine概述](shader/a.md)
 - [GPU流水线](shader/b.md)
 - [图像编程相关](shader/c.md)
-- [理论基础-笛卡尔坐标系](shader/d.md)
+- [理论基础---笛卡尔坐标系](shader/d.md)
+- [理论基础---矩阵](shader/e.md)
 ## 计算机图形学
 `注：记录相关课程的知识点，不做具体解读`
 + [计算机图形学第一课](./CG/a.md)
