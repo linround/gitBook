@@ -14,6 +14,13 @@
 > 0, Sy   
 > ]
 
+- 想要相对某个点进行旋转（改变旋转中心点）
+> 改变旋转中心点即改变原点坐标，需要将原来的顶点坐标进行平移变换，乘以平移矩阵   
+>[   
+> 0, 0,Dx   
+> 0, 0,Dy   
+> 0, 0, 1   
+> ]
 
 ```javascript
 import { createProgramFromStrings } from '../webglCommon'
@@ -37,11 +44,15 @@ export function render(canvas) {
       uniform vec2 u_translation;
       // 缩放值
       uniform vec2 u_scale;
+      
+      uniform mat3 u_move;
       void main() {
+        // 这里只需要将原有的顶点坐标乘以位移矩阵，即可绕规定的点进行旋转，这里是相当于改变原点坐标
+        vec2 move_position = (u_move * vec3(a_position, 1)).xy;
          // 旋转位置
          vec2 rotatedPosition = vec2(
-           a_position.x * u_rotation.y + a_position.y * u_rotation.x,
-           a_position.y * u_rotation.y - a_position.x * u_rotation.x);
+           move_position.x * u_rotation.y + move_position.y * u_rotation.x,
+           move_position.y * u_rotation.y - move_position.x * u_rotation.x);
            // 对旋转后的坐标进行缩放
            vec2 scaledPosition = rotatedPosition * u_scale;
          // 位置=原来的位置信息+位置信息
@@ -81,6 +92,7 @@ export function render(canvas) {
   // 找到全局变量
   // 存储缩放信息
   const scaleLocation = gl.getUniformLocation(program, 'u_scale')
+  const moveLocation = gl.getUniformLocation(program, 'u_move')
   // 存储旋转因子
   const rotationLocation = gl.getUniformLocation(program, 'u_rotation')
   
@@ -145,42 +157,52 @@ export function render(canvas) {
     // 将之前的顶点缓冲数据绑定到绑定点
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
     
-    // T告诉顶点属性如何从绑定点的缓冲区读取顶点数据
-    const size = 2          // 每次迭代运行提取两个单位数据
-    const type = gl.FLOAT   // 每个单位的数据类型是32位浮点型
-    const normalize = false // 不需要归一化数据
-    const stride = 0        // 0 = 移动单位数量 * 每个单位占用内存（sizeof(type)）每次迭代运行运动多少内存到下一个数据开始点
-    let offset = 0        // 从缓冲起始位置开始读取
-    // positionLocation 得到了 positionBuffer的数据
-    gl.vertexAttribPointer(
-      positionLocation, size, type, normalize, stride, offset
-    )
     
-    // 设置全局变量宽高值
-    gl.uniform2f(
-      resolutionLocation, gl.canvas.width, gl.canvas.height
-    )
-    
-    // 设置颜色
-    gl.uniform4fv(colorLocation, color)
-    // 设置缩放
-    gl.uniform2fv(scaleLocation, scale)
-    // 设置位移全局变量
-    gl.uniform2fv(translationLocation, translation)
-    // 设置旋转
-    gl.uniform2fv(rotationLocation, rotation)
-    // 开始绘制
-    const primitiveType = gl.TRIANGLES
-    offset = 0
-    const count = 18  // 因为由18个顶点所以要绘制18次
-    /**
-     * todo
-     * 在绘制时会指向顶点着色其程序
-     * 在进行像素颜色插值过程中，每个像素都会执行一次片元着色器
-     */
-    gl.drawArrays(
-      primitiveType, offset, count
-    )
+    for (let i = 0;i < 2;i++) {
+      // T告诉顶点属性如何从绑定点的缓冲区读取顶点数据
+      const size = 2          // 每次迭代运行提取两个单位数据
+      const type = gl.FLOAT   // 每个单位的数据类型是32位浮点型
+      const normalize = false // 不需要归一化数据
+      const stride = 0        // 0 = 移动单位数量 * 每个单位占用内存（sizeof(type)）每次迭代运行运动多少内存到下一个数据开始点
+      let offset = 0        // 从缓冲起始位置开始读取
+      // positionLocation 得到了 positionBuffer的数据
+      gl.vertexAttribPointer(
+        positionLocation, size, type, normalize, stride, offset
+      )
+      
+      // 设置全局变量宽高值
+      gl.uniform2f(
+        resolutionLocation, gl.canvas.width, gl.canvas.height
+      )
+      gl.uniformMatrix3fv(
+        moveLocation, false, [
+          1, 0, 0,
+          0, 1, 0,
+          -30, -90, 1
+        ]
+      )
+      // 设置颜色
+      gl.uniform4fv(colorLocation, color)
+      // 设置缩放
+      gl.uniform2fv(scaleLocation, scale)
+      // 设置位移全局变量
+      gl.uniform2fv(translationLocation, [translation[0] + i, translation[1] + i])
+      // 设置旋转
+      gl.uniform2fv(rotationLocation, rotation)
+      // 开始绘制
+      const primitiveType = gl.TRIANGLES
+      offset = 0
+      const count = 18  // 因为由18个顶点所以要绘制18次
+      /**
+       * todo
+       * 在绘制时会指向顶点着色其程序
+       * 在进行像素颜色插值过程中，每个像素都会执行一次片元着色器
+       */
+      gl.drawArrays(
+        primitiveType, offset, count
+      )
+    }
+  
   }
 }
 
