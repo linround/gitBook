@@ -79,3 +79,6 @@ NDC坐标 => 像素坐标
 [0,0] => [width/2,height/2]
 [1,1] => [width,height]
 ```
+
+# 总结
+![](./img/未命名绘图.drawio22.png)
