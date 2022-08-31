@@ -555,3 +555,7 @@ function setNormals(gl) {
 
 
 ````
+
+总结: 
+
+![img](./img/Webgl3dLightingDirectional1.png)
