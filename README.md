@@ -24,6 +24,7 @@
 + [webgl 二维平面中的位移](./webgl/E.md)
 + [webgl 二维平面的旋转和缩放](./webgl/F.md)
 + [webgl 三维空间中的正交投影](./webgl/G.md)
++ [webgl 三维空间中的方向光源](./webgl/H.md)
 # 数学函数相关推导细节文章
 `注`：`以下文章链接来源于网上的搜集，为方便后续手动推导和整理笔记`
 - [2D平面基本图形SDF推导01](https://zhuanlan.zhihu.com/p/420700051)
