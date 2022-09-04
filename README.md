@@ -15,6 +15,7 @@
 + [计算机图形学第三课](./CG/c.md)
 + [计算机图形学第四课](./CG/d.md)
 + [计算机图形学第五课](./CG/e.md)
++ [计算机图形学第六课](./CG/f.md)
 ## webgl
 `关键词`：`unity3D`、`vulkan`、`openGL`、`threeJS`、`babylon`、`pixiJS`
 + [ webgl 基础概念](./webgl/A.md)
