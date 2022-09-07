@@ -1,6 +1,8 @@
 # 目录
+## 初学者的问题
+- [shader中的问题](shader/Question.md)
+
 ## Shader
-- []
 - [渲染PipLine概述](shader/a.md)
 - [GPU流水线](shader/b.md)
 - [图像编程相关](shader/c.md)

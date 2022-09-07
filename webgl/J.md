@@ -30,3 +30,17 @@
 | GL_LINEAR_MIPMAP_NEAREST  | 采用最近的 mipmap 级别并使用线性插值对该级别进行采样。                |
 | GL_NEAREST_MIPMAP_LINEAR  | 在最接近像素大小的两个 mipmap 之间进行线性插值，并通过最近邻插值对插值级别进行采样。 |
 | GL_LINEAR_MIPMAP_LINEAR   | 在两个最接近的 mipmap 之间进行线性插值，并通过线性插值对插值级别进行采样       |
+
+### 关于gl.texImage2D参数的含义
+例如： `gl.texImage2D(
+gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE,
+new Uint8Array([150, 166, 245, 255])
+)`
+
+- 第一个参数设置了纹理目标
+- 第二个参数指定了多级渐源纹理的级别
+- 第三个参数告诉openGL把纹理存储为何种格式
+- 第四和第五个设置最终纹理的高度。在之前加载图像的时候存储了宽高
+- 第六个参数是历史遗留问题，始终设置为0
+- 第七和第八个参数定义了源图的格式和数据类型
+- 最后一个参数是真正的图像数据
