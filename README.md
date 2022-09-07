@@ -42,6 +42,14 @@
 - `微分几何` 
 - `离散几何`
 - `拓扑`
+# 学习资料
+- [高级着色器语言](https://docs.microsoft.com/zh-cn/windows/win32/direct3dhlsl/dx-graphics-hlsl)
+- [Unity Shader入门精要](https://www.epubit.com/bookDetails?id=N12469)
+- [learnOpenGL](https://learnopengl-cn.github.io/)
+- [learn C++](https://www.learncpp.com/)
+- [The Book of Shaders](https://thebookofshaders.com/)
+- [GAMES101-现代计算机图形学入门](https://www.bilibili.com/video/BV1X7411F744?spm_id_from=333.337.search-card.all.click)
+- [2020年中国科学技术大学《计算机图形学》本科课程](https://www.bilibili.com/video/BV1iT4y1o7oM?spm_id_from=333.337.search-card.all.click)
 
 ## 浏览器
 + [路由事件(hashChange和popState)](Browser/popStataAndHashChange.md)
