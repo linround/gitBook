@@ -1,4 +1,7 @@
 # 目录
+
+## c++
+- [概述](c++/a.md)
 ## 初学者的问题
 - [shader中的问题](shader/Question.md)
 
