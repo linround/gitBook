@@ -147,4 +147,4 @@ int main()
 - char 定义的字符，值只能代表一个符号；
 - char 只能使用单引号表示；
 - static_cast 可以用来进行显示类型转换；
-- 
+> double=>int;char=>int;int=>char;无符号数=>int；等等；
