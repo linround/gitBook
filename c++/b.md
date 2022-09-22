@@ -122,4 +122,29 @@ int main()
 ### 浮点数
 `float为4个字节` `double为8个字节` `long double可以为8、12、16子节点，通常填充为12个字节；`
 - 有限使用double float ,因为浮点数缺乏精度通常导致不准确；
+### 布尔值
+布尔值实际上并不作为单词true或false存储在布尔变量中，相反，他们存储为整数：true为1，false为0。当计算布尔值时，他们实际上并不计算为“真”或
+“假”；
+- 使用std::boolalpha来打印true或false，使用std::noboolalpha来关闭；
+```text
+#include <iostream>
+
+int main()
+{
+    std::cout << true << '\n';
+    std::cout << false << '\n';
+
+    std::cout << std::boolalpha; // print bools as true or false
+
+    std::cout << true << '\n';
+    std::cout << false << '\n';
+    return 0;
+}
+```
+
+
+### 字符串
+- char 定义的字符，值只能代表一个符号；
+- char 只能使用单引号表示；
+- static_cast 可以用来进行显示类型转换；
 - 
