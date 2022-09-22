@@ -2,6 +2,7 @@
 
 ## c++
 - [概述](c++/a.md)
+- [知识点1](c++/b.md)
 ## 初学者的问题
 - [shader中的问题](shader/Question.md)
 
