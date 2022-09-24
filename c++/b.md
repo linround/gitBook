@@ -149,8 +149,10 @@ int main()
 - static_cast 可以用来进行显示类型转换；
 > double=>int;char=>int;int=>char;无符号数=>int；等等；
 
-### 常量
+### 语法
 - const变量必须被初始化，不能通过赋值更改该值
 -  c++14之前 二进制的值使用0x开头，在c++14中使用0b前缀；
 - std::dec表示输出十进制，std::oct表示输出八进制；std::hex表示输出16进制；
 - std::getline:将整行输入读入字符
+- std::bitset 可进行为标志和位操作
+- 在cpp文件和.h文件中使用相同namespace 进行方法匹配；支持命名嵌套；
