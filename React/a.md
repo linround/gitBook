@@ -42,4 +42,9 @@ const root = ReactDOM.createRoot(container);
 root.render( /*#__PURE__*/React.createElement(MyApp, null));
 ```
 babel 将jsx编译成React.createElement的形式调用来创建元素；
+![img.png](img/img1.png)
+# root.render( React.createElement(MyApp, null))
+- [React.createElement(MyApp, null)](b.md)
+- [root.render](c.md)
+- [ReactDOM.createRoot(container)](d.md)
 
