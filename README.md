@@ -2,6 +2,13 @@
 
 #### [关于工作中的一些问题记录](Q/a.md)
 
+
+
+## gitlab
+`  操作系统： ubuntu  `
+- [gitlab的下载与部署](gitLab/a.md)
+- [查看和修改管理员原始密码](gitLab/b.md)
+
 ## React
 - [React执行过程之babel](React/a.md)
 - [React执行过程之createElementWithValidation](React/b.md)

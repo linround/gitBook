@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="./vue.js"></script>
+  <div id="app">{{name}}
+    <my-component>
+      <div slot="body">
+        body
+      </div>
+    </my-component>
+  </div>
+</head>
+<body>
+<script>
+  const myComponent = {
+    data() {
+      return {}
+    },
+    render(createElement) {
+      debugger
+      const body = this.$slots.body || []
+      const def = this.$slots.default || []
+      return createElement(
+              'div', {}, ['你好', ...def, ...body]
+      )
+    },
+  }
+  debugger
+  new Vue({
+    el:"#app",
+    components:{
+      myComponent
+    },
+    data(){
+      return {
+        name:'lin'
+      }
+    }
+  })
+
+</script>
+</body>
+</html>
