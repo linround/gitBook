@@ -9,6 +9,14 @@
 - [gitlab的下载与部署](gitLab/a.md)
 - [查看和修改管理员原始密码](gitLab/b.md)
 
+
+
+## gitlab
+`  操作系统： ubuntu  `
+- [gitlab的下载与部署](https://about.gitlab.com/install/#ubuntu)
+- 查看管理员原始密码
+- 修改管理员密码
+
 ## React
 - [React执行过程之babel](React/a.md)
 - [React执行过程之createElementWithValidation](React/b.md)
