@@ -4,13 +4,9 @@
 
 
 
-## gitlab
-`  操作系统： ubuntu  `
-- [gitlab的下载与部署](gitLab/a.md)
-- [查看和修改管理员原始密码](gitLab/b.md)
-- [gitlab的下载与部署](https://about.gitlab.com/install/#ubuntu)
 
-
+## TS
+- [关于is](TS/a.md)
 
 ## React
 - [React执行过程之babel](React/a.md)
