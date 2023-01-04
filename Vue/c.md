@@ -16,7 +16,7 @@ const myComponent = {
     },
   }
 ```
-
+![img.png](imgFolder/img3.png)
 - 开始对父组件进行模板编译
 - 父组件的模板含有子组件标签，一开始也被当作做了普通元素
 - 父组件的render函数形成开始执行，开始生产vNode，这个时候还不知道该子标签是组件；
