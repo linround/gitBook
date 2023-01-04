@@ -78,6 +78,7 @@
 ## vue
 1. [x] [Vue2原理](Vue/vue2.md)
 2. [x] [vueRouter](Vue/vue-router.md)
+3. [x] [使用render函数中的插槽](Vue/c.md)
 ## react
 ## 元素
 ## 工程
