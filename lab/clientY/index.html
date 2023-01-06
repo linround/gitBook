@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../vue/vue.js"></script>
+  <style>
+    body {
+      margin: 0;
+      position: relative;
+    }
+    #app {
+      border: 1px solid;
+      height: 300px;
+      width: 400px;
+      position: absolute;
+      right: 0;
+      top: 150px;
+      overflow: auto;
+    }
+    .content{
+      height: 1000px;
+      width: 100%;
+    }
+    .content_2{
+      height: 50px;
+      width: 50px;
+      border: 1px solid;
+      position: absolute;
+      top: 50px;
+    }
+  </style>
+  <div id="app">
+    <div class="content" @click="handleMouseMove">
+      content
+    </div>
+    <div class="content_2" @click="handleClick">
+      content_2
+    </div>
+  </div>
+</head>
+<body>
+<script>
+  document.body.addEventListener('mousemove',function (event) {
+    console.log(event.clientY,'documentElement   clientY')
+  })
+  new Vue({
+    el:"#app",
+    components:{
+    },
+    methods:{
+      handleClick(e){
+        const ele = e.currentTarget
+        const top = ele.getBoundingClientRect().top
+        console.log('***content_2****top',top,'*****content_2*************top')
+      },
+      handleMouseMove(e){
+        const ele = e.currentTarget
+        const top = ele.getBoundingClientRect().top
+        console.log('*******top',top,'******************top')
+      }
+    },
+    data(){
+      return {
+        name:'lin'
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

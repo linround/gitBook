@@ -1780,7 +1780,6 @@
         }
         var vnode, ns;
         if (typeof tag === 'string') {
-            debugger
             var Ctor = void 0;
             ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
             if (config.isReservedTag(tag)) {
@@ -2453,7 +2452,6 @@
         var options = vm.$options;
         var parentVnode = (vm.$vnode = options._parentVnode); // the placeholder node in parent tree
         var renderContext = parentVnode && parentVnode.context;
-        debugger
         vm.$slots = resolveSlots(options._renderChildren, renderContext);
         vm.$scopedSlots = parentVnode
             ? normalizeScopedSlots(vm.$parent, parentVnode.data.scopedSlots, vm.$slots)
@@ -4697,7 +4695,6 @@
                 // optimize internal component instantiation
                 // since dynamic options merging is pretty slow, and none of the
                 // internal component options needs special treatment.
-                debugger
                 initInternalComponent(vm, options);
             }
             else {
