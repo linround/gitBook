@@ -7,7 +7,6 @@ const myComponent = {
       return {}
     },
     render(createElement) {
-      debugger
       const body = this.$slots.body || []
       const def = this.$slots.default || []
       return createElement(
