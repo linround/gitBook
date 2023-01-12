@@ -80,3 +80,12 @@ startTime (tms) {
 
 
 + 如何将已有事件转换为坐标？ 如何处理已有事件的坐标边界问题？
+
+
++ 关于$scopedSlots和$slots的区别
+> $scopedSlots；  
+> 1. 在template中，组件内部自定义插槽。编译后会可以在组件的`$scopedSlots`中访问该插槽
+![img.png](img/img2.png)
+
+> 2. 在自定义render函数的组件中，在上级组件的render函数中，渲染对应的AComponent时，在该AComponent中定义scopedSlots属性，即可在该AComponent的render函数中通过$scopedSlots访问上级定义的scopedSlots属性
+![img.png](img/img3.png)

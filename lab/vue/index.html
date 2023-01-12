@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
   <script src="./vue.js"></script>
-  <div id="app">{{name}}
+  <div id="app">
     <my-component>
-      <div slot="body">
-        body
+      <div slot="testCom" slot-scope="scope" >
+          testCom
       </div>
     </my-component>
   </div>
@@ -19,15 +19,28 @@
       return {}
     },
     render(createElement) {
+      const scopedSlots = this.$scopedSlots
+      const test = scopedSlots.test
       const body = this.$slots.body || []
       const def = this.$slots.default || []
       return createElement(
-              'div', {}, ['你好', ...def, ...body]
+              'div', {
+
+        }, ['你好正常', ...def, ...body]
       )
     },
   }
   new Vue({
     el:"#app",
+    render(createElement) {
+      return createElement('myComponent',{
+        scopedSlots:{
+          test(value,val2){
+            return ['你好test']
+          },
+        }
+      });
+    },
     components:{
       myComponent
     },
