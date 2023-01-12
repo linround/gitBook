@@ -89,3 +89,9 @@ startTime (tms) {
 
 > 2. 在自定义render函数的组件中，在上级组件的render函数中，渲染对应的AComponent时，在该AComponent中定义scopedSlots属性，即可在该AComponent的render函数中通过$scopedSlots访问上级定义的scopedSlots属性
 ![img.png](img/img3.png)
+
+> 3. slot通常在模板语法中较为常用，在自定义render函数的语法中只能使用scopedSlots
+具体原因就是$slot的来源只能从`_renderChildren`
+>![img.png](img/img4.png)
+> 4. 从下图来看`_renderChildren`来源：
+![img.png](img/img5.png)

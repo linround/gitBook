@@ -1779,6 +1779,7 @@
             children = simpleNormalizeChildren(children);
         }
         var vnode, ns;
+        debugger
         if (typeof tag === 'string') {
             var Ctor = void 0;
             ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
@@ -1794,6 +1795,7 @@
             else if ((!data || !data.pre) &&
                 isDef((Ctor = resolveAsset(context.$options, 'components', tag)))) {
                 // component
+                debugger
                 vnode = createComponent(Ctor, data, context, children, tag);
             }
             else {
@@ -2224,6 +2226,7 @@
         def(res, '$stable', isStable);
         def(res, '$key', key);
         def(res, '$hasNormal', hasNormalSlots);
+        debugger
         return res;
     }
     function normalizeScopedSlot(vm, normalSlots, key, fn) {
@@ -2490,6 +2493,7 @@
             var vm = this;
             var _a = vm.$options, render = _a.render, _parentVnode = _a._parentVnode;
             if (_parentVnode && vm._isMounted) {
+                debugger
                 vm.$scopedSlots = normalizeScopedSlots(vm.$parent, _parentVnode.data.scopedSlots, vm.$slots, vm.$scopedSlots);
                 if (vm._slotsProxy) {
                     syncSetupSlots(vm._slotsProxy, vm.$scopedSlots);
@@ -2506,6 +2510,7 @@
                 // when parent component is patched.
                 setCurrentInstance(vm);
                 currentRenderingInstance = vm;
+                debugger
                 vnode = render.call(vm._renderProxy, vm.$createElement);
             }
             catch (e) {
@@ -4692,6 +4697,7 @@
             vm._scope._vm = true;
             // merge options
             if (options && options._isComponent) {
+                debugger
                 // optimize internal component instantiation
                 // since dynamic options merging is pretty slow, and none of the
                 // internal component options needs special treatment.
@@ -4708,6 +4714,7 @@
             vm._self = vm;
             initLifecycle(vm);
             initEvents(vm);
+            debugger
             initRender(vm);
             callHook$1(vm, 'beforeCreate', undefined, false /* setContext */);
             initInjections(vm); // resolve injections before data/props
@@ -4734,6 +4741,7 @@
         var vnodeComponentOptions = parentVnode.componentOptions;
         opts.propsData = vnodeComponentOptions.propsData;
         opts._parentListeners = vnodeComponentOptions.listeners;
+        debugger
         opts._renderChildren = vnodeComponentOptions.children;
         opts._componentTag = vnodeComponentOptions.tag;
         if (options.render) {
@@ -4898,6 +4906,7 @@
     // inline hooks to be invoked on component VNodes during patch
     var componentVNodeHooks = {
         init: function (vnode, hydrating) {
+            debugger
             if (vnode.componentInstance &&
                 !vnode.componentInstance._isDestroyed &&
                 vnode.data.keepAlive) {
@@ -5033,6 +5042,7 @@
         vnode,
         // activeInstance in lifecycle state
         parent) {
+        debugger
         var options = {
             _isComponent: true,
             _parentVnode: vnode,
@@ -5047,6 +5057,7 @@
         return new vnode.componentOptions.Ctor(options);
     }
     function installComponentHooks(data) {
+        debugger
         var hooks = data.hook || (data.hook = {});
         for (var i = 0; i < hooksToMerge.length; i++) {
             var key = hooksToMerge[i];

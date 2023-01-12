@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>修改</title>
   <script src="./vue.js"></script>
   <div id="app">
     <my-component>
-      <div slot="testCom" slot-scope="scope" >
-          testCom
-      </div>
+        <div slot="testSlot">修改</div>
     </my-component>
   </div>
 </head>
@@ -19,28 +17,33 @@
       return {}
     },
     render(createElement) {
-      const scopedSlots = this.$scopedSlots
-      const test = scopedSlots.test
       const body = this.$slots.body || []
       const def = this.$slots.default || []
+      console.log(createElement('div',
+        {
+          "attrs": {
+            "slot": "testSlot",
+          },
+          "slot": "testSlot"
+        },['默认插槽']))
       return createElement(
               'div', {
-
-        }, ['你好正常', ...def, ...body]
+          "attrs": {
+            "slot": "testSlot",
+          },
+          "slot": "testSlot",
+        }, ['你好正常', ...def, ...body,createElement('div',
+          {
+            "attrs": {
+              "slot": "testSlot",
+            },
+            "slot": "testSlot"
+          },['默认插槽'])]
       )
     },
   }
   new Vue({
     el:"#app",
-    render(createElement) {
-      return createElement('myComponent',{
-        scopedSlots:{
-          test(value,val2){
-            return ['你好test']
-          },
-        }
-      });
-    },
     components:{
       myComponent
     },
