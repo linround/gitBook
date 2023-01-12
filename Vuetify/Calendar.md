@@ -81,6 +81,19 @@ startTime (tms) {
 
 + 如何将已有事件转换为坐标？ 如何处理已有事件的坐标边界问题？
 
+在Vuetify中首先给事件定义了width和left,从而确定位置；对于width和left的值由vuetify的算法得来；此处只介绍，如何取得bottom和top及其边界问题的处理；
+```javascript
+{
+    "event": {},
+    "columnCount": 0,
+    "column": 0,
+    "left": 0,
+    "width": 100
+}
+```
+
+
+
 
 + 关于$scopedSlots和$slots的区别
 > $scopedSlots；  
