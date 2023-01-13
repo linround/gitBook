@@ -16,3 +16,28 @@
 [解决方案]()：  
 每次执行完成后清空`lastIndex`即可   
 ![img_1.png](img/img_1.png)
+
+
+# 蔡勒公式求周几
+```javascript
+export function getWeekday (timestamp: CalendarTimestamp): number {
+  // 蔡勒公式求具体一天的周几
+
+
+  if (timestamp.hasDay) {
+    const _ = Math.floor
+    // 当天的日
+    const k = timestamp.day
+    // 月（m大于等于3，小于等于14，即在蔡勒公式中，
+    // 某年的1、2月要看作上一年的13、14月来计算，比如2003年1月1日要看作2002年的13月1日来计算）
+    const m = ((timestamp.month + 9) % MONTH_MAX) + 1
+    // 世纪减1（年份前两位数）
+    const C = _(timestamp.year / 100)
+    // 年（后两位数）
+    const Y = (timestamp.year % 100) - (timestamp.month <= 2 ? 1 : 0)
+    return ((k + _(2.6 * m - 0.2) - 2 * C + Y + _(Y / 4) + _(C / 4)) % 7)
+  }
+
+  return timestamp.weekday
+}
+```
