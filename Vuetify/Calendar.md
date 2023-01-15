@@ -80,8 +80,10 @@ startTime (tms) {
 
 
 + 如何将已有事件转换为坐标？ 如何处理已有事件的坐标边界问题？
+  + 不需要处理边界问题；
+  + 计算bottom和top即可，按实际值计算和显示；
+  + 边界问题由源头进行处理；在推拽时，已经处理了边界问题；
 
-在Vuetify中首先给事件定义了width和left,从而确定位置；对于width和left的值由vuetify的算法得来；此处只介绍，如何取得bottom和top及其边界问题的处理；
 ```javascript
 {
     "event": {},
@@ -109,3 +111,18 @@ startTime (tms) {
 
 > 4. 从下图来看`_renderChildren`来源：     
 ![img.png](img/img5.png)
+
+
+## 周视图组件的一些问题
+> 日期视图采用的是flex布局；head和body中的每一列都是flex子元素；
+
+
++ 每一列中的`日历事件`是如何计算宽高？
+  + 宽度由分组计算而得到
+    + 根据事件的开始日期和结束的日期，从而过滤出当天的具体事件;有些类似求交集的方式；
+    ```typescript  
+    export function isEventOn (event: CalendarEventParsed, dayIdentifier: number): boolean {
+      return dayIdentifier >= event.startIdentifier && dayIdentifier <= event.endIdentifier 
+    }
+    ```
+  + 高度有原始的top和bottom进行计算
