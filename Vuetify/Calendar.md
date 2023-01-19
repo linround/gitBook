@@ -140,3 +140,11 @@ startTime (tms) {
 ```
 
 
+## 如何处理拖拽文字的问题？如下图：
++ 对日历进行拖拽时，放在文字上会产生文字这块的拖拽阴影；影响体验；
+![img.png](img/img6.png)
+- 针对这个问题金山日历和谷歌日历的不同解决方案
+  - 金山日历全局使用css的user-select属性
+  ![img.png](img/img7.png)
+  - 谷歌日历，对于单个事件，hover时先直接采用伪元素进行覆盖
+  ![img_1.png](img/img8.png)
