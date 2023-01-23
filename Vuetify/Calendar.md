@@ -148,3 +148,9 @@ startTime (tms) {
   ![img.png](img/img7.png)
   - 谷歌日历，对于单个事件，hover时先直接采用伪元素进行覆盖
   ![img_1.png](img/img8.png)
+
+## CSS样式
+
+- 关于border和color的关系
+  - 未设置颜色时，如果设置了color,默认颜色是会使用color；使用场景通常可以用来控制border和color的一致性样式；
+  ![img.png](img/img9.png)
