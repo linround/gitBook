@@ -1,7 +1,6 @@
 # 目录
 
 - [关于工作中的一些问题记录](Q/a.md)
-- [关于高级前端的介绍](Q/b.md)
 - [webstorm小技巧](Browser/webstorm.md)
 
 # vuetify
