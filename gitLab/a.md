@@ -15,7 +15,7 @@ sudo apt-get install -y curl openssh-server ca-certificates tzdata perl
 
 - 设置访问gitlab的域名信息
 ```text
- sudo EXTERNAL_URL="https://gitlab.example.com" apt-get install gitlab-ee
+ sudo EXTERNAL_URL="https://gitlab.gt.com" apt-get install gitlab-ee
 ```
 
 **参考：**   
