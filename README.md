@@ -19,6 +19,8 @@
 
 ## linux
 - [关闭端口进程](linux/a.md)
+- [后台运行某个进程](linux/b.md)
+
 ## React
 - [React执行过程之babel](React/a.md)
 - [React执行过程之createElementWithValidation](React/b.md)
