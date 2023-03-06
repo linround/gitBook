@@ -3,7 +3,7 @@
 - [关于工作中的一些问题记录](Q/a.md)
 - [webstorm小技巧](Browser/webstorm.md)
 - [win11React开源的Pr](https://github.com/blueedgetechno/win11React/pull/635)
-
+- [contributors-win11React](https://github.com/blueedgetechno/win11React/graphs/contributors)
 
 ## 数据库系统
  `主讲人：战德臣 `  `哈尔滨工业大学`
