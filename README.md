@@ -15,6 +15,7 @@
 - [关于日视图组件的问题记录](Vuetify/Calendar.md)
 # go语言
 - [iota这个常量](https://www.zhihu.com/question/274481696)
+- [go语言细节](go/a.md)
 ## TS
 - [关于is](TS/a.md)
 
