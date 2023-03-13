@@ -37,3 +37,23 @@
 
 - 禁止对map元素取址的原因是map可能随着元素数量的增长而重新分配更大的内存空间，从而可能导致之前的地址无效
 
+- 同一结构体实例，可以使用 `==` 直接进行比较
+  - 结构体中 得益于匿名嵌入的特性，我们可以直接访问叶子属性而不需要给出完整的路径
+    - ```gotemplate
+      type point struct {
+        X, Y int
+      }
+
+      type circle struct {
+        // 直接写了类型，而不指定名字
+        point
+        // Center point
+        Radius int
+      }
+
+      type wheel struct {
+        Circle circle
+        Spokes int
+      } 
+
+- s 
