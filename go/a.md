@@ -72,3 +72,4 @@ type Movie struct {
 - text/template 和 html/template
   - html/template 会对特殊字符进行转义，从而能够正常显示特殊字符
   - text/template 不会对特殊字符转移，导致在显示过程中出现安全问题
+  - 关于html 的可信任属性的使用
