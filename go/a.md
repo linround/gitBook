@@ -56,4 +56,19 @@
         Spokes int
       } 
 
-- s 
+
+
+- 结构体成员Tag,默认使用Go语言结构体的成员名字作为JSON的对象（通过reflect反射技术)
+```gotemplate
+type Movie struct {
+	Title  string // 后面这部分统称为结构体成员Tag
+	Year   int    `json:"released"`
+	Color  bool   `json:"color,omitempty"`
+	Actors []string
+}
+```
+
+
+- text/template 和 html/template
+  - html/template 会对特殊字符进行转义，从而能够正常显示特殊字符
+  - text/template 不会对特殊字符转移，导致在显示过程中出现安全问题
