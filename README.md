@@ -8,7 +8,7 @@
 ## 数据库系统
  `主讲人：战德臣 `  `哈尔滨工业大学`
 
-- [菜鸟](mysql/c.md)
+- [基础部分](mysql/c.md)
 - [数据库索引](https://juejin.cn/post/6931901822231642125#heading-6)
 
 - [相关基础课程](mysql/a.md)
