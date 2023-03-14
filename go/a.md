@@ -77,3 +77,65 @@ type Movie struct {
 
 - 两个函数形式参数列表和返回值列表中的变量类型一一对应，那么这两个函数被认为有相同的类型或签名
 
+- defer语句；在调用普通函数或方法前加上关键字defer，就完成了defer所需要的语法；
+- 知道包含改defer语句的函数执行完毕时，defer后面的函数才会被执行
+- 即使存在panic，最终也会调用对应的defer语句
+- defer语句中的函数会在return语句更新返回值变量后再执行，又因为在函数中定义的匿名函数可以访问该函数包括返回值变量在内的所有变量，所以，对匿名函数采用defer机制，可以使其观察函数的返回值。
+- 延迟执行的匿名函数甚至可以修改函数返回给调用者的返回值
+
+
+## 记录函数的进入和退出的时间点
+
+```gotemplate
+
+package main
+
+import (
+	"log"
+	"time"
+)
+
+func main() {
+	bigSlowOperation()
+}
+func bigSlowOperation() {
+	// 记录函数的进入和退出实际
+	// 记录进入 trace即bigSlowOperation的时间
+	// 使用defer记录退出bigSlowOperation的时间
+	defer trace("bigSlowOperation")()
+	time.Sleep(10 * time.Second)
+}
+func trace(msg string) func() {
+	start := time.Now()
+	log.Printf("enter %s", msg)
+	return func() {
+		log.Printf("exit %s (%s)", msg, time.Since(start))
+	}
+}
+
+```
+
+## panic、recover
+- 使用recover 可以接收panic发送的错误相关信息
+- 区分的恢复所有的panic异常，不是可取的做法；因为在panic之后，无法保证包级变量的状态仍然和我们预期一致。比如，对数据结构的一次重要更新没有被完整完成、文件或者网络连接没有被关闭、获得的锁没有被释放。此外，如果写日志时产生的panic被不加区分的恢复，可能会导致漏洞被忽略。
+
+
+```gotemplate
+package main
+
+import "fmt"
+
+func main() {
+	defer func() {
+		p := recover()
+		if p != nil {
+			fmt.Println("接收到的错误信息：", p)
+		}
+	}()
+	fmt.Println("main正常执行：，main")
+	panic("mainPanic")
+}
+
+```
+
+
