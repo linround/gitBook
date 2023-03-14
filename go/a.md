@@ -137,5 +137,49 @@ func main() {
 }
 
 ```
+- ，如果一个类型名本身是一个指针的话，是不允许其出现在接收器中的
+
+- 一个对象的变量或者方法如果对调用方是不可见的话，一般就被定义为“封装”。封装有时候也被叫做信息隐藏，同时也是面向对象编程最关键的一个方面
 
 
+## 关于make 的相关操作
+```gotemplate
+
+package main
+
+import "fmt"
+
+type Buffer struct {
+	buf     []byte
+	initial [64]byte
+}
+
+func (b *Buffer) Grow(n int) {
+	if b.buf == nil {
+		// 这里发生了内存（cap）分配,
+		// 这里初始化了一个长度为0的数组
+		b.buf = b.initial[:0]
+
+	}
+	//
+	if len(b.buf)+n < cap(b.buf) {
+		// make
+		// 参数1是类型
+		// 参数2是长度
+		// 参数三是预留内存空间
+		buf := make([]byte, len(b.buf)+n, 2*cap(b.buf)+n)
+		fmt.Println(len(buf))
+		fmt.Println(cap(buf))
+		b.buf = buf
+	}
+	b.buf[5] = 5
+	fmt.Println(n)
+}
+
+func main() {
+	var b Buffer
+	b.Grow(20)
+
+}
+
+```
