@@ -173,6 +173,8 @@ func (b *Buffer) Grow(n int) {
 		b.buf = buf
 	}
 	b.buf[5] = 5
+    // 使用append 时会发生内存分配的行为，通过预设内存，从而减少内存的分配行为
+    b.buf = append(b.buf, 5)
 	fmt.Println(n)
 }
 
