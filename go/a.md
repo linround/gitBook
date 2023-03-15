@@ -417,3 +417,90 @@ log.Fatal(err)
 }
 
 ```
+
+
+### 定义多个channel 获取指定数
+- 以关闭中间通道实现
+- 当channel作为函数的参数时，他一般总是专门用于只发送或者只接收；
+- 关闭操作只用于断言不再向channel发送新的数据，所以只有在`发送者`所在的goroutine
+才会调用close函数；
+- 直接向无缓存的channel中传递数据会导致死锁；通常无缓存的channel需要与goroutine一直使用；
+- 泄漏的goroutines并不会被自动回收，因此确保每个不再需要的goroutine能正常退出是重要的
+
+
+```gotemplate
+package main
+
+import "fmt"
+
+// 以下程序取得10以下数字的平方
+func main() {
+	naturals := make(chan int)
+	squares := make(chan int)
+
+	// Counter
+	go func() {
+		for x := 0; x < 10; x++ {
+			naturals <- x
+		}
+		// 只需要告诉接收者goroutine,所有数据已发送完毕
+		// 无论一个channel是否被关闭
+		// 当他没有被引用时将会被回收
+		close(naturals)
+	}()
+
+	// Squarer
+	go func() {
+		for x := range naturals {
+			squares <- x * x
+		}
+		close(squares)
+	}()
+
+	// Printer (in main goroutine)
+	for x := range squares {
+		fmt.Println(x)
+	}
+}
+
+```
+
+
+- 方式二
+```gotemplate
+package main
+
+import "fmt"
+
+// 以下程序取得10以下数字的平方
+func main() {
+	naturals := make(chan int)
+	squares := make(chan int)
+
+	// Counter
+	go func() {
+		for x := 0; x < 10; x++ {
+			naturals <- x
+		}
+		// 只需要告诉接收者goroutine,所有数据已发送完毕
+		// 无论一个channel是否被关闭
+		// 当他没有被引用时将会被回收
+		close(naturals)
+	}()
+
+	// Squarer
+	go func() {
+		for x := range naturals {
+			squares <- x * x
+		}
+		close(squares)
+	}()
+
+	// Printer (in main goroutine)
+	for x := range squares {
+		fmt.Println(x)
+	}
+}
+
+```
+
