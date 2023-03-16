@@ -92,6 +92,16 @@ mysql>
 - DML 语句引导词
   - Insert、Delete、Update、Select
   - 各种方式的更新与检索操作
+  - select
+    - 单表查询
+    - 多表查询
+    - 模糊查询
+    - 结果排序
+    - 结果去重
+    - 条件书写
+    - ····
+
+
 - DCL语句引导词
   - Grant,Revoke
   - 安全性控制：授权和撤销授权
