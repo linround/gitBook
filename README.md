@@ -20,6 +20,7 @@
 # go语言
 - [iota这个常量](https://www.zhihu.com/question/274481696)
 - [go语言细节](go/a.md)
+- [聊天室二进制包下载](https://github.com/linround/go_rookie_site/raw/main/src/gopl/exp8/demo5.exe)
 ## TS
 - [关于is](TS/a.md)
 
