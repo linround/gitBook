@@ -693,6 +693,7 @@ go func() {
 
 
 ### 竞争检查器
+- GOMAXPROCS的变量来决定会有多少个操作系统的线程同时执行Go的代码
 `go run -race demo.go`
 ### 并发，无阻塞、不重复的
 ![img.png](img.png)
