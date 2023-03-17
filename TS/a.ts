@@ -1,5 +1,7 @@
 type Dice = 1 | 2 | 3 | 4 | 5 | 6
 
+// create function
+
 function pipsAreValid(pips: number|false): Boolean {
     return (
         pips === 1 ||
@@ -10,6 +12,7 @@ function pipsAreValid(pips: number|false): Boolean {
         pips === 6
     )
 }
+// create
 function test(count:number) {
     if(pipsAreValid(count)){
         switch (count){

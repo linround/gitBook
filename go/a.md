@@ -514,7 +514,10 @@ func main() {
   - b开始写入（这个时候会覆盖之前a写入的值，因为在b读取时a还未写入，导致写入的a会丢失）
   - 尽管并发并不是指以上简单语句的交叉执行
 - 数据竞争会在两个以上的goroutine并发访问相同的变量且至少其中一个为写操作的时发生
+```gotemplate
 
+
+```
 
 
 
@@ -522,4 +525,161 @@ func main() {
   - 不要去写变量 。数据结构如果从不被修改或是不变量则时并发安全的，无需进行同步；（如果update操作是必要，就不能考虑这种情况，比如读取和修改银行账户）
   - 避免从多个goroutine去读取变量。即`不要使用共享数据来通信；使用通信来共享数据；`比如broadcaster goroutine会监控clients map的全部访问；
   - 当多个goroutine访问变量时，在同一时刻最多只有一个goroutine在访问。这种方式成为互斥
-  - 
+
+## 锁机制
+`确保每次只有一个goroutine进行读写操作` `对于已经上锁的mutex,再次上锁会导致死锁（go没有重入锁的概念）`
+- mutex的目的时确保 共享变量在程序执行的关键点能够保持不变性。
+- 不变性的含义时`没有goroutine访问共享变量`
+
+- 使用互斥锁
+```gotemplate
+package main
+
+import (
+	"fmt"
+	"sync"
+	"time"
+)
+
+var mu sync.Mutex // guards balance
+
+type test struct {
+	name string
+}
+
+func (t *test) getName(s int) string {
+	fmt.Println(" 开始加锁", s)
+	mu.Lock()
+	fmt.Println(" 已经加锁", s)
+	name := t.name
+	fmt.Println(" 已经赋值", s)
+	defer mu.Unlock()
+	return name
+}
+
+// 创建一个加法函数试试
+// create
+var vt test = test{"linyuan"}
+
+func main() {
+	go func() {
+		fmt.Println("打印值111:", vt.getName(111))
+	}()
+	go func() {
+		fmt.Println("打印值222:", vt.getName(222))
+	}()
+	time.Sleep(3 * time.Second)
+}
+
+```
+- 使用信号量机制
+
+```gotemplate
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+var (
+	sema = make(chan struct{}, 1)
+)
+
+type balance struct {
+	value string
+}
+
+var bt balance = balance{"linyuan"}
+
+func (b *balance) getV(s int) string {
+
+	fmt.Println(" 开始加锁", s)
+	sema <- struct{}{}
+	fmt.Println(" 已经加锁", s)
+	value := b.value
+	fmt.Println(" 已经赋值", s)
+	defer func() {
+		<-sema
+	}()
+	return value
+}
+
+func main() {
+	go func() {
+		fmt.Println("打印值111:", bt.getV(111))
+	}()
+	go func() {
+		fmt.Println("打印值222:", bt.getV(222))
+	}()
+	time.Sleep(3 * time.Second)
+}
+
+```
+
+## 多读单写锁
+存在某些操作会只需要读数据，如果使用互斥锁，会导致多个goroutine按序执行，产生时延；
+`读写锁`，即多读单写锁。可以让读操作并发的执行，多个goroutine可以同事读取数据；
+- 使用读写锁，在读取数据并发执行。因此不需按照goroutine 的进入顺序进行读取；而普通的互斥锁，会导致每一个goroutine按顺序读取，从而导致后续的goroutine的读取操作处于等待状态；
+
+
+- 以下是使用读写锁的并发读取操作
+```gotemplate
+package main
+
+import (
+	"fmt"
+	"sync"
+	"time"
+)
+
+var mu sync.RWMutex // guards balance
+
+type test struct {
+	name string
+}
+
+func (t *test) getName(s int) string {
+	fmt.Println(" -----开始加锁", s)
+	mu.RLock()
+	fmt.Println(" 已经加锁", s)
+	t.name = ";;;;;;;;;"
+	name := t.name
+	fmt.Println(" 已经赋值", s)
+	//defer mu.RUnlock()
+	return name
+}
+
+// 创建一个加法函数试试
+// create
+var vt test = test{"linyuan"}
+
+func main() {
+	go func() {
+		fmt.Println("打印值111:", vt.getName(111))
+	}()
+	go func() {
+		fmt.Println("打印值222:", vt.getName(222))
+	}()
+	go func() {
+		fmt.Println("打印值333:", vt.getName(333))
+	}()
+	go func() {
+		fmt.Println("打印值444:", vt.getName(444))
+	}()
+	go func() {
+		fmt.Println("打印值555:", vt.getName(555))
+	}()
+	time.Sleep(3 * time.Second)
+}
+
+```
+
+
+
+
+
+
+
+
+
