@@ -22,3 +22,32 @@
 - 数据库范式都是在数据库中有效组织数据的过程
   - 消除冗余数据（例如，将相同的数据存储在多个表中）
   - 确保数据依赖性是有意义的
+
+
+- 特俗的运算符
+  - `=`检查两个操作数的值是否相等，如果相等，则条件为`true`
+  - `!=`检查两个操作数的值是否相等，如果值不相等，则条件为`true`
+  - `<>`检查两个操作数的值是否相等，如果值不相等，则条件为`true`
+  - `!<`检查左操作数的值是否不小于右操作数的值，
+  - `!>` 检查左操作数的值是否不大于右操作数
+- 特殊的逻辑运算符
+  - `ALL` 用于将值与另一个`值集`中的所有值进行比较
+  - `ANY` 用于根据条件将值与列表中的任何适用值进行比较
+  - `between` 搜索在给定最小值和最大值内的值
+  - `exists` 运算符用于搜索指定表中是否存在满足特定条件的`行`
+  - `in`用于将值与已指定的文字值列表进行比较
+  - `unique` 搜索指定表的每一行的唯一性（无重复项）
+
+
+
+
+### 外键相关（FOREIGN KEY）
+- 创建countries表，countries表中的region_id与regions表中的region_id相关联，同时更新级联和删除级联；
+```sql
+CREATE TABLE countries (
+    country_id CHAR (2) PRIMARY KEY,
+    country_name VARCHAR (40) DEFAULT NULL,
+    region_id INT (11) NOT NULL,
+    FOREIGN KEY (region_id) REFERENCES regions (region_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+```
