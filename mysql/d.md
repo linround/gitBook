@@ -51,3 +51,9 @@ CREATE TABLE countries (
     FOREIGN KEY (region_id) REFERENCES regions (region_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 ```
+- avg,sum,count，可以执行所谓的针对表或特定表列的聚合数据计算
+
+### 表相关
+- 临时表可以在运行时创建，像普通表一样执行各种操作
+  - 局部临时变量表仅在当前连接可用。当用户与实例断开连接时，他会自动删除；以哈希（#）符号开头
+  - 全局临时变量表以双哈希（##）开头，创建之后，它就像一个永久表，始终为所有用户准备好
