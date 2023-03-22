@@ -63,7 +63,126 @@ CREATE TABLE countries (
 - 删除数据，where子句中含有主键表达式，因此delete语句通常只会删除一行
 - where用于指定条件过滤数据
 - order by 用于对结果进行排序
+  - ESC 升序
+  - desc 降序
 - limit 用于限制返回行
 - join用于查询来自多个相关表的数据
 - group by 用于根据一列或多列对数据进行分组
 - having 用于过滤分组
+
+
+- null再sql中是一个特别的值，无法与任何值进行比较（包括自身）；通常，distinct将所有Null值视为相同的值；
+- 子句嵌套示例
+```gotemplate
+
+select
+    employee_id,first_name,last_name,salary
+from
+    employees e
+where
+    salary = ( select distinct
+                    salary
+                from
+                    employees e2
+                order by salary desc
+                limit 1,1)
+```
+
+
+- offset fetch子句用于在开始返回任何行之前跳过结果集中的前N行
+- and运算符的短路功能
+  - `1=0and 1=1` ,左侧部分`1=0`返回false,导致整个条件返回false，从而不管右侧部分条件的结果；
+  - 短路功能可以减少cpu的计算时间，并且再某些情况下防止运行是错误
+  - `1 = 0 AND 1/0` 如果数据库系统支持短路功能，则不会评估导致除零错误的表达式(1/0)的右侧部分。
+  - 在数据库支持短路功能的情况下，只要一个表达式为真，or运算符就会停止评估条件的其余部分
+
+- between 和 not between
+  -  BETWEEN运算符需要低值和高值。 当从用户那里获得输入时，在将其传递给查询之前，应始终检查低值是否小于高值。 如果低值大于高值，将得到一个空的结果集
+
+- [注意sql的时间转换](https://www.yiibai.com/sql/sql-between.html#article-start)
+
+- LIKE运算符
+  - like 'ab%'； 匹配以ab开始的字符串
+  - like '%ab'； 匹配以ab结尾的字符串
+  - like '%ab%'； 匹配包含ab的字符串
+  - like 'ab_'； 匹配以ab开始,后面只有一个字符；例如 'abc'（一个下划线代表一个字符，两个下划线代表两个字符）
+  - like '_ab'； 匹配以ab结尾，后面只有一个字符；例如 'cab'
+  - like '%ab_'； 匹配包含ab，以任意数量字符串开头，最多以一个字符结尾
+  - like '_ab%'； 匹配包含ab，最多以一个字符开头，以任意数量字符串结尾
+
+
+- NOT运算符
+  - and not
+  - not in
+  - not like
+  - not between
+- Having 引用别名；where引用表字段名
+- inner join 取两个表之间的交集   
+inner join子句可以连接多个表，只要它们具有关系；通常是外键关系；相当于取笛卡尔积的交集部分
+```text
+
+-- 使用内部连接将员工和部门信息连接起来
+-- 对连接后的表使用where子句进行筛选
+
+select 
+	e.first_name ,
+	e.last_name ,
+	e.department_id ,
+	d.department_id ,
+	d.department_name 
+from 
+	employees e 
+		inner join
+			departments d on d.department_id  = e.department_id 
+where
+	e.department_id in(1,2,3)
+```
+
+```text
+
+-- 每个员工都有一个岗位，而一个岗位可能会有多个员工。
+-- 连接三个表 员工、部门、工作岗位
+-- 以员工为基准
+-- 首先与现有部门左连接 得到了新的员工部门表
+-- 再将这个链接后的表 与工作岗位做连接
+-- 得到员工的部门、工作信息
+select 
+	e.first_name ,j.job_title ,d.department_name 
+from 
+	employees e 
+	inner join departments d on d.department_id =e.department_id 
+	inner join jobs j on j.job_id =e.job_id 
+where 
+	e.department_id in(1,2,3)
+```
+- left inner  ，[以左表为基准与右表根据条件构建新表，最终根据条件都得到对应的结果](https://blog.csdn.net/Li_Jian_Hui_/article/details/105801454#:~:text=left%20join%E5%B7%A6%E8%BF%9E%E6%8E%A5%EF%BC%8C%E6%98%AF,%E8%A1%8C%E6%95%B0%E5%A4%9A%E3%80%82%20...)
+
+
+
+
+- cross join 交叉连接（生成笛卡尔积）
+- 表的自连接
+```text
+-- 在employee表中，manager_id列指定了员工的经理
+-- 以下语句将employees表连接到自身，来查询每位员工的上级经理信息
+
+select
+	concat(e.first_name,'  ',e.last_name) as employee ,
+	concat(m.first_name,'  ',m.last_name) as manager 
+from 
+	employees e 
+		inner join
+		employees m on m.employee_id =e.manager_id 
+order by manager
+```
+- using的用法是on的一种特殊用法，正好两个表的字段名相同
+```text
+-- round(x,d)  ，x指要处理的数，d是指保留几位小数
+select 
+	d.department_name,round( avg(salary),1)  avg_salary
+from 
+	employees e 
+	inner join 
+	departments d using (department_id)
+group by department_name
+```
