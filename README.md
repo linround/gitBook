@@ -13,6 +13,8 @@
 
 - [相关基础课程](mysql/a.md)
 - [数据库中的关系代数操作](mysql/b.md)
+- [关于数据库的说明](mysql/c.md)
+- [MYSQL-1](mysql/d.md)
 
 
 # vuetify
