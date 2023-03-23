@@ -222,6 +222,10 @@ select @@version
 - 带有all运算符的子查询 `x > ALL (subquery)`
   - x大于子查询返回的每一个值
   - 例如：子查询返回1,2,3.如果x大于3，则结果为true
+  - `< all(sub)`小于sub的最小值
+  - `>all(sub)` 大于sub的最大值
+  - `<> all(sub)`,不能等于子查询中的每一个
+  - `= all(sub)`,必须与子查询的每一个都相等
 - 带有any 运算符的子查询 `x > ANY (subquery)`
   - x大于子查询返回的任意一个值
   - 例如：子查询返回1,2,3.如果x大于1，则结果为true
@@ -232,3 +236,30 @@ select @@version
   - 子查询不依赖外部查询
 - 相关子查询
   - 使用外部查询中的值的子查询 
+- `exists (subquery)`用于指定子查询测试行的存在
+  - 如果子查询返回NULL，则EXISTS运算符仍返回结果集。 这是因为EXISTS运算符仅检查子查询返回的行的存在。 行是否为NULL无关紧要
+
+- `NOT EXISTS (subquery)`用于取消exists运算符
+
+- `any`运算符是一个逻辑运算符，他将 值与子查询返回的一组值进行比较
+   - x = any(sub),与一个或多个匹配
+   - x != any(sub),不能与一个或多个匹配
+   - x > any(sub)，必须大于所有值
+   - x < any(sub),必须小于所有值
+   - x >= any(sub),大于或等于子集的最小值
+   - x <= any(sub),小于或等于子集的最大值
+
+- 主键不接受null值，在主键中，所有列必须是唯一的
+  - 使用primary key 约束作为列或表的约束，如果两列或更多列，则必须使用primary key约束作为表约束；
+- unique和primary key 约束
+  - primary key 约束最多只能有一个，而表中可以有多个unique约束
+  - 如果表中有多个unique约束，则所有的unique约束必须在不同的列集
+  - 与primary key 约束不同，unique约束允许null值
+- not null 是一个列约束
+- CHECK约束
+  - 与普通的约束很相似，只不过check约束可以定义我们自己的表达式
+  - 除了定义列的约束条件，还可以通过check定义表的约束条件
+
+
+
+
