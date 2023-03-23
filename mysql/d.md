@@ -186,3 +186,49 @@ from
 	departments d using (department_id)
 group by department_name
 ```
+
+- 使用group by 子句而不使用聚合函数 ，其行为类似distinct；
+  - 如果分组包含Null值，则所有的null值都汇总到一个分组中，group by 子句认为null值之间是相等的；
+- 分组级（同时使用多个列属性进行分组）
+```text
+-- 同时使用两个属性进行分组
+-- 计算每个分组的产品数量
+select
+	warehouse ,
+	product,
+	sum(quantity) qty
+from 
+	inventory i 
+group by
+	warehouse, 
+	product 
+```
+- 获取mysql版本号 
+```text
+select @@version
+```
+
+- having子句通常与group by子句一起使用
+  - 如果使用带group by 子句的having子句，having子句类似于where子句 
+- grouping sets 可以用来组合多个结果集（注意mysql版本）
+
+
+- 使用union可以将多个单独编写的select语句联合起来（select语句必须返回的列具有相同或可转换的数据类型、大小、相同的顺序）
+  - 当单独使用union是，其会对数据进行去重；使用union all 可以保证所有的联合数据，不被去重；
+- join 获取的是组合，intersect获取的是交集
+  - inner join 产生的结果与intersect运算符相同的结果
+  - Oracle数据库，Microsoft SQL Server，PostgreSQL等。但是，某些数据库系统(MySQL)不提供INTERSECT运算符
+
+- 带有all运算符的子查询 `x > ALL (subquery)`
+  - x大于子查询返回的每一个值
+  - 例如：子查询返回1,2,3.如果x大于3，则结果为true
+- 带有any 运算符的子查询 `x > ANY (subquery)`
+  - x大于子查询返回的任意一个值
+  - 例如：子查询返回1,2,3.如果x大于1，则结果为true
+- some 和any运算符是同义词，因此可以互换使用他们
+- select和from 都可以插入子句进行处理
+- 普通子查询
+  - 外部查询依赖于子查询的值
+  - 子查询不依赖外部查询
+- 相关子查询
+  - 使用外部查询中的值的子查询 
