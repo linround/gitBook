@@ -15,6 +15,8 @@
 - [数据库中的关系代数操作](mysql/b.md)
 - [关于数据库的说明](mysql/c.md)
 - [MYSQL-1](mysql/d.md)
+- [sql记录-1](mysql/e.md)
+- [sql记录-2](mysql/f.md)
 
 
 # vuetify
