@@ -40,6 +40,7 @@
 - [关闭端口进程](linux/a.md)
 - [后台运行某个进程](linux/b.md)
 - [gitBash远程连接](linux/img/img_2.png)
+- [查看nginx相关的信息](linux/img/img_3.png)
 
 ## React
 - [React执行过程之babel](React/a.md)
