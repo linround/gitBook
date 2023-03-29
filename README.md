@@ -17,6 +17,8 @@
 - [MYSQL-1](mysql/d.md)
 - [sql记录-1](mysql/e.md)
 - [sql记录-2](mysql/f.md)
+- [数据库相关-完整性](mysql/g.md)
+- [数据库的安全性](mysql/h.md)
 
 
 # vuetify
