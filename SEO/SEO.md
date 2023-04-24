@@ -86,3 +86,36 @@ Disallow: /assets/
 ```
 - 如果不愿意自己的网站为别的网站背书，将`nofollow`添加到对应的链接即可；
 - 优化图片
+  - 使用`img`或`picture`元素，语义标记有助于抓取工具并处理图片；针对不同屏幕尺寸为自适应图片指定多个选项；
+  - 使用`loading=lazy`属性提高用户的网页加载速度
+  - 使用`alt`属性提供文件名或说明
+  - 使用图片作为链接时，提供相关的文本说明
+  - [图片站点地图](./image-sitemaps.md)可提供更多的与网站有关的图片信息
+
+## 构建移动设备网站
+- 智能手机
+- 平板电脑
+- 多媒体手机。大多数带有3g功能的非智能手机
+- 非智能手机
+### 选择移动策略
+- 自适应设计`推荐`。使用 `meta name=viewport`标记告诉浏览器如何调整内容。
+  > 通过同一网址提供相同的`HTML`代码，不考虑用户所使用的设备。这是最容易实现和维护的一种设计模式
+- 动态提供内容。
+  > 无论用户使用何种设备，都使用相同的`网址`。这种配置依赖`user-agent`嗅探和[Vary:user-agent](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Vary)HTTP
+  > 响应头来向不同的设备提供不同版本的HTML  
+- 单独的网站。可以通过向网页添加包含 `rel="canonical"` 和 `rel="alternate"` 元素的` <link>` 标记，指明网址之间的关系
+  > 利用单独的网站向每一种设备提供不同的html。与动态提供内容一样，依赖`user-agent`和`vary` http标头将用户重定向到适合设备的相应版本
+- 对于具有大量静态资源（博文或商品页）的网站，考虑使用[AMP](https://amp.dev/documentation/guides-and-tutorials/)实现静态内容
+
+## 搜索结果分析
+- 了解Googlebot无法抓取网站的那些部分
+- 测试及提交站点地图
+- 分析或生成robots.txt文件
+- 移除Googlebot已经抓取的网址
+- 指定首选网域
+- 找出`title`和`description meta`标记相关的问题
+- 了解Google看到的网页外观
+- 分析网站用户行为
+  - 了解用户如何找到你的网站以及在网站上的行为
+  - 发现网站上最受欢迎的内容
+  - 衡量对网站所做的优化带来的影响，例如更改`title`和`description meta` 标记是否提高了搜索引擎带来的流量
