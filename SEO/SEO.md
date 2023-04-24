@@ -130,3 +130,6 @@ Disallow: /assets/
   <link rel="alternate" media="only screen and (max-width: 640px)"  href="https://m.example.com/dresses/green-dresses">
   ```
   - 对于 `rel="canonical"` link 标记，请使用绝对路径（而非相对路径）
+
+- 多页文字：确保有可供用户点击的下一页和上一页链接，并且这些链接是可抓取的链接。
+- 禁止访问更改状态的网址，使用robots.txt来屏蔽这些网址
