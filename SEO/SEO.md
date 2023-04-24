@@ -119,3 +119,14 @@ Disallow: /assets/
   - 了解用户如何找到你的网站以及在网站上的行为
   - 发现网站上最受欢迎的内容
   - 衡量对网站所做的优化带来的影响，例如更改`title`和`description meta` 标记是否提高了搜索引擎带来的流量
+
+## 路由
+- 为确保googlebot能够解析并抓取网址，避免使用hash模式加载网页不同的路由;不过可以通过History API 来确保Googlebot可以访问网址；
+## `rel=canonical` link 标记.（定位自己的规范网址）
+- 用于指明某个网页与另一网页重叠。假设想要将`https://example.com/dresses/green-dresses` 设为规范网址（即使有很多个网址指向该内容）
+  - 使用 `rel=canonical`标记所有重复网页，使其指向规范网页
+  - 如果规范网页有移动端，添加`rel="alternate"` link，并使其指向网页的移动版
+  ```text
+  <link rel="alternate" media="only screen and (max-width: 640px)"  href="https://m.example.com/dresses/green-dresses">
+  ```
+  - 对于 `rel="canonical"` link 标记，请使用绝对路径（而非相对路径）
