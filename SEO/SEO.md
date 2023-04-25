@@ -141,3 +141,5 @@ Disallow: /assets/
   ```
 ## 富媒体搜索
 - https://schema.org/docs/gs.html
+## 使谷歌重新抓取
+- https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl?hl=zh-cn
