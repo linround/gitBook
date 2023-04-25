@@ -143,3 +143,5 @@ Disallow: /assets/
 - https://schema.org/docs/gs.html
 ## 使谷歌重新抓取
 - https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl?hl=zh-cn
+## 安全浏览，检测而已网址
+- [https://developers.google.com/safe-browsing?hl=zh-cn](https://developers.google.com/safe-browsing?hl=zh-cn)
