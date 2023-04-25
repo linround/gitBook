@@ -133,3 +133,11 @@ Disallow: /assets/
 
 - 多页文字：确保有可供用户点击的下一页和上一页链接，并且这些链接是可抓取的链接。
 - 禁止访问更改状态的网址，使用robots.txt来屏蔽这些网址
+
+## meta
+- 使用`meta`标签标记网站属于露骨的内容；
+  ```text
+  <meta name="rating" content="adult">
+  ```
+## 富媒体搜索
+- https://schema.org/docs/gs.html
