@@ -31,3 +31,5 @@ Refresh: 5; url=https://www.example.com/newlocation
 ##### javaScript location 重定向
 - 如需设置javascript重定向，在html head内将location属性设置为重定向目标网址；
 
+优缺点：
+[https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Redirections](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Redirections)
