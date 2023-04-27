@@ -34,3 +34,11 @@ function test(count:number) {
 - 在`test`函数中，在编译阶段就会出现错误，以上通过类型谓词从而确定了用户输入的值的具体范围；
 如果以上类型谓词只是一个`Boolean`,那么就没有办法在`test`函数中来缩小该类型的范围；
 - 类型谓词会在`别的函数`中产生对应的效果
+- 后置感叹号 非空断言（只能断言非null或f非undefined），as具有更大的断言范围
+```typescript
+
+
+type n = null | {name:string}
+let a:n
+console.log(a!.name)
+```
