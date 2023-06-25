@@ -57,6 +57,7 @@
 - [知识点1](c++/b.md)
 ## 初学者的问题
 - [shader中的问题](shader/Question.md)
+- [关于shader](gpu/readme.md)
 
 ## Shader
 - [渲染PipLine概述](shader/a.md)
