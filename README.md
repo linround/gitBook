@@ -76,6 +76,7 @@
 + [计算机图形学第四课](./CG/d.md)
 + [计算机图形学第五课](./CG/e.md)
 + [计算机图形学第六课](./CG/f.md)
++ [计算机图形基础 散记](./CG/g.md)
 ## webgl
 ### 相关开源作品
 - [webgl-filter](https://github.com/evanw/webgl-filter)
