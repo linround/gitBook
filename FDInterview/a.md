@@ -4,6 +4,6 @@
 ## 框架原理篇
 vue,react;
 ## 前端工程化篇幅
-webpack,vite,docker,ci/cd;
+webpack,vite,docker,ci/cd,单元测试
 ## 拓展技术篇
 图形学，数据库，webgl,opengl,go
