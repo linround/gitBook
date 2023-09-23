@@ -138,3 +138,5 @@
 6. [x] [ES6(6)](read_typescript/F_Project.md)
 7. [x] [ES6(7)](read_typescript/G_类型系统.md)
 8. [x] [ES6(8)](read_typescript/H_JS%20MigrationGuide.md)
+# 面试基础巩固
+- https://wangtunan.github.io/blog/interview/#%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B
