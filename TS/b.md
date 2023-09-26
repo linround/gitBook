@@ -50,3 +50,51 @@ type WindowStates = "open" | "closed" | "minimized";
 type LockStates = "locked" | "unlocked";
 type PositiveOddNumbersUnderTen = 1 | 3 | 5 | 7 | 9;
 ```
+联合类型提供处理不同类型的方法；例如：
+```ts
+function getLength(obj:string|string[]) {
+    return obj.length
+}
+```
+使用typeof来了解变量的类型
+```ts
+const obj = {width:10,height:20}
+type t = typeof obj
+```
+
+### 泛型
+泛型为类型提供变量，typeof是用来了解变量的类型；例如：
+```ts
+
+interface Backpack<T>{
+    add:(obj:T)=>void
+    get:()=>T
+}
+// 申明一个类型为Backpack的静态变量backpack
+ const backpack:Backpack<string> = {
+    get(){
+        console.log('get')
+        return 'get'
+    },
+     add(t:string){
+        console.log(t)
+     }
+ }
+ const s = backpack.get()
+backpack.add('add')
+```
+### 结构化的类型系统
+typescript的核心原则是类型检查基于对象的属性和行为；在结构化类型系统中，
+如果两个对象具有相同的结构，则认为他们是相同的类型；注意结构匹配只需要匹配对象字段的子集；
+例如：
+```ts
+const point3 = { x: 12, y: 26, z: 89 };
+logPoint(point3); // 打印 "12, 26"
+ 
+const rect = { x: 33, y: 3, width: 30, height: 80 };
+logPoint(rect); // 打印 "33, 3"
+```
+如果对象或类具有所有必须的属性，则typescript将表示他们是匹配的，而不关注其实现细节。
+
+-[ ] [探索示例](https://www.typescriptlang.org/zh/docs/handbook/typescript-in-5-minutes.html)
+-[ ] [阅读完整手册](https://www.typescriptlang.org/docs/handbook/intro.html)
