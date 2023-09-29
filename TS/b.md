@@ -98,3 +98,13 @@ logPoint(rect); // 打印 "33, 3"
 
 -[x] [探索示例](https://www.typescriptlang.org/zh/docs/handbook/typescript-in-5-minutes.html)
 -[x] [阅读完整手册](https://www.typescriptlang.org/docs/handbook/intro.html)
+
+
+##  联合类型
+联合类型是由两个或多个其他类型形成的类型。表示可以是这些类型中的任何一种类型的值。
+使用联合类型时，仅当操作对联合体的每个成员都有效时，typescript才会允许该操作 ；
+## interface
+接口只能用来声明对象类型，
+```ts
+interface Obj{}
+```
