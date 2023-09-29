@@ -96,5 +96,5 @@ logPoint(rect); // 打印 "33, 3"
 ```
 如果对象或类具有所有必须的属性，则typescript将表示他们是匹配的，而不关注其实现细节。
 
--[ ] [探索示例](https://www.typescriptlang.org/zh/docs/handbook/typescript-in-5-minutes.html)
--[ ] [阅读完整手册](https://www.typescriptlang.org/docs/handbook/intro.html)
+-[x] [探索示例](https://www.typescriptlang.org/zh/docs/handbook/typescript-in-5-minutes.html)
+-[x] [阅读完整手册](https://www.typescriptlang.org/docs/handbook/intro.html)
