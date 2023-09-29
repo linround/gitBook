@@ -108,3 +108,41 @@ logPoint(rect); // 打印 "33, 3"
 ```ts
 interface Obj{}
 ```
+
+type和interface的区别：
+- 都可进行接口扩展，interface使用extends,type使用&；
+- interface可以使用类型重载的方式添加新字段。type无法进行重载
+```ts
+type a= { name:string }
+type b = a&{
+age:number
+}
+const v:b = {
+name:'',
+age:0
+}
+```
+后缀 as const作用类似于const,确保所有属性都分配为文字类型，而不是更通用的版本，例如string或number
+文字都是string，但未必string都是某个特定文字
+
+```ts
+
+declare function handleRequest(url: string, method: "GET" | "POST"): void;
+
+const req = { url: "https://example.com", method: "GET" };
+handleRequest(req.url, req.method as 'GET');
+```
+
+## 非空断言!
+用于从类型中删除null和undefined,在任何表达式之后写入!,表示该值不是null和undefined;
+```ts
+function liveDangerously(x?: number | null) {
+  console.log(x!.toFixed());
+}
+```
+
+
+
+-[ ] [bigint 的使用](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
+-[ ] [symbol创建全局唯一引用](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
+
