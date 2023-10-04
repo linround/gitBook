@@ -1,4 +1,5 @@
-declare function handleRequest(url: string, method: "GET" | "POST"): void;
+function test():unknown {
+    return ''
 
-const req = { url: "https://example.com", method: "GET" };
-handleRequest(req.url, req.method as 'GET');
+}
+const s:number = test() as number

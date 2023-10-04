@@ -146,3 +146,34 @@ function liveDangerously(x?: number | null) {
 -[ ] [bigint 的使用](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
 -[ ] [symbol创建全局唯一引用](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
 
+## 类型谓词
+```ts
+function isFish(pet: Fish | Bird): pet is Fish {
+  return (pet as Fish).swim !== undefined;
+}
+```
+## 为函数添加属性
+```ts
+
+type des = {
+    des:string
+    (arg:string):boolean
+}
+const something:des = (arg)=>{
+    return arg+8
+}
+something.des = 'des'
+```
+
+## extends 关键字对类型进行约束
+longest 的参数需要具有一个length属性
+```ts
+function longest<Type extends {length:number}>(
+    a:Type,
+    b:Type
+):boolean {
+    return a.length>b.length
+}
+longest(12,90)
+
+```
