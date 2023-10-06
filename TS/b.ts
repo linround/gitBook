@@ -1,5 +1,8 @@
-function test():unknown {
-    return ''
-
+class Point {
+    x=0
+    y=9
 }
-const s:number = test() as number
+
+type X = number
+let x:X
+x = 90

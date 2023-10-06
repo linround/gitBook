@@ -177,3 +177,129 @@ function longest<Type extends {length:number}>(
 longest(12,90)
 
 ```
+
+# 类型相关操作
+可选、只读（readonly）,扩展（extends）,交叉（&）；
+## extends 关键字除了具有继承功能外，还可以作为条件约束
+
+```ts
+type N = number
+type S = string
+
+type NS = N extends S ? string:number
+
+const n:NS = 100
+
+interface X {
+    vx:string
+}
+interface Y extends X{
+    vy:string
+}
+const v:Y = {
+    vy:'y',
+    vx:'x'
+}
+```
+当条件类型作用于泛型类型时，如果给定联合类型，它们就会变得具有分布式性
+```ts
+type toArray<Type> = Type extends any ? Type[] : never;
+type P = toArray<string|number>
+const p:P = ['']
+```
+使用方括号避免该分布性
+```ts
+type toArray<Type> = Type extends any ? Type[] : never;
+type P = toArray<string|number>
+const p:P = ['']
+```
+
+## ReturnType
+使用ReturnType可以获取函数的类型
+```ts
+function f() {
+    return {
+        name:'sk'
+    }
+}
+type ft = ReturnType<typeof f>
+
+type FN = ()=>{name:string}
+type fn = ReturnType<FN>
+```
+
+// 对某些特定名称进行特殊映射
+```ts
+type toArray<T> = T[]
+
+type Keys = 'v'|'m'
+type ToB<T> = {
+    [p in keyof T]:p extends  Keys? toArray<T[p]>:number
+}
+interface name{
+    v:string
+    m:number
+    c:string
+    d:boolean
+}
+type O = ToB<name>
+const o:O = {
+    v:[''],
+    m:[0],
+    c:2,
+    d:1
+}
+```
+### as 关键字可以作为类型谓词之外还可以对建进行映射和重写
+```ts
+
+type MyAs<T> = {
+    [p in keyof T as `get${Capitalize<string & p>}`]:T[p]
+}
+type My = {
+    name:string
+    age:string
+}
+type E = MyAs<My>
+const e:E = {
+    getAge:'',
+    getName:''
+}
+```
+
+### as结合exclude 进行属性过滤
+```ts
+
+type My = {
+    name:string
+    age:string
+}
+
+type Filter<T,U> = {
+    [p in keyof T as Exclude<p, U>]:T[p]
+}
+type X = Filter< My, 'name'>
+const x:X = {
+    age:''
+}
+```
+
+### 使用in 操作符进行多个类型遍历
+```ts
+type config<TS extends {kind:string}> = {
+    [t in TS as t["kind"]]:(e:t)=>void
+}
+type S = {
+    kind:'square'
+    x:number
+}
+type C = {
+    kind:'circle',
+    y:number
+}
+type R = config<S|C>
+const result:R = {
+    square(e){},
+    circle(e){}
+}
+```
