@@ -4,7 +4,8 @@
     "target": "es5",
     "sourceMap": true,
     "strictPropertyInitialization": true,// 控制类字段是否在构造函数中初始化
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "useDefineForClassFields": true
   },
   "exclude": [
     "node_modules"

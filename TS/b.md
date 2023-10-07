@@ -176,8 +176,33 @@ function longest<Type extends {length:number}>(
 }
 longest(12,90)
 
-```
 
+interface A {
+    x: number;
+    y?: number;
+}
+interface B extends A {
+    a:string
+}
+const b:B = {
+    x:0,y:0,a:''
+}
+
+```
+## extends 还可以用作类的继承
+```ts
+class A {
+    a(){}
+}
+class B extends A{
+    constructor() {
+        super();
+    }
+    b(){}
+}
+const d = new B()
+console.log(d)
+```
 # 类型相关操作
 可选、只读（readonly）,扩展（extends）,交叉（&）；
 ## extends 关键字除了具有继承功能外，还可以作为条件约束
@@ -301,5 +326,153 @@ type R = config<S|C>
 const result:R = {
     square(e){},
     circle(e){}
+}
+```
+
+### 类中的只读属性，可以在构造该类的实例时进行赋值操作
+```ts
+class Greeter {
+    readonly name: string = "world";
+
+    constructor(otherName?: string) {
+        if (otherName !== undefined) {
+            // 类中的只读属性在构造时可以进行赋值
+            this.name = otherName;
+        }
+    }
+
+    err() {
+    }
+}
+const e = new Greeter('sss')
+```
+
+### 关于类关键字的描述
+```ts
+class A{
+    // 可在内部访问静态成员
+    // 可在派生类访问
+    private static y = 100
+
+    // 可在内部访问静态成员
+    // 可在派生类访问
+    protected static z = 1000
+
+    // 可在任意地方访问
+    static x =0
+    // 添加只读属性
+    public readonly u = 10
+    public v =90
+    private readonly w = 10
+    protected readonly r = 1
+    // 只可在自身访问
+    private a(){
+        const y = A.y
+        const z = A.z
+    }
+
+    // 派生类实例和实例不可访问
+    // 派生类自身和其自身可访问
+    protected aa(){}
+    public aaa(){
+        this.aa()
+        this.a()
+    }
+    // 可进行跨实例访问
+    public aaaa(a:A){
+        a.a()
+    }
+    constructor() {
+        this.a()
+        this.aa()
+        this.aaa()
+        this.v = 100
+    }
+
+}
+
+const a = new A()
+// 静态成员的访问方式
+const x = A.x
+
+a.aaa()
+class B extends A {
+    constructor() {
+        super();
+        this.aaa()
+        this.aa()
+    }
+    b(){
+        this.aa()
+        this.aaa()
+    }
+    bb(a:A){
+        // 在A外部，无法跨实例访问A的保护属性和私有属性
+        a.aaa()
+        const z = A.z
+        const x =A.x
+    }
+}
+const b = new B()
+b.b()
+b.aaa()
+// 使用中括号访问私有属性
+b['a']()
+
+class C {
+    constructor() {
+        const z = A.x
+    }
+
+}
+
+
+```
+
+### 关于this 在ts中的一些特殊用法
+```ts
+class A {
+    // 这里的this比较特殊
+    // 编译后只有一个a参数
+    // this只是用来指定类型
+    a(this:A,x:number){
+        console.log(this.a,x)
+    }
+    // this 还可以用来指定类型
+    aa(x:this){
+        console.log(x)
+    }
+}
+const a = new A()
+a.a(0)
+a.aa(a)
+
+```
+
+## InstanceType操作符的作用比喻
+```ts
+class Point {
+    createdAt: number;
+    x: number;
+    y: number
+    constructor(x: number, y: number) {
+        this.createdAt = Date.now()
+        this.x = x;
+        this.y = y;
+    }
+    p(){}
+}
+
+// InstanceType 操作符类似下列两个步骤
+const p = new Point(1,3)
+type A = typeof p
+
+
+type PointInstance = InstanceType<typeof Point>
+
+function moveRight(point: A) {
+    point.x += 5;
+    point.createdAt = 10
+    point.p()
 }
 ```

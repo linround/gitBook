@@ -1,8 +1,16 @@
-class Point {
-    x=0
-    y=9
+abstract class Base {
+    abstract getName(): string;
+
+    printName() {
+        console.log("Hello, " + this.getName());
+    }
+}
+class Derived extends Base {
+    getName() {
+        return "world";
+    }
 }
 
-type X = number
-let x:X
-x = 90
+const d = new Derived();
+d.printName();
+d.getName()
