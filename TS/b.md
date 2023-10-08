@@ -476,3 +476,19 @@ function moveRight(point: A) {
     point.p()
 }
 ```
+
+### 关于模块化
+```text
+tsc b.ts  --target es5 --module commonjs
+```
+- commonjs使用exports或module.exports进行导出模块， 使用require进行带入模块，require加载模块，会导致该模块全部执行；
+```text
+tsc b.ts  --target es5 --module es2020
+```
+- es2020 模块使用export或export default方式进行导出，使用import进行导入；这是当前常规的模式；
+```text
+tsc b.ts  --target es5 --module umd
+```
+- umd 模式 使用了一个工厂函数，其编译结果兼容AMD和commonjs
+
+### 模块化更近一步，借助webpack或者vite等导打包工具，可以构建直接在浏览器使用的库；
