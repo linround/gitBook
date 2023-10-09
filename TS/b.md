@@ -492,3 +492,49 @@ tsc b.ts  --target es5 --module umd
 - umd 模式 使用了一个工厂函数，其编译结果兼容AMD和commonjs
 
 ### 模块化更近一步，借助webpack或者vite等导打包工具，可以构建直接在浏览器使用的库；
+
+### 关于TS的实用类型程序
+- Partial<T> 构造一个T所有属性可选的类型
+- Required<T> 构造一个T所有属性必不可选的类型
+- Readonly<T> 构造一个T所有属性只读的类型
+- Record<Keys, T> 构造一个对象类型，其属性为Keys，每个属性值的类型为T
+- Pick<T, Keys> 构造一个对象类型，从T中提取属性集Keys
+- Omit<T,Keys>构造一个对象类型，从T中选取所有属性，然后删除Keys
+- Exclude<UnionType, ExcludedMembers> 删除UnionType中的ExcludedMembers
+- Extract<Type, Union> 获取两个联合类型中的交集成员
+- NonNullable<Type> 排除 Type中的null和undefined类型
+```ts
+type X = {
+    n:number
+    m:undefined
+    c:null
+}
+type Y = NonNullable<X>
+const v:Y = {
+    n:0,
+    m:undefined,
+    c:null
+}
+type P = "a"|null|undefined
+type PN = NonNullable<P>
+const o:PN = 'a'
+```
+- Parameters<Type> 根据函数类型的参数Type中使用的类型构造元组类型
+- ConstructorParameters<Type> 从构造函数类型的类型构造元组或数组类型
+```ts
+class C {
+    constructor(a: number, b: string) {}
+}
+type T3 = ConstructorParameters<typeof C>;
+```
+- ReturnType<Type> 构造一个由 function 的返回类型组成的类型Typ
+- ThisParameterType<Type> 提取函数类型的this参数的类型，如果函数类型没有参数，则提取未知this。
+- 关于字符串的操作
+```ts
+type Str = 'stringValue K'
+type Str2 = 'StringValue K'
+type X = Uppercase<Str>// 全大写
+type Y = Lowercase<Str> // 全小写
+type Z = Capitalize<Str> // 首字母大写
+type W = Uncapitalize<Str2> // 首字母不大些
+```
