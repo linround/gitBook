@@ -12,7 +12,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
         // 对于类中的方法
         // 由于只能在生成实例后才能访问该方法
         // 所以此时
-        // Reflect.decorate 会在类中某个名称为key的方法的原型对象 target上添加一个
+        // Reflect.decorate 会在类的原型对象target的key 属性上添加一个
         // 可用 Reflect.getMetadata获取的属性Rkey,其值为 Rvalue
         r = Reflect.decorate(decorators, target, key, desc);
     else
