@@ -591,6 +591,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
         for (var i = decorators.length - 1; i >= 0; i--)
             // 取得对应的装饰器
             if (d = decorators[i])
+                // 参数小于3，具有类装饰器传入 该函数本身作为参数
                 r = (c < 3 ? d(r) :
                     // r 实际就是传入的属性配置器 或者自己传入的属性配置器
                     // 最终执行装饰器函数，并传入参数  target, key, r
@@ -628,4 +629,8 @@ var ExampleClass = /** @class */ (function () {
     return ExampleClass;
 }());
 
+
 ```
+
+
+### 类装饰器于属性装饰器参数不一致，参考e.js的编译结果
