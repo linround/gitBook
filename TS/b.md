@@ -637,3 +637,4 @@ var ExampleClass = /** @class */ (function () {
 以上两种装饰器，在最后都会判断参数大于3的情况下，才会进行属性配置
 
 ### Reflect.getMetadata 可以参考f.ts,以及编译后的f.js
+### 参考f.ts和h.ts 的结果，可以使用 Reflect.defineMetadata 代替 Reflect.metadata 来分别为类和属性定义元数据
