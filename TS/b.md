@@ -634,3 +634,6 @@ var ExampleClass = /** @class */ (function () {
 
 
 ### 类装饰器于属性装饰器参数不一致，参考e.js的编译结果
+以上两种装饰器，在最后都会判断参数大于3的情况下，才会进行属性配置
+
+### Reflect.getMetadata 可以参考f.ts,以及编译后的f.js
