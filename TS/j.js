@@ -57,6 +57,11 @@ var SomeClass = /** @class */ (function () {
     ], SomeClass);
     return SomeClass;
 }());
-Reflect.getMetadata(PATH_METADATA, SomeClass); // '/test'
-var v = mapRoute(new SomeClass());
+var v1 = Reflect.getMetadata(PATH_METADATA, SomeClass); // '/test'
+console.log('=================v1');
+console.log(v1);
+var instance = new SomeClass();
+console.log(instance);
+console.log('=================v');
+var v = mapRoute(instance);
 console.log(v);

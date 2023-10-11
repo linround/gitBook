@@ -638,3 +638,58 @@ var ExampleClass = /** @class */ (function () {
 
 ### Reflect.getMetadata 可以参考f.ts,以及编译后的f.js
 ### 参考f.ts和h.ts 的结果，可以使用 Reflect.defineMetadata 代替 Reflect.metadata 来分别为类和属性定义元数据
+
+### 关于extends和implements 关键字的描述
+- extends 可以用作条件类型，继承
+- implements 这是用来要求某个类实现对应的接口方法
+````ts
+interface O {
+    u():string
+}
+class K {
+    name():string{
+        return ''
+    }
+}
+class H extends K{
+    h():string{
+        return ''
+    }
+}
+
+class P implements K,O{
+    name(): string {
+        return '';
+    }
+    u(): string {
+        return  ''
+    }
+
+}
+````
+### 关于namespace的示例
+- 参考文件namespace的定义了一个命名空间；该命名空间导出了一个类型和一个类；使用文件b的方式导入，只能访问命名空间中的导出类，而无法访问
+命名空间中的导出接口；然而在c文件中，直接导该命名空间，可以访问命名空间中的类和类型；
+
+### 关于d.ts
+将未定义实现的声明称为环境，通常这些实在.d.ts文件中定义的
+### 关于声明合并
+- 接口合并
+- 命名空间合并
+- 命名空间和类合并
+
+### 关于枚举的特殊示例
+```ts
+enum E1 {
+    X,
+    Y,
+    Z,
+}
+
+enum E2 {
+    A = 1,
+    B,
+    C,
+}
+```
+默认XYZ分别为012；BC为分别为23；

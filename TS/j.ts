@@ -47,7 +47,13 @@ class SomeClass {
     @Post('/b')
     somePostMethod() {}
 }
-Reflect.getMetadata(PATH_METADATA, SomeClass); // '/test'
+const v1 = Reflect.getMetadata(PATH_METADATA, SomeClass); // '/test'
+console.log('=================v1')
+console.log(v1)
 
-const v = mapRoute(new SomeClass());
+const instance = new SomeClass()
+console.log(instance)
+
+console.log('=================v')
+const v = mapRoute(instance);
 console.log(v)
