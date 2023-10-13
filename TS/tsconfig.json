@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2015",
+    "target": "es5",
     "experimentalDecorators": true,
     "sourceMap": true,
-    "strictPropertyInitialization": true,// 控制类字段是否在构造函数中初始化
-    "strictNullChecks": true,
-    "useDefineForClassFields": true,
+    "strictPropertyInitialization": false,// 控制类字段是否在构造函数中初始化
+    "strictNullChecks": false,
+    "useDefineForClassFields": false,
   },
   "exclude": [
     "node_modules"

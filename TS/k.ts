@@ -1,23 +1,11 @@
-interface O {
-    u():string
+enum Status {
+    Ready,
+    Waiting,
 }
-class K {
-    name():string{
-        return ''
-    }
+enum Color {
+    Red,
+    Blue,
+    Green,
 }
-class H extends K{
-    h():string{
-        return ''
-    }
-}
-
-class P implements K,O{
-    name(): string {
-        return '';
-    }
-    u(): string {
-        return  ''
-    }
-
-}
+let statusP = Status.Ready;
+statusP = Color.Red; // Error

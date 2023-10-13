@@ -698,6 +698,7 @@ enum E2 {
 ### 关于枚举类型
 - 使用const 定义的枚举类型，不能使用计算值，也就是不能写成 x*y的形式,甚至不能间接的使用计算值
 - 使用 const 定义的枚举类型，在取值是会直接获取该值
+- 来自不同类型的枚举值被认为是不兼容的
 ```ts
 const x = 10
 const y = 2
@@ -719,4 +720,57 @@ const enum A {
 
 const m = A.d
 console.log(m)
+
+
+
+
+enum Status {
+    Ready,
+    Waiting,
+}
+enum Color {
+    Red,
+    Blue,
+    Green,
+}
+let statusP = Status.Ready;
+statusP = Color.Red; // Error
+```
+
+## ts中的一些忽略现象
+在函数中，参数少传会选择性忽略；在属性赋值中，属性多传会选择性忽略，从而不会报错
+```ts
+let xqw = (a: number) => 0;
+let yqw = (b: number, s: string) => 0;
+yqw= xqw; // OK 这里忽略了yqw额外的参数
+xqw = yqw; // Error xqw中是没有参数的，所以不能传递多余的进入
+
+let mm = {name:''}
+let nn = {name:'',age:9}
+mm=nn // 忽略了多余的
+nn= mm // mm中不满足 nn的需要
+```
+### 关于let 声明与临时死区
+```ts
+function foo() {
+    return myA
+}
+const value=foo(); // 使用函数可以提前访问该值,但是在运行时会报错
+console.log(value)
+// myA++  // 此处是一个临时死区，无法访问myA
+let myA = 9;
+```
+
+### 解构对象时注意
+它只包含对象 自己的、可枚举的属性。基本上，这意味着当您传播对象的实例时您会丢失方法
+```ts
+class C {
+    p = 12;
+    m() {}
+}
+let c = new C();
+// 它只包含对象 自己的、可枚举的属性。基本上，这意味着当您传播对象的实例时您会丢失方法
+let clone = { ...c };
+clone.p
+clone.m(); // m是方法，在解构时，不会包含在clone中
 ```
