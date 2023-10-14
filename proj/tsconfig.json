@@ -1,0 +1,12 @@
+{
+  "files": ["src/main.ts","src/greet.ts"], // 这里表示要编译的文件
+  "compilerOptions": {
+    "module": "commonjs",// 控制模块化的形式
+    "target": "es5",// 控制语法类的一些编译
+    "noImplicitAny": true,
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
