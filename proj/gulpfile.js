@@ -1,32 +1,45 @@
-const gulp = require('gulp')
-const browserify = require('browserify')
-const source = require('vinyl-source-stream')
-const tsify = require('tsify')
+const gulp = require("gulp")
+const browserify = require("browserify")
+const source = require("vinyl-source-stream")
+const tsify  = require("tsify")
+const sourcemaps = require("gulp-sourcemaps")
+const buffer = require("vinyl-buffer")
 const paths = {
     pages:["src/*.html"]
 }
-
-// 这就是一个复制html的任务
-gulp.task("copy-html", function () {
-    return gulp.src(paths.pages).pipe(gulp.dest("dist"));
-});
-
+//  定义一个复制html文件的任务
+gulp.task(
+    "copy-html",
+    function (){
+        return gulp.src(paths.pages).pipe(gulp.dest("dist"))
+    }
+)
 gulp.task(
     "default",
-    gulp.series(
-        gulp.parallel("copy-html"),function () { //
-        return browserify({ // 为使用tsify 插件而调用  browserify，而不是gulp=typescript
+    gulp.series(gulp.parallel("copy-html"),function (){
+        return browserify({
             basedir:".",
-            debug:true,// 开启源映射可以在浏览器中调试typescript代码，而不是javascript代码
+            debug:true,
             entries:["src/main.ts"],
             cache:{},
-            packageCache:{}
+            packageCache: {}
         })
-            .plugin(tsify) // tsify 是一个 Browserify 插件，与 gulp-typescript 一样，可以访问 TypeScript 编译器
+            .plugin(tsify)
+            // 使用babelify将一些语法转为更为兼容的模式；
+            // 在bundle_no_babel sayHello 函数拼接字符串的方式时es6
+            // 而在 bundle_babel中，sayHello 函数拼接字符串的方式时字符串"+"号拼接
+            .transform("babelify",{
+                presets:["es2015"],
+                extensions:[".ts"]
+            })
             .bundle()
-            .pipe(source("bundle.js")) //命名输出的包
-            .pipe(gulp.dest("dist")) // 最终输出到dist文件
-    }))
+            .pipe(source(("bundle_no_babel.js")))
+            .pipe(buffer())
+            .pipe(sourcemaps.init({loadMaps:true}))
+            .pipe(sourcemaps.write("./"))
+            .pipe(gulp.dest("dist"))
+    })
+)
 
 
 
