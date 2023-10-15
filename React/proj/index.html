@@ -1,34 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script crossorigin src="./react.development.js"></script>
-    <script crossorigin src="./react-dom.development.js"></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React without JSX</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone@7.10.3/babel.min.js" crossorigin></script>
 </head>
+
 <body>
 <div id="root"></div>
-<script>
-    class myComponent extends React.Component{
-        constructor() {
-            super();
-            this.render = this.render.bind(this)
-        }
-        render(){}
-    }
+
+<script type="text/babel" data-presets="react,stage-3">
+    const Example = () => {
+        const [count, setCount] = React.useState(0);
+        React.useEffect(() => {
+            document.title = `You clicked ${count} times`;
+        });
+        return (
+            <div>
+                <p>You clicked {count} times</p>
+                <button onClick={() => setCount(count + 1)}>
+                    Click me
+                </button>
+            </div>
+        );
+    };
+    debugger
     const root = ReactDOM.createRoot(document.getElementById("root"))
-
-
-    const App = React.createElement(
-        "div",{
-            className: 'greeting',
-            onClick:function (){
-                console.log('=')
-
-            },
-        },"你好"
-    )
-    root.render(App)
+    root.render(<Example />);
 </script>
 </body>
+
 </html>
