@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-16T12:46:19.898Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="b7zK5Vd2PReEtKEEAaWL" version="22.0.4" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-16T12:47:34.205Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="LRBeuvJpcIUe25vRz5E4" version="22.0.4" type="github">
   <diagram name="第 1 页" id="uEY2MGFWJUYSJQZp4oGY">
     <mxGraphModel dx="1621" dy="1639" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -81,11 +81,27 @@
         <mxCell id="qDRRWIF3SU-lE6dMgB_v-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qDRRWIF3SU-lE6dMgB_v-1" target="qDRRWIF3SU-lE6dMgB_v-2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-4" value="包含" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="qDRRWIF3SU-lE6dMgB_v-3">
+          <mxGeometry x="-0.0526" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qDRRWIF3SU-lE6dMgB_v-1" target="qDRRWIF3SU-lE6dMgB_v-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-7" value="包含" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="qDRRWIF3SU-lE6dMgB_v-6">
+          <mxGeometry y="6" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="qDRRWIF3SU-lE6dMgB_v-1" value="ReactDom" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-20" y="-120" width="120" height="60" as="geometry" />
+          <mxGeometry x="60" y="-250" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="qDRRWIF3SU-lE6dMgB_v-2" value="render方法" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="180" y="-120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-5" value="unmount方法" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="-250" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
