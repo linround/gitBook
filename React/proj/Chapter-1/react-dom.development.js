@@ -5257,38 +5257,39 @@
     /*                       */
     2097152;
   var RetryLanes =
-    /*                            */
+    /*                 21           */
     130023424;
   var RetryLane1 =
-    /*                             */
+    /*               22              */
     4194304;
   var RetryLane2 =
-    /*                             */
+    /*                23             */
     8388608;
   var RetryLane3 =
-    /*                             */
+    /*                  24           */
     16777216;
   var RetryLane4 =
-    /*                             */
+    /*             25                */
     33554432;
   var RetryLane5 =
     /*                             */
-    67108864;
+    67108864;// 2的25次方
   var SomeRetryLane = RetryLane1;
   var SelectiveHydrationLane =
     /*          */
-    134217728;
+    134217728;// 2的26次方
   var NonIdleLanes =
     /*                          */
     268435455;
   var IdleHydrationLane =
     /*               */
-    268435456;
+    268435456;// 2的27次方
   var IdleLane =
     /*                        */
-    536870912;
+    536870912; // 2的28次方
   var OffscreenLane =
     /*                   */
+      // 2的29次方
     1073741824; // This function is used for the experimental timeline (react-devtools-timeline)
   // It should be kept in sync with the Lanes values above.
 
@@ -28855,6 +28856,9 @@
     scheduleInitialHydrationOnRoot(root, lane, eventTime);
     return root;
   }
+
+    // element 待挂载的ReactElement元素
+    // container  挂载到的目标节点
   function updateContainer(element, container, parentComponent, callback) {
     {
       onScheduleRoot(container, element);
@@ -29334,7 +29338,8 @@
   }
 
   ReactDOMHydrationRoot.prototype.render = ReactDOMRoot.prototype.render = function (children) {
-    debugger
+
+    //   FiberRootNode
     var root = this._internalRoot;
 
     if (root === null) {
@@ -29350,6 +29355,7 @@
         error('You passed a second argument to root.render(...) but it only accepts ' + 'one argument.');
       }
 
+      // 获取被标记的容器元素
       var container = root.containerInfo;
 
       if (container.nodeType !== COMMENT_NODE) {
@@ -29363,6 +29369,8 @@
       }
     }
 
+    // children React.createElement传入的子元素
+    // root ReactDOM 的根节点元素
     updateContainer(children, root, null, null);
   };
 
