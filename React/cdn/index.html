@@ -40,6 +40,7 @@
     })
   );
   function MyReduxComponent() {
+    console.log('MyReduxComponent render')
 
     const [state, setState] = React.useState(store.getState());
 
@@ -85,6 +86,7 @@
       this.state = {
         name:'my component state name'
       }
+      console.log('MyComponent constructor')
     }
     change(){
       this.setState({
@@ -92,10 +94,11 @@
       })
     }
     render(){
+      console.log('MyComponent render')
       const {name} = this.state
       return (
         <div>
-          <MyReduxComponent />
+          <h1>MyComponent</h1>
           <div>{name}</div>
           <button onClick={this.change}>changeName</button>
         </div>
@@ -111,9 +114,12 @@
     const handleClick = ()=>{
       setCount(count + 1)
     }
+    console.log('Example render')
     return (
       <div>
         <MyComponent />
+        <MyReduxComponent />
+        <h1>Example</h1>
         <p>You clicked {count} times</p>
         <button onClick={handleClick}>
           Click me
