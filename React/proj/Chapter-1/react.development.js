@@ -713,6 +713,7 @@
 
 
   var ReactElement = function (type, key, ref, self, source, owner, props) {
+    
     var element = {
       // This tag allows us to uniquely identify this as a React Element
       $$typeof: REACT_ELEMENT_TYPE,
@@ -1517,12 +1518,26 @@
     } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
 
 
-    if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing  || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden  || type === REACT_OFFSCREEN_TYPE || enableScopeAPI  || enableCacheElement  || enableTransitionTracing ) {
+    if (type === REACT_FRAGMENT_TYPE
+      || type === REACT_PROFILER_TYPE
+      || enableDebugTracing
+      || type === REACT_STRICT_MODE_TYPE
+      || type === REACT_SUSPENSE_TYPE
+      || type === REACT_SUSPENSE_LIST_TYPE
+      || enableLegacyHidden
+      || type === REACT_OFFSCREEN_TYPE
+      || enableScopeAPI
+      || enableCacheElement
+      || enableTransitionTracing ) {
       return true;
     }
 
     if (typeof type === 'object' && type !== null) {
-      if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+      if (type.$$typeof === REACT_LAZY_TYPE
+        || type.$$typeof === REACT_MEMO_TYPE
+        || type.$$typeof === REACT_PROVIDER_TYPE
+        || type.$$typeof === REACT_CONTEXT_TYPE
+        || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
         // types supported by any Flight configuration anywhere since
         // we don't know which Flight build this will end up being used
         // with.
@@ -2309,6 +2324,8 @@
     }
   }
   function createElementWithValidation(type, props, children) {
+    // 这个函数的this就是指向React这个对象
+
     var validType = isValidElementType(type); // We warn in this case but don't throw. We expect the element creation to
     // succeed and there will likely be errors in render.
 
@@ -2344,7 +2361,6 @@
         error('React.createElement: type is invalid -- expected a string (for ' + 'built-in components) or a class/function (for composite ' + 'components) but got: %s.%s', typeString, info);
       }
     }
-
     var element = createElement.apply(this, arguments); // The result can be nullish if a mock or a custom function is used.
     // TODO: Drop this when these are no longer allowed as the type argument.
 
