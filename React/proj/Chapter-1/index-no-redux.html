@@ -8,7 +8,6 @@
     <title>React without JSX</title>
     <script src="./react.development.js" crossorigin></script>
     <script src="./react-dom.development.js" crossorigin></script>
-    <script src="./redux.js"></script>
     <script src="./babel.js" crossorigin></script>
 </head>
 
@@ -17,64 +16,6 @@
 
 <script type="text/babel" data-presets="react,stage-3">
 
-  const store = Redux.createStore(
-    Redux.combineReducers({
-      counter: (state = 0, action) => {
-        switch (action.type) {
-          case 'INCREMENT':
-            return state + 1;
-          case 'DECREMENT':
-            return state - 1;
-          default:
-            return state;
-        }
-      },
-      random: (state = 0, action) => {
-        switch (action.type) {
-          case 'RANDOM':
-            return Math.random();
-          default:
-            return state;
-        }
-      },
-    })
-  );
-  function MyReduxComponent() {
-    console.log('MyReduxComponent render')
-
-    const [state, setState] = React.useState(store.getState());
-
-    React.useEffect(() => {
-      const unsubscribe = store.subscribe(() => {
-        setState(store.getState());
-      });
-
-      return () => unsubscribe();
-    }, [setState]);
-    const Increment = ()=>{
-      store.dispatch({type:'INCREMENT'})
-    }
-    const Decrement = ()=>{
-      store.dispatch({type:'DECREMENT'})
-    }
-    const Random = ()=>{
-      store.dispatch({type:'RANDOM'})
-    }
-    return (
-      <div>
-        <h1>redux</h1>
-        <div>
-          <button onClick={Increment}>+</button>
-          <button onClick={Decrement}>-</button>
-          counter:{state.counter}
-        </div>
-        <div>
-          <button onClick={Random}>Random</button>
-          random:{state.random}
-        </div>
-      </div>
-    )
-  }
 
 
 
@@ -121,7 +62,6 @@
     return (
       <div>
         <MyComponent />
-        <MyReduxComponent />
         <h1>Example</h1>
         <p>You clicked {count} times</p>
         <button onClick={handleClick}>

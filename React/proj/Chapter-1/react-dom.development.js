@@ -28609,28 +28609,31 @@
   }
 
   function FiberRootNode(containerInfo, tag, hydrate, identifierPrefix, onRecoverableError) {
-    this.tag = tag;
-    this.containerInfo = containerInfo;
+    this.tag = tag; // 两种应用启动模式： legacy 模式；Concurrent 模式
+    this.containerInfo = containerInfo; // 根容器节点元素
     this.pendingChildren = null;
     this.current = null;
     this.pingCache = null;
     this.finishedWork = null;
-    this.timeoutHandle = noTimeout;
+    this.timeoutHandle = noTimeout;// 默认-1
     this.context = null;
     this.pendingContext = null;
     this.callbackNode = null;
-    this.callbackPriority = NoLane;
-    this.eventTimes = createLaneMap(NoLanes);
-    this.expirationTimes = createLaneMap(NoTimestamp);
-    this.pendingLanes = NoLanes;
-    this.suspendedLanes = NoLanes;
-    this.pingedLanes = NoLanes;
-    this.expiredLanes = NoLanes;
-    this.mutableReadLanes = NoLanes;
+    this.callbackPriority = NoLane; // 默认0
+    this.eventTimes = createLaneMap(NoLanes);// 创建一个数组
+    this.expirationTimes = createLaneMap(NoTimestamp); // NoTimestamp 默认-1
+    this.pendingLanes = NoLanes;// 进行中的车道
+    this.suspendedLanes = NoLanes;// 暂停车道
+    this.pingedLanes = NoLanes;// 被探测的车道
+    this.expiredLanes = NoLanes;// 过期的车道
+    this.mutableReadLanes = NoLanes;// 可变读取通道
     this.finishedLanes = NoLanes;
-    this.entangledLanes = NoLanes;
+    this.entangledLanes = NoLanes;// 纠缠车道
     this.entanglements = createLaneMap(NoLanes);
+    // React 为 React 生成的 id 使用的可选前缀。
+    // useId . 当在同一页面使用多个根时，可用于避免冲突。必须与服务器上使用的前缀相同
     this.identifierPrefix = identifierPrefix;
+
     this.onRecoverableError = onRecoverableError;
 
     {
@@ -28643,9 +28646,10 @@
     }
 
     {
-      this.memoizedUpdaters = new Set();
+      this.memoizedUpdaters = new Set(); // 记忆更新器
       var pendingUpdatersLaneMap = this.pendingUpdatersLaneMap = [];
 
+      // TotalLanes 默认31
       for (var _i = 0; _i < TotalLanes; _i++) {
         pendingUpdatersLaneMap.push(new Set());
       }
@@ -28664,15 +28668,31 @@
     }
   }
 
-  function createFiberRoot(containerInfo, tag, hydrate, initialChildren, hydrationCallbacks, isStrictMode, concurrentUpdatesByDefaultOverride, // TODO: We have several of these arguments that are conceptually part of the
-                           // host config, but because they are passed in at runtime, we have to thread
-                           // them through the root constructor. Perhaps we should put them all into a
-                           // single type, like a DynamicHostConfig that is defined by the renderer.
-                           identifierPrefix, onRecoverableError, transitionCallbacks) {
+  function createFiberRoot(
+    containerInfo,// 根节点
+    tag, // 两种应用启动模式： legacy 模式；Concurrent 模式
+    hydrate, // createContainer 传入的 false
+    initialChildren,// createContainer 传入的 null
+    hydrationCallbacks, // createContainer 传入的null
+    isStrictMode,// 是否开启严格模式 默认false
+    concurrentUpdatesByDefaultOverride, //  通过默认覆盖并发更新 默认false
+    // TODO: We have several of these arguments that are conceptually part of the
+    // host config, but because they are passed in at runtime, we have to thread
+    // them through the root constructor. Perhaps we should put them all into a
+    // single type, like a DynamicHostConfig that is defined by the renderer.
+    // React 为 React 生成的 id 使用的可选前缀。
+    // useId . 当在同一页面使用多个根时，可用于避免冲突。必须与服务器上使用的前缀相同
+    identifierPrefix,
+    onRecoverableError,
+    transitionCallbacks) {
+
+    // 这里只会调用一次
+    // 创建一个FiberRootNode
     var root = new FiberRootNode(containerInfo, tag, hydrate, identifierPrefix, onRecoverableError);
     // stateNode is any.
 
 
+    //
     var uninitializedFiber = createHostRootFiber(tag, isStrictMode);
     root.current = uninitializedFiber;
     uninitializedFiber.stateNode = root;
@@ -28690,6 +28710,7 @@
     }
 
     initializeUpdateQueue(uninitializedFiber);
+
     return root;
   }
 
@@ -28796,7 +28817,8 @@
     hydrationCallbacks,// createContainer 传入的null
     isStrictMode,// 是否开启严格模式 默认false
     concurrentUpdatesByDefaultOverride,//  通过默认覆盖并发更新 默认false
-    identifierPrefix, // React 为 React 生成的 id 使用的可选前缀。 useId . 当在同一页面使用多个根时，可用于避免冲突。必须与服务器上使用的前缀相同
+    // React 为 React 生成的 id 使用的可选前缀。 useId . 当在同一页面使用多个根时，可用于避免冲突。必须与服务器上使用的前缀相同
+    identifierPrefix,
     onRecoverableError,
     transitionCallbacks) {
     var hydrate = false;
@@ -29307,10 +29329,12 @@
     };
 
   function ReactDOMRoot(internalRoot) {
+
     this._internalRoot = internalRoot;
   }
 
   ReactDOMHydrationRoot.prototype.render = ReactDOMRoot.prototype.render = function (children) {
+    debugger
     var root = this._internalRoot;
 
     if (root === null) {
@@ -29408,6 +29432,7 @@
         transitionCallbacks = options.transitionCallbacks;
       }
     }
+    // 初始化了rootFiberNode的各种属性
     var root = createContainer(
       container,// 根节点
       ConcurrentRoot,// 两种应用启动模式： legacy 模式；Concurrent 模式
@@ -29417,10 +29442,13 @@
       identifierPrefix, // React 为 React 生成的 id 使用的可选前缀。 useId . 当在同一页面使用多个根时，可用于避免冲突。必须与服务器上使用的前缀相同
       onRecoverableError);
 
+
     markContainerAsRoot(root.current, container);
     var rootContainerElement = container.nodeType === COMMENT_NODE ? container.parentNode : container;
+    // react的事件合成机制
     listenToAllSupportedEvents(rootContainerElement);
-    return new ReactDOMRoot(root);
+    const node = new ReactDOMRoot(root)
+    return node;
   }
 
   function ReactDOMHydrationRoot(internalRoot) {
