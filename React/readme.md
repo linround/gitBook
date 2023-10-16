@@ -4,3 +4,5 @@
 
 - [搭建react源代码](./proj/Chapter-0/README.MD)
 - [react,reactDOM之间是什么样的关系?](./proj/Chapter-1/README.MD)
+# 拓展
+-[ ]  Object.seal() 和 Object.freeze()，Object.preventExtensions() 
