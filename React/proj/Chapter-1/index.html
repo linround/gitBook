@@ -132,7 +132,9 @@
   };
 
 
-  const root = ReactDOM.createRoot(document.getElementById("root"))
+  const root = ReactDOM.createRoot(document.getElementById("root"),{
+    identifierPrefix:'my_code_test'
+  })
   root.render(<Example />);
 </script>
 </body>

@@ -28790,10 +28790,27 @@
     }
   }
 
-  function createContainer(containerInfo, tag, hydrationCallbacks, isStrictMode, concurrentUpdatesByDefaultOverride, identifierPrefix, onRecoverableError, transitionCallbacks) {
+  function createContainer(
+    containerInfo, // 根节点
+    tag, // 两种应用启动模式： legacy 模式；Concurrent 模式
+    hydrationCallbacks,// createContainer 传入的null
+    isStrictMode,// 是否开启严格模式 默认false
+    concurrentUpdatesByDefaultOverride,//  通过默认覆盖并发更新 默认false
+    identifierPrefix, // React 为 React 生成的 id 使用的可选前缀。 useId . 当在同一页面使用多个根时，可用于避免冲突。必须与服务器上使用的前缀相同
+    onRecoverableError,
+    transitionCallbacks) {
     var hydrate = false;
     var initialChildren = null;
-    return createFiberRoot(containerInfo, tag, hydrate, initialChildren, hydrationCallbacks, isStrictMode, concurrentUpdatesByDefaultOverride, identifierPrefix, onRecoverableError);
+    return createFiberRoot(
+      containerInfo,
+      tag,
+      hydrate,
+      initialChildren,
+      hydrationCallbacks,
+      isStrictMode,
+      concurrentUpdatesByDefaultOverride,
+      identifierPrefix,
+      onRecoverableError);
   }
   function createHydrationContainer(initialChildren, // TODO: Remove `callback` when we delete legacy mode.
                                     callback, containerInfo, tag, hydrationCallbacks, isStrictMode, concurrentUpdatesByDefaultOverride, identifierPrefix, onRecoverableError, transitionCallbacks) {
@@ -29357,6 +29374,7 @@
     }
 
     warnIfReactDOMContainerInDEV(container);
+    // 默认非严格模式
     var isStrictMode = false;
     var concurrentUpdatesByDefaultOverride = false;
     var identifierPrefix = '';
@@ -29390,8 +29408,15 @@
         transitionCallbacks = options.transitionCallbacks;
       }
     }
+    var root = createContainer(
+      container,// 根节点
+      ConcurrentRoot,// 两种应用启动模式： legacy 模式；Concurrent 模式
+      null,
+      isStrictMode,// 是否开启严格模式 默认false
+      concurrentUpdatesByDefaultOverride,//  通过默认覆盖并发更新 默认false
+      identifierPrefix, // React 为 React 生成的 id 使用的可选前缀。 useId . 当在同一页面使用多个根时，可用于避免冲突。必须与服务器上使用的前缀相同
+      onRecoverableError);
 
-    var root = createContainer(container, ConcurrentRoot, null, isStrictMode, concurrentUpdatesByDefaultOverride, identifierPrefix, onRecoverableError);
     markContainerAsRoot(root.current, container);
     var rootContainerElement = container.nodeType === COMMENT_NODE ? container.parentNode : container;
     listenToAllSupportedEvents(rootContainerElement);
@@ -29461,7 +29486,10 @@
     return new ReactDOMHydrationRoot(root);
   }
   function isValidContainer(node) {
-    return !!(node && (node.nodeType === ELEMENT_NODE || node.nodeType === DOCUMENT_NODE || node.nodeType === DOCUMENT_FRAGMENT_NODE || !disableCommentsAsDOMContainers  ));
+    return !!(node && (node.nodeType === ELEMENT_NODE
+      || node.nodeType === DOCUMENT_NODE
+      || node.nodeType === DOCUMENT_FRAGMENT_NODE
+      || !disableCommentsAsDOMContainers  ));
   } // TODO: Remove this function which also includes comment nodes.
   // We only use it in places that are currently more relaxed.
 
@@ -29472,14 +29500,21 @@
   function warnIfReactDOMContainerInDEV(container) {
     {
       if (container.nodeType === ELEMENT_NODE && container.tagName && container.tagName.toUpperCase() === 'BODY') {
-        error('createRoot(): Creating roots directly with document.body is ' + 'discouraged, since its children are often manipulated by third-party ' + 'scripts and browser extensions. This may lead to subtle ' + 'reconciliation issues. Try using a container element created ' + 'for your app.');
+        error('createRoot(): Creating roots directly with document.body is ' +
+          'discouraged, since its children are often manipulated by third-party ' +
+          'scripts and browser extensions. This may lead to subtle ' +
+          'reconciliation issues. Try using a container element created ' +
+          'for your app.');
       }
 
       if (isContainerMarkedAsRoot(container)) {
         if (container._reactRootContainer) {
-          error('You are calling ReactDOMClient.createRoot() on a container that was previously ' + 'passed to ReactDOM.render(). This is not supported.');
+          error('You are calling ReactDOMClient.createRoot() on a container that was previously '
+            + 'passed to ReactDOM.render(). This is not supported.');
         } else {
-          error('You are calling ReactDOMClient.createRoot() on a container that ' + 'has already been passed to createRoot() before. Instead, call ' + 'root.render() on the existing root instead if you want to update it.');
+          error('You are calling ReactDOMClient.createRoot() on a container that '
+            + 'has already been passed to createRoot() before. Instead, call ' +
+            'root.render() on the existing root instead if you want to update it.');
         }
       }
     }

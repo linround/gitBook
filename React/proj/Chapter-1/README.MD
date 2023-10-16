@@ -8,6 +8,10 @@
 ## React.createRoot
 -[x] container,挂载到页面的容器元素 
 -[ ] options
+  -[ ] unstable_strictMode
+  -[ ] identifierPrefix
+  -[ ] onRecoverableError
+  -[ ] transitionCallbacks
 ```javascript
 function createRoot$1(container, options) {
     {
