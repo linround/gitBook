@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React without JSX</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./redux.js"></script>
+    <script src="./babel.js" crossorigin></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react,stage-3">
+
+  const store = Redux.createStore(
+    Redux.combineReducers({
+      counter: (state = 0, action) => {
+        switch (action.type) {
+          case 'INCREMENT':
+            return state + 1;
+          case 'DECREMENT':
+            return state - 1;
+          default:
+            return state;
+        }
+      },
+      random: (state = 0, action) => {
+        switch (action.type) {
+          case 'RANDOM':
+            return Math.random();
+          default:
+            return state;
+        }
+      },
+    })
+  );
+  function MyReduxComponent() {
+
+    const [state, setState] = React.useState(store.getState());
+
+    React.useEffect(() => {
+      const unsubscribe = store.subscribe(() => {
+        setState(store.getState());
+      });
+
+      return () => unsubscribe();
+    }, [setState]);
+    const Increment = ()=>{
+      store.dispatch({type:'INCREMENT'})
+    }
+    const Decrement = ()=>{
+      store.dispatch({type:'DECREMENT'})
+    }
+    const Random = ()=>{
+      store.dispatch({type:'RANDOM'})
+    }
+    return (
+      <div>
+        <h1>redux</h1>
+        <div>
+          <button onClick={Increment}>+</button>
+          <button onClick={Decrement}>-</button>
+          counter:{state.counter}
+        </div>
+        <div>
+          <button onClick={Random}>Random</button>
+          random:{state.random}
+        </div>
+      </div>
+    )
+  }
+
+
+
+  class MyComponent extends React.Component{
+    constructor() {
+      super()
+      this.render = this.render.bind(this)
+      this.change = this.change.bind(this)
+      this.state = {
+        name:'my component state name'
+      }
+    }
+    change(){
+      this.setState({
+        name:'my component new name'
+      })
+    }
+    render(){
+      const {name} = this.state
+      return (
+        <div>
+          <MyReduxComponent />
+          <div>{name}</div>
+          <button onClick={this.change}>changeName</button>
+        </div>
+      )
+    }
+
+  }
+  const Example = () => {
+    const [count, setCount] = React.useState(0);
+    React.useEffect(() => {
+      document.title = `You clicked ${count} times`;
+    });
+    const handleClick = ()=>{
+      setCount(count + 1)
+    }
+    return (
+      <div>
+        <MyComponent />
+        <p>You clicked {count} times</p>
+        <button onClick={handleClick}>
+          Click me
+        </button>
+      </div>
+    );
+  };
+
+
+  const root = ReactDOM.createRoot(document.getElementById("root"))
+  root.render(<Example />);
+</script>
+</body>
+
+</html>
