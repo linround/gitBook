@@ -7,6 +7,7 @@
 - [React.createElement函数的作用](./proj/Chapter-3/README.MD)
 
 # 扩展
--[ ] Object.seal() 和 Object.freeze() ，Object.preventExtensions() 
--[ ] ReactElement 与 ReactCurrentOwner的关系 
--[ ] https://developer.mozilla.org/zh-CN/docs/Web/API/Background_Tasks_API
+
+-[x] Object.seal() 和 Object.freeze() ，Object.preventExtensions() 
+-[x] ReactElement 与 ReactCurrentOwner的关系 
+-[x] https://developer.mozilla.org/zh-CN/docs/Web/API/Background_Tasks_API
