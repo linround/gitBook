@@ -866,16 +866,18 @@
         var displayName = typeof type === 'function' ?
             type.displayName || type.name || 'Unknown' : type;
 
+        // 在props中访问key时添加报错函数
         if (key) {
           defineKeyPropWarningGetter(props, displayName);
         }
 
+        // 在props中访问ref时添加报错函数
         if (ref) {
           defineRefPropWarningGetter(props, displayName);
         }
       }
     }
-
+    // 返回一个ReactElement元素
     return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
   }
   function cloneAndReplaceKey(oldElement, newKey) {
