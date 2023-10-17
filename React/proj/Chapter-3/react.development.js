@@ -801,7 +801,9 @@
       source = config.__source === undefined ? null : config.__source; // Remaining properties are added to a new props object
 
       for (propName in config) {
-        if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+
+        if (hasOwnProperty.call(config, propName)
+            && !RESERVED_PROPS.hasOwnProperty(propName)) {
           props[propName] = config[propName];
         }
       }
@@ -853,7 +855,6 @@
         }
       }
     }
-
     return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
   }
   function cloneAndReplaceKey(oldElement, newKey) {
@@ -2222,6 +2223,7 @@
           validateExplicitKey(child, parentType);
         }
       }
+    //   是ReactElement节点元素
     } else if (isValidElement(node)) {
       // This element was passed in a valid location.
       if (node._store) {
@@ -2325,7 +2327,7 @@
   }
   function createElementWithValidation(type, props, children) {
     // 这个函数的this就是指向React这个对象
-
+    // 目前只需了解函数组件和普通的字符串标签
     var validType = isValidElementType(type); // We warn in this case but don't throw. We expect the element creation to
     // succeed and there will likely be errors in render.
 
@@ -2376,6 +2378,7 @@
 
     if (validType) {
       for (var i = 2; i < arguments.length; i++) {
+        //
         validateChildKeys(arguments[i], type);
       }
     }
