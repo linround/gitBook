@@ -197,6 +197,7 @@ function createElement(type, config, children) {
   var key = null;
   var ref = null;
 ```
+ref,key即作为ReactElement的一级属性，也作为其一级属性props的属性
 在createElement器件访问ref会直接报错，ref是一个get属性;所以对于ref的访问需要在一个适当的时机去访问
 - 在componentDidMount生命周期中访问ref
 - 使用useEffect 来监听ref的变化
