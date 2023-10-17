@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-10-16T13:40:12.582Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="aHbjeuTyelR4h1HhMYKf" version="22.0.4" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-17T13:33:23.757Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="E6n3_I_0ePNv8pEMKVlH" version="22.0.4" type="github">
   <diagram name="第 1 页" id="uEY2MGFWJUYSJQZp4oGY">
-    <mxGraphModel dx="1583" dy="1617" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1621" dy="1593" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -44,7 +44,7 @@
         <mxCell id="rUavmQtfIEWRtOmvGY1Z-8" value="render执行" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="560" y="340" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="qDRRWIF3SU-lE6dMgB_v-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="rUavmQtfIEWRtOmvGY1Z-11" target="qDRRWIF3SU-lE6dMgB_v-12">
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="rUavmQtfIEWRtOmvGY1Z-11" target="qDRRWIF3SU-lE6dMgB_v-12" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="rUavmQtfIEWRtOmvGY1Z-11" value="updateContainer&lt;br&gt;（从ReactDOM中获取根容节点，然后将React.CreateElement的子元素进行挂载更新）" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
@@ -81,47 +81,53 @@
         <mxCell id="rUavmQtfIEWRtOmvGY1Z-21" value="ReactElement" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="40" y="650" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="qDRRWIF3SU-lE6dMgB_v-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qDRRWIF3SU-lE6dMgB_v-1" target="qDRRWIF3SU-lE6dMgB_v-2">
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="qDRRWIF3SU-lE6dMgB_v-1" target="qDRRWIF3SU-lE6dMgB_v-2" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="qDRRWIF3SU-lE6dMgB_v-4" value="包含" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="qDRRWIF3SU-lE6dMgB_v-3">
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-4" value="包含" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="qDRRWIF3SU-lE6dMgB_v-3" vertex="1" connectable="0">
           <mxGeometry x="-0.0526" y="-1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="qDRRWIF3SU-lE6dMgB_v-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qDRRWIF3SU-lE6dMgB_v-1" target="qDRRWIF3SU-lE6dMgB_v-5">
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="qDRRWIF3SU-lE6dMgB_v-1" target="qDRRWIF3SU-lE6dMgB_v-5" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="qDRRWIF3SU-lE6dMgB_v-7" value="包含" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="qDRRWIF3SU-lE6dMgB_v-6">
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-7" value="包含" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="qDRRWIF3SU-lE6dMgB_v-6" vertex="1" connectable="0">
           <mxGeometry y="6" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="qDRRWIF3SU-lE6dMgB_v-1" value="ReactDOM" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="60" y="-250" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="qDRRWIF3SU-lE6dMgB_v-2" value="render方法" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="180" y="-120" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="qDRRWIF3SU-lE6dMgB_v-5" value="unmount方法" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="290" y="-250" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="qDRRWIF3SU-lE6dMgB_v-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qDRRWIF3SU-lE6dMgB_v-8" target="qDRRWIF3SU-lE6dMgB_v-9">
+        <mxCell id="98gyhxSWz0zXMn8yi4Av-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qDRRWIF3SU-lE6dMgB_v-1" target="98gyhxSWz0zXMn8yi4Av-1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="qDRRWIF3SU-lE6dMgB_v-11" value="包含" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="qDRRWIF3SU-lE6dMgB_v-10">
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-1" value="ReactDOM" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="60" y="-250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-2" value="render方法" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="180" y="-120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-5" value="unmount方法" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="290" y="-250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="qDRRWIF3SU-lE6dMgB_v-8" target="qDRRWIF3SU-lE6dMgB_v-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-11" value="包含" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="qDRRWIF3SU-lE6dMgB_v-10" vertex="1" connectable="0">
           <mxGeometry x="-0.05" y="2" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="qDRRWIF3SU-lE6dMgB_v-8" value="React" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-8" value="React" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="790" y="-140" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="qDRRWIF3SU-lE6dMgB_v-9" value="createElement" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-9" value="createElement" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="990" y="-140" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="qDRRWIF3SU-lE6dMgB_v-12" value="onScheduleRoot" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+        <mxCell id="qDRRWIF3SU-lE6dMgB_v-12" value="onScheduleRoot" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="875" y="635" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="98gyhxSWz0zXMn8yi4Av-1" value="componentDidMount" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="-350" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
