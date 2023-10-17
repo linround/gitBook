@@ -868,11 +868,13 @@
         // displayName 就是当前组件的名称
         // 在props中访问key时添加报错函数
         if (key) {
+          // 添加一个key的getter属性，从而监听key的访问
           defineKeyPropWarningGetter(props, displayName);
         }
 
         // 在props中访问ref时添加报错函数
         if (ref) {
+          // 添加一个ref的getter属性，从而监听ref的访问
           defineRefPropWarningGetter(props, displayName);
         }
       }
