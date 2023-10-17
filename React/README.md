@@ -8,3 +8,4 @@
 
 # 扩展
 - Object.seal() 和 Object.freeze() ，Object.preventExtensions()
+-[ ] ReactElement 与 ReactCurrentOwner的关系

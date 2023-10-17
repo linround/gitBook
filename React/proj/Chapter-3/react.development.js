@@ -647,7 +647,10 @@
         if (!specialPropKeyWarningShown) {
           specialPropKeyWarningShown = true;
 
-          error('%s: `key` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://reactjs.org/link/special-props)', displayName);
+          error('%s: `key` is not a prop. Trying to access it will result ' +
+              'in `undefined` being returned. If you need to access the same ' +
+              'value within the child component, you should pass it as a different ' +
+              'prop. (https://reactjs.org/link/special-props)', displayName);
         }
       }
     };
@@ -716,13 +719,24 @@
     
     var element = {
       // This tag allows us to uniquely identify this as a React Element
+      // 组件的类型，十六进制数值或者Symbol值
+      // React最终渲染DOM的时候，需要确保元素的类型时REACT_ELEMENT_TYPE
+      // 以此作为判断依据
       $$typeof: REACT_ELEMENT_TYPE,
       // Built-in properties that belong on the element
+      // 元素具体的类型值，、、
+      // 如果元素节点 type属性中存储 的是普通元素就是div span等等
+      // 如果元素是组件 type属性中存储的就是组件的构造函数
       type: type,
+      // 元素的唯一标识
+      // 用作内部vdom比对，提升DOM性能
       key: key,
+      // 存储元素DOM对象或者组件实例对象
       ref: ref,
+      // 存储向组件内传递的数据
       props: props,
       // Record the component responsible for creating this element.
+      // 记录当前元素所属组件（记录当前元素是哪个组件创建的）
       _owner: owner
     };
 
@@ -832,9 +846,14 @@
     } // Resolve default props
 
 
+    /**
+     *如果当前处理的是组件
+     * 看组件身上是否存在defaultProps
+     * defaultProps存储的时props对象中属性的默认值
+     * */
     if (type && type.defaultProps) {
       var defaultProps = type.defaultProps;
-
+      // 遍历defaultProps，为props为undefined的设置默认值
       for (propName in defaultProps) {
         if (props[propName] === undefined) {
           props[propName] = defaultProps[propName];
@@ -844,7 +863,8 @@
 
     {
       if (key || ref) {
-        var displayName = typeof type === 'function' ? type.displayName || type.name || 'Unknown' : type;
+        var displayName = typeof type === 'function' ?
+            type.displayName || type.name || 'Unknown' : type;
 
         if (key) {
           defineKeyPropWarningGetter(props, displayName);
@@ -855,6 +875,7 @@
         }
       }
     }
+
     return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
   }
   function cloneAndReplaceKey(oldElement, newKey) {

@@ -203,3 +203,13 @@ ref,key即作为ReactElement的一级属性，也作为其一级属性props的�
 - 在componentDidMount生命周期中访问ref
 - 使用useEffect 来监听ref的变化
 ![](./assets/img.png)
+## 总结
+createElement的作用就是创建ReactElement,可传入多个参数，
+- 第一个参数 type 是元素类型；普通元素为div span等等；函数类型是就是组件元素。
+- 第二个参数 config 是配置属性，例如key、ref等等
+- 从第三个起（包含第三个）都作为子元素
+执行情况如下：
+- 分离props属性和特殊属性
+- 将子元素放在props.children
+- 为props的某些属性赋传入的值
+- 最终调用ReactElement方法返回一个元素
