@@ -170,6 +170,7 @@ function createElement(type, config, children) {
 ```
 以上四个部分适合调用createElement部分相关的代码，createElement最终返回的时一个ReactElement
 - 在createElement函数中使用得到了所有的子元素;下面这段代码来源于createElement函数
+- 可以看到当只有一个子元素时props.children是一个对象，多个子元素时props.children是一个数组
 ```javascript
 
     var childrenLength = arguments.length - 2;
