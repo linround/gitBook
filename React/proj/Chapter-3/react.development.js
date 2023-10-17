@@ -971,8 +971,15 @@
    * @final
    */
 
+  // REACT_ELEMENT_TYPE 只会赋值给ReactElement中的 $$typeof属性
+  // 以下函数是验证object是否是 ReactElement
+  // 验证成功的条件：
+  // object是对象
+  // object不为null
+  // object对象中 $$typeof属性值为 REACT_ELEMENT_TYPE
   function isValidElement(object) {
-    return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+    return typeof object === 'object' && object !== null &&
+        object.$$typeof === REACT_ELEMENT_TYPE;
   }
 
   var SEPARATOR = '.';
@@ -2235,11 +2242,14 @@
    */
 
 
+  // parentType 是父组件，可能是字符串，也可能是函数
   function validateChildKeys(node, parentType) {
+
     if (typeof node !== 'object') {
       return;
     }
 
+    //
     if (isArray(node)) {
       for (var i = 0; i < node.length; i++) {
         var child = node[i];
@@ -2384,6 +2394,8 @@
         typeString = typeof type;
       }
 
+      // 这里是对不合法 type 进行报错
+      // 例如type可能是null，数组等等
       {
         error('React.createElement: type is invalid -- expected a string (for ' + 'built-in components) or a class/function (for composite ' + 'components) but got: %s.%s', typeString, info);
       }
