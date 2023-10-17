@@ -4,6 +4,7 @@
 
 - [搭建react源代码](./proj/Chapter-0/README.MD)
 - [react,reactDOM之间是什么样的关系?](./proj/Chapter-1/README.MD)
+- [React.createElement函数的作用](./proj/Chapter-3/README.MD)
 
 # 扩展
 - Object.seal() 和 Object.freeze() ，Object.preventExtensions()
