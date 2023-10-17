@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-17T13:33:40.956Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="6ERmDJ9Tr1mUgBTiE2JC" version="22.0.4" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-17T13:34:25.884Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="ONnou1a9Y_rVI5nJWqTh" version="22.0.4" type="github">
   <diagram name="第 1 页" id="uEY2MGFWJUYSJQZp4oGY">
     <mxGraphModel dx="1621" dy="1593" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -123,16 +123,27 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="qDRRWIF3SU-lE6dMgB_v-8" value="React" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="790" y="-140" width="120" height="60" as="geometry" />
+          <mxGeometry x="690" y="-140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="98gyhxSWz0zXMn8yi4Av-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="qDRRWIF3SU-lE6dMgB_v-9" target="98gyhxSWz0zXMn8yi4Av-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="98gyhxSWz0zXMn8yi4Av-6" value="包含" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="98gyhxSWz0zXMn8yi4Av-5">
+          <mxGeometry x="0.0083" y="-4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="qDRRWIF3SU-lE6dMgB_v-9" value="createElement" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="990" y="-140" width="120" height="60" as="geometry" />
+          <mxGeometry x="860" y="-210" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="qDRRWIF3SU-lE6dMgB_v-12" value="onScheduleRoot" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="875" y="635" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="98gyhxSWz0zXMn8yi4Av-1" value="componentDidMount" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="170" y="-350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="98gyhxSWz0zXMn8yi4Av-4" value="ReactElement" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="-210" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
