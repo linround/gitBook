@@ -10,6 +10,6 @@
 
 -[x]  Object.seal() 和 Object.freeze() ，Object.preventExtensions() 
 
-- [x]  ReactElement 与 ReactCurrentOwner的关系 
+-[x]  ReactElement 与 ReactCurrentOwner的关系 
 
 -[x]  https://developer.mozilla.org/zh-CN/docs/Web/API/Background_Tasks_API
