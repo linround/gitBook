@@ -81,11 +81,12 @@ const Example = () => {
 const root = ReactDOM.createRoot(document.getElementById("root"), {
     identifierPrefix: 'my_code_test'
 }); // ReactDOMRoot的原型上具有render方法
-debugger
 // render调用后
 // FiberRootNode.alternate 属性会有一个 FiberNode节点
 // 该FiberNode节点的stateNode属性指向 FiberRootNode
-root.render( /*#__PURE__*/React.createElement(Example, null));
+const fiberRoot = React.createElement(Example, null)
+
+root.render( /*#__PURE__*/fiberRoot);
 // root.render( /*#__PURE__*/React.createElement('div', null,"新的得到的"));
 </script>
 </body>

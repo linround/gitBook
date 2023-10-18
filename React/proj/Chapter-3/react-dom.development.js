@@ -27122,7 +27122,6 @@
   var onUncaughtError = prepareToThrowUncaughtError;
 
   function captureCommitPhaseErrorOnRoot(rootFiber, sourceFiber, error) {
-
     var errorInfo = createCapturedValueAtFiber(error, sourceFiber);
     var update = createRootErrorUpdate(rootFiber, errorInfo, SyncLane);
     var root = enqueueUpdate(rootFiber, update, SyncLane);
@@ -29369,7 +29368,7 @@
   }
 
   ReactDOMHydrationRoot.prototype.render = ReactDOMRoot.prototype.render = function (children) {
-
+      debugger
       console.log(this)
     //   FiberRootNode
     var root = this._internalRoot;
