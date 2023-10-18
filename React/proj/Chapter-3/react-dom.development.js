@@ -27122,6 +27122,7 @@
   var onUncaughtError = prepareToThrowUncaughtError;
 
   function captureCommitPhaseErrorOnRoot(rootFiber, sourceFiber, error) {
+
     var errorInfo = createCapturedValueAtFiber(error, sourceFiber);
     var update = createRootErrorUpdate(rootFiber, errorInfo, SyncLane);
     var root = enqueueUpdate(rootFiber, update, SyncLane);
@@ -28044,23 +28045,49 @@
   }
 
   function FiberNode(tag, pendingProps, key, mode) {
-    // Instance
+    // Instanc
+      // 标记不同的组件类型
     this.tag = tag;
+    //
     this.key = key;
     this.elementType = null;
+    // 组件类型 div span 函数组件
+
     this.type = null;
+    // 实例对象 如若组件的实例 原生DOM实例 function组件没有实例
+    //   如果是类组件 stateNode就是类组件的实例对象
+      // 如果是函数组件 就是null 函数组件没有实例
     this.stateNode = null; // Fiber
 
+
+      /*构建fiber树相关*/
+
+      // 指向自己的父级对象
     this.return = null;
+    // 指向自己的第一个f子级fiber
     this.child = null;
+    // 指向自己的下一个兄弟fiber对象
     this.sibling = null;
+
     this.index = 0;
     this.ref = null;
+    // 即将跟新的props
     this.pendingProps = pendingProps;
+    // 旧的props
     this.memoizedProps = null;
+
+      // 旧的state
+      this.memoizedState = null;
+
+
+
+
+
+    // 该fiber对应的组件产生的状态更新会存放在这个队列中
+      // 例如setState调用后，会将该组件放在更新队列中
     this.updateQueue = null;
-    this.memoizedState = null;
     this.dependencies = null;
+    // 记录当前组件及其子组件处于何种渲染模式
     this.mode = mode; // Effects
 
     this.flags = NoFlags;
@@ -28068,6 +28095,10 @@
     this.deletions = null;
     this.lanes = NoLanes;
     this.childLanes = NoLanes;
+    // 在fiber树更新的过程中 每个fiber都有一个跟其对应的fiber
+      // 称为 current 《==》workinprogress
+    //   在渲染完成之后他们会交换位置
+    //   alternate指向 当前fiber在 workinprogress 树中的对应的fiber
     this.alternate = null;
 
     {
@@ -29339,6 +29370,7 @@
 
   ReactDOMHydrationRoot.prototype.render = ReactDOMRoot.prototype.render = function (children) {
 
+      console.log(this)
     //   FiberRootNode
     var root = this._internalRoot;
 
@@ -29440,6 +29472,7 @@
         transitionCallbacks = options.transitionCallbacks;
       }
     }
+
     // 初始化了rootFiberNode的各种属性
     var root = createContainer(
       container,// 根节点
