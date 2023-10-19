@@ -12001,8 +12001,9 @@
       throw new Error('Found unexpected detached subtree parent. ' + 'This error is likely caused by a bug in React. Please file an issue.');
     }
   }
-
+  // ReactDOM render
   var LegacyRoot = 0;
+    // ReactDOM createRoot
   var ConcurrentRoot = 1;
 
   var syncQueue = null;
@@ -13457,6 +13458,7 @@
 
   function initializeUpdateQueue(fiber) {
     var queue = {
+      //   上以此更新之后的state,作为下一次更新的基础
       baseState: fiber.memoizedState,
       firstBaseUpdate: null,
       lastBaseUpdate: null,
@@ -28699,10 +28701,11 @@
     }
   }
 
+    // 创建根节点对应的fiber对象
   function createFiberRoot(
     containerInfo,// 根节点
     tag, // 两种应用启动模式： legacy 模式；Concurrent 模式
-    hydrate, // createContainer 传入的 false
+    hydrate, // 是否是服务端渲染
     initialChildren,// createContainer 传入的 null
     hydrationCallbacks, // createContainer 传入的null
     isStrictMode,// 是否开启严格模式 默认false
@@ -28723,10 +28726,17 @@
     // stateNode is any.
 
 
-    //
-    var uninitializedFiber = createHostRootFiber(tag, isStrictMode);
-    root.current = uninitializedFiber;
+
+          //  fiberRoot的current指向rootFiber
+    //   rootFiber的 stateNode 指向fiberRoot
+
+    // 创建 根节点对应的 rootFiber
+    var uninitializedFiber = createHostRootFiber(tag, isStrictMode); // 返回一个FiberNode
+      // 为fiberRoot的current属性 赋值为rootFiber
+      root.current = uninitializedFiber;
+    //   为rootFiber 添加stateNode属性值 为fiberRoot
     uninitializedFiber.stateNode = root;
+
 
     {
       var _initialState = {
@@ -28737,11 +28747,15 @@
         transitions: null,
         pendingSuspenseBoundaries: null
       };
+      // 为rootFiber 添加一些初始属性
       uninitializedFiber.memoizedState = _initialState;
     }
 
+      // 为  rootFiber 对象添加updateQueue属性 初始化 updateQueue 对象
+    //   updateQueue 用于存放 Update对象
+      // Update对象 用于记录组件状态的改变
     initializeUpdateQueue(uninitializedFiber);
-
+    // 最终返回fiberRoot
     return root;
   }
 
@@ -28854,6 +28868,7 @@
     transitionCallbacks) {
     var hydrate = false;
     var initialChildren = null;
+    // 创建根节点对应的fiber对象
     return createFiberRoot(
       containerInfo,
       tag,
@@ -28887,8 +28902,10 @@
     return root;
   }
 
-    // element 待挂载的ReactElement元素
-    // container  挂载到的目标节点
+    // element React.createElement元素
+    // container 要挂载的目标fiber 初始是fiberRoot
+    // parentComponent 父组件，初始渲染没有父组件  初始调用时为null
+    //callback 回调函数
   function updateContainer(element, container, parentComponent, callback) {
     {
       onScheduleRoot(container, element);
@@ -29368,10 +29385,11 @@
   }
 
   ReactDOMHydrationRoot.prototype.render = ReactDOMRoot.prototype.render = function (children) {
-      debugger
-      console.log(this)
+     
     //   FiberRootNode
+      // 这里的 （root）fiberRoot 中的 containerInfo包含了要挂载的目标容器元素
     var root = this._internalRoot;
+
 
     if (root === null) {
       throw new Error('Cannot update an unmounted root.');
@@ -29380,7 +29398,7 @@
     {
       if (typeof arguments[1] === 'function') {
         error('render(...): does not support the second callback argument. ' + 'To execute a side effect after rendering, declare it in a component body with useEffect().');
-      } else if (isValidContainer(arguments[1])) {
+      } else if (isValidContainer(arguments[1])) {// 这里提示render函数不同传入第二个合法的挂在参数
         error('You passed a container to the second argument of root.render(...). ' + "You don't need to pass it again since you already passed it to create the root.");
       } else if (typeof arguments[1] !== 'undefined') {
         error('You passed a second argument to root.render(...) but it only accepts ' + 'one argument.');
@@ -29388,21 +29406,28 @@
 
       // 获取被标记的容器元素
       var container = root.containerInfo;
-
+      //
       if (container.nodeType !== COMMENT_NODE) {
         var hostInstance = findHostInstanceWithNoPortals(root.current);
 
         if (hostInstance) {
           if (hostInstance.parentNode !== container) {
-            error('render(...): It looks like the React-rendered content of the ' + 'root container was removed without using React. This is not ' + 'supported and will cause errors. Instead, call ' + "root.unmount() to empty a root's container.");
+            error('render(...): It looks like the React-rendered content of the ' +
+                'root container was removed without using React. This is not ' +
+                'supported and will cause errors. Instead, call ' + "root.unmount() to empty a root's container.");
           }
         }
       }
     }
 
-    // children React.createElement传入的子元素
-    // root ReactDOM 的根节点元素
-    updateContainer(children, root, null, null);
+
+
+    updateContainer(
+        children,// children React.createElement元素
+        root,// root ReactDOM 的根节点元素，初始是fiberRoot
+        null,// 父组件，初始渲染没有父组件
+        null//
+    );
   };
 
   ReactDOMHydrationRoot.prototype.unmount = ReactDOMRoot.prototype.unmount = function () {
@@ -29447,7 +29472,7 @@
     if (options !== null && options !== undefined) {
       {
         if (options.hydrate) {
-          warn('hydrate through createRoot is deprecated. Use ReactDOMClient.hydrateRoot(container, <App />) instead.');
+          warn('hydrateteRoot is deprecated. Use ReactDOMClient.hydrateRoot(container, <App />) instead.');
         } else {
           if (typeof options === 'object' && options !== null && options.$$typeof === REACT_ELEMENT_TYPE) {
             error('You passed a JSX element to createRoot. You probably meant to ' + 'call root.render instead. ' + 'Example usage:\n\n' + '  let root = createRoot(domContainer);\n' + '  root.render(<App />);');
@@ -29473,6 +29498,9 @@
     }
 
     // 初始化了rootFiberNode的各种属性
+
+      // 这里构建了fiberRoot和rootFiber 的关联关系
+      //   最终返回 fiberRoot
     var root = createContainer(
       container,// 根节点
       ConcurrentRoot,// 两种应用启动模式： legacy 模式；Concurrent 模式
@@ -29487,6 +29515,7 @@
     var rootContainerElement = container.nodeType === COMMENT_NODE ? container.parentNode : container;
     // react的事件合成机制
     listenToAllSupportedEvents(rootContainerElement);
+    // 返回一个对象，该对象的 _internalRoot指向fiberRoot
     const node = new ReactDOMRoot(root)
     return node;
   }
@@ -29633,7 +29662,16 @@
     // legacy API.
   }
 
-  function legacyCreateRootFromDOMContainer(container, initialChildren, parentComponent, callback, isHydrationContainer) {
+
+  function legacyCreateRootFromDOMContainer(
+      container,
+      initialChildren,
+      parentComponent,
+      callback,
+      isHydrationContainer
+  ) {
+
+    //   如果是服务端渲染，那么久复用container
     if (isHydrationContainer) {
       if (typeof callback === 'function') {
         var originalCallback = callback;
@@ -29644,22 +29682,43 @@
         };
       }
 
-      var root = createHydrationContainer(initialChildren, callback, container, LegacyRoot, null, // hydrationCallbacks
+      var root = createHydrationContainer(
+          initialChildren,
+          callback,
+          container,
+          LegacyRoot, null, // hydrationCallbacks
         false, // isStrictMode
         false, // concurrentUpdatesByDefaultOverride,
         '', // identifierPrefix
         noopOnRecoverableError);
+
       container._reactRootContainer = root;
       markContainerAsRoot(root.current, container);
-      var rootContainerElement = container.nodeType === COMMENT_NODE ? container.parentNode : container;
+      var rootContainerElement = container.nodeType === COMMENT_NODE ? container.parentNode
+          : container;
       listenToAllSupportedEvents(rootContainerElement);
       flushSync();
       return root;
     } else {
       // First clear any existing content.
+        // 如果不是服务端渲染
       var rootSibling;
 
+        //   开始循环
       while (rootSibling = container.lastChild) {
+        //   删除 container 容器中的节点
+          // 为什么要清除 container中的元素呢
+        //   有时需要在container中放置一些占位符合或者loading 图以提高首屏加载的用户体验
+        //   那么就会向container中加入html标记
+          // 在将ReactElement 渲染到container之前 必然要先清空container
+        //   因为占位符和ReactElement不能同时显示
+        //   在加入占位代码时，最好有一个父级元素，可以减少内部代码的循环次数，以提高性能
+        //   <div>
+          //   <p>placement</p>
+          //   <p>placement</p>
+          //   <p>placement</p>
+          //   <p>placement</p>
+          // </div>
         container.removeChild(rootSibling);
       }
 
@@ -29673,16 +29732,25 @@
         };
       }
 
-      var _root = createContainer(container, LegacyRoot, null, // hydrationCallbacks
+      // 最终返回的是 FiberRootNode
+        // 这里构建了fiberRoot和rootFiber 的关联关系
+      //   最终返回 fiberRoot
+
+      var _root = createContainer(
+          container,
+          LegacyRoot, null, // hydrationCallbacks
         false, // isStrictMode
         false, // concurrentUpdatesByDefaultOverride,
         '', // identifierPrefix
         noopOnRecoverableError);
 
+      // 无论是服务端渲染还是 客户端渲染
+      //   都会为 container 添加 _reactRootContainer
       container._reactRootContainer = _root;
       markContainerAsRoot(_root.current, container);
 
-      var _rootContainerElement = container.nodeType === COMMENT_NODE ? container.parentNode : container;
+      var _rootContainerElement = container.nodeType === COMMENT_NODE ?
+          container.parentNode : container;
 
       listenToAllSupportedEvents(_rootContainerElement); // Initial mount should not be batched.
 
@@ -29701,18 +29769,45 @@
     }
   }
 
-  function legacyRenderSubtreeIntoContainer(parentComponent, children, container, forceHydrate, callback) {
+  // 将子树渲染到容器中
+    // 初始化数据解构 创建 fiberRoot 及rootFiber
+  function legacyRenderSubtreeIntoContainer(
+      parentComponent,// 父组件 初始渲染没有父组件 传递null
+      children,//要渲染的子ReactElement
+      container,//渲染容器
+      forceHydrate,// 是否为服务端渲染 false 不是服务端渲染 true 是服务端渲染
+      callback// 组件渲染完成后需要执行的回调函数
+  ) {
+
     {
       topLevelUpdateWarnings(container);
       warnOnInvalidCallback$1(callback === undefined ? null : callback, 'render');
     }
 
+    // 检测 容器 container 是否是已经初始化过的渲染器
+      // react 在初始渲染是会为最外层容器 添加_reactRootContainer属性
+    //   react 会根据此属性进行不同的渲染方式
+      // maybeRoot 不存在表示初始渲染
+    //   maybeRoot 存在表示更新
     var maybeRoot = container._reactRootContainer;
     var root;
 
     if (!maybeRoot) {
       // Initial mount
-      root = legacyCreateRootFromDOMContainer(container, children, parentComponent, callback, forceHydrate);
+        // 初始渲染
+        // 初始化 根fiber数据解构
+      //   为container 容器添加_reactRootContainer 属性
+        // 在_reactRootContainer 属性中有一个 _internalRoot
+      //   _internalRoot 属性值即为 FiberRoot 表示根节点 Fiber 数据解构  _internalRoot也在 ReactDOMRoot 中生成
+      //   legacyCreateRootFromDOMContainer
+      //   createLegacyRoot
+
+      root = legacyCreateRootFromDOMContainer(
+          container,
+          children,
+          parentComponent,
+          callback,
+          forceHydrate);
     } else {
       root = maybeRoot;
 

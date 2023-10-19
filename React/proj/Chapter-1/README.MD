@@ -5,7 +5,14 @@
 ![](./assets/img_1.png)
 - 引入 [redux.js](./redux.js),Redux的属性如下：
 ![](./assets/img_2.png)
-## React.createRoot
+## React.createRoot  
+构建 fiberRoot和rootFiber
+fiberRoot的current 指向 rootFiber
+ rootFiber的stateNode指向fiberRoot
+fiberRoot中包含了 updateQueue 属性
+updateQueue 包含了一些更新状态相关的值
+
+
 -[x] container,挂载到页面的容器元素 
 -[ ] options
   -[ ] unstable_strictMode

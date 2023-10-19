@@ -27,3 +27,6 @@ current Fiber 节点对象；
 在react中FiberRoot只有一个，而rootFiber可以有多个，因为render方法可以调用多次，fiberRoot会记录应用的更新信息，比如协调器
 在完成工作后，会将工作结果存储在fiberRoot中
 
+##  ReactDOM.createRoot
+这里创建的是一个fiberRoot节点
+

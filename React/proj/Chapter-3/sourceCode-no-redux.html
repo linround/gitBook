@@ -78,6 +78,12 @@ const Example = () => {
         onClick: handleClick
     }, "Click me"));
 };
+
+//     构建 fiberRoot和rootFiber
+// fiberRoot的current 指向 rootFiber
+// rootFiber的stateNode指向fiberRoot
+// fiberRoot中包含了 updateQueue 属性
+// updateQueue 包含了一些更新状态相关的值
 const root = ReactDOM.createRoot(document.getElementById("root"), {
     identifierPrefix: 'my_code_test'
 }); // ReactDOMRoot的原型上具有render方法
@@ -85,6 +91,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"), {
 // FiberRootNode.alternate 属性会有一个 FiberNode节点
 // 该FiberNode节点的stateNode属性指向 FiberRootNode
 const fiberRoot = React.createElement(Example, null)
+
 
 root.render( /*#__PURE__*/fiberRoot);
 // root.render( /*#__PURE__*/React.createElement('div', null,"新的得到的"));
