@@ -29663,6 +29663,16 @@
   }
 
 
+
+  // 创建一个rootFiber和fiberRoot
+  //   创建过程如下
+  //   非服务端渲染，先清除container下免得所有直接点
+    // 然后创建rootFiber和fiberRoot
+    
+    // 标记 container
+    //   container下面的一个随机属性指向 fiberRoot
+
+    // 最终返回fiberRoot
   function legacyCreateRootFromDOMContainer(
       container,
       initialChildren,
@@ -29746,7 +29756,10 @@
 
       // 无论是服务端渲染还是 客户端渲染
       //   都会为 container 添加 _reactRootContainer
+        // 在16版本 会执行这里
       container._reactRootContainer = _root;
+      // 标记 container
+      //   container下面的一个随机属性指向 fiberRoot
       markContainerAsRoot(_root.current, container);
 
       var _rootContainerElement = container.nodeType === COMMENT_NODE ?
@@ -29757,6 +29770,7 @@
       flushSync(function () {
         updateContainer(initialChildren, _root, parentComponent, callback);
       });
+      // 最终返回fiberRoot
       return _root;
     }
   }
