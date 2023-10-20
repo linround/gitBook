@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-20T13:16:11.652Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="xZFxKw03FnOAHs2lQHbk" version="22.0.6" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-20T13:17:40.325Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="ROqFp4aOAVWK-awaRR-o" version="22.0.6" type="github">
   <diagram name="第 1 页" id="uEY2MGFWJUYSJQZp4oGY">
     <mxGraphModel dx="1621" dy="1645" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -145,8 +145,29 @@
         <mxCell id="98gyhxSWz0zXMn8yi4Av-4" value="ReactElement" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="1060" y="-210" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="jk9eQjjbN7_Kr5IHh5Wq-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jk9eQjjbN7_Kr5IHh5Wq-1" target="jk9eQjjbN7_Kr5IHh5Wq-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="jk9eQjjbN7_Kr5IHh5Wq-1" value="updateContainer" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="170" y="1320" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jk9eQjjbN7_Kr5IHh5Wq-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jk9eQjjbN7_Kr5IHh5Wq-2" target="jk9eQjjbN7_Kr5IHh5Wq-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jk9eQjjbN7_Kr5IHh5Wq-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jk9eQjjbN7_Kr5IHh5Wq-2" target="jk9eQjjbN7_Kr5IHh5Wq-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jk9eQjjbN7_Kr5IHh5Wq-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jk9eQjjbN7_Kr5IHh5Wq-2" target="jk9eQjjbN7_Kr5IHh5Wq-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jk9eQjjbN7_Kr5IHh5Wq-2" value="计算任务的过期时间" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="1320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jk9eQjjbN7_Kr5IHh5Wq-4" value="根据过期时间创建Update任务" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="1440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jk9eQjjbN7_Kr5IHh5Wq-7" value="通过任务过期时间计算任务的优先级" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1440" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
