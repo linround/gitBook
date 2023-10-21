@@ -28906,11 +28906,22 @@
     // container 要挂载的目标fiber 初始是fiberRoot
     // parentComponent 父组件，初始渲染没有父组件  初始调用时为null
     //callback 回调函数
-  function updateContainer(element, container, parentComponent, callback) {
+    /**
+     * 计算任务的过期时间
+     * 再根据任务过期时间创建Update 任务
+     * 通过人物的过期时间 还可以计算出人物的优先级
+     * */
+  function updateContainer(
+      element,// 要渲染的 ReactElement
+      container,// container fiberRoot对象
+      parentComponent,// 父组件 初始渲染为null
+      callback// 渲染完成执行的回调函数
+    ) {
+
     {
       onScheduleRoot(container, element);
     }
-
+    // 获取rootFiber
     var current$1 = container.current;
     var eventTime = requestEventTime();
     var lane = requestUpdateLane(current$1);
@@ -28935,24 +28946,38 @@
       }
     }
 
-    var update = createUpdate(eventTime, lane); // Caution: React DevTools currently depends on this property
-    // being called "element".
+        // Caution: React DevTools currently depends on this property
+    //     lane 是与异步加载有关的
+        //  eventTime 是一个任务的过期时间
+        // 当时间到了过期时间的时候
+    //     如果任务还未执行的话，react将会强制执行该任务
+        // 初始化渲染时，任务同步执行，不涉及被打断的问题
 
+
+        // 创建一个待执行的任务
+    var update = createUpdate(eventTime, lane);
+    // being called "element".
+    // 将更新的内容挂载到更新对象的payload中
+        // 将要更新的组件存储在payload对象中,方便后期获取
     update.payload = {
       element: element
     };
     callback = callback === undefined ? null : callback;
 
+    // callback期望时函数
     if (callback !== null) {
       {
         if (typeof callback !== 'function') {
           error('render(...): Expected the last optional `callback` argument to be a ' + 'function. Instead received: %s.', callback);
         }
       }
-
+      // 将callback挂载到update 对象中
+        // 其实就是 一层层传递  方便ReactElement 元素渲染完成调用
+      //  回调函数执行完成后会被清除
       update.callback = callback;
     }
 
+    //current$1 就是 rootFiber
     var root = enqueueUpdate(current$1, update, lane);
 
     if (root !== null) {
@@ -28963,17 +28988,23 @@
     return lane;
   }
   function getPublicRootInstance(container) {
+    //   获取rootFiber
     var containerFiber = container.current;
-
+    // 如果rootFiber没有子元素
+      // 指的就是 id="root"的div没有子元素
     if (!containerFiber.child) {
+      //   返回null
       return null;
     }
 
+    // 匹配子元素类型
     switch (containerFiber.child.tag) {
+      //   普通类型 的ReactElement
       case HostComponent:
         return getPublicInstance(containerFiber.child.stateNode);
 
       default:
+        //   返回真是DOM对象
         return containerFiber.child.stateNode;
     }
   }
@@ -29385,7 +29416,7 @@
   }
 
   ReactDOMHydrationRoot.prototype.render = ReactDOMRoot.prototype.render = function (children) {
-     
+
     //   FiberRootNode
       // 这里的 （root）fiberRoot 中的 containerInfo包含了要挂载的目标容器元素
     var root = this._internalRoot;
@@ -29767,6 +29798,10 @@
 
       listenToAllSupportedEvents(_rootContainerElement); // Initial mount should not be batched.
 
+        // 初始化渲染不执行批量更新
+        // 因为批量更 新是异步的，是可以被打断的
+        // 但是初始化渲染应该尽快完成 不能被打断
+        // 所以不执行批量更新
       flushSync(function () {
         updateContainer(initialChildren, _root, parentComponent, callback);
       });
@@ -29825,11 +29860,22 @@
     } else {
       root = maybeRoot;
 
+      /**
+       * 改变callback 中的this指向
+       * 使其指向render方法第一个参数的真实DOM对象
+       *
+       *
+       * */
       if (typeof callback === 'function') {
+        //   使用 originalCallback 存储callback
         var originalCallback = callback;
-
+        // 为callback 重新赋值
         callback = function () {
+          //   获取render 方法第一个参数的真实DOM对象
+            // 实际上就是获取 id="root"的div元素
+          //   root。child.stateNode
           var instance = getPublicRootInstance(root);
+          //调用 原始callback函数 并改变 函数内部this指向
           originalCallback.call(instance);
         };
       } // Update
@@ -29837,7 +29883,8 @@
 
       updateContainer(children, root, parentComponent, callback);
     }
-
+    // 返回render方法 第一个参数真实DOM对象 作为render方法的返回值
+      // 就是说渲染谁，返回谁的真实DOM对象
     return getPublicRootInstance(root);
   }
 
