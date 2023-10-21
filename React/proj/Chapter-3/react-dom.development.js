@@ -4771,6 +4771,7 @@
   var requestPaint = unstable_requestPaint;
   var now = unstable_now;
   var getCurrentPriorityLevel = unstable_getCurrentPriorityLevel;
+
   var ImmediatePriority = unstable_ImmediatePriority;
   var UserBlockingPriority = unstable_UserBlockingPriority;
   var NormalPriority = unstable_NormalPriority;
@@ -13372,6 +13373,7 @@
     queue.interleaved = update;
   }
   function enqueueConcurrentClassUpdate(fiber, queue, update, lane) {
+      debugger
     var interleaved = queue.interleaved;
 
     if (interleaved === null) {
@@ -13498,15 +13500,32 @@
     };
     return update;
   }
-  function enqueueUpdate(fiber, update, lane) {
+  // 将任务update 存放于 任务队列(updateQueue)中
+    //  创建单项链表解构存放update， next用来串联update
+  function enqueueUpdate(
+      fiber, 
+      update,
+      lane
+  ) {
+    //   获取 当前fiber的更新队列
+      // 初始时fiber就是 rootFiber
     var updateQueue = fiber.updateQueue;
 
+    // 如果更新队列不存在 就返回Null
     if (updateQueue === null) {
       // Only occurs if the fiber has been unmounted.
+        // 仅仅发生在fiber已经被卸载
       return null;
     }
+    //
+      // This is an unsafe render phase update. Add directly to the update
+      // queue so we can process it immediately during the current render.
+      // 获取待执行的update任务
+      // 初始渲染时没有待执行的任务
 
+    //   这里的渲染更新触发，是由setState触发的
     var sharedQueue = updateQueue.shared;
+      var pending = sharedQueue.pending;
 
     {
       if (currentlyProcessingQueue === sharedQueue && !didWarnUpdateInsideUpdate) {
@@ -13517,18 +13536,18 @@
     }
 
     if (isUnsafeClassRenderPhaseUpdate()) {
-      // This is an unsafe render phase update. Add directly to the update
-      // queue so we can process it immediately during the current render.
-      var pending = sharedQueue.pending;
-
+      // 如果没有待执行的update任务
       if (pending === null) {
         // This is the first update. Create a circular list.
+          // 这是第一次更新，创建一个循环列表
         update.next = update;
       } else {
+        //   如果已经存在，那就将这个更新任务 添加到这个单向链表中
         update.next = pending.next;
         pending.next = update;
       }
 
+      // 将任务存储在pending属性中
       sharedQueue.pending = update; // Update the childLanes even though we're most likely already rendering
       // this fiber. This is for backwards compatibility in the case where you
       // update a different component during render phase than the one that is
@@ -25485,7 +25504,24 @@
     return claimNextRetryLane();
   }
 
+
+
+    //   root初始时为 fiberRoot
+    //  fiber 初始为 rootFiber
+    // lane 表示的是 同步还是异步任务调度
+    // eventTime 与任务过期时间有关
+
+  //   主要就是将同步任务 放入同步任务轨道
   function scheduleUpdateOnFiber(root, fiber, lane, eventTime) {
+
+
+      /**
+       * 判断是否是无限循环的 update,如果是就报错
+       * 在componentWillUpdate 或者componentDidUpdate 生命周期中。重复调用
+       * setState方法，可能会发生这种情况
+       * React限制了嵌套更新的数量 以放置无限制的
+       * 限制的嵌套更新数量为50 即 NESTED_UPDATE_LIMIT 变量指定的值
+       * */
     checkForNestedUpdates();
 
     {
@@ -25500,7 +25536,10 @@
       }
     } // Mark that the root has a pending update.
 
-
+      // root初始时为 fiberRoot
+      /**
+       * 遍历更新子节点的过期时间
+       * */
     markRootUpdated(root, lane, eventTime);
 
     if ((executionContext & RenderContext) !== NoLanes && root === workInProgressRoot) {
@@ -25519,6 +25558,7 @@
         }
       }
 
+      // 开发环境下执行的代码
       warnIfUpdatesNotWrappedWithActDEV(fiber);
 
       if (root === workInProgressRoot) {
@@ -25544,7 +25584,10 @@
 
       ensureRootIsScheduled(root, eventTime);
 
-      if (lane === SyncLane && executionContext === NoContext && (fiber.mode & ConcurrentMode) === NoMode && // Treat `act` as if it's inside `batchedUpdates`, even in legacy mode.
+      if (lane === SyncLane &&
+          executionContext === NoContext &&
+          (fiber.mode & ConcurrentMode) === NoMode &&
+          // Treat `act` as if it's inside `batchedUpdates`, even in legacy mode.
         !( ReactCurrentActQueue$1.isBatchingLegacy)) {
         // Flush the synchronous work now, unless we're already working or inside
         // a batch. This is intentionally inside scheduleUpdateOnFiber instead of
@@ -25632,7 +25675,6 @@
 
 
     var newCallbackNode;
-
     if (newCallbackPriority === SyncLane) {
       // Special case: Sync React callbacks are scheduled on a special
       // internal queue
@@ -25643,6 +25685,7 @@
 
         scheduleLegacySyncCallback(performSyncWorkOnRoot.bind(null, root));
       } else {
+        //   开始进行同步更新
         scheduleSyncCallback(performSyncWorkOnRoot.bind(null, root));
       }
 
@@ -26078,6 +26121,9 @@
   // through Scheduler
 
 
+
+      //发生更新进行调用 构建workInProgress Fiber 树
+    // root 是fiberRoot
   function performSyncWorkOnRoot(root) {
     {
       syncNestedUpdateFlag();
@@ -26087,6 +26133,7 @@
       throw new Error('Should not already be working.');
     }
 
+    // 处理useEffect
     flushPassiveEffects();
     var lanes = getNextLanes(root, NoLanes);
 
@@ -26095,7 +26142,10 @@
       ensureRootIsScheduled(root, now());
       return null;
     }
-
+    // renderRootSync 中的一段逻辑
+      // 如果 root 和 workInProgressRoot 不相等
+    //   说明 workInProgressRoot 不存在 说明还没有构建 workInProgressRoot Fiber
+    //   workInProgressRoot 为全局变量 默认值为空 初始渲染值为null
     var exitStatus = renderRootSync(root, lanes);
 
     if (root.tag !== LegacyRoot && exitStatus === RootErrored) {
@@ -26110,7 +26160,6 @@
         exitStatus = recoverFromConcurrentError(root, errorRetryLanes);
       }
     }
-
     if (exitStatus === RootFatalErrored) {
       var fatalError = workInProgressRootFatalError;
       prepareFreshStack(root, NoLanes);
@@ -26125,10 +26174,15 @@
     // will commit it even if something suspended.
 
 
+    //   将构建好的新 fiber对象存储在finishedWork 属性中
     var finishedWork = root.current.alternate;
     root.finishedWork = finishedWork;
     root.finishedLanes = lanes;
-    commitRoot(root, workInProgressRootRecoverableErrors, workInProgressTransitions); // Before exiting, make sure there's a callback scheduled for the next
+
+      // Before exiting, make sure there's a callback scheduled for the next
+    //   render 阶段结束
+    //   进入commit阶段
+    commitRoot(root, workInProgressRootRecoverableErrors, workInProgressTransitions);
     // pending level.
 
     ensureRootIsScheduled(root, now());
@@ -26231,7 +26285,14 @@
     pop(subtreeRenderLanesCursor, fiber);
   }
 
+  /**
+   *
+   * 构建 workInProgressfiber 树 及 rootFiber
+   *
+   * */
   function prepareFreshStack(root, lanes) {
+    //   为FiberRoot 对象添加 finishedWork
+      // finishedWork 表示 render 阶段 执行完成后 构建的待提交的fiber 对象
     root.finishedWork = null;
     root.finishedLanes = NoLanes;
     var timeoutHandle = root.timeoutHandle;
@@ -26254,8 +26315,23 @@
       }
     }
 
+      //   构建 workInProgress Fiber 树中的 fiberRoot 对象
     workInProgressRoot = root;
+      //   构建 workInProgress 树 及 rootFiber
+      //   在React中最多会同时存在两个Fiber树，当前在屏幕中现实的内容对应的Fiber树叫做CurrentFiber,
+      //   当发生更新时，React 会在内存中重新构建一颗新的Fiber树，
+      //   这颗正在构建的Fiber树叫做 workInProgress Fiber树。在双缓存技术中，
+      //   workInProgress Fiber树 就是即将要显示在页面中的Fiber树，当着可Fiber树构建完成后，
+      //   React会使用它直接替换 Current Fiber树达到快速更新DOM的目的。
+      //   一旦 workInProgress Fiber树 在屏幕中呈现，他就会变成CurrentFiber树
+      // 在current Fiber节点有一个alternate 属性指向对应的 workInProgress Fiber节点，
+      // 在 workInProgress Fiber节点中有一个alternate属性指向 对应的 current Fiber 节点对象；
+
+
+
+    // 构建workInProgress Fiber 树中的 rootFiber
     var rootWorkInProgress = createWorkInProgress(root.current, null);
+    // 赋值给了
     workInProgress = rootWorkInProgress;
     workInProgressRootRenderLanes = subtreeRenderLanes = workInProgressRootIncludedLanes = lanes;
     workInProgressRootExitStatus = RootInProgress;
@@ -26412,11 +26488,13 @@
   }
 
   function renderRootSync(root, lanes) {
+
     var prevExecutionContext = executionContext;
     executionContext |= RenderContext;
     var prevDispatcher = pushDispatcher(); // If the root or lanes have changed, throw out the existing stack
     // and prepare a fresh one. Otherwise we'll continue where we left off.
 
+      // 如果root不等于 workInProgress
     if (workInProgressRoot !== root || workInProgressRootRenderLanes !== lanes) {
       {
         if (isDevToolsPresent) {
@@ -26436,6 +26514,16 @@
       }
 
       workInProgressTransitions = getTransitionsForLanes();
+      //   构建 workInProgress 树 及 rootFiber
+      //   在React中最多会同时存在两个Fiber树，当前在屏幕中现实的内容对应的Fiber树叫做CurrentFiber,
+        //   当发生更新时，React 会在内存中重新构建一颗新的Fiber树，
+        //   这颗正在构建的Fiber树叫做 workInProgress Fiber树。在双缓存技术中，
+        //   workInProgress Fiber树 就是即将要显示在页面中的Fiber树，当着可Fiber树构建完成后，
+        //   React会使用它直接替换 Current Fiber树达到快速更新DOM的目的。
+        //   一旦 workInProgress Fiber树 在屏幕中呈现，他就会变成CurrentFiber树
+        // 在current Fiber节点有一个alternate 属性指向对应的 workInProgress Fiber节点，
+        // 在 workInProgress Fiber节点中有一个alternate属性指向 对应的 current Fiber 节点对象；
+
       prepareFreshStack(root, lanes);
     }
 
@@ -26445,6 +26533,8 @@
 
     do {
       try {
+        //   以同步的方式 开始构建Fiber
+        // 这里执行完成后，说明workInProgress树中的每个节点都构建完成了
         workLoopSync();
         break;
       } catch (thrownValue) {
@@ -26475,6 +26565,7 @@
 
 
   function workLoopSync() {
+      console.log('===')
     // Already timed out, so perform work without checking if we need to yield.
     while (workInProgress !== null) {
       performUnitOfWork(workInProgress);
@@ -26563,6 +26654,8 @@
     // nothing should rely on this, but relying on it here means that we don't
     // need an additional field on the work in progress.
     var current = unitOfWork.alternate;
+
+    // 将 unitOfWork 赋值给全局的 current
     setCurrentFiber(unitOfWork);
     var next;
 
@@ -26573,7 +26666,7 @@
     } else {
       next = beginWork$1(current, unitOfWork, subtreeRenderLanes);
     }
-
+      // 清除给全局的 current
     resetCurrentFiber();
     unitOfWork.memoizedProps = unitOfWork.pendingProps;
 
@@ -28185,16 +28278,27 @@
     return IndeterminateComponent;
   } // This is used to create an alternate fiber to do work on.
 
+      // 构建 workInProgress Fiber 书中的RootFiber
+  //  构建完成后 会替换 current fiber
+  //    初始渲染 pendingProps 为null
   function createWorkInProgress(current, pendingProps) {
+      // current ：currentFiber 中的RootFiber
+
+
+    //   获取 current fiber 对应的 workInProgress fiber
     var workInProgress = current.alternate;
 
+    // 如果 workInProgress 不存在
     if (workInProgress === null) {
       // We use a double buffering pooling technique because we know that we'll
       // only ever need at most two versions of a tree. We pool the "other" unused
       // node that we're free to reuse. This is lazily created to avoid allocating
       // extra objects for things that are never updated. It also allow us to
       // reclaim the extra memory if needed.
+        //  创建 fiber对象
+        // 传入一些 不复用的属性
       workInProgress = createFiber(current.tag, pendingProps, current.key, current.mode);
+      // 属性复用
       workInProgress.elementType = current.elementType;
       workInProgress.type = current.type;
       workInProgress.stateNode = current.stateNode;
@@ -28909,7 +29013,7 @@
     /**
      * 计算任务的过期时间
      * 再根据任务过期时间创建Update 任务
-     * 通过人物的过期时间 还可以计算出人物的优先级
+     * 通过任务的过期时间 还可以计算出人物的优先级
      * */
   function updateContainer(
       element,// 要渲染的 ReactElement
@@ -28929,9 +29033,11 @@
     {
       markRenderScheduled(lane);
     }
-
+    // 设置FiberRoot。context 首次返回一个 emptyContext 是一个{}
     var context = getContextForSubtree(parentComponent);
 
+    //   初始渲染 时 FiberRoot 对象中的context属性为null
+    //     所以会设置一个 emptyContext
     if (container.context === null) {
       container.context = context;
     } else {
@@ -28955,6 +29061,7 @@
 
 
         // 创建一个待执行的任务
+        // 传递了一个与过期时间相关的 参数 和异步的配置
     var update = createUpdate(eventTime, lane);
     // being called "element".
     // 将更新的内容挂载到更新对象的payload中
@@ -28978,9 +29085,19 @@
     }
 
     //current$1 就是 rootFiber
+        // 将 update对加入到当前fiber的更新队列中
+        // 待执行 的任务都会被存储在 fiber.updateQueue.shared.pending 中
+    //     最终返回的是 FiberRoot
+
     var root = enqueueUpdate(current$1, update, lane);
 
     if (root !== null) {
+      //   开始进行任务调度
+      //   root初始时为 fiberRoot
+        //  current$1 初始为 rootFiber
+        // lane 表示的是 同步还是异步任务调度
+        // eventTime 与任务过期时间有关
+      //
       scheduleUpdateOnFiber(root, current$1, lane, eventTime);
       entangleTransitions(root, current$1, lane);
     }
@@ -29451,7 +29568,7 @@
       }
     }
 
-
+debugger
 
     updateContainer(
         children,// children React.createElement元素

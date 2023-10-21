@@ -6,11 +6,15 @@
 - [react,reactDOM之间是什么样的关系?](./proj/Chapter-1/README.MD)
 - [React.createElement函数的作用](./proj/Chapter-3/README.MD)
 - [双缓存技术](./proj/Chapter-4/README.MD)
+- [enqueueUpdate 的解读](./proj/Chapter-5/README.MD)
 
 # 扩展
 
--[x]  Object.seal() 和 Object.freeze() ，Object.preventExtensions() 
+- [ ]  Object.seal() 和 Object.freeze() ，Object.preventExtensions() 
 
--[x]  ReactElement 与 ReactCurrentOwner的关系 
+- [ ]  ReactElement 与 ReactCurrentOwner的关系 
 
--[x]  https://developer.mozilla.org/zh-CN/docs/Web/API/Background_Tasks_API
+- [ ]  https://developer.mozilla.org/zh-CN/docs/Web/API/Background_Tasks_API
+- [ ] [queueMicrotask](https://developer.mozilla.org/zh-CN/docs/Web/API/queueMicrotask)
+queue中的函数会在 Promise之后运行
+![](./img/img.png)
