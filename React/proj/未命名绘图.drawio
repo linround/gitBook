@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-21T11:58:49.206Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="rlSuVwkJQU__wmvafnxt" version="22.0.6" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-21T12:01:40.534Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="5UxwHm8H479NATCszxRc" version="22.0.6" type="github">
   <diagram name="第 1 页" id="uEY2MGFWJUYSJQZp4oGY">
     <mxGraphModel dx="2376" dy="1602" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -334,7 +334,7 @@
         <mxCell id="r69f9GE0bEh-yFD7hMhS-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.571;entryY=0.008;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="r69f9GE0bEh-yFD7hMhS-35" target="r69f9GE0bEh-yFD7hMhS-48">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="r69f9GE0bEh-yFD7hMhS-59" value="performSyncWorkOnRoot" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-59" value="performSyncWorkOnRoot&lt;br&gt;&lt;br&gt;构建workInProgress fiber树" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="1130" y="310" width="210" height="60" as="geometry" />
         </mxCell>
       </root>
