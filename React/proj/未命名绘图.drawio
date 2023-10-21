@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-21T13:20:27.424Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="m6JLxJDoHisQ18hrA2K1" version="22.0.6" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-21T13:24:34.937Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="U2xFwq4X-e7WSm1zbL95" version="22.0.6" type="github">
   <diagram name="第 1 页" id="uEY2MGFWJUYSJQZp4oGY">
     <mxGraphModel dx="3415" dy="1729" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -419,10 +419,45 @@
           <mxGeometry x="310" y="1080" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="r69f9GE0bEh-yFD7hMhS-88" value="finishQueueingConcurrentUpdates的逻辑" style="whiteSpace=wrap;html=1;horizontal=1;align=center;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="-1810" y="620" width="750" height="750" as="geometry" />
+          <mxGeometry x="-1820" y="610" width="750" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-91" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="r69f9GE0bEh-yFD7hMhS-89" target="r69f9GE0bEh-yFD7hMhS-90">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="r69f9GE0bEh-yFD7hMhS-89" value="concurrentQueues&amp;nbsp;&lt;br&gt;= [&amp;nbsp; ]" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-1720" y="740" width="120" height="60" as="geometry" />
+          <mxGeometry x="-1720" y="690" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-95" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="r69f9GE0bEh-yFD7hMhS-90" target="r69f9GE0bEh-yFD7hMhS-94">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-90" value="concurrentQueues[i]" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="-1610" y="830" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-93" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="r69f9GE0bEh-yFD7hMhS-92" target="r69f9GE0bEh-yFD7hMhS-90">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-92" value="queue" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1790" y="830" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-99" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="r69f9GE0bEh-yFD7hMhS-94" target="r69f9GE0bEh-yFD7hMhS-98">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-103" value="非空" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="r69f9GE0bEh-yFD7hMhS-99">
+          <mxGeometry x="-0.1825" y="4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-94" value="interleaved&lt;br&gt;属性" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="-1410" y="830" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="r69f9GE0bEh-yFD7hMhS-96" target="r69f9GE0bEh-yFD7hMhS-94">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-96" value="lastInterleavedUpdate" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1430" y="650" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-98" value="queue.interleaved = null." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="-1280" y="955" width="180" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
