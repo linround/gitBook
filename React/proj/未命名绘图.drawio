@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-10-21T12:41:49.100Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="h8N6K0cH-nR9kZNJxf--" version="22.0.6" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-21T13:20:27.424Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="m6JLxJDoHisQ18hrA2K1" version="22.0.6" type="github">
   <diagram name="第 1 页" id="uEY2MGFWJUYSJQZp4oGY">
-    <mxGraphModel dx="2788" dy="1849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3415" dy="1729" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -377,11 +377,52 @@
         <mxCell id="r69f9GE0bEh-yFD7hMhS-69" value="ensureRootIsScheduled" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="925" y="725" width="250" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-78" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="r69f9GE0bEh-yFD7hMhS-71" target="r69f9GE0bEh-yFD7hMhS-77">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="r69f9GE0bEh-yFD7hMhS-71" value="performSyncWorkOnRoot" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="560" y="725" width="220" height="60" as="geometry" />
         </mxCell>
         <mxCell id="r69f9GE0bEh-yFD7hMhS-74" value="" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="990" y="865" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-80" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="r69f9GE0bEh-yFD7hMhS-77" target="r69f9GE0bEh-yFD7hMhS-79">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="r69f9GE0bEh-yFD7hMhS-85">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="269.99999999999955" y="910" as="sourcePoint" />
+            <mxPoint x="319.99999999999955" y="1070" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-87" value="构建workInProgress fiber 树执行完成后继续" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="r69f9GE0bEh-yFD7hMhS-86">
+          <mxGeometry x="0.1558" y="4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-77" value="renderRootSync" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="865" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-82" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="r69f9GE0bEh-yFD7hMhS-79" target="r69f9GE0bEh-yFD7hMhS-81">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-83" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="r69f9GE0bEh-yFD7hMhS-79" target="r69f9GE0bEh-yFD7hMhS-77">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-79" value="prepareFreshStack&lt;br&gt;构建workInProgress" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="865" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-81" value="最终返回所有的&lt;br&gt;workInProgress fiber" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="865" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-85" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="1080" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-88" value="finishQueueingConcurrentUpdates的逻辑" style="whiteSpace=wrap;html=1;horizontal=1;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="-1810" y="620" width="750" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="r69f9GE0bEh-yFD7hMhS-89" value="concurrentQueues&amp;nbsp;&lt;br&gt;= [&amp;nbsp; ]" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1720" y="740" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
