@@ -14944,6 +14944,13 @@
   // live outside of this function.
 
 
+
+        /**
+     * shouldTrackSideEffects  是否为 fiber添加 effectTag
+     * true 添加
+     *false 不添加
+     * 对于初始渲染来说 只有根组件需要添加 其他元素不需要添加，防止过多DOM 操作
+     * */
   function ChildReconciler(shouldTrackSideEffects) {
     function deleteChild(returnFiber, childToDelete) {
       if (!shouldTrackSideEffects) {
@@ -15338,7 +15345,17 @@
       return knownKeys;
     }
 
-    function reconcileChildrenArray(returnFiber, currentFirstChild, newChildren, lanes) {
+    // 处理子元素是数组的情况
+            // 这里为 returnFiber 设置 子 fiber
+    //         子fiber 之间是兄弟关系  即 sibling 的关系
+    function reconcileChildrenArray(
+        // 父级fiber
+        returnFiber,
+        currentFirstChild,
+        // 子级vdom 数组
+        newChildren,
+        lanes
+    ) {
       // This algorithm can't optimize by searching from both ends since we
       // don't have backpointers on fibers. I'm trying to see how far we can get
       // with that model. If it ends up not being worth the tradeoffs, we can
@@ -15360,17 +15377,27 @@
 
         for (var i = 0; i < newChildren.length; i++) {
           var child = newChildren[i];
+          // 检查key 是否合法
           knownKeys = warnOnInvalidKey(child, knownKeys, returnFiber);
         }
       }
 
+      /**
+       *
+       * 存储第一个子节点 fiber 对象
+       *方法返回的 也是第一个子节点
+       * 因为其他子节点 fiber 都存储在 上一个子 fiber 节点对象的 sibling 属性中
+       * **/
       var resultingFirstChild = null;
+      // 上一次 创建的 fiber 对象
       var previousNewFiber = null;
+      // 初始渲染 没有旧的子级 所以为 null
       var oldFiber = currentFirstChild;
+
       var lastPlacedIndex = 0;
       var newIdx = 0;
       var nextOldFiber = null;
-
+      // 初始渲染 oldFiber 为 null 循环不执行
       for (; oldFiber !== null && newIdx < newChildren.length; newIdx++) {
         if (oldFiber.index > newIdx) {
           nextOldFiber = oldFiber;
@@ -15418,6 +15445,7 @@
         oldFiber = nextOldFiber;
       }
 
+      // 初始渲染不执行
       if (newIdx === newChildren.length) {
         // We've reached the end of the new children. We can delete the rest.
         deleteRemainingChildren(returnFiber, oldFiber);
@@ -15430,25 +15458,38 @@
         return resultingFirstChild;
       }
 
+      // oldFIber 为 null 说明是初始渲染
       if (oldFiber === null) {
         // If we don't have any more existing children we can choose a fast path
         // since the rest will all be insertions.
+        //   遍历 子 vdom 对象
         for (; newIdx < newChildren.length; newIdx++) {
-          var _newFiber = createChild(returnFiber, newChildren[newIdx], lanes);
-
+          //   创建子 vdom 对应的 fiber 对象
+          var _newFiber = createChild(
+              returnFiber,
+              newChildren[newIdx],
+              lanes
+          );
+          // 如果  _newFiber 为 null
           if (_newFiber === null) {
+            //   进入下次循环
             continue;
           }
-
+          // 初始渲染时  只为new fiber 添加了 index 属性
+          //   lastPlacedIndex 原封不动的返回了
           lastPlacedIndex = placeChild(_newFiber, lastPlacedIndex, newIdx);
 
+          // 为 当前节点 设置下一个 兄弟节点
           if (previousNewFiber === null) {
             // TODO: Move out of the loop. This only happens for the first run.
+            //   存储 第一个子 fiber 发生在第一次循环时
             resultingFirstChild = _newFiber;
           } else {
+              // 为节点 设置 下一个兄弟 fiber
             previousNewFiber.sibling = _newFiber;
           }
 
+          // 循环过程中更新 上一个 创建的 fiber 对象
           previousNewFiber = _newFiber;
         }
 
@@ -15457,10 +15498,13 @@
           pushTreeFork(returnFiber, _numberOfForks);
         }
 
+          // 返回创建好的 子fiber
+          //   其他fiber 都作为 sibling 存在
         return resultingFirstChild;
       } // Add all children to a key map for quick lookups.
 
 
+              // 下面的代码初始渲染不执行
       var existingChildren = mapRemainingChildren(returnFiber, oldFiber); // Keep scanning and use the map to restore deleted items as moves.
 
       for (; newIdx < newChildren.length; newIdx++) {
@@ -15719,6 +15763,7 @@
       return created;
     }
 
+    // 处理子元素是单个对象的情况
     function reconcileSingleElement(returnFiber, currentFirstChild, element, lanes) {
       var key = element.key;
       var child = currentFirstChild;
@@ -15774,16 +15819,31 @@
 
         child = child.sibling;
       }
-
+      // 查看子vdom 对象 是否表示 fragment
+      //   false
       if (element.type === REACT_FRAGMENT_TYPE) {
         var created = createFiberFromFragment(element.props.children, returnFiber.mode, lanes, element.key);
         created.return = returnFiber;
         return created;
       } else {
-        var _created4 = createFiberFromElement(element, returnFiber.mode, lanes);
-
+        //   根据 react element 创建 fiber 对象
+        //   返回创建好的 fiber 对象
+          console.log(returnFiber.mode,'returnFiber.mode')
+        var _created4 = createFiberFromElement(
+            element,
+            /*
+            * 用来表示 当前 组件下的所有 子组件 要用处于何种 渲染模式
+            * 1  同步渲染模式
+            * 100 异步渲染模式
+            * */
+            returnFiber.mode,
+            lanes
+        );
+        // 添加 ref 属性 {current:DOM}
         _created4.ref = coerceRef(returnFiber, currentFirstChild, element);
+        // 添加 父级fiber
         _created4.return = returnFiber;
+        // 返回创建好的 子fiber
         return _created4;
       }
     }
@@ -15820,7 +15880,12 @@
     // children and the parent.
 
 
-    function reconcileChildFibers(returnFiber, currentFirstChild, newChild, lanes) {
+    function reconcileChildFibers(
+        returnFiber,// 父级fiber
+        currentFirstChild,// 旧的第一个子fiber 初始为null
+        newChild, // 新的vdom 对象
+        lanes// 初始渲染为16  表示同步任务
+    ) {
       // This function is not recursive.
       // If the top level item is an array, we treat it as a set of children,
       // not as a fragment. Nested arrays on the other hand will be treated as
@@ -15828,18 +15893,36 @@
       // Handle top level unkeyed fragments as if they were arrays.
       // This leads to an ambiguity between <>{[...]}</> and <>...</>.
       // We treat the ambiguous cases above the same.
-      var isUnkeyedTopLevelFragment = typeof newChild === 'object' && newChild !== null && newChild.type === REACT_FRAGMENT_TYPE && newChild.key === null;
 
+        // 判断 新的子vdom 是否为占位组件 比如<></>
+        // false
+      var isUnkeyedTopLevelFragment = typeof newChild === 'object' &&
+          newChild !== null &&
+          newChild.type === REACT_FRAGMENT_TYPE &&
+          newChild.key === null;
+
+      // 如果是占位 组件，那就取子元素 作为newChild
       if (isUnkeyedTopLevelFragment) {
         newChild = newChild.props.children;
       } // Handle object types
 
 
+              // 如果newChild 是 对象，表明子元素只有一个（typeof [] 也是 ‘object’）
       if (typeof newChild === 'object' && newChild !== null) {
         switch (newChild.$$typeof) {
+          //   子元素是 reactElement
           case REACT_ELEMENT_TYPE:
-            return placeSingleChild(reconcileSingleElement(returnFiber, currentFirstChild, newChild, lanes));
+            //   为fiber 对象设置 effectTag 属性
+              // 返回创建好的子fiber
+            return placeSingleChild(
+                reconcileSingleElement(
+                    returnFiber,
+                    currentFirstChild,
+                    newChild,
+                    lanes
+                ));
 
+          //
           case REACT_PORTAL_TYPE:
             return placeSingleChild(reconcileSinglePortal(returnFiber, currentFirstChild, newChild, lanes));
 
@@ -15850,8 +15933,14 @@
             return reconcileChildFibers(returnFiber, currentFirstChild, init(payload), lanes);
         }
 
+        // new children 是数组的情况
         if (isArray(newChild)) {
-          return reconcileChildrenArray(returnFiber, currentFirstChild, newChild, lanes);
+          return reconcileChildrenArray(
+              returnFiber,
+              currentFirstChild,
+              newChild,
+              lanes
+          );
         }
 
         if (getIteratorFn(newChild)) {
@@ -15878,7 +15967,15 @@
     return reconcileChildFibers;
   }
 
+  /**
+   * shouldTrackSideEffects  是否为 fiber添加 effectTag
+   * true 添加
+   *false 不添加
+   * 对于初始渲染来说 只有根组件需要添加 其他元素不需要添加，防止过多DOM 操作
+   * */
+  // 用于更新
   var reconcileChildFibers = ChildReconciler(true);
+  //   用于初始渲染
   var mountChildFibers = ChildReconciler(false);
   function cloneChildFibers(current, workInProgress) {
     if (current !== null && workInProgress.child !== current.child) {
@@ -19191,12 +19288,30 @@
     didWarnAboutTailOptions = {};
   }
 
-  function reconcileChildren(current, workInProgress, nextChildren, renderLanes) {
+  /**
+   * reconcile(协调，调和的意思)
+   * 构建子级fiber 对象
+   * */
+  function reconcileChildren(
+      current, // 旧的fiberNode
+      workInProgress, // 父级 fiberNode
+      nextChildren,// 子级vdom 对象
+      renderLanes// 初始渲染 16 使用同步任务
+  ) {
+      /**
+       * 为什么要传递current
+       * 如果不是初始渲染的情况 要进行新旧 fiber 对比
+       * 初始渲染时 则用不到 current
+       * */
     if (current === null) {
       // If this is a fresh new component that hasn't been rendered yet, we
       // won't update its child set by applying minimal side-effects. Instead,
+      //   我们将在渲染之前将它们全部添加到子级中
       // we will add them all to the child before it gets rendered. That means
+      //   我们可以通过不跟踪副作用来优化这个协调过程。
       // we can optimize this reconciliation pass by not tracking side-effects.
+
+        //
       workInProgress.child = mountChildFibers(workInProgress, null, nextChildren, renderLanes);
     } else {
       // If the current child is the same as the work in progress, it means that
@@ -19839,25 +19954,42 @@
     pushHostContainer(workInProgress, root.containerInfo);
   }
 
+  /*
+  * 更新 hostRoot
+  * <div id="root"></div> 对应的fiber对象
+  * */
   function updateHostRoot(current, workInProgress, renderLanes) {
     pushHostRootContext(workInProgress);
 
     if (current === null) {
       throw new Error('Should have a current fiber. This is a bug in React.');
     }
-
-    var nextProps = workInProgress.pendingProps;
+      // `baseState` can always be the last state because the root doesn't
+      // 获取更新队列
+      var updateQueue = workInProgress.updateQueue;
+      // 获取新的props 对象 初始为null
+      var nextProps = workInProgress.pendingProps;
+    //   获取上一次渲染使用的state 初始为null
     var prevState = workInProgress.memoizedState;
+    // 获取上一次使用的 children 初始为null
     var prevChildren = prevState.element;
+    //  浅复制 更新队列 防止引用属性 互相影响
+      // workInProgress.updateQueue 浅拷贝 current.updateQueue
     cloneUpdateQueue(current, workInProgress);
+
+    // 获取 updateQueue.payload 并赋值到 workInProgress.memoizedStata
+      // 要更新的内容就是 element（就是render 方法传入的那个组件）  就是rootFiber 的子元素
     processUpdateQueue(workInProgress, nextProps, null, renderLanes);
+
+    // 获取 element 所在的对象
     var nextState = workInProgress.memoizedState;
-    var root = workInProgress.stateNode;
     // being called "element".
-
-
+      // 从对象中获取 element
     var nextChildren = nextState.element;
 
+      var root = workInProgress.stateNode;
+
+    //   这里是判断服务端渲染
     if ( prevState.isDehydrated) {
       // This is a hydration root whose shell has not yet hydrated. We should
       // attempt to hydrate.
@@ -19870,7 +20002,6 @@
         pendingSuspenseBoundaries: nextState.pendingSuspenseBoundaries,
         transitions: nextState.transitions
       };
-      var updateQueue = workInProgress.updateQueue; // `baseState` can always be the last state because the root doesn't
       // have reducer functions so it doesn't need rebasing.
 
       updateQueue.baseState = overrideState;
@@ -19905,17 +20036,27 @@
         }
       }
     } else {
+        // 这里是客户端渲染
+      //
       // Root is not dehydrated. Either this is a client-only root, or it
       // already hydrated.
       resetHydrationState();
-
+      // 在计算 state后，如果两个children 相同的情况
+      //   prevChildren=》null
+      //   nextState =>null
       if (nextChildren === prevChildren) {
         return bailoutOnAlreadyFinishedWork(current, workInProgress, renderLanes);
       }
+      // nextChildren  就是render 传入的那个 reactElement
+      //   构建子节点的fiber对象  也就是构建 nextChildren 所对应的fiber对象
+        //  在构建完成 子节点的fiber对象之后， 会将该fiber 对象添加到 workInProgress.child 中
+        // current.stateNode===workInProgress.stateNode  都指向 fiberRootNode
+      //
 
       reconcileChildren(current, workInProgress, nextChildren, renderLanes);
     }
 
+    // 最终返回 构建好的 子节点的fiber
     return workInProgress.child;
   }
 
@@ -21622,7 +21763,10 @@
     workInProgress.lanes = NoLanes;
     // 根据当前 fiber 的类型 决定如何构建 子级 fiber对象
       // 因为不同的fiber 对象获取子级的方式也不一样
-
+    // 一般的 tag 就是
+      // 3  代表 id为root  的 div
+      // 2 代表 app 组件
+    // 5 代表 app 组件里面的 div
     switch (workInProgress.tag) {
       //   2 函数组件在第一次被渲染时使用
       case IndeterminateComponent:
@@ -21772,33 +21916,60 @@
 
   {
     // Mutation mode
-    appendAllChildren = function (parent, workInProgress, needsVisibilityToggle, isHidden) {
+  /**
+   * 将所有 子级追加 到父级中
+   * workInProgress.child 是子级
+   * */
+    appendAllChildren = function (
+        parent,
+        workInProgress,
+        needsVisibilityToggle,
+        isHidden
+    ) {
       // We only have the top Fiber that was created but we need recurse down its
       // children to find all the terminal nodes.
+        // 获取子级
       var node = workInProgress.child;
 
+      // 如果子级不为空
       while (node !== null) {
+        //   如果node 是普通 reactElement 或者文本
         if (node.tag === HostComponent || node.tag === HostText) {
+          //   将子级追加到 父级中
           appendInitialChild(parent, node.stateNode);
-        } else if (node.tag === HostPortal) ; else if (node.child !== null) {
+        } else if (node.tag === HostPortal) ;
+        else if (node.child !== null) {
+          //   这里 node 不是普通 reactElement 或者文本
+            // 将node视为组件，组件本身 不能转换为DOM元素
+          //   将该节点 赋值给 node 子节点的父属性
           node.child.return = node;
+          // 获取到组件的第一个子元素
+            // 继续执行循环
           node = node.child;
           continue;
         }
-
+        // 如果node 和workInProgress 是同一个节点
+          // 说明 node 已经退回到 父级 终止循环
+          // 说明 此时所有子级 都已经追加到父级
         if (node === workInProgress) {
           return;
         }
 
+        // 处理子节点的兄弟节点
         while (node.sibling === null) {
+          // 如果节点没有父级 或 节点的父级是自己 退出循环
+            // 说明此时 所有子级 都已经 追加到父级中了
           if (node.return === null || node.return === workInProgress) {
             return;
           }
 
+          // 此处会造成 node 变成其父节点 workInProgress 从而退出外层循环
           node = node.return;
         }
 
+        // 更新父级 方便回退
         node.sibling.return = node.return;
+        // 将node 更新为下一个兄弟节点
         node = node.sibling;
       }
     };
@@ -22187,13 +22358,16 @@
 
         return null;
       }
-
+      // 5 普通的react 元素
       case HostComponent:
       {
         popHostContext(workInProgress);
+        // 获取 rootDOM 节点 <div id="root"></div>
         var rootContainerInstance = getRootHostContainer();
+        // 节点的具体类型 div span
         var type = workInProgress.type;
 
+        // 初始渲染不执行 current = null
         if (current !== null && workInProgress.stateNode != null) {
           updateHostComponent$1(current, workInProgress, type, newProps, rootContainerInstance);
 
@@ -22217,7 +22391,7 @@
           // bottom->up. Top->down is faster in IE11.
 
           var _wasHydrated = popHydrationState(workInProgress);
-
+          // 服务器渲染相关 初始渲染不执行
           if (_wasHydrated) {
             // TODO: Move this and createInstance step into the beginPhase
             // to consolidate.
@@ -22227,8 +22401,24 @@
               markUpdate(workInProgress);
             }
           } else {
-            var instance = createInstance(type, newProps, rootContainerInstance, currentHostContext, workInProgress);
+
+            //   创建节点实例对象 <div></div> <span></span>
+
+            var instance = createInstance(
+                type,
+                newProps,
+                rootContainerInstance,
+                currentHostContext,
+                workInProgress
+            );
+
+            /**
+             * 将所有 的 子级 追加到 父级中
+             * instance 为父级
+             * workInProgress.child 为子级
+             * */
             appendAllChildren(instance, workInProgress, false, false);
+            // 为fiber 添加 stateNode 属性
             workInProgress.stateNode = instance; // Certain renderers require commit-time effects for initial mount.
             // (eg DOM renderer supports auto-focus for certain elements).
             // Make sure such renderers get scheduled for later work.
@@ -26700,6 +26890,7 @@
     if (next === null) {
       // If this doesn't spawn new work, complete the current work.
         // 这里从子到父 构建其余节点 fiber对象
+
       completeUnitOfWork(unitOfWork);
     } else {
       //   对于next 不为null 的情况
@@ -26710,6 +26901,12 @@
     ReactCurrentOwner$2.current = null;
   }
 
+  /**
+   * 1.创建 fiber 对象
+   * 2.创建每一个节点的真实 DOM 对象 并将其 添加到 stateNode 属性中
+   * 3.（在子级向父级回退的过程中） 收集要执行 DOM操作的 fiber 节点 组件 effect 链表结构（逻辑暂时不清晰）
+   * 
+   * **/
   function completeUnitOfWork(unitOfWork) {
     // Attempt to complete the current unit of work, then move to the next
     // sibling. If there are no more siblings, return to the parent fiber.
@@ -26719,34 +26916,55 @@
       // The current, flushed, state of this fiber is the alternate. Ideally
       // nothing should rely on this, but relying on it here means that we don't
       // need an additional field on the work in progress.
+        // 获取备份节点
+      //   初始化渲染 非根 fiber 对象没有备份节点 所以 current为null
       var current = completedWork.alternate;
+
+      // 父级 fiber 对象，非根 fiber 对象都有父级
       var returnFiber = completedWork.return; // Check if the work completed or if something threw.
 
+
+              // 判断传入的fiber 对象 是否 构建完成 任务调度相关
+      //   & 表示位的与运算， 把左右两边的 数字转化为二进制
+      //   然后每一位分别进行比较
+        // 如果相等就为1，不想等 为0
+        // true
       if ((completedWork.flags & Incomplete) === NoFlags) {
         setCurrentFiber(completedWork);
         var next = void 0;
 
+        // 以下无论如何都会执行 completeWork
         if ( (completedWork.mode & ProfileMode) === NoMode) {
+          //   重点代码 二
+            // 创建节点真实DOM 对象 并将其添加到 stateNode 属性中
           next = completeWork(current, completedWork, subtreeRenderLanes);
         } else {
           startProfilerTimer(completedWork);
-          next = completeWork(current, completedWork, subtreeRenderLanes); // Update render duration assuming we didn't error.
+            // Update render duration assuming we didn't error.
+          next = completeWork(current, completedWork, subtreeRenderLanes);
+
 
           stopProfilerTimerIfRunningAndRecordDelta(completedWork, false);
         }
 
         resetCurrentFiber();
-
+        // 重点代码(一)
+        //   如果子级存在
         if (next !== null) {
           // Completing this fiber spawned new work. Work on that next.
+          //   执行结束 将next 赋值给 workInProgress
+            // 继续执行 performUnitOfWork
           workInProgress = next;
           return;
         }
-      } else {
+      }
+      else {
         // This fiber did not complete because something threw. Pop values off
         // the stack without entering the complete phase. If this is a boundary,
         // capture values if possible.
-        var _next = unwindWork(current, completedWork); // Because this fiber did not complete, don't reset its lanes.
+          // Because this fiber did not complete, don't reset its lanes.
+        var _next = unwindWork(current, completedWork);
+
 
 
         if (_next !== null) {
@@ -26787,17 +27005,26 @@
         }
       }
 
-      var siblingFiber = completedWork.sibling;
 
+      // 上面 如果子级不存在
+      // 获取下一个 同级 fiber 对象
+      var siblingFiber = completedWork.sibling;
+      // 如果下一个 fiber 对象存在
       if (siblingFiber !== null) {
         // If there is more work to do in this returnFiber, do that next.
+          // 将下一个同级 fiber 赋值给 workInProgress
+        //   然后返回 继续执行 performUnitOfWork
         workInProgress = siblingFiber;
         return;
       } // Otherwise, return to the parent
 
-
+      // 没有 子级
+      //   没有下一个同级
+        // 退回到父级
+        // 将父级 赋值给 completedWork  会继续执行do代码
       completedWork = returnFiber; // Update the next thing we're working on in case something throws.
-
+      // 将 completedWork 赋值给 workInProgress（以便继续执行 performUnitOfWork）
+      //   当父级为 null，那么 completedWork 为null   workInProgress 也为null 从而停止执行
       workInProgress = completedWork;
     } while (completedWork !== null); // We've reached the root.
 
