@@ -21546,6 +21546,10 @@
     return bailoutOnAlreadyFinishedWork(current, workInProgress, renderLanes);
   }
 
+  /*
+  *
+  * 从父到子 构建 fiber 节点对象
+  * */
   function beginWork(current, workInProgress, renderLanes) {
     {
       if (workInProgress._debugNeedsRemount && current !== null) {
@@ -21553,9 +21557,12 @@
         return remountFiber(current, workInProgress, createFiberFromTypeAndProps(workInProgress.type, workInProgress.key, workInProgress.pendingProps, workInProgress._debugOwner || null, workInProgress.mode, workInProgress.lanes));
       }
     }
-
+    // 判断是否 有 旧的 fiber 对象
+    //   初始渲染时 只有 rootFiber 节点存在 current
     if (current !== null) {
+      //   获取旧的 props 对象
       var oldProps = current.memoizedProps;
+      // 获取新的props对象
       var newProps = workInProgress.pendingProps;
 
       if (oldProps !== newProps || hasContextChanged() || ( // Force a re-render if the implementation changed due to hot reload:
@@ -21613,19 +21620,22 @@
 
 
     workInProgress.lanes = NoLanes;
+    // 根据当前 fiber 的类型 决定如何构建 子级 fiber对象
+      // 因为不同的fiber 对象获取子级的方式也不一样
 
     switch (workInProgress.tag) {
+      //   2 函数组件在第一次被渲染时使用
       case IndeterminateComponent:
       {
         return mountIndeterminateComponent(current, workInProgress, workInProgress.type, renderLanes);
       }
-
+      // 16
       case LazyComponent:
       {
         var elementType = workInProgress.elementType;
         return mountLazyComponent(current, workInProgress, elementType, renderLanes);
       }
-
+      // 0
       case FunctionComponent:
       {
         var Component = workInProgress.type;
@@ -21633,7 +21643,7 @@
         var resolvedProps = workInProgress.elementType === Component ? unresolvedProps : resolveDefaultProps(Component, unresolvedProps);
         return updateFunctionComponent(current, workInProgress, Component, resolvedProps, renderLanes);
       }
-
+      // 1
       case ClassComponent:
       {
         var _Component = workInProgress.type;
@@ -21643,22 +21653,22 @@
 
         return updateClassComponent(current, workInProgress, _Component, _resolvedProps, renderLanes);
       }
-
+      // 3
       case HostRoot:
         return updateHostRoot(current, workInProgress, renderLanes);
-
+      // 5
       case HostComponent:
         return updateHostComponent(current, workInProgress, renderLanes);
-
+      // 6
       case HostText:
         return updateHostText(current, workInProgress);
-
+      // 13
       case SuspenseComponent:
         return updateSuspenseComponent(current, workInProgress, renderLanes);
-
+      // 4
       case HostPortal:
         return updatePortalComponent(current, workInProgress, renderLanes);
-
+      // 11
       case ForwardRef:
       {
         var type = workInProgress.type;
@@ -21668,22 +21678,22 @@
 
         return updateForwardRef(current, workInProgress, type, _resolvedProps2, renderLanes);
       }
-
+      // 7
       case Fragment:
         return updateFragment(current, workInProgress, renderLanes);
-
+      // 8
       case Mode:
         return updateMode(current, workInProgress, renderLanes);
-
+      // 12
       case Profiler:
         return updateProfiler(current, workInProgress, renderLanes);
-
+      // 10
       case ContextProvider:
         return updateContextProvider(current, workInProgress, renderLanes);
-
+      // 9
       case ContextConsumer:
         return updateContextConsumer(current, workInProgress, renderLanes);
-
+      // 14
       case MemoComponent:
       {
         var _type2 = workInProgress.type;
@@ -21705,12 +21715,12 @@
         _resolvedProps3 = resolveDefaultProps(_type2.type, _resolvedProps3);
         return updateMemoComponent(current, workInProgress, _type2, _resolvedProps3, renderLanes);
       }
-
+      // 15
       case SimpleMemoComponent:
       {
         return updateSimpleMemoComponent(current, workInProgress, workInProgress.type, workInProgress.pendingProps, renderLanes);
       }
-
+      // 17
       case IncompleteClassComponent:
       {
         var _Component2 = workInProgress.type;
@@ -21720,18 +21730,18 @@
 
         return mountIncompleteClassComponent(current, workInProgress, _Component2, _resolvedProps4, renderLanes);
       }
-
+      // 19
       case SuspenseListComponent:
       {
         return updateSuspenseListComponent(current, workInProgress, renderLanes);
       }
-
+      // 21
       case ScopeComponent:
       {
 
         break;
       }
-
+      // 22
       case OffscreenComponent:
       {
         return updateOffscreenComponent(current, workInProgress, renderLanes);
@@ -26532,19 +26542,21 @@
     }
 
     do {
+        console.log('=== true')
       try {
         //   以同步的方式 开始构建Fiber
         // 这里执行完成后，说明workInProgress树中的每个节点都构建完成了
         workLoopSync();
         break;
       } catch (thrownValue) {
+          console.log('=== error')
         handleError(root, thrownValue);
       }
     } while (true);
 
-    resetContextDependencies();
+    resetContextDependencies(); // 似乎是多余的
     executionContext = prevExecutionContext;
-    popDispatcher(prevDispatcher);
+    popDispatcher(prevDispatcher);// 似乎是多余的
 
     if (workInProgress !== null) {
       // This is a sync render, so we should have finished the whole tree.
@@ -26552,7 +26564,7 @@
     }
 
     {
-      markRenderStopped();
+      markRenderStopped();// 似乎是多余的
     } // Set this to null to indicate there's no in-progress render.
 
 
@@ -26565,9 +26577,15 @@
 
 
   function workLoopSync() {
-      console.log('===')
     // Already timed out, so perform work without checking if we need to yield.
+      // workInProgress 是一个fiber
+    //   它的值不为Null 意味着 该fiber对象上仍然 有更新要执行
+      // while 方法 支撑render阶段 所有 fiber节点的构建
     while (workInProgress !== null) {
+      //   在 performUnitOfWork 会不断地为 workInProgress 赋新的 workInProgress
+        //   直到一直构建完成
+      // performUnitOfWork (传递一个fiber 对象，并构建其子级fiber对象)
+        // 并一直循环，构建子级fiber
       performUnitOfWork(workInProgress);
     }
   }
@@ -26649,10 +26667,14 @@
     }
   }
 
+  // 构建fiber对象
   function performUnitOfWork(unitOfWork) {
     // The current, flushed, state of this fiber is the alternate. Ideally
     // nothing should rely on this, but relying on it here means that we don't
     // need an additional field on the work in progress.
+
+    //   unitOfWork => workInProgress fiber 树中的 rootFiber
+    //   current => currentFiber树中的 rootFiber
     var current = unitOfWork.alternate;
 
     // 将 unitOfWork 赋值给全局的 current
@@ -26664,6 +26686,11 @@
       next = beginWork$1(current, unitOfWork, subtreeRenderLanes);
       stopProfilerTimerIfRunningAndRecordDelta(unitOfWork, true);
     } else {
+        /**
+         * beginWork$1:从父到子，构建fiber 节点对象
+         * 返回的next 为当前节点的子节点
+         * **/
+      //  beginWork$1 由父到子进行fiber树构建
       next = beginWork$1(current, unitOfWork, subtreeRenderLanes);
     }
       // 清除给全局的 current
@@ -26672,8 +26699,11 @@
 
     if (next === null) {
       // If this doesn't spawn new work, complete the current work.
+        // 这里从子到父 构建其余节点 fiber对象
       completeUnitOfWork(unitOfWork);
     } else {
+      //   对于next 不为null 的情况
+        // workLoopSync 会继续执行
       workInProgress = next;
     }
 
@@ -27530,6 +27560,8 @@
       var originalWorkInProgressCopy = assignFiberPropertiesInDEV(dummyFiber, unitOfWork);
 
       try {
+        //   beginWork:从父到子，构建fiber节点对象
+        //   返回值为 当前节点的子节点
         return beginWork(current, unitOfWork, lanes);
       } catch (originalError) {
         if (didSuspendOrErrorWhileHydratingDEV() || originalError !== null && typeof originalError === 'object' && typeof originalError.then === 'function') {
