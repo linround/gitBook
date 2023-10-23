@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-10-23T13:10:14.186Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="GKAutjhzHS2i7GdMjGCa" version="22.0.6" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-23T13:29:56.656Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="iJQsIzdl26JZJzrQ05Ys" version="22.0.6" type="github">
   <diagram name="第 1 页" id="uEY2MGFWJUYSJQZp4oGY">
-    <mxGraphModel dx="4825" dy="1543" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4857" dy="1560" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -584,13 +584,26 @@
           <mxGeometry x="570" y="3190" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="DYSK8-Y0RCqkh9k1-C3u-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DYSK8-Y0RCqkh9k1-C3u-4" target="DYSK8-Y0RCqkh9k1-C3u-6">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="3440" />
+              <mxPoint x="630" y="3440" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="DYSK8-Y0RCqkh9k1-C3u-4" value="createUpdate" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="570" y="3330" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DYSK8-Y0RCqkh9k1-C3u-6" target="DYSK8-Y0RCqkh9k1-C3u-13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="3610" />
+              <mxPoint x="630" y="3610" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="DYSK8-Y0RCqkh9k1-C3u-6" value="enqueueUpdate" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="570" y="3470" width="120" height="60" as="geometry" />
+          <mxGeometry x="570" y="3470" width="430" height="60" as="geometry" />
         </mxCell>
         <mxCell id="DYSK8-Y0RCqkh9k1-C3u-8" value="enqueueUpdate" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="850" y="3330" width="120" height="60" as="geometry" />
@@ -602,7 +615,68 @@
           <mxGeometry x="570" y="2960" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="DYSK8-Y0RCqkh9k1-C3u-11" value="更新的逻辑" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="850" y="3210" width="120" height="60" as="geometry" />
+          <mxGeometry x="850" y="3120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DYSK8-Y0RCqkh9k1-C3u-13" target="DYSK8-Y0RCqkh9k1-C3u-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-13" value="enqueueConcurrentClassUpdate" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="3650" width="450" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DYSK8-Y0RCqkh9k1-C3u-17" target="DYSK8-Y0RCqkh9k1-C3u-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-17" value="markUpdateLaneFromFiberToRoot" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="672.5" y="3800" width="265" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DYSK8-Y0RCqkh9k1-C3u-19" target="DYSK8-Y0RCqkh9k1-C3u-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-19" value="scheduleUpdateOnFiber" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="722.5" y="3940" width="165" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DYSK8-Y0RCqkh9k1-C3u-21" target="DYSK8-Y0RCqkh9k1-C3u-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-21" value="markRootUpdated" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="745" y="4080" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="DYSK8-Y0RCqkh9k1-C3u-23" target="DYSK8-Y0RCqkh9k1-C3u-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-23" value="enqueueSetState" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="850" y="3220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.791;entryY=-0.015;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="DYSK8-Y0RCqkh9k1-C3u-8" target="DYSK8-Y0RCqkh9k1-C3u-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.696;entryY=-0.061;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="DYSK8-Y0RCqkh9k1-C3u-6" target="DYSK8-Y0RCqkh9k1-C3u-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DYSK8-Y0RCqkh9k1-C3u-28" target="DYSK8-Y0RCqkh9k1-C3u-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-32" value="更新" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DYSK8-Y0RCqkh9k1-C3u-31">
+          <mxGeometry x="0.4383" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DYSK8-Y0RCqkh9k1-C3u-28" target="DYSK8-Y0RCqkh9k1-C3u-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-35" value="新建时的调用" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DYSK8-Y0RCqkh9k1-C3u-34">
+          <mxGeometry x="-0.0223" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-28" value="ensureRootIsScheduled" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="722.5" y="4220" width="165" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-30" value="performSyncWorkOnRoot" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="937.5" y="4360" width="185" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-33" value="performConcurrentWorkOnRoot" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="4350" width="250" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
