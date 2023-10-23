@@ -13555,6 +13555,7 @@
 
       return unsafe_markUpdateLaneFromFiberToRoot(fiber, lane);
     } else {
+        debugger
       return enqueueConcurrentClassUpdate(fiber, sharedQueue, update, lane);
     }
   }
@@ -23170,6 +23171,8 @@
 
   var focusedInstanceHandle = null;
   var shouldFireAfterActiveInstanceBlur = false;
+
+  // 第一个子阶段
   function commitBeforeMutationEffects(root, firstChild) {
     focusedInstanceHandle = prepareForCommit(root.containerInfo);
     nextEffect = firstChild;
@@ -25828,6 +25831,7 @@
   // exiting a task.
 
   function ensureRootIsScheduled(root, currentTime) {
+
     var existingCallbackNode = root.callbackNode; // Check if any lanes are being starved by other work. If so, mark them as
     // expired so we know to work on those next.
 
@@ -26375,8 +26379,8 @@
 
 
     //   将构建好的新 fiber对象存储在finishedWork 属性中
-    var finishedWork = root.current.alternate;
-    root.finishedWork = finishedWork;
+    var finishedWork = root.current.alternate;// 实际就是workInProgress fiber 树
+    root.finishedWork = finishedWork; // 实际就是workInProgress fiber 树
     root.finishedLanes = lanes;
 
       // Before exiting, make sure there's a callback scheduled for the next
@@ -27037,11 +27041,15 @@
   function commitRoot(root, recoverableErrors, transitions) {
     // TODO: This no longer makes any sense. We already wrap the mutation and
     // layout phases. Should be able to remove.
+    //   获取任务优先级  0=》 普通优先级
     var previousUpdateLanePriority = getCurrentUpdatePriority();
     var prevTransition = ReactCurrentBatchConfig$3.transition;
 
     try {
       ReactCurrentBatchConfig$3.transition = null;
+      // 设置当前的优先级 1 因为 commit 阶段不可以打断
+      //   1是最高优先级
+
       setCurrentUpdatePriority(DiscreteEventPriority);
       commitRootImpl(root, recoverableErrors, transitions, previousUpdateLanePriority);
     } finally {
@@ -27060,28 +27068,37 @@
       // no more pending effects.
       // TODO: Might be better if `flushPassiveEffects` did not automatically
       // flush synchronous work at the end, to avoid factoring hazards like this.
+        // 触发 useEffect 回调和其他任务
+        // 由于 这些任务可能触发 新的渲染
+      //   所以这里一直遍历 执行直到没有任务
+
       flushPassiveEffects();
     } while (rootWithPendingPassiveEffects !== null);
 
+    // 开发环境执行
     flushRenderPhaseStrictModeWarningsInDEV();
 
     if ((executionContext & (RenderContext | CommitContext)) !== NoContext) {
       throw new Error('Should not already be working.');
     }
 
+    // 获取待提交的fiber 对象 rootFiber
     var finishedWork = root.finishedWork;
+
     var lanes = root.finishedLanes;
 
     {
       markCommitStarted(lanes);
     }
 
+    // 如果没有任务要执行
     if (finishedWork === null) {
 
       {
         markCommitStopped();
       }
 
+      // 阻止程序继续向下执行
       return null;
     } else {
       {
@@ -27091,6 +27108,7 @@
       }
     }
 
+    // 重置默认值
     root.finishedWork = null;
     root.finishedLanes = NoLanes;
 
@@ -27100,13 +27118,18 @@
     // So we can clear these now to allow a new callback to be scheduled.
 
 
+    //   commitRoot 是最后阶段，不会再被异步调用
+      // 清除callback相关的属性
     root.callbackNode = null;
     root.callbackPriority = NoLane; // Update the first and last pending times on this root. The new first
     // pending time is whatever is left on the root fiber.
 
     var remainingLanes = mergeLanes(finishedWork.lanes, finishedWork.childLanes);
+
+    // 重置优先级相关变量
     markRootFinished(root, remainingLanes);
 
+    // false
     if (root === workInProgressRoot) {
       // We can reset these now that they are finished.
       workInProgressRoot = null;
@@ -27117,7 +27140,6 @@
     // might get scheduled in the commit phase. (See #16714.)
     // TODO: Delete all other places that schedule the passive effect callback
     // They're redundant.
-
 
     if ((finishedWork.subtreeFlags & PassiveMask) !== NoFlags || (finishedWork.flags & PassiveMask) !== NoFlags) {
       if (!rootDoesHavePassiveEffects) {
@@ -27152,7 +27174,10 @@
       ReactCurrentBatchConfig$3.transition = null;
       var previousPriority = getCurrentUpdatePriority();
       setCurrentUpdatePriority(DiscreteEventPriority);
+
+      // 0
       var prevExecutionContext = executionContext;
+      // 4
       executionContext |= CommitContext; // Reset this to null before calling lifecycles
 
       ReactCurrentOwner$2.current = null; // The commit phase is broken into several sub-phases. We do a separate pass
@@ -27162,6 +27187,8 @@
       // state of the host tree right before we mutate it. This is where
       // getSnapshotBeforeUpdate is called.
 
+      //   commit 第一个子阶段  处理类组件的 getSnapshotBeforeUpdate 钩子
+        // 执行DOM操作前
       var shouldFireAfterActiveInstanceBlur = commitBeforeMutationEffects(root, finishedWork);
 
       {
@@ -27171,6 +27198,8 @@
       }
 
 
+        //   commit 第二个子阶段
+        // 执行DOM 操作
       commitMutationEffects(root, finishedWork, lanes);
 
       resetAfterCommit(root.containerInfo); // The work-in-progress tree is now the current tree. This must come after
@@ -27184,6 +27213,8 @@
         markLayoutEffectsStarted(lanes);
       }
 
+        //   commit 第三个子阶段
+        // 执行DOM  操作后  调用生命周期和钩子函数
       commitLayoutEffects(finishedWork, root, lanes);
 
       {
@@ -27345,7 +27376,7 @@
       try {
         ReactCurrentBatchConfig$3.transition = null;
         setCurrentUpdatePriority(priority);
-        return flushPassiveEffectsImpl();
+        return flushPassiveEffectsImpl();// 这里会将 rootWithPendingPassiveEffects 设置为 null
       } finally {
         setCurrentUpdatePriority(previousPriority);
         ReactCurrentBatchConfig$3.transition = prevTransition; // Once passive effects have run for the tree - giving components a
@@ -29280,7 +29311,7 @@
       parentComponent,// 父组件 初始渲染为null
       callback// 渲染完成执行的回调函数
     ) {
-
+debugger
     {
       onScheduleRoot(container, element);
     }
@@ -29827,7 +29858,6 @@
       }
     }
 
-debugger
 
     updateContainer(
         children,// children React.createElement元素
@@ -29838,6 +29868,7 @@ debugger
   };
 
   ReactDOMHydrationRoot.prototype.unmount = ReactDOMRoot.prototype.unmount = function () {
+      debugger
     {
       if (typeof arguments[0] === 'function') {
         error('unmount(...): does not support a callback argument. ' + 'To execute a side effect after rendering, declare it in a component body with useEffect().');
