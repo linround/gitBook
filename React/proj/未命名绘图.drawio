@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-23T13:44:00.332Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="8v_qgU6LNd8_2IX7c8pk" version="22.0.6" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-23T14:26:34.530Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="YSYrJoI_NGDndgq77zw-" version="22.0.6" type="github">
   <diagram name="第 1 页" id="uEY2MGFWJUYSJQZp4oGY">
     <mxGraphModel dx="5194" dy="1804" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -747,6 +747,27 @@
         </mxCell>
         <mxCell id="DYSK8-Y0RCqkh9k1-C3u-62" value="&amp;nbsp;commitRootImpl" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="725" y="5090" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NpsScQX0LvFtxj_Rs1ad-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NpsScQX0LvFtxj_Rs1ad-1" target="NpsScQX0LvFtxj_Rs1ad-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NpsScQX0LvFtxj_Rs1ad-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="NpsScQX0LvFtxj_Rs1ad-1" target="NpsScQX0LvFtxj_Rs1ad-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NpsScQX0LvFtxj_Rs1ad-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="NpsScQX0LvFtxj_Rs1ad-1" target="NpsScQX0LvFtxj_Rs1ad-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NpsScQX0LvFtxj_Rs1ad-1" value="&amp;nbsp;commitRootImpl" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="5470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NpsScQX0LvFtxj_Rs1ad-2" value="commitBeforeMutationEffects&lt;br&gt;执行DOM操作前" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="5270" width="210" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="NpsScQX0LvFtxj_Rs1ad-4" value="commitMutationEffects&lt;br&gt;执行DOM操作" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="5440" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="NpsScQX0LvFtxj_Rs1ad-6" value="commitLayoutEffects&lt;br&gt;执行DOM操作后" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="5610" width="280" height="140" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
