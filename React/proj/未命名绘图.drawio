@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-10-23T13:29:56.656Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="iJQsIzdl26JZJzrQ05Ys" version="22.0.6" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-23T13:31:34.993Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="N1hLX8rVWMQYL4k2pqXu" version="22.0.6" type="github">
   <diagram name="第 1 页" id="uEY2MGFWJUYSJQZp4oGY">
-    <mxGraphModel dx="4857" dy="1560" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="5194" dy="1742" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -672,11 +672,33 @@
         <mxCell id="DYSK8-Y0RCqkh9k1-C3u-28" value="ensureRootIsScheduled" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="722.5" y="4220" width="165" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-40" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DYSK8-Y0RCqkh9k1-C3u-30" target="DYSK8-Y0RCqkh9k1-C3u-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-41" value="结束后调用" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DYSK8-Y0RCqkh9k1-C3u-40">
+          <mxGeometry x="-0.1944" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="DYSK8-Y0RCqkh9k1-C3u-30" value="performSyncWorkOnRoot" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="937.5" y="4360" width="185" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DYSK8-Y0RCqkh9k1-C3u-33" target="DYSK8-Y0RCqkh9k1-C3u-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-38" value="结束后调用" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DYSK8-Y0RCqkh9k1-C3u-37">
+          <mxGeometry x="0.2817" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="DYSK8-Y0RCqkh9k1-C3u-33" value="performConcurrentWorkOnRoot" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="390" y="4350" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-36" value="scheduleCallback$1" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="4520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DYSK8-Y0RCqkh9k1-C3u-39" value="scheduleSyncCallback" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1143" y="4510" width="195" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
