@@ -116,8 +116,12 @@
 - [The Book of Shaders](https://thebookofshaders.com/)
 - [GAMES101-现代计算机图形学入门](https://www.bilibili.com/video/BV1X7411F744?spm_id_from=333.337.search-card.all.click)
 - [2020年中国科学技术大学《计算机图形学》本科课程](https://www.bilibili.com/video/BV1iT4y1o7oM?spm_id_from=333.337.search-card.all.click)
+
 ## 面试可读文档
 - [system-design-101](https://github.com/ByteByteGoHq/system-design-101)
+- [Front-End-Interview-Notebook](https://github.com/CavsZhouyou/Front-End-Interview-Notebook)
+- [wangtunan_blog](https://github.com/wangtunan/blog)
+
 ## 浏览器
 + [路由事件(hashChange和popState)](Browser/popStataAndHashChange.md)
 + [drag事件](drag/drag.md)
@@ -140,5 +144,3 @@
 6. [x] [ES6(6)](read_typescript/F_Project.md)
 7. [x] [ES6(7)](read_typescript/G_类型系统.md)
 8. [x] [ES6(8)](read_typescript/H_JS%20MigrationGuide.md)
-# 面试基础巩固
-- https://wangtunan.github.io/blog/interview/#%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B
