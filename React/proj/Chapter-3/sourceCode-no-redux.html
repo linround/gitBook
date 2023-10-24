@@ -12,7 +12,38 @@
 </head>
 
 <body>
+<!--<div id="myList">-->
+<!--    <div>Coffee</div>-->
+<!--    <div>Tea</div>-->
+<!--</div>-->
+<!--<p id="demo">单击按钮插入一个项目列表</p>-->
+<!--<button onclick="myFunction()">点我</button>-->
+<!--<script>-->
+<!--    function myFunction(){-->
+<!--        var list=document.getElementById("myList")-->
+<!--        var newItem=document.createElement("LI")-->
+<!--        newItem.innerText='water'-->
+<!--        list.insertBefore(newItem,list.childNodes[0]);-->
+<!--    }-->
+<!--</script>-->
+<!--<button onclick="add()">add</button>-->
+<!--<div id="parent">parent-->
+
+<!--    <div id="c1">c1</div>-->
+<!--    <div id="c4">c4</div>-->
+<!--</div>-->
+<!--<script>-->
+<!--    function add(){-->
+<!--        const parent = document.querySelector("#parent")-->
+<!--        const c1 = document.querySelector('#c1')-->
+<!--        const c2 = document.createElement('div')-->
+<!--        c2.innerText='c2'-->
+
+<!--        parent.insertBefore(c2,parent.childNodes[0])-->
+<!--    }-->
+<!--</script>-->
 <div id="root"></div>
+
 
 <script>class MyComponent extends React.Component {
     constructor(props) {
@@ -31,6 +62,14 @@
 
     componentDidMount() {
         console.log('MyComponent componentDidMount');
+    }
+    componentDidUpdate(a,b,c,d){
+        debugger
+        console.log('MyComponent componentDidUpdate');
+    }
+    getSnapshotBeforeUpdate(){
+        console.log('MyComponent getSnapshotBeforeUpdate');
+        return {}
     }
 
     change() {
@@ -60,7 +99,10 @@ const Example = () => {
     const [count, setCount] = React.useState(0);
     React.useEffect(() => {
         document.title = `You clicked ${count} times`;
-    });
+        return ()=>{
+            console.log('useEffect 结束了')
+        }
+    },['op']);
 
     const handleClick = () => {
         setCount(count + 1);

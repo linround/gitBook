@@ -11074,10 +11074,14 @@
   function appendChildToContainer(container, child) {
     var parentNode;
 
+    // 监测 container是否是注释节点
     if (container.nodeType === COMMENT_NODE) {
+      //   获取注释节点的父级
       parentNode = container.parentNode;
+      // 将子级节点插入到 注释节点的前面
       parentNode.insertBefore(child, container);
     } else {
+      //   直接将child 插入父级中
       parentNode = container;
       parentNode.appendChild(child);
     } // This container might be used for a portal.
@@ -11104,6 +11108,8 @@
     if (container.nodeType === COMMENT_NODE) {
       container.parentNode.insertBefore(child, beforeChild);
     } else {
+      //   在父容器 container中
+      //   将 child 插入到 beforeChild 之前
       container.insertBefore(child, beforeChild);
     }
   }
@@ -13965,16 +13971,26 @@
   }
   function commitUpdateQueue(finishedWork, finishedQueue, instance) {
     // Commit the effects
+    //   effects 为数组  存储任务对象 update 对象
+      // 但前提 是在调用 render 方法时传递了回调函数 就是render 方法的第三个参数
     var effects = finishedQueue.effects;
+    //   重置  finishedQueue.effects
     finishedQueue.effects = null;
+    // 如果存在 effects
 
     if (effects !== null) {
       for (var i = 0; i < effects.length; i++) {
+        //   获取数组中需要执行的第i个 effect
         var effect = effects[i];
+        // 获取callback 回调函数
         var callback = effect.callback;
 
+        // 如果回调不为null
         if (callback !== null) {
+          //   清空 effect.callback
           effect.callback = null;
+          // 执行 callback
+            // callback 的this 指向会变成 instance（即类组件实例对象）
           callCallback(callback, instance);
         }
       }
@@ -23173,6 +23189,7 @@
   var shouldFireAfterActiveInstanceBlur = false;
 
   // 第一个子阶段
+  //   getSnapshotBeforeUpdate 只在更新阶段执行
   function commitBeforeMutationEffects(root, firstChild) {
     focusedInstanceHandle = prepareForCommit(root.containerInfo);
     nextEffect = firstChild;
@@ -23185,7 +23202,10 @@
   }
 
   function commitBeforeMutationEffects_begin() {
+    //   循环 effect 链
     while (nextEffect !== null) {
+      //   nextEffect 是effect 链上从firstEffect 到 lastEffect
+      //   的每一个需要 commit的 fiber 对象
       var fiber = nextEffect; // This phase is only used for beforeActiveInstanceBlur.
 
       var child = fiber.child;
@@ -23224,12 +23244,15 @@
   }
 
   function commitBeforeMutationEffectsOnFiber(finishedWork) {
+    //   获取 当前的fiber节点
     var current = finishedWork.alternate;
     var flags = finishedWork.flags;
 
+    //如果fiber中有 Snapshot 这个
+    //   Snapshot
     if ((flags & Snapshot) !== NoFlags) {
       setCurrentFiber(finishedWork);
-
+      // tag=>3  表示插入 某个dom 元素
       switch (finishedWork.tag) {
         case FunctionComponent:
         case ForwardRef:
@@ -23237,16 +23260,18 @@
         {
           break;
         }
-
+        // fiber类型是classComponent
         case ClassComponent:
         {
           if (current !== null) {
+            //   旧的props
             var prevProps = current.memoizedProps;
+            // 旧的state
             var prevState = current.memoizedState;
+            // 获取 classComponent 实例对象
             var instance = finishedWork.stateNode; // We could update instance props and state here,
             // but instead we rely on them being set during last render.
             // TODO: revisit this when we implement resuming.
-
             {
               if (finishedWork.type === finishedWork.elementType && !didWarnAboutReassigningProps) {
                 if (instance.props !== finishedWork.memoizedProps) {
@@ -23258,8 +23283,13 @@
                 }
               }
             }
-
-            var snapshot = instance.getSnapshotBeforeUpdate(finishedWork.elementType === finishedWork.type ? prevProps : resolveDefaultProps(finishedWork.type, prevProps), prevState);
+            // 执行 getSnapshotBeforeUpdate 生命周期函数 在 componentDidUpdate 钩子之前执行
+            //   getSnapshotBeforeUpdate 的参数 是 prevProps prevState
+              // 在组件更新前捕获 一些DOM信息
+            //   返回自定义的值 或 null 统称为 snapshot
+            var snapshot = instance.getSnapshotBeforeUpdate(
+                finishedWork.elementType === finishedWork.type ? prevProps :
+                    resolveDefaultProps(finishedWork.type, prevProps), prevState);
 
             {
               var didWarnSet = didWarnAboutUndefinedSnapshotBeforeUpdate;
@@ -23270,7 +23300,10 @@
                 error('%s.getSnapshotBeforeUpdate(): A snapshot value (or null) ' + 'must be returned. You have returned undefined.', getComponentNameFromFiber(finishedWork));
               }
             }
-
+            // 将 snapshot 赋值到 实例对象的 __reactInternalSnapshotBeforeUpdate 属性
+              // 存起来有什么用呢？
+              // 即在执行 componentDidUpdate 在这个方法的第三个参数中(snapshot)，通过 这个来获取  snapshot
+            //   componentDidUpdate 在 layout阶段执行
             instance.__reactInternalSnapshotBeforeUpdate = snapshot;
           }
 
@@ -23357,13 +23390,18 @@
   }
 
   function commitHookEffectListMount(flags, finishedWork) {
+    //   获取任务队列（要执行的钩子函数 都存储在 updateQueue.lastEffect）
     var updateQueue = finishedWork.updateQueue;
+    // 获取lastEffect
     var lastEffect = updateQueue !== null ? updateQueue.lastEffect : null;
 
+    // 如果 lastEffect 存在
     if (lastEffect !== null) {
+      //   获取要执行的 副作用
       var firstEffect = lastEffect.next;
-      var effect = firstEffect;
-
+      var effect = firstEffect; // aaaaaaaaaaaa
+      // 通过遍历的方式 调用 useEffect 中的回调函数
+      //   在组件中定义调用了几次 useEffect 遍历就会执行几次
       do {
         if ((effect.tag & flags) === flags) {
           {
@@ -23375,7 +23413,12 @@
           } // Mount
 
 
+                      // create就是useEffect的第一个参数
+            // deps 就是 useEffect 第二个参数
+            // destory 接收的 第一个参数的返回值
+            console.log(effect)
           var create = effect.create;
+
 
           {
             if ((flags & Insertion) !== NoFlags$1) {
@@ -23383,6 +23426,7 @@
             }
           }
 
+          // 返回值 就是 清理函数，并存储在 destory
           effect.destroy = create();
 
           {
@@ -23400,8 +23444,9 @@
           }
 
           {
+            //
             var destroy = effect.destroy;
-
+            // 有返回 非函数的 值 会报错
             if (destroy !== undefined && typeof destroy !== 'function') {
               var hookName = void 0;
 
@@ -23429,7 +23474,7 @@
         }
 
         effect = effect.next;
-      } while (effect !== firstEffect);
+      } while (effect !== firstEffect); // 这里 是因为 之前 aaaaaaaaaaaa 的赋值操作
     }
   }
 
@@ -23489,6 +23534,7 @@
   function commitLayoutEffectOnFiber(finishedRoot, current, finishedWork, committedLanes) {
     if ((finishedWork.flags & LayoutMask) !== NoFlags) {
       switch (finishedWork.tag) {
+        //   函数组件 处理 钩子函数
         case FunctionComponent:
         case ForwardRef:
         case SimpleMemoComponent:
@@ -23498,6 +23544,7 @@
             // This is done to prevent sibling component effects from interfering with each other,
             // e.g. a destroy function in one component should never override a ref set
             // by a create function in another component during the same commit.
+            //   函数组件 无论如何都会执行 commitHookEffectListMount
             if ( finishedWork.mode & ProfileMode) {
               try {
                 startLayoutEffectTimer();
@@ -23513,12 +23560,17 @@
           break;
         }
 
+        // 类组件处理 生命周期 钩子函数
+        //       componentDidUpdate（更新） 或者 componentDidMount(初始)
         case ClassComponent:
         {
+          //   获取类组件 实例对象
           var instance = finishedWork.stateNode;
-
+          // 如果类组件中存在 生命周期函数
           if (finishedWork.flags & Update) {
             if (!offscreenSubtreeWasHidden) {
+              //   初始条件渲染，即不存在旧的 fiber节点
+                // 触发 componentDidMount 生命周期函数
               if (current === null) {
                 // We could update instance props and state here,
                 // but instead we rely on them being set during last render.
@@ -23535,6 +23587,8 @@
                   }
                 }
 
+                // 以下无论如何 都会调用 componentDidMount
+                //
                 if ( finishedWork.mode & ProfileMode) {
                   try {
                     startLayoutEffectTimer();
@@ -23546,7 +23600,11 @@
                   instance.componentDidMount();
                 }
               } else {
-                var prevProps = finishedWork.elementType === finishedWork.type ? current.memoizedProps : resolveDefaultProps(finishedWork.type, current.memoizedProps);
+                //   旧的props
+                var prevProps = finishedWork.elementType === finishedWork.type ?
+                    current.memoizedProps :
+                    resolveDefaultProps(finishedWork.type, current.memoizedProps);
+                // 旧的 state
                 var prevState = current.memoizedState; // We could update instance props and state here,
                 // but instead we rely on them being set during last render.
                 // TODO: revisit this when we implement resuming.
@@ -23563,15 +23621,26 @@
                   }
                 }
 
+                // 以下无论如何都会调用 生命周期函数 componentDidUpdate
+                //   传递 prevProps
+                //   传递 prevState
+                //   传递 getSnapshotBeforeUpdate 的返回值  即__reactInternalSnapshotBeforeUpdate属性的值
                 if ( finishedWork.mode & ProfileMode) {
                   try {
                     startLayoutEffectTimer();
-                    instance.componentDidUpdate(prevProps, prevState, instance.__reactInternalSnapshotBeforeUpdate);
+                    instance.componentDidUpdate(
+                        prevProps,
+                        prevState,
+                        instance.__reactInternalSnapshotBeforeUpdate);
                   } finally {
                     recordLayoutEffectDuration(finishedWork);
                   }
                 } else {
-                  instance.componentDidUpdate(prevProps, prevState, instance.__reactInternalSnapshotBeforeUpdate);
+                  instance.componentDidUpdate(
+                      prevProps,
+                      prevState,
+                      instance.__reactInternalSnapshotBeforeUpdate
+                  );
                 }
               }
             }
@@ -23579,6 +23648,7 @@
           // commit phase. Consider removing the type check.
 
 
+          //   获取 任务队列
           var updateQueue = finishedWork.updateQueue;
 
           if (updateQueue !== null) {
@@ -23597,6 +23667,8 @@
             // TODO: revisit this when we implement resuming.
 
 
+            //   调用 ReactElement 渲染完成之后的回调函数
+            //   即render 方法的第三个参数
             commitUpdateQueue(finishedWork, updateQueue, instance);
           }
 
@@ -24057,9 +24129,12 @@
     }
   }
 
+    // 挂载DOM 元素
   function commitPlacement(finishedWork) {
 
 
+    //   获取 非组件 父级 fiber对象
+    //   初始渲染为 <div id="root"></div>
     var parentFiber = getHostParentFiber(finishedWork); // Note: these two variables *must* always be updated together.
 
     switch (parentFiber.tag) {
@@ -24084,10 +24159,13 @@
       case HostRoot:
       case HostPortal:
       {
+        //   获取 真正的 父级DOM 节点对象
         var _parent = parentFiber.stateNode.containerInfo;
 
+        // 查看 当前节点 是否有 下一个兄弟节点
         var _before = getHostSibling(finishedWork);
 
+        // 向父级节点 中追加 节点  或者 将子节点插入到 before节点的前面
         insertOrAppendPlacementNodeIntoContainer(finishedWork, _before, _parent);
         break;
       }
@@ -24102,23 +24180,35 @@
     var tag = node.tag;
     var isHost = tag === HostComponent || tag === HostText;
 
+    // 普通节点
     if (isHost) {
+      //   获取该节点真实DOM 对象
       var stateNode = node.stateNode;
-
+      // 有下一个兄弟节点 before
       if (before) {
+          // 将 stateNode 插入到 before 之前
         insertInContainerBefore(parent, stateNode, before);
       } else {
+        //   没有兄弟节点  就直接 添加到父节点了
         appendChildToContainer(parent, stateNode);
       }
     } else if (tag === HostPortal) ; else {
+      //   如果是组件节点，那就取子节点 进行插入操作
+        // 比如 classComponent 则找他的 第一个子节点 DOM 元素
+      //   进行插入操作
       var child = node.child;
 
       if (child !== null) {
+        //   向父级追加子节点
+        //   或将子节点 添加到before 前面
         insertOrAppendPlacementNodeIntoContainer(child, before, parent);
+        // 获取下一个兄弟节点  进行插入操作
         var sibling = child.sibling;
 
         while (sibling !== null) {
+          //   将下一个兄弟节点添加到before前面
           insertOrAppendPlacementNodeIntoContainer(sibling, before, parent);
+          // 继续获取下一个兄弟的 下一个兄弟节点  进行插入操作
           sibling = sibling.sibling;
         }
       }
@@ -24515,6 +24605,7 @@
   }
 
   function commitMutationEffectsOnFiber(finishedWork, root, lanes) {
+    //   获取 旧的那个fiber  赋值给current
     var current = finishedWork.alternate;
     var flags = finishedWork.flags; // The effect flag should be checked *after* we refine the type of fiber,
     // because the fiber tag is more specific. An exception is any flag related
@@ -24566,6 +24657,7 @@
       case ClassComponent:
       {
         recursivelyTraverseMutationEffects(root, finishedWork);
+          // 将真实节点进行插入操作
         commitReconciliationEffects(finishedWork);
 
         if (flags & Ref) {
@@ -24580,6 +24672,7 @@
       case HostComponent:
       {
         recursivelyTraverseMutationEffects(root, finishedWork);
+        // 将真实节点进行插入操作
         commitReconciliationEffects(finishedWork);
 
         if (flags & Ref) {
@@ -24816,14 +24909,20 @@
     }
   }
 
+    // 将真实节点进行插入操作
   function commitReconciliationEffects(finishedWork) {
     // Placement effects (insertions, reorders) can be scheduled on any fiber
     // type. They needs to happen after the children effects have fired, but
     // before the effects on this fiber have fired.
     var flags = finishedWork.flags;
 
+      
+    // 正对该节点 及子节点 进行插入操作
+    //   初始会对 root节点 进行插入操作
     if (flags & Placement) {
       try {
+        // 挂载DOM 元素
+        //
         commitPlacement(finishedWork);
       } catch (error) {
         captureCommitPhaseError(finishedWork, finishedWork.return, error);
@@ -24831,7 +24930,6 @@
       // inserted, before any life-cycles like componentDidMount gets called.
       // TODO: findDOMNode doesn't rely on this any more but isMounted does
       // and isMounted is deprecated anyway so we should be able to kill this.
-
 
       finishedWork.flags &= ~Placement;
     }
@@ -24857,7 +24955,7 @@
     while (nextEffect !== null) {
       var fiber = nextEffect;
       var firstChild = fiber.child;
-
+// false
       if ( fiber.tag === OffscreenComponent && isModernRoot) {
         // Keep track of the current Offscreen stack's state.
         var isHidden = fiber.memoizedState !== null;
@@ -24907,6 +25005,7 @@
         firstChild.return = fiber;
         nextEffect = firstChild;
       } else {
+        //   开始调用 钩子函数
         commitLayoutMountEffects_complete(subtreeRoot, root, committedLanes);
       }
     }
@@ -24916,11 +25015,16 @@
     while (nextEffect !== null) {
       var fiber = nextEffect;
 
+      // 调用生命周期和钩子函数
+      //   前提是类组件 调用了生命周期函数
+      //   或者函数组件 调用了useEffect
       if ((fiber.flags & LayoutMask) !== NoFlags) {
         var current = fiber.alternate;
         setCurrentFiber(fiber);
 
         try {
+          //   类组件处理生命周期函数
+          //   函数组件处理 钩子函数
           commitLayoutEffectOnFiber(root, current, fiber, committedLanes);
         } catch (error) {
           captureCommitPhaseError(fiber, fiber.return, error);
@@ -27188,6 +27292,8 @@
       // getSnapshotBeforeUpdate is called.
 
       //   commit 第一个子阶段  处理类组件的 getSnapshotBeforeUpdate 钩子
+      //   getSnapshotBeforeUpdate 只在更新阶段执行
+        //
         // 执行DOM操作前
       var shouldFireAfterActiveInstanceBlur = commitBeforeMutationEffects(root, finishedWork);
 
@@ -27199,7 +27305,7 @@
 
 
         //   commit 第二个子阶段
-        // 执行DOM 操作
+        // 执行DOM 操作  即 增删改
       commitMutationEffects(root, finishedWork, lanes);
 
       resetAfterCommit(root.containerInfo); // The work-in-progress tree is now the current tree. This must come after
