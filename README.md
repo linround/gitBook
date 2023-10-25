@@ -122,6 +122,22 @@
 - [Front-End-Interview-Notebook](https://github.com/CavsZhouyou/Front-End-Interview-Notebook)
 - [wangtunan_blog](https://github.com/wangtunan/blog)
 
+
+# 面试准备
+- [ ] 学习 react 的使用
+- [ ] 学习 react 源码 细节
+- [ ] 复习vue2 vue3的使用
+- [ ] 复习js基础
+- [ ] 复习css基础
+- [ ] 复习 webpack 的使用
+- [ ] 复习 gulp 的使用
+- [ ] 复习 vite的使用
+- [ ] 复习浏览器原理
+- [ ] 复习SEO 相关知识点 
+- [ ] 复习计算机网络基础
+- [ ] 复习数据结构
+- [ ] 学习 webpack 源码
+- [ ] 学习 vite 源码
 ## 浏览器
 + [路由事件(hashChange和popState)](Browser/popStataAndHashChange.md)
 + [drag事件](drag/drag.md)
