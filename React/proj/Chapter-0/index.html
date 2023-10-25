@@ -8,6 +8,9 @@
     <title>React without JSX</title>
     <script src="./react.development.js" crossorigin></script>
     <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./remix-router.js"></script>
+    <script src="./react-router.js" ></script>
+    <script src="./react-router-dom.js"></script>
     <script src="./redux.js"></script>
     <script src="./babel.js" crossorigin></script>
 </head>
@@ -132,8 +135,64 @@
   };
 
 
+  const {
+    createBrowserRouter,
+    RouterProvider,
+    Outlet,
+    Link
+
+  } = ReactRouterDOM
+
+
+  const PageA = ()=>{
+    return (
+      <div>PageA</div>
+    )
+  }
+  const PageB = ()=>{
+    return (
+      <div>PageB</div>
+    )
+  }
+  const Layout = ()=>{
+    return (
+      <div>
+        <div>layout</div>
+        <Link to='/gitBook/React/proj/Chapter-0/index.html'>主页</Link>
+        <Link to='pageA'>pageA</Link>
+        <Link to='pageB'>pageB</Link>
+        <Outlet />
+      </div>
+    )
+  }
+
+  const router = createBrowserRouter([
+    {
+      path: "/gitBook/React/proj/Chapter-0/index.html",
+      element: <Layout />,
+      children:[
+        {
+          path:'/gitBook/React/proj/Chapter-0/index.html',
+          index:true,
+          element: <Example />
+        },
+        {
+          path:'/gitBook/React/proj/Chapter-0/index.html/pageA',
+          element: <PageA />
+        },
+        {
+          path:'/gitBook/React/proj/Chapter-0/index.html/pageB',
+          element: <PageB />
+        },
+      ]
+    },
+  ]);
+
   const root = ReactDOM.createRoot(document.getElementById("root"))
-  root.render(<Example />);
+  // root.render(<Example />);
+  root.render(
+    <RouterProvider router={router}></RouterProvider>
+  )
 </script>
 </body>
 
