@@ -2,6 +2,9 @@
 - 创建html文件
 - 引入[react.development.js](./react.development.js)文件
 - 引入[react-dom.development.js](./react-dom.development.js) 文件
+- 引入[remix-router](./remix-router.js)文件
+- 引入[react-router](./react-router.js)文件
+- 引入[react-router-dom](./react-router-dom.js)文件
 - 引入[redux](./redux.js)文件
 - 引入[babel](./babel.js)文件
 - 创建[相关代码](./index.html)
