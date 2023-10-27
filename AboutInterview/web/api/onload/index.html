@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onload</title>
+</head>
+<body>
+<div id="text">sds</div>
+
+<script>
+  window.addEventListener('load',()=>{
+    console.log('load')
+  })
+  window.addEventListener('DOMContentLoaded',()=>{
+    console.log('DOMContentLoaded')
+  })
+  const script = document.createElement('script')
+  script.async = true
+  script.src = './load.js'
+  document.body.appendChild(script)
+
+</script>
+</body>
+</html>
+<script async>
+
+</script>
