@@ -1,4 +1,5 @@
 # load 和 DOMContentLoaded
+https://javascript.info/onload-ondomcontentloaded
 ## load 
 在整个页面及所有的依赖资源（样式表，图片）都已经完成加载时触发。即等待图片、子框架和异步脚本等其他内容完成加载。
 ## DOMContentLoaded
