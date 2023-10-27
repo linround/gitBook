@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React without JSX</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./redux.js"></script>
+    <script src="./babel.js" crossorigin></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react,stage-3">
+
+    const { useState, useEffect } = React;
+
+     function usePointerPosition() {
+        const [position, setPosition] = useState({ x: 0, y: 0 });
+        useEffect(() => {
+            function handleMove(e) {
+                setPosition({ x: e.clientX, y: e.clientY });
+            }
+            window.addEventListener('pointermove', handleMove);
+            return () => window.removeEventListener('pointermove', handleMove);
+        }, []);
+        return position;
+    }
+    function useDelayedValue(value, delay) {
+        const [delayedValue, setDelayedValue] = useState(value);
+
+        useEffect(() => {
+            setTimeout(() => {
+                setDelayedValue(value);
+            }, delay);
+        }, [value, delay]);
+
+        return delayedValue;
+    }
+
+    function Canvas() {
+        const pos1 = usePointerPosition();
+        const pos2 = useDelayedValue(pos1, 100);
+        const pos3 = useDelayedValue(pos2, 200);
+        const pos4 = useDelayedValue(pos3, 100);
+        const pos5 = useDelayedValue(pos4, 50);
+        return (
+            <>
+                <Dot position={pos1} opacity={1} />
+                <Dot position={pos2} opacity={0.8} />
+                <Dot position={pos3} opacity={0.6} />
+                <Dot position={pos4} opacity={0.4} />
+                <Dot position={pos5} opacity={0.2} />
+            </>
+        );
+    }
+
+    function Dot({ position, opacity }) {
+        return (
+            <div style={{
+                position: 'absolute',
+                backgroundColor: 'pink',
+                borderRadius: '50%',
+                opacity,
+                transform: `translate(${position.x}px, ${position.y}px)`,
+                pointerEvents: 'none',
+                left: -20,
+                top: -20,
+                width: 40,
+                height: 40,
+            }} />
+        );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"),{
+    identifierPrefix:'my_code_test'
+  })
+  // ReactDOMRoot的原型上具有render方法
+  root.render(<Canvas />);
+</script>
+</body>
+
+</html>

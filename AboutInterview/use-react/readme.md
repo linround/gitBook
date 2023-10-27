@@ -56,9 +56,18 @@ undefined + 1 = NaN // (6)
 - useState
 - createContext
 - useContext
+- useEffect
+- useRef
+- createRef
+
 ### react 常见的工具api
 - useImmer
 
+### useEffect
+ 参数返回值的执行时机，是对之前的旧的参数进行操作吗
+### useRef
+React 在重新渲染之间保留引用。然而，设置状态会重新渲染组件。更改引用不会;   
+您可以使用 refs 来存储超时 ID、DOM 元素和其他不影响组件渲染输出的对象
 ### useState
 以下代码 点击`+3` 和`+1`的结果一致；
 >  设置状态请求新的重新渲染，但不会在已经运行的代码中更改它。因此，在调用 setScore(score + 1) 后，score 仍然为 0 ;   
@@ -126,3 +135,6 @@ export default function Counter() {
 ### 触发渲染的条件
 1. 组件初始渲染
 2. 组件 或者其祖先 的状态发生更新
+
+## 状态管理
+1. 避免冗余和重复的状态
