@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A</title>
+</head>
+<body>
+<button onclick="setA()">setA</button>
+<script>
+  function setA() {
+    localStorage.setItem('A','A value')
+  }
+  window.addEventListener('storage',()=>{
+    console.log(localStorage)
+  })
+</script>
+
+</body>
+</html>

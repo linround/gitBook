@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>show</title>
+</head>
+<body>
+<iframe src="iframe.html"></iframe>
+<script>
+  // 处理页面可见性变化：
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      document.title='hidden'
+    } else {
+      document.title = 'show';
+    }
+  });
+  window.addEventListener('blur',()=>{
+    console.log('document.blur')
+  })
+  window.addEventListener('focus',()=>{
+    console.log('document.focus')
+  })
+</script>
+</body>
+</html>

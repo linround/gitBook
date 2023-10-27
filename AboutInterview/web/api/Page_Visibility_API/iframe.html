@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iframe</title>
+</head>
+<body>
+<script>
+  // 处理页面可见性变化：
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      console.log('iframe hidden')
+    } else {
+      console.log('iframe show')
+    }
+  });
+</script>
+</body>
+</html>
