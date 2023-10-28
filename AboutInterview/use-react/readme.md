@@ -59,6 +59,7 @@ undefined + 1 = NaN // (6)
 - useEffect
 - useRef
 - createRef
+- forwardRef
 
 ### react 常见的工具api
 - useImmer
@@ -67,7 +68,9 @@ undefined + 1 = NaN // (6)
 在一开始渲染时会执行第一个函数；在更新渲染时会执行第一个函数，同时执行上一次渲染时第一个函数的返回函数；（待验证）
 ### useRef
 React 在重新渲染之间保留引用。然而，设置状态会重新渲染组件。更改引用不会;   
-您可以使用 refs 来存储超时 ID、DOM 元素和其他不影响组件渲染输出的对象
+您可以使用 refs 来存储超时 ID、DOM 元素和其他不影响组件渲染输出的对象;
+- 使用场景
+> 想要组建记录一些信息，但是不想这个信息触发 render 函数，就可以使用useRef
 ### useState
 以下代码 点击`+3` 和`+1`的结果一致；
 >  设置状态请求新的重新渲染，但不会在已经运行的代码中更改它。因此，在调用 setScore(score + 1) 后，score 仍然为 0 ;   
