@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>use-effect</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./redux.js"></script>
+    <script src="./babel.js" crossorigin></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react,stage-3">
+
+    const { useState, useEffect } = React;
+
+    function Playground() {
+        const [text, setText] = useState('a');
+
+        useEffect(() => {
+            function onTimeout() {
+                console.log('⏰ ' + text);
+            }
+
+            console.log('🔵 Schedule "' + text + '" log');
+            const timeoutId = setTimeout(onTimeout, 3000);
+
+            return () => {
+                console.log('🟡 Cancel "' + text + '" log');
+                clearTimeout(timeoutId);
+            };
+        }, [text]);
+
+        return (
+            <>
+                <label>
+                    What to log:{' '}
+                    <input
+                        value={text}
+                        onChange={e => setText(e.target.value)}
+                    />
+                </label>
+                <h1>{text}</h1>
+            </>
+        );
+    }
+
+      function App() {
+        const [show, setShow] = useState(false);
+
+        return (
+            <>
+                <button onClick={() => setShow(!show)}>
+                    {show ? 'Unmount' : 'Mount'} the component
+                </button>
+                {show && <hr />}
+                {show && <Playground />}
+            </>
+        );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"),{
+        identifierPrefix:'my_code_test'
+    })
+    // ReactDOMRoot的原型上具有render方法
+    root.render(<App />);
+</script>
+</body>
+
+</html>

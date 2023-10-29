@@ -60,11 +60,22 @@ undefined + 1 = NaN // (6)
 - useRef
 - createRef
 - forwardRef
+- useMemo
+
+
+### 优化
+- 缓存
+> useMemo
 
 ### react 常见的工具api
 - useImmer
 
 ### useEffect
+- 缓存
+- 事件之间的逻辑共享
+
+
+  当你更新状态时，React 将首先调用你的组件函数来计算屏幕上应该显示的内容。然后 React 会将这些更改“提交”到 DOM，从而更新屏幕。然后 React 将运行你的 Effects；
 在一开始渲染时会执行第一个函数；在更新渲染时会执行第一个函数，同时执行上一次渲染时第一个函数的返回函数；（待验证）
 ### useRef
 React 在重新渲染之间保留引用。然而，设置状态会重新渲染组件。更改引用不会;   
