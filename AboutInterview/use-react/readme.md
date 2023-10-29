@@ -62,6 +62,7 @@ undefined + 1 = NaN // (6)
 - forwardRef
 - useMemo
 - useSyncExternalStore
+- useEffectEvent
 
 
 ### 优化
@@ -72,6 +73,9 @@ undefined + 1 = NaN // (6)
 - useImmer
 
 ### useEffect
+- 仅从 Effects 内部调用它们。
+
+- 切勿将它们传递给其他组件或 Hook  
 当您不确定某些代码是否应该在 Effect 中还是在事件处理程序中时，问问自己为什么需要运行这段代码
 
 当您选择是否将某些逻辑放入事件处理程序或效果中时，您需要回答的主要问题是从用户的角度来看它是什么样的逻辑。如果此逻辑是由特定交互引起的，请将其保留在事件处理程序中。如果是由于用户看到屏幕上的组件引起的，请将其保留在 Effect
@@ -98,6 +102,9 @@ undefined + 1 = NaN // (6)
 > - 您可以使用 Effects 获取数据，但需要实施清理以避免竞争条件
 #### 数据订阅
 有时，您的组件可能需要订阅 React 状态之外的某些数据。该数据可能来自第三方库或内置浏览器 API。由于这些数据可能会在 React 不知情的情况下发生变化，因此您需要手动订阅组件
+
+
+#### useEffect 的 生命周期
 
 
 ```javascript
