@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>use-effect-2</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./redux.js"></script>
+    <script src="./babel.js" crossorigin></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react,stage-3">
+
+    const { useState, useEffect } = React;
+
+
+    function    ItemsComponent({items}){
+        const [i1,setI1]=useState('ItemsComponent')
+        const [prevItems, setPrevItems] = useState(items);
+        if (items !== prevItems) {
+            setPrevItems(items);
+            setI1('null');
+        }
+        console.log('render ItemsComponent')
+        // useEffect(()=>{
+        //     setI1('useEffect items')
+        //
+        // },[items])
+        return (
+            <div>
+                ItemsComponent: {i1}
+            </div>
+        )
+    }
+    function App() {
+        const [items, setIsReverse] = useState('items');
+
+
+        return (
+            <>
+                <button onClick={() => setIsReverse('change items')}>
+                    {items}
+                </button>
+                <ItemsComponent items={items}></ItemsComponent>
+            </>
+        );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"),{
+        identifierPrefix:'my_code_test'
+    })
+    // ReactDOMRoot的原型上具有render方法
+    root.render(<App />);
+</script>
+</body>
+
+</html>

@@ -61,6 +61,7 @@ undefined + 1 = NaN // (6)
 - createRef
 - forwardRef
 - useMemo
+- useSyncExternalStore
 
 
 ### 优化
@@ -71,6 +72,62 @@ undefined + 1 = NaN // (6)
 - useImmer
 
 ### useEffect
+当您不确定某些代码是否应该在 Effect 中还是在事件处理程序中时，问问自己为什么需要运行这段代码
+
+当您选择是否将某些逻辑放入事件处理程序或效果中时，您需要回答的主要问题是从用户的角度来看它是什么样的逻辑。如果此逻辑是由特定交互引起的，请将其保留在事件处理程序中。如果是由于用户看到屏幕上的组件引起的，请将其保留在 Effect
+
+尽量忽略链式调用，将链式调用的逻辑放在自己的事件中，而不是使用effect去触发。
+
+- 避免条件竞争
+
+- 结论
+> - 如果您可以在渲染期间计算某些内容，则不需要效果。
+
+> - 要缓存昂贵的计算，请添加 useMemo 而不是 useEffect。
+
+> - 要重置整个组件树的状态，请将不同的密钥传递给它。
+
+> - 要重置特定的状态位以响应道具更改，请在渲染期间设置它。
+
+> - 因为显示组件而运行的代码应该在效果中，其余的应该在事件中。
+
+> - 如果您需要更新多个组件的状态，最好在单个事件期间执行此操作。
+
+> - 每当您尝试同步不同组件中的状态变量时，请考虑提升状态。
+
+> - 您可以使用 Effects 获取数据，但需要实施清理以避免竞争条件
+#### 数据订阅
+有时，您的组件可能需要订阅 React 状态之外的某些数据。该数据可能来自第三方库或内置浏览器 API。由于这些数据可能会在 React 不知情的情况下发生变化，因此您需要手动订阅组件
+
+
+```javascript
+function useOnlineStatus() {
+  // Not ideal: Manual store subscription in an Effect
+  const [isOnline, setIsOnline] = useState(true);
+  useEffect(() => {
+    function updateState() {
+      setIsOnline(navigator.onLine);
+    }
+
+    updateState();
+
+    window.addEventListener('online', updateState);
+    window.addEventListener('offline', updateState);
+    return () => {
+      window.removeEventListener('online', updateState);
+      window.removeEventListener('offline', updateState);
+    };
+  }, []);
+  return isOnline;
+}
+
+function ChatIndicator() {
+  const isOnline = useOnlineStatus();
+  // ...
+}
+```
+
+
 - 缓存
 - 事件之间的逻辑共享
 
