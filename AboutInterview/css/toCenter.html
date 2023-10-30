@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    .element {
+      border: 1px solid black;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+    }
+    .child {
+
+      border: 1px solid black;
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+    }
+    .parent{
+      text-align: center;
+      width: 300px;
+      height: 300px;
+      border: 1px solid black;
+    }
+
+    .parent2{
+      position: relative;
+      width: 300px;
+      height: 600px;
+      border: 1px solid black;
+    }
+
+    .child2 {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+        position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+    }
+
+
+    /*利用text-align:center和vertical-align:middle属性*/
+    .container {
+      position: relative;
+      height: 400px;
+      width: 300px;
+      border: 1px solid;
+      text-align: center;
+    }
+
+    .container::after {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    .box {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      vertical-align: middle;
+    }
+</style>
+<div class="container">
+    <div class="box">box</div>
+</div>
+<div class="parent2">
+    <div class="child2">child2</div>
+</div>
+<div class="parent">
+    <div class="child">child</div>
+</div>
+<div class="element">margin</div>
+</body>
+</html>

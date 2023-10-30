@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    .container{
+      width: 600px;
+      height: 600px;
+      border: 1px solid;
+
+      flex-wrap: wrap;
+      align-content:flex-end;
+
+      display: flex;
+    }
+    .item{
+      width: 100px;
+      height: 100px;
+      border: 1px solid;
+
+      /*flex: 0;*/
+      flex-shrink: 0; /* 空间不足 是否缩小 0不缩小 1缩小  */
+      flex-grow: 1; /* 空间充足是否放大 0 不放大 1放大 */
+      flex-basis: 200px; /* 定义了在分配多余空间之前，项目占据主轴空间。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto ，即项目本来的大小。*/
+    }
+</style>
+<div class="container">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+    <div class="item">7</div>
+    <div class="item">8</div>
+    <div class="item">9</div>
+    <div class="item">10</div>
+    <div class="item">11</div>
+</div>
+</body>
+</html>

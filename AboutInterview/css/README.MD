@@ -31,3 +31,43 @@
 
 - 伪类（:）  用于当已有的元素处于某个状态时，为其添加对应的样式，这个状态是根据用户行为而动态变化的。
 - 伪元素 （::） 用于创建一些不在文档树中的元素，并为其添加样式
+
+# div 居中
+## 水平居中
+- 利用margin
+- 利用父元素的 text-align
+```css
+.child {
+      border: 1px solid black;
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+    }
+.parent {
+      text-align: center;
+    }
+```
+## 水平垂直居中
+- 利用定位和margin实现
+```css
+
+    .parent2{
+      position: relative;
+      width: 300px;
+      height: 600px;
+      border: 1px solid black;
+    }
+
+    .child2 {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+        position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+    }
+```
+- display:flex
