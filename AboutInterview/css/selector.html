@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+.container{
+  border: 1px solid black;
+  padding: 20px;
+  width: 300px;
+  height: 300px;
+}
+div[data="2"] {
+  background: red;
+  color: white;
+}
+/*相邻兄弟选择器*/
+div[data="2"]+div{
+  background: yellow !important;
+  color: black;
+}
+/* 兄弟选择器 */
+div[data="2"]~div{
+  background: #0d1bd0;
+  color: black;
+}
+div+div{
+  height: 20px;
+  background: blue;
+  color: yellow;
+}
+</style>
+<body>
+  <div class="container">
+    <div>1</div>
+    <div data="2">2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+  </div>
+</body>
+</html>
