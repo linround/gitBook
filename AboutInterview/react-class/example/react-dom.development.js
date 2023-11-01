@@ -13473,10 +13473,11 @@
       shared: {
         pending: null,
         interleaved: null,
-        lanes: NoLanes
+        lanes: NoLanes // 0
       },
       effects: null
     };
+    // 初始化 fiber 的 updateQueue
     fiber.updateQueue = queue;
   }
   function cloneUpdateQueue(current, workInProgress) {
@@ -28534,7 +28535,12 @@
     }
   }
 
-  function FiberNode(tag, pendingProps, key, mode) {
+  function FiberNode(
+      tag,// 3  宿主树的根。可以嵌套在另一个节点内
+      pendingProps, // null
+      key,// null
+      mode // ConcurrentMode
+  ) {
     // Instanc
       // 标记不同的组件类型
     this.tag = tag;
@@ -28578,13 +28584,13 @@
     this.updateQueue = null;
     this.dependencies = null;
     // 记录当前组件及其子组件处于何种渲染模式
-    this.mode = mode; // Effects
+    this.mode = mode; // ConcurrentMode
 
-    this.flags = NoFlags;
-    this.subtreeFlags = NoFlags;
+    this.flags = NoFlags; // 0
+    this.subtreeFlags = NoFlags;// 0
     this.deletions = null;
-    this.lanes = NoLanes;
-    this.childLanes = NoLanes;
+    this.lanes = NoLanes;// 0
+    this.childLanes = NoLanes;// 0
     // 在fiber树更新的过程中 每个fiber都有一个跟其对应的fiber
       // 称为 current 《==》workinprogress
     //   在渲染完成之后他们会交换位置
@@ -28642,8 +28648,12 @@
   // 5) It should be easy to port this to a C struct and keep a C implementation
   //    compatible.
 
-
-  var createFiber = function (tag, pendingProps, key, mode) {
+  var createFiber = function (
+      tag,// 3  宿主树的根。可以嵌套在另一个节点内
+      pendingProps, // null
+      key,// null
+      mode // ConcurrentMode
+  ) {
     // $FlowFixMe: the shapes are exact here but Flow doesn't like constructors
     return new FiberNode(tag, pendingProps, key, mode);
   };
@@ -28839,7 +28849,11 @@
 
     return workInProgress;
   }
-  function createHostRootFiber(tag, isStrictMode, concurrentUpdatesByDefaultOverride) {
+  function createHostRootFiber(
+      tag, // 默认 ConcurrentMode
+      isStrictMode, // 默认 false
+      concurrentUpdatesByDefaultOverride
+  ) {
     var mode;
 
     if (tag === ConcurrentRoot) {
@@ -28863,7 +28877,12 @@
       mode |= ProfileMode;
     }
 
-    return createFiber(HostRoot, null, null, mode);
+    return createFiber(
+        HostRoot, // 3  宿主树的根。可以嵌套在另一个节点内
+        null,
+        null,
+        mode // ConcurrentMode
+    );
   }
   function createFiberFromTypeAndProps(type, // React$ElementType
                                        key, pendingProps, owner, mode, lanes) {
@@ -29141,7 +29160,14 @@
     return target;
   }
 
-  function FiberRootNode(containerInfo, tag, hydrate, identifierPrefix, onRecoverableError) {
+  function FiberRootNode(
+
+      containerInfo,// 根节点
+      tag,// 两种应用启动模式： legacy 模式；Concurrent 模式
+      hydrate,// 是否是服务端渲染
+      identifierPrefix,// 默认空字符串
+      onRecoverableError // 默认console.error 函数
+  ) {
     this.tag = tag; // 两种应用启动模式： legacy 模式；Concurrent 模式
     this.containerInfo = containerInfo; // 根容器节点元素
     this.pendingChildren = null;
@@ -29162,7 +29188,7 @@
     this.mutableReadLanes = NoLanes;// 可变读取通道
     this.finishedLanes = NoLanes;
     this.entangledLanes = NoLanes;// 纠缠车道
-    this.entanglements = createLaneMap(NoLanes);
+    this.entanglements = createLaneMap(NoLanes); // 纠缠
     // React 为 React 生成的 id 使用的可选前缀。
     // useId . 当在同一页面使用多个根时，可用于避免冲突。必须与服务器上使用的前缀相同
     this.identifierPrefix = identifierPrefix;
@@ -29180,17 +29206,22 @@
 
     {
       this.memoizedUpdaters = new Set(); // 记忆更新器
+      // 设置 this.pendingUpdatersLaneMap 为一个数组
+      // 获取该引用值
       var pendingUpdatersLaneMap = this.pendingUpdatersLaneMap = [];
 
       // TotalLanes 默认31
       for (var _i = 0; _i < TotalLanes; _i++) {
+        // 初始化 pendingUpdatersLaneMap
         pendingUpdatersLaneMap.push(new Set());
       }
     }
 
     {
+      //   这里的tag 默认是 ConcurrentRoot 模式
       switch (tag) {
         case ConcurrentRoot:
+          //   hydrate 是false
           this._debugRootType = hydrate ? 'hydrateRoot()' : 'createRoot()';
           break;
 
@@ -29222,7 +29253,13 @@
 
     // 这里只会调用一次
     // 创建一个FiberRootNode
-    var root = new FiberRootNode(containerInfo, tag, hydrate, identifierPrefix, onRecoverableError);
+    var root = new FiberRootNode(
+        containerInfo,// 根节点
+        tag,// 两种应用启动模式： legacy 模式；Concurrent 模式
+        hydrate,// 是否是服务端渲染
+        identifierPrefix,// 默认空字符串
+        onRecoverableError // 默认console.error 函数
+    );
     // stateNode is any.
 
 
@@ -29231,7 +29268,11 @@
     //   rootFiber的 stateNode 指向fiberRoot
 
     // 创建 根节点对应的 rootFiber
-    var uninitializedFiber = createHostRootFiber(tag, isStrictMode); // 返回一个FiberNode
+    var uninitializedFiber = createHostRootFiber(
+        tag,
+        isStrictMode
+    ); // 返回一个FiberNode
+
       // 为fiberRoot的current属性 赋值为rootFiber
       root.current = uninitializedFiber;
     //   为rootFiber 添加stateNode属性值 为fiberRoot
@@ -29378,7 +29419,8 @@
       isStrictMode,
       concurrentUpdatesByDefaultOverride,
       identifierPrefix,
-      onRecoverableError);
+      onRecoverableError
+    );
   }
   function createHydrationContainer(initialChildren, // TODO: Remove `callback` when we delete legacy mode.
                                     callback, containerInfo, tag, hydrationCallbacks, isStrictMode, concurrentUpdatesByDefaultOverride, identifierPrefix, onRecoverableError, transitionCallbacks) {
