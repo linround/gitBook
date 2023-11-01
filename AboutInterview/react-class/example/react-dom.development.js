@@ -30001,10 +30001,18 @@
   };
 
   function createRoot(container, options) {
+    /*
+     * 判断是否是合法的DOM容器节点
+     * document.body span li div 的 nodeType 都是 1
+     * document 的 nodeType 是 9
+     * document.createDocumentFragment 创建的节点是 11
+     * 以上都是合法容器
+     * */
     if (!isValidContainer(container)) {
       throw new Error('createRoot(...): Target container is not a DOM element.');
     }
-
+    // 非 body 元素
+    // 非标记过的 root 容器节点元素
     warnIfReactDOMContainerInDEV(container);
     // 默认非严格模式
     var isStrictMode = false;
