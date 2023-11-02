@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-02T14:31:55.879Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="hX7IgaDWSentL88D7oec" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-02T14:35:01.900Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="ovIgP6lNlywmR3r2tCuk" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2588" dy="506" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -260,8 +260,19 @@
         <mxCell id="4BpbkwGS_xz4CbqGkM0T-48" value="将子元素赋值给props" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="2040" y="930" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="4BpbkwGS_xz4CbqGkM0T-53" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="4BpbkwGS_xz4CbqGkM0T-50" target="4BpbkwGS_xz4CbqGkM0T-52">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4BpbkwGS_xz4CbqGkM0T-55" value="在props中访问 ref 和 key 会报错" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="4BpbkwGS_xz4CbqGkM0T-53">
+          <mxGeometry x="-0.0078" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="4BpbkwGS_xz4CbqGkM0T-50" value="在函数组件或类组件&lt;br&gt;存在defaultProps；&lt;br&gt;处理defaultProps" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="2240" y="930" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4BpbkwGS_xz4CbqGkM0T-52" value="defineKeyPropWarningGetter&lt;br&gt;defineRefPropWarningGetter" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2205" y="1070" width="190" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
