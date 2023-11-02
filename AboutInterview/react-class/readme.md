@@ -439,10 +439,12 @@ function ReactDOMRoot(internalRoot) {
 ## React.createElement
 ![](./img/img_5.png)
 上图是 React.createElement 的执行过程。生成element的 关键方法是 createElement
+
+
 ### createElement
 - this 指向 React；即实际是调用的 React.createElement。
-- 
 
+![](./img/img_6.png)
 
 ```javascript
 
@@ -634,3 +636,4 @@ ReactElement = function (
     return element;
   };
 ```
+createElement 就是创建了一个个 ReactElement(包括组件和普通元素节点)
