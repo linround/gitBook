@@ -419,6 +419,11 @@ function markContainerAsRoot(hostRoot, node) {
     node[internalContainerInstanceKey] = hostRoot;
   }
 ```
+
+### listenToAllSupportedEvents
+- 给 container 真实DOM节点 添加 属性 _reactListeningvj3cir8a39，值为true
+
+
 ### new ReactDOMRoot
 - 返回一个对象，该对象的属性 _internalRoot 指向 fiberRoot
 
@@ -431,8 +436,5 @@ function ReactDOMRoot(internalRoot) {
 ### 描述  fiberRoot 和 rootFiber 部分属性的关系
 ![](./img/img_4.png)
 
-
-### 
-- 给 container 真实DOM节点 添加 属性 _reactListeningvj3cir8a39，值为true
 
 ### React.createElement
