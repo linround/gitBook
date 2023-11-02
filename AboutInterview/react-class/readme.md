@@ -409,6 +409,30 @@ function initializeUpdateQueue(fiber) {
     fiber.updateQueue = queue;
   }
 ```
+### markContainerAsRoot
+- 传入两个参数 rootFiber 和 container 真实DOM节点
+= 对该容器节点 作标记
 
-#### 执行过程
+```javascript
+// internalContainerInstanceKey = '__reactContainer$' + randomKey;
+function markContainerAsRoot(hostRoot, node) {
+    node[internalContainerInstanceKey] = hostRoot;
+  }
+```
+### new ReactDOMRoot
+- 返回一个对象，该对象的属性 _internalRoot 指向 fiberRoot
+
+```javascript
+function ReactDOMRoot(internalRoot) {
+
+    this._internalRoot = internalRoot;
+  }
+```
+### 描述  fiberRoot 和 rootFiber 部分属性的关系
+![](./img/img_4.png)
+
+
+### 
+- 给 container 真实DOM节点 添加 属性 _reactListeningvj3cir8a39，值为true
+
 ### React.createElement

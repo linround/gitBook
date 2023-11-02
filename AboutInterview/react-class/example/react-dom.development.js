@@ -29250,7 +29250,6 @@
     identifierPrefix,
     onRecoverableError,
     transitionCallbacks) {
-
     // 这里只会调用一次
     // 创建一个FiberRootNode
     var root = new FiberRootNode(
