@@ -2361,6 +2361,7 @@
     }
   }
   function createElementWithValidation(type, props, children) {
+
     // 这个函数的this就是指向React这个对象
     // 目前只需了解函数组件和普通的字符串标签
     var validType = isValidElementType(type); // We warn in this case but don't throw. We expect the element creation to

@@ -436,5 +436,115 @@ function ReactDOMRoot(internalRoot) {
 ### 描述  fiberRoot 和 rootFiber 部分属性的关系
 ![](./img/img_4.png)
 
+## React.createElement
+![](./img/img_5.png)
+上图是 React.createElement 的执行过程。生成element的 关键方法是 createElement
+### createElement
+- this 指向 React；即实际是调用的 React.createElement。
+- 
 
-### React.createElement
+
+```javascript
+
+  function createElement(
+      type, // 函数组件或类组件
+      config, // 相当于传递的 props
+      children // 子元素（可以包含多个）
+  ) {
+    var propName; // Reserved names are extracted
+
+    var props = {};
+    var key = null;
+    var ref = null;
+    var self = null;
+    var source = null;
+
+    if (config != null) {
+      if (hasValidRef(config)) {
+        ref = config.ref;
+
+        {
+          warnIfStringRefCannotBeAutoConverted(config);
+        }
+      }
+
+      if (hasValidKey(config)) {
+        {
+          checkKeyStringCoercion(config.key);
+        }
+
+        key = '' + config.key;
+      }
+
+      self = config.__self === undefined ? null : config.__self;
+      source = config.__source === undefined ? null : config.__source; // Remaining properties are added to a new props object
+
+      for (propName in config) {
+
+        if (hasOwnProperty.call(config, propName)
+            && !RESERVED_PROPS.hasOwnProperty(propName)) {
+          props[propName] = config[propName];
+        }
+      }
+    } // Children can be more than one argument, and those are transferred onto
+    // the newly allocated props object.
+
+
+    var childrenLength = arguments.length - 2;
+
+    if (childrenLength === 1) {
+      props.children = children;
+    } else if (childrenLength > 1) {
+      var childArray = Array(childrenLength);
+
+      for (var i = 0; i < childrenLength; i++) {
+        childArray[i] = arguments[i + 2];
+      }
+
+      {
+        if (Object.freeze) {
+          Object.freeze(childArray);
+        }
+      }
+
+      props.children = childArray;
+    } // Resolve default props
+
+
+    /**
+     *如果当前处理的是组件
+     * 看组件身上是否存在defaultProps
+     * defaultProps存储的时props对象中属性的默认值
+     * */
+    if (type && type.defaultProps) {
+      var defaultProps = type.defaultProps;
+      // 遍历defaultProps，为props为undefined的设置默认值
+      for (propName in defaultProps) {
+        if (props[propName] === undefined) {
+          props[propName] = defaultProps[propName];
+        }
+      }
+    }
+
+    {
+      if (key || ref) {
+        var displayName = typeof type === 'function' ?
+            type.displayName || type.name || 'Unknown' : type;
+        // displayName 就是当前组件的名称
+        // 在props中访问key时添加报错函数
+        if (key) {
+          // 添加一个key的getter属性，从而监听key的访问
+          defineKeyPropWarningGetter(props, displayName);
+        }
+
+        // 在props中访问ref时添加报错函数
+        if (ref) {
+          // 添加一个ref的getter属性，从而监听ref的访问
+          defineRefPropWarningGetter(props, displayName);
+        }
+      }
+    }
+    // 返回一个ReactElement元素
+    return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
+  }
+```
