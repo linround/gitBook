@@ -715,8 +715,15 @@
    */
 
 
-  var ReactElement = function (type, key, ref, self, source, owner, props) {
-    
+  var ReactElement = function (
+      type, // 函数组件或类组件
+      key,
+      ref,
+      self,// __self
+      source,// __source
+      owner,
+      props // 生成的除了预留属性 新的props
+  ) {
     var element = {
       // This tag allows us to uniquely identify this as a React Element
       // 组件的类型，十六进制数值或者Symbol值
@@ -880,7 +887,15 @@
       }
     }
     // 返回一个ReactElement元素
-    return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
+    return ReactElement(
+        type,
+        key,
+        ref,
+        self,
+        source,
+        ReactCurrentOwner.current,
+        props
+    );
   }
   function cloneAndReplaceKey(oldElement, newKey) {
     var newElement = ReactElement(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);

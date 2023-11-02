@@ -22,6 +22,7 @@
             const {name} = props
             this.render = this.render.bind(this)
             this.change = this.change.bind(this)
+            this.ref = React.createRef()
             this.state = {
                 name:name
             }
@@ -39,7 +40,7 @@
             console.log('MyComponent render')
             const {name} = this.state
             return (
-                <div>
+                <div ref={this.ref}>
                     <div>{name} 1</div>
                     <div>{name} 2</div>
                 </div>

@@ -548,3 +548,89 @@ function ReactDOMRoot(internalRoot) {
     return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
   }
 ```
+
+### 对 props 的处理
+以下四种属性是预留属性，不会赋值给 props
+```javascript
+var RESERVED_PROPS = {
+    key: true,
+    ref: true,
+    __self: true,
+    __source: true
+  };
+```
+### ReactElement
+```javascript
+ReactElement = function (
+      type, // 函数组件或类组件
+      key,
+      ref,
+      self,// __self
+      source,// __source
+      owner,
+      props // 生成的除了预留属性 新的props
+  ) {
+    var element = {
+      // This tag allows us to uniquely identify this as a React Element
+      // 组件的类型，十六进制数值或者Symbol值
+      // React最终渲染DOM的时候，需要确保元素的类型时REACT_ELEMENT_TYPE
+      // 以此作为判断依据
+      $$typeof: REACT_ELEMENT_TYPE,
+      // Built-in properties that belong on the element
+      // 元素具体的类型值，、、
+      // 如果元素节点 type属性中存储 的是普通元素就是div span等等
+      // 如果元素是组件 type属性中存储的就是组件的构造函数
+      type: type,
+      // 元素的唯一标识
+      // 用作内部vdom比对，提升DOM性能
+      key: key,
+      // 存储元素DOM对象或者组件实例对象
+      ref: ref,
+      // 存储向组件内传递的数据
+      props: props,
+      // Record the component responsible for creating this element.
+      // 记录当前元素所属组件（记录当前元素是哪个组件创建的）
+      _owner: owner
+    };
+
+    {
+      // The validation flag is currently mutative. We put it on
+      // an external backing store so that we can freeze the whole object.
+      // This can be replaced with a WeakMap once they are implemented in
+      // commonly used development environments.
+      element._store = {}; // To make comparing ReactElements easier for testing purposes, we make
+      // the validation flag non-enumerable (where possible, which should
+      // include every environment we run tests in), so the test framework
+      // ignores it.
+
+      Object.defineProperty(element._store, 'validated', {
+        configurable: false,
+        enumerable: false,
+        writable: true,
+        value: false
+      }); // self and source are DEV only properties.
+
+      Object.defineProperty(element, '_self', {
+        configurable: false,
+        enumerable: false,
+        writable: false,
+        value: self
+      }); // Two elements created in two different places should be considered
+      // equal for testing purposes and therefore we hide it from enumeration.
+
+      Object.defineProperty(element, '_source', {
+        configurable: false,
+        enumerable: false,
+        writable: false,
+        value: source
+      });
+
+      if (Object.freeze) {
+        Object.freeze(element.props);
+        Object.freeze(element);
+      }
+    }
+
+    return element;
+  };
+```
