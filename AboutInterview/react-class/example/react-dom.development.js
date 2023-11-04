@@ -29458,7 +29458,7 @@
       parentComponent,// 父组件 初始渲染为null
       callback// 渲染完成执行的回调函数
     ) {
-
+ debugger
     {
       onScheduleRoot(container, element);
     }
@@ -29991,8 +29991,10 @@
 
       // 获取被标记的容器元素
       var container = root.containerInfo;
-      //
+      // 判断 非注释节点
+        // true
       if (container.nodeType !== COMMENT_NODE) {
+        //   root.current 是 rootFiber 节点
         var hostInstance = findHostInstanceWithNoPortals(root.current);
 
         if (hostInstance) {

@@ -58,9 +58,12 @@
     const root = ReactDOM.createRoot(document.getElementById("root"), {
         identifierPrefix: 'react-class'
     }); // ReactDOMRoot的原型上具有render方法
-    root.render( React.createElement(App, {
+    const reactElement =  React.createElement(App, {
         name: 'app-name'
-    }));
+    })
+    console.log('root:',root)
+    console.log('reactElement:',reactElement)
+    root.render(reactElement);
 </script>
 </body>
 
