@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-04T15:24:26.588Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="tmtVn7X4gIrT_sIUr184" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-04T15:37:02.634Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="4Ke-kitWKIin6jmYwndm" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2490" dy="1622" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -310,8 +310,43 @@
         <mxCell id="h-iX1Kgf-Yki13LX6SZM-7" value="createUpdate" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1910" y="-950" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="h-iX1Kgf-Yki13LX6SZM-9" target="h-iX1Kgf-Yki13LX6SZM-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-21" value="输入root" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="h-iX1Kgf-Yki13LX6SZM-12">
+          <mxGeometry x="-0.214" y="4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="h-iX1Kgf-Yki13LX6SZM-9" target="h-iX1Kgf-Yki13LX6SZM-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="h-iX1Kgf-Yki13LX6SZM-9" value="enqueueUpdate" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="2090" y="-950" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="h-iX1Kgf-Yki13LX6SZM-11" target="h-iX1Kgf-Yki13LX6SZM-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-11" value="scheduleUpdateOnFiber" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2310" y="-950" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-13" value="entangleTransitions" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2710" y="-950" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="h-iX1Kgf-Yki13LX6SZM-15" target="h-iX1Kgf-Yki13LX6SZM-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-15" value="enqueueConcurrentClassUpdate" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1890" y="-830" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="h-iX1Kgf-Yki13LX6SZM-17" target="h-iX1Kgf-Yki13LX6SZM-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-17" value="pushConcurrentUpdateQueue" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1895" y="-690" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-19" value="markUpdateLaneFromFiberToRoot" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1900" y="-584" width="200" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
