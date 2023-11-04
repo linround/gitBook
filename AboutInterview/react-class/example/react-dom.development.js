@@ -13404,6 +13404,7 @@
   var unsafe_markUpdateLaneFromFiberToRoot = markUpdateLaneFromFiberToRoot;
 
   function markUpdateLaneFromFiberToRoot(sourceFiber, lane) {
+
     // Update the source fiber's lanes
     sourceFiber.lanes = mergeLanes(sourceFiber.lanes, lane);
     var alternate = sourceFiber.alternate;
@@ -13510,9 +13511,9 @@
   // 将任务update 存放于 任务队列(updateQueue)中
     //  创建单项链表解构存放update， next用来串联update
   function enqueueUpdate(
-      fiber, 
-      update,
-      lane
+      fiber, // rootFiber
+      update, // 包含要渲染的 reactElement
+      lane // 和优先级有关
   ) {
     //   获取 当前fiber的更新队列
       // 初始时fiber就是 rootFiber
@@ -25849,7 +25850,7 @@
        * 遍历更新子节点的过期时间
        * */
     markRootUpdated(root, lane, eventTime);
-
+debugger
     if ((executionContext & RenderContext) !== NoLanes && root === workInProgressRoot) {
       // This update was dispatched during the render phase. This is a mistake
       // if the update originates from user space (with the exception of local
@@ -29456,14 +29457,16 @@
       element,// 要渲染的 ReactElement
       container,// container fiberRoot对象
       parentComponent,// 父组件 初始渲染为null
-      callback// 渲染完成执行的回调函数
+      callback// 渲染完成执行的回调函数 初始为null
     ) {
     {
       onScheduleRoot(container, element);
     }
     // 获取rootFiber
     var current$1 = container.current;
+    //   当前的时间戳的值
     var eventTime = requestEventTime();
+    // 获取优先级 轨道
     var lane = requestUpdateLane(current$1);
 
     {
@@ -29503,7 +29506,7 @@
     // 将更新的内容挂载到更新对象的payload中
         // 将要更新的组件存储在payload对象中,方便后期获取
     update.payload = {
-      element: element
+      element: element // 套渲染的 reactElement
     };
     callback = callback === undefined ? null : callback;
 
@@ -29526,7 +29529,6 @@
     //     最终返回的是 FiberRoot
 
     var root = enqueueUpdate(current$1, update, lane);
-
     if (root !== null) {
       //   开始进行任务调度
       //   root初始时为 fiberRoot
