@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-04T15:02:48.908Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="T8mt3QPy1Ik7kCjgOK9w" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-04T15:24:26.588Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="tmtVn7X4gIrT_sIUr184" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2490" dy="1622" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -298,8 +298,20 @@
         <mxCell id="h-iX1Kgf-Yki13LX6SZM-3" value="updateContainer" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1710" y="-1090" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="h-iX1Kgf-Yki13LX6SZM-5" target="h-iX1Kgf-Yki13LX6SZM-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="h-iX1Kgf-Yki13LX6SZM-5" value="处理context" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1710" y="-950" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="h-iX1Kgf-Yki13LX6SZM-7" target="h-iX1Kgf-Yki13LX6SZM-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-7" value="createUpdate" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1910" y="-950" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="h-iX1Kgf-Yki13LX6SZM-9" value="enqueueUpdate" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2090" y="-950" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
