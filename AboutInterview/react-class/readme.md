@@ -639,4 +639,7 @@ ReactElement = function (
 createElement 就是创建了一个个 ReactElement(包括组件和普通元素节点)
 
 -[x] [render 的过程](./render.md)
--[ ] context 的处理 
+-[ ] context 的处理
+-[ ] React.createClass
+-[ ] 类组件 componentWillReceiveProps
+-[ ] 类组件 componentWillMount 

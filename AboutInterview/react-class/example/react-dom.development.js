@@ -25850,7 +25850,6 @@
        * 遍历更新子节点的过期时间
        * */
     markRootUpdated(root, lane, eventTime);
-debugger
     if ((executionContext & RenderContext) !== NoLanes && root === workInProgressRoot) {
       // This update was dispatched during the render phase. This is a mistake
       // if the update originates from user space (with the exception of local
@@ -25892,7 +25891,6 @@ debugger
       }
 
       ensureRootIsScheduled(root, eventTime);
-
       if (lane === SyncLane &&
           executionContext === NoContext &&
           (fiber.mode & ConcurrentMode) === NoMode &&
@@ -25903,6 +25901,8 @@ debugger
         // scheduleCallbackForFiber to preserve the ability to schedule a callback
         // without immediately flushing it. We only do this for user-initiated
         // updates, to preserve historical behavior of legacy mode.
+             debugger
+          // 这里 暂时不知道 何时会触发 所以加个 断点
         resetRenderTimer();
         flushSyncCallbacksOnlyInLegacyMode();
       }
@@ -25980,12 +25980,16 @@ debugger
 
     if (existingCallbackNode != null) {
       // Cancel the existing callback. We'll schedule a new one below.
+        debugger
+      //   不知道和何时执行，加上断点
       cancelCallback$1(existingCallbackNode);
     } // Schedule a new callback.
 
 
     var newCallbackNode;
     if (newCallbackPriority === SyncLane) {
+        debugger
+        //   不知道和何时执行，加上断点
       // Special case: Sync React callbacks are scheduled on a special
       // internal queue
       if (root.tag === LegacyRoot) {
@@ -26046,8 +26050,13 @@ debugger
           schedulerPriorityLevel = NormalPriority;
           break;
       }
-
-      newCallbackNode = scheduleCallback$1(schedulerPriorityLevel, performConcurrentWorkOnRoot.bind(null, root));
+        debugger
+      const callback =  performConcurrentWorkOnRoot.bind(null, root)
+      //   和渲染有关的部分
+      newCallbackNode = scheduleCallback$1(
+          schedulerPriorityLevel,// 与优先级相关的参数
+          callback
+         );
     }
 
     root.callbackPriority = newCallbackPriority;
@@ -26056,7 +26065,10 @@ debugger
   // goes through Scheduler.
 
 
+      // this 指向null
+  //   root  fiberRoot
   function performConcurrentWorkOnRoot(root, didTimeout) {
+
     {
       resetNestedUpdateFlag();
     } // Since we know we're in a React event, we can clear the current
