@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-05T11:46:49.640Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="FAPK-Y_N1Sj95oLxL081" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-05T11:49:52.024Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="SGLJTzhUuzunhomINyQf" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2344" dy="1513" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -421,7 +421,7 @@
         <mxCell id="Sxzqt3OgCZOHTu_b6IyV-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Sxzqt3OgCZOHTu_b6IyV-18" target="Sxzqt3OgCZOHTu_b6IyV-20">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Sxzqt3OgCZOHTu_b6IyV-18" value="大致过程是 检查类组件实例的方法 和状态，然后调用示例的render方法生成子元素。" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="Sxzqt3OgCZOHTu_b6IyV-18" value="大致过程是 检查类组件实例的方法 和状态，然后调用示例的render方法生成React子元素。" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="2690" y="-390" width="160" height="110" as="geometry" />
         </mxCell>
         <mxCell id="Sxzqt3OgCZOHTu_b6IyV-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Sxzqt3OgCZOHTu_b6IyV-20" target="Sxzqt3OgCZOHTu_b6IyV-22">
