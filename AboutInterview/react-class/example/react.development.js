@@ -2709,7 +2709,6 @@
     var currentTime = initialTime;
     advanceTimers(currentTime);
     currentTask = peek(taskQueue);
-
     while (currentTask !== null && !(enableSchedulerDebugging )) {
       if (currentTask.expirationTime > currentTime && (!hasTimeRemaining || shouldYieldToHost())) {
         // This currentTask hasn't expired, and we've reached the deadline.

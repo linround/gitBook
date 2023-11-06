@@ -26050,7 +26050,6 @@
           schedulerPriorityLevel = NormalPriority;
           break;
       }
-        debugger
       const callback =  performConcurrentWorkOnRoot.bind(null, root)
       //   和渲染有关的部分
       newCallbackNode = scheduleCallback$1(
