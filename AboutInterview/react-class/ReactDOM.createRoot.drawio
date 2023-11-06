@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-06T14:42:28.235Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="jfih0_EMbg0_o5T07W4k" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-06T14:52:56.754Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="7LZKwSCYF5AMJU3VN82C" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2876" dy="1831" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -451,8 +451,8 @@
         <mxCell id="Kkz64YNzXOYE6sAfFIfS-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Kkz64YNzXOYE6sAfFIfS-5" target="Kkz64YNzXOYE6sAfFIfS-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Kkz64YNzXOYE6sAfFIfS-5" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;newTask&lt;/font&gt;&lt;/b&gt;&lt;br&gt;performConcurrentWorkOnRoot 就是这个task的callback" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="3308" y="-320" width="232" height="60" as="geometry" />
+        <mxCell id="Kkz64YNzXOYE6sAfFIfS-5" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;newTask&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;performConcurrentWorkOnRoot &lt;/b&gt;&lt;/font&gt;就是这个task的callback" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3308" y="-320" width="232" height="120" as="geometry" />
         </mxCell>
         <mxCell id="Kkz64YNzXOYE6sAfFIfS-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Kkz64YNzXOYE6sAfFIfS-7" target="Kkz64YNzXOYE6sAfFIfS-9">
           <mxGeometry relative="1" as="geometry" />
@@ -501,8 +501,26 @@
         <mxCell id="Kkz64YNzXOYE6sAfFIfS-20" value="workLoop" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="3910" y="-500" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="Kkz64YNzXOYE6sAfFIfS-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Kkz64YNzXOYE6sAfFIfS-22" target="Kkz64YNzXOYE6sAfFIfS-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="Kkz64YNzXOYE6sAfFIfS-22" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;peek&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;从&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;taskQueue&lt;/font&gt;&lt;/b&gt; 中 获取第一个task" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="3905" y="-680" width="130" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Kkz64YNzXOYE6sAfFIfS-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Kkz64YNzXOYE6sAfFIfS-24" target="Kkz64YNzXOYE6sAfFIfS-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Kkz64YNzXOYE6sAfFIfS-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Kkz64YNzXOYE6sAfFIfS-24" target="Kkz64YNzXOYE6sAfFIfS-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Kkz64YNzXOYE6sAfFIfS-24" value="callback&lt;br&gt;调用currentTask的callback;&lt;br&gt;&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;performConcurrentWorkOnRoot&lt;/font&gt;&lt;/b&gt;" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="4110" y="-692.5" width="270" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="Kkz64YNzXOYE6sAfFIfS-26" value="" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="4185" y="-410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Kkz64YNzXOYE6sAfFIfS-28" value="getNextLanes" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="4460" y="-645" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
