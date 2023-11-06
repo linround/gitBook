@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-06T15:04:43.038Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="PlMYW_pn5kQBdPP34UE0" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-06T15:09:44.319Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="oI5IqAJHBVc4XXDSwuaN" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2876" dy="1831" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -510,6 +510,14 @@
         <mxCell id="Kkz64YNzXOYE6sAfFIfS-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Kkz64YNzXOYE6sAfFIfS-24" target="Kkz64YNzXOYE6sAfFIfS-28">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="Kkz64YNzXOYE6sAfFIfS-53" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Kkz64YNzXOYE6sAfFIfS-24" target="Kkz64YNzXOYE6sAfFIfS-52">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Kkz64YNzXOYE6sAfFIfS-54" value="workInProgress构建完成" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Kkz64YNzXOYE6sAfFIfS-53">
+          <mxGeometry x="-0.194" y="-1" relative="1" as="geometry">
+            <mxPoint x="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="Kkz64YNzXOYE6sAfFIfS-24" value="callback&lt;br&gt;调用currentTask的callback;&lt;br&gt;&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;performConcurrentWorkOnRoot&lt;/font&gt;&lt;/b&gt;" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="4110" y="-692.5" width="270" height="155" as="geometry" />
         </mxCell>
@@ -583,6 +591,15 @@
         </mxCell>
         <mxCell id="Kkz64YNzXOYE6sAfFIfS-46" value="alternate" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="4000" y="90" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Kkz64YNzXOYE6sAfFIfS-56" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Kkz64YNzXOYE6sAfFIfS-52" target="Kkz64YNzXOYE6sAfFIfS-55">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Kkz64YNzXOYE6sAfFIfS-52" value="workLoopSync" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="4620" y="-644" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Kkz64YNzXOYE6sAfFIfS-55" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;performUnitOfWork&lt;/font&gt;&lt;/b&gt;(workInProgress)" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="4830" y="-644" width="270" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
