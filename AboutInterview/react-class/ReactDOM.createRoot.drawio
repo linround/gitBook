@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-07T14:15:23.583Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="LnpK65L5i_2mX0CrD1x4" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-07T14:17:32.167Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="XgRSzg0E_s_hZmH4vBsO" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2876" dy="1831" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -619,7 +619,7 @@
         <mxCell id="_2xaCofTkVYn0crupiu--8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--5" target="_2xaCofTkVYn0crupiu--7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="_2xaCofTkVYn0crupiu--5" value="updateHostRoot" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+        <mxCell id="_2xaCofTkVYn0crupiu--5" value="updateHostRoot&lt;br&gt;&lt;br&gt;返回值workInProgress.child" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="4710" y="-364" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--7" target="_2xaCofTkVYn0crupiu--9">
@@ -634,8 +634,14 @@
         <mxCell id="_2xaCofTkVYn0crupiu--9" value="processUpdateQueue&lt;br&gt;&lt;br&gt;处理workInProgress" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="4907.5" y="-220" width="195" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--11" target="_2xaCofTkVYn0crupiu--13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--11" value="reconcileChildren" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="5220" y="-220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--13" value="reconcileChildFibers&lt;br&gt;&lt;br&gt;返回值赋值给 workInProgress.child" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="5170" y="-444" width="220" height="100" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
