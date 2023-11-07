@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-07T14:05:13.967Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="eqoCtKYJwtXHbxbwW6Q3" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-07T14:05:57.828Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="LUGJcWRY5q53D7tSwO3E" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2876" dy="1831" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -622,8 +622,14 @@
         <mxCell id="_2xaCofTkVYn0crupiu--5" value="updateHostRoot" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="4710" y="-364" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--7" target="_2xaCofTkVYn0crupiu--9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--7" value="cloneUpdateQueue&lt;br&gt;将旧的fiber的updateQueue 部分属性&lt;br&gt;克隆到 workInProgress 的updateQueue中" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="4900" y="-388" width="210" height="106" as="geometry" />
+        </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--9" value="processUpdateQueue&lt;br&gt;&lt;br&gt;处理workInProgress" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="4907.5" y="-220" width="195" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
