@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-07T15:47:12.383Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="z0YsSRDzTKw6ivbhAi-c" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-07T15:50:44.281Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="PbOB8uaZI3S4Yho38XMi" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2876" dy="1831" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -610,6 +610,11 @@
         <mxCell id="_2xaCofTkVYn0crupiu--66" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--1" target="_2xaCofTkVYn0crupiu--65">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--67" value="fiber构建完成后" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1;labelBackgroundColor=#1A1A1A;fontColor=#FFD966;" vertex="1" connectable="0" parent="_2xaCofTkVYn0crupiu--66">
+          <mxGeometry x="0.0478" y="-8" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--1" value="beginWork$1&lt;br&gt;&lt;br&gt;旧的fiber current&lt;br&gt;新的fiber&amp;nbsp;&lt;br&gt;&lt;br&gt;这个函数 主要是构建fiber" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="4902.5" y="-522" width="145" height="84" as="geometry" />
         </mxCell>
@@ -797,8 +802,8 @@
         <mxCell id="_2xaCofTkVYn0crupiu--61" value="再次进入 workLoopSync" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="5781.25" y="230" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="_2xaCofTkVYn0crupiu--65" value="completeUnitOfWork" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="5090" y="-960" width="250" height="60" as="geometry" />
+        <mxCell id="_2xaCofTkVYn0crupiu--65" value="completeUnitOfWork&lt;br&gt;&lt;br&gt;从最里面的 子fiber 开始执行&lt;br&gt;&lt;br&gt;应为之前构建fiber 的方式是从父亲 到子&lt;br&gt;所以最终的workinProgress 是最里面的子元素" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="5060" y="-980" width="280" height="150" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
