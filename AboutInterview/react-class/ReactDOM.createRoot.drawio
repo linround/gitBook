@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-07T14:26:25.741Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="oU3qZV_5mVnIC3cZHlXY" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-07T14:27:42.430Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="qfVZbZfk_pISB_37IiKI" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2876" dy="1831" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -675,8 +675,21 @@
         <mxCell id="_2xaCofTkVYn0crupiu--21" value="placeSingleChild" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="5765" y="-424" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--24" target="Kkz64YNzXOYE6sAfFIfS-52">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="5825" y="-740" />
+              <mxPoint x="4680" y="-740" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--27" value="这里再次回到了&amp;nbsp;workLoopSync" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="_2xaCofTkVYn0crupiu--26">
+          <mxGeometry x="-0.1132" y="5" relative="1" as="geometry">
+            <mxPoint x="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--24" value="fiber赋值给了 workInprogress.child" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="5765" y="-300" width="120" height="60" as="geometry" />
+          <mxGeometry x="5765" y="-564" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
