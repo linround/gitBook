@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-07T14:35:18.977Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="6XHqVZzzaoKSIp0LPcP1" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-07T14:36:28.798Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="2d3YDPkbcxn4B-7Qa0Ot" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2876" dy="1831" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -618,6 +618,17 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="_2xaCofTkVYn0crupiu--29">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="4771.000000000001" y="-310" as="sourcePoint" />
+            <mxPoint x="4771.000000000001" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--31" value="这是类组件节点" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="_2xaCofTkVYn0crupiu--30">
+          <mxGeometry x="-0.369" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--3" value="beginWork" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="4710" y="-370" width="120" height="60" as="geometry" />
         </mxCell>
@@ -695,6 +706,9 @@
         </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--24" value="fiber赋值给了 workInprogress.child&lt;br&gt;&lt;br&gt;" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="5765" y="-564" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--29" value="updateClassComponent" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="4580" y="130" width="160" height="100" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
