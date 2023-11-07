@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-07T14:54:24.630Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="zO-XCQRmFHConEfdHG47" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-07T15:29:12.793Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="jAPWp_Z024VAjrSGfCmJ" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2876" dy="1831" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -710,13 +710,13 @@
         <mxCell id="_2xaCofTkVYn0crupiu--34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--29" target="_2xaCofTkVYn0crupiu--33">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="_2xaCofTkVYn0crupiu--51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--29" target="_2xaCofTkVYn0crupiu--50">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--29" value="updateClassComponent" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="4605" y="210" width="160" height="100" as="geometry" />
         </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--33" target="_2xaCofTkVYn0crupiu--35">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--33" target="_2xaCofTkVYn0crupiu--50">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--33" value="constructClassInstance" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
@@ -770,11 +770,23 @@
         <mxCell id="_2xaCofTkVYn0crupiu--53" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--50" target="_2xaCofTkVYn0crupiu--52">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--56" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--50" target="_2xaCofTkVYn0crupiu--55">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--50" value="mountClassInstance" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="5040" y="230" width="225" height="60" as="geometry" />
         </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--52" value="checkClassInstance&lt;br&gt;&lt;br&gt;检查实例上的属性&lt;br&gt;&lt;br&gt;在这里可以看到很多实例属性上可以定义的方法" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="5048.75" y="370" width="211.25" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--58" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--55" target="_2xaCofTkVYn0crupiu--57">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--55" value="finishClassComponent" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="5397.5" y="230" width="242.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--57" value="reconcileChildren&lt;br&gt;&lt;br&gt;生成类组件的子fiber&lt;br&gt;&lt;br&gt;返回类组件的子fiber&lt;br&gt;&lt;br&gt;并设置为 workInRrogress" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="5413.13" y="380" width="211.25" height="170" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
