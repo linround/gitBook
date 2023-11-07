@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-07T15:29:48.579Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="L2M_KgyDF70hjJZG0vnz" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-07T15:41:37.867Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="O2Nac9QNIcVomD_rA8Vp" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2876" dy="1831" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -659,7 +659,7 @@
         <mxCell id="_2xaCofTkVYn0crupiu--16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--13" target="_2xaCofTkVYn0crupiu--15">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="_2xaCofTkVYn0crupiu--13" value="reconcileChildFibers&lt;br&gt;&lt;br&gt;返回值赋值给 workInProgress.child" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+        <mxCell id="_2xaCofTkVYn0crupiu--13" value="reconcileChildFibers&lt;br&gt;这个函数的主要作用就是 生成fiber&lt;br&gt;&lt;br&gt;返回值赋值给 workInProgress.child" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="5170" y="-444" width="220" height="100" as="geometry" />
         </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--15" target="_2xaCofTkVYn0crupiu--17">
