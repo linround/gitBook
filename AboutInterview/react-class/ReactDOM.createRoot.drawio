@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-07T14:32:13.962Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="wtW_A1UyczTVvFCO1H6w" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-07T14:33:31.661Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="bMm6yNzzHaASlGBsA76k" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2876" dy="1831" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -595,8 +595,8 @@
         <mxCell id="Kkz64YNzXOYE6sAfFIfS-56" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="Kkz64YNzXOYE6sAfFIfS-52" target="Kkz64YNzXOYE6sAfFIfS-55" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Kkz64YNzXOYE6sAfFIfS-52" value="workLoopSync" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="4620" y="-644" width="120" height="60" as="geometry" />
+        <mxCell id="Kkz64YNzXOYE6sAfFIfS-52" value="workLoopSync&lt;br&gt;&lt;br&gt;可见这里的主要作用在于，将ReactElement 生成 fiber" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="4605" y="-665" width="150" height="104" as="geometry" />
         </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Kkz64YNzXOYE6sAfFIfS-55" target="_2xaCofTkVYn0crupiu--1">
           <mxGeometry relative="1" as="geometry" />
