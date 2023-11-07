@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-07T14:18:46.273Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="50CXLx56gyI7R1OyZgeC" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-07T14:20:47.477Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="NVHEuRvMQVn_yZihVx7q" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2876" dy="1831" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -646,8 +646,20 @@
         <mxCell id="_2xaCofTkVYn0crupiu--13" value="reconcileChildFibers&lt;br&gt;&lt;br&gt;返回值赋值给 workInProgress.child" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="5170" y="-444" width="220" height="100" as="geometry" />
         </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--15" target="_2xaCofTkVYn0crupiu--17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--15" value="reconcileSingleElement" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="5520" y="-424" width="190" height="60" as="geometry" />
+          <mxGeometry x="5460" y="-424" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--17" target="_2xaCofTkVYn0crupiu--19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--17" value="createFiberFromElement" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="5467.5" y="-287" width="175" height="114" as="geometry" />
+        </mxCell>
+        <mxCell id="_2xaCofTkVYn0crupiu--19" value="createFiberFromTypeAndProps" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="5472.5" y="-100" width="165" height="86" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
