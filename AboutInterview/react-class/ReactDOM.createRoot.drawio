@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-08T13:58:04.694Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="rNcK1HRz6UYzE4A4R3FF" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-08T14:00:05.013Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="EKNOlbiOgQMlmEZ4pwB4" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2647" dy="2876" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -819,8 +819,14 @@
         <mxCell id="_2xaCofTkVYn0crupiu--68" value="completeWork&lt;br&gt;&lt;br&gt;传入 旧的fiber 和 当前要生成&lt;br&gt;真实DOM的fiber" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="5433.76" y="-1362.5" width="170" height="195" as="geometry" />
         </mxCell>
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MP3h6NOYgHEmSVx4VXWN-1" target="MP3h6NOYgHEmSVx4VXWN-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="MP3h6NOYgHEmSVx4VXWN-1" value="createTextInstance(&lt;br&gt;newText, // 文本内容&lt;br&gt;_rootContainerInstance,// 根容器DOM&lt;br&gt;_currentHostContext,// 上下文&lt;br&gt;workInProgress//当前要生成DOM的 fiber&lt;br&gt;);" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="5373.76" y="-1100" width="289.99" height="160" as="geometry" />
+          <mxGeometry x="6058" y="-1080" width="289.99" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-4" value="创建真实DOM节点&lt;br&gt;并将fiber 缓存到 DOM节点中" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="6120" y="-880" width="165.51" height="70" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
