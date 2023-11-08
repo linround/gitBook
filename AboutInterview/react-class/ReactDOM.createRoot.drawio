@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-11-08T13:18:11.899Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="PJ9H8ik7gkjuSmBUoGXa" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-08T13:43:38.703Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="A72eesumUvWJz7AjESXP" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
-    <mxGraphModel dx="2490" dy="2791" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2647" dy="2876" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -808,7 +808,7 @@
         <mxCell id="_2xaCofTkVYn0crupiu--65" value="completeUnitOfWork&lt;br&gt;&lt;br&gt;从最里面的 子fiber 开始执行&lt;br&gt;&lt;br&gt;应为之前构建fiber 的方式是从父亲 到子&lt;br&gt;所以最终的workinProgress 是最里面的子元素" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="5070" y="-1340" width="280" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="_2xaCofTkVYn0crupiu--68" value="completeWork&lt;br&gt;" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" parent="1" vertex="1">
+        <mxCell id="_2xaCofTkVYn0crupiu--68" value="completeWork&lt;br&gt;&lt;br&gt;传入 旧的fiber 和 当前要生成&lt;br&gt;真实DOM的fiber" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="5433.76" y="-1362.5" width="170" height="195" as="geometry" />
         </mxCell>
       </root>
