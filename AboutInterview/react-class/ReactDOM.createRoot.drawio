@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-11-08T14:02:53.531Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="sTWrNF4-Yt1TT6xsp8FJ" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-08T14:43:37.635Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="pdx3OA8tb6TRz0hky08d" version="22.0.8" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
-    <mxGraphModel dx="2647" dy="2876" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2588" dy="2844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -608,7 +608,11 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--66" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="_2xaCofTkVYn0crupiu--1" target="_2xaCofTkVYn0crupiu--65" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="5210" y="-470" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="_2xaCofTkVYn0crupiu--67" value="fiber构建完成后" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=14;fontStyle=1;labelBackgroundColor=#1A1A1A;fontColor=#FFD966;" parent="_2xaCofTkVYn0crupiu--66" vertex="1" connectable="0">
           <mxGeometry x="0.0478" y="-8" relative="1" as="geometry">
@@ -827,6 +831,36 @@
         </mxCell>
         <mxCell id="MP3h6NOYgHEmSVx4VXWN-4" value="创建真实DOM节点&lt;br&gt;并将fiber 缓存到 DOM节点中" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="6120" y="-890" width="165.51" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MP3h6NOYgHEmSVx4VXWN-6" target="MP3h6NOYgHEmSVx4VXWN-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MP3h6NOYgHEmSVx4VXWN-6" target="MP3h6NOYgHEmSVx4VXWN-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-6" value="1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="4240" y="3240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-7" value="2" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="4120" y="3350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MP3h6NOYgHEmSVx4VXWN-9" target="MP3h6NOYgHEmSVx4VXWN-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MP3h6NOYgHEmSVx4VXWN-9" target="MP3h6NOYgHEmSVx4VXWN-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MP3h6NOYgHEmSVx4VXWN-9" target="MP3h6NOYgHEmSVx4VXWN-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-9" value="3" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="4354" y="3350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-11" value="4" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="4250" y="3460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-14" value="5" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="4440" y="3460" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
