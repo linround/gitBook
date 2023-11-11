@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-11-08T14:43:37.635Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="pdx3OA8tb6TRz0hky08d" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-11T13:28:52.162Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="FbSNxWkO1KFE0nuSH7EX" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
-    <mxGraphModel dx="2588" dy="2844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2977" dy="3121" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -812,10 +812,10 @@
         <mxCell id="_2xaCofTkVYn0crupiu--65" value="completeUnitOfWork&lt;br&gt;&lt;br&gt;从最里面的 子fiber 开始执行，然后执行&lt;br&gt;兄弟fiber,最后处理父fiber&lt;br&gt;&lt;br&gt;应为之前构建fiber 的方式是从父亲 到子&lt;br&gt;所以最终的workinProgress 是最里面的子元素" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="5070" y="-1340" width="280" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_2xaCofTkVYn0crupiu--68" target="MP3h6NOYgHEmSVx4VXWN-1">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="_2xaCofTkVYn0crupiu--68" target="MP3h6NOYgHEmSVx4VXWN-1" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-3" value="普通文本fiber" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="MP3h6NOYgHEmSVx4VXWN-2">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-3" value="普通文本fiber" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="MP3h6NOYgHEmSVx4VXWN-2" vertex="1" connectable="0">
           <mxGeometry x="-0.3017" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -823,44 +823,47 @@
         <mxCell id="_2xaCofTkVYn0crupiu--68" value="completeWork&lt;br&gt;&lt;br&gt;传入 旧的fiber 和 当前要生成&lt;br&gt;真实DOM的fiber" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="5433.76" y="-1362.5" width="170" height="195" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MP3h6NOYgHEmSVx4VXWN-1" target="MP3h6NOYgHEmSVx4VXWN-4">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="MP3h6NOYgHEmSVx4VXWN-1" target="MP3h6NOYgHEmSVx4VXWN-4" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-1" value="createTextInstance(&lt;br&gt;newText, // 文本内容&lt;br&gt;_rootContainerInstance,// 根容器DOM&lt;br&gt;_currentHostContext,// 上下文&lt;br&gt;workInProgress//当前要生成DOM的 fiber&lt;br&gt;);" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-1" value="createTextInstance(&lt;br&gt;newText, // 文本内容&lt;br&gt;_rootContainerInstance,// 根容器DOM&lt;br&gt;_currentHostContext,// 上下文&lt;br&gt;workInProgress//当前要生成DOM的 fiber&lt;br&gt;);" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="5765" y="-1140" width="289.99" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-4" value="创建真实DOM节点&lt;br&gt;并将fiber 缓存到 DOM节点中" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" vertex="1" parent="1">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-4" value="创建真实DOM节点&lt;br&gt;并将fiber 缓存到 DOM节点中" style="whiteSpace=wrap;html=1;fillColor=#4D4D4D;strokeColor=#1A1A1A;fontColor=#FFD966;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="6120" y="-890" width="165.51" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MP3h6NOYgHEmSVx4VXWN-6" target="MP3h6NOYgHEmSVx4VXWN-7">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="MP3h6NOYgHEmSVx4VXWN-6" target="MP3h6NOYgHEmSVx4VXWN-7" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MP3h6NOYgHEmSVx4VXWN-6" target="MP3h6NOYgHEmSVx4VXWN-9">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="MP3h6NOYgHEmSVx4VXWN-6" target="MP3h6NOYgHEmSVx4VXWN-9" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-6" value="1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-6" value="1" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="4240" y="3240" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-7" value="2" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-7" value="2" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="4120" y="3350" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MP3h6NOYgHEmSVx4VXWN-9" target="MP3h6NOYgHEmSVx4VXWN-11">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="MP3h6NOYgHEmSVx4VXWN-9" target="MP3h6NOYgHEmSVx4VXWN-11" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MP3h6NOYgHEmSVx4VXWN-9" target="MP3h6NOYgHEmSVx4VXWN-11">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="MP3h6NOYgHEmSVx4VXWN-9" target="MP3h6NOYgHEmSVx4VXWN-11" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MP3h6NOYgHEmSVx4VXWN-9" target="MP3h6NOYgHEmSVx4VXWN-14">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="MP3h6NOYgHEmSVx4VXWN-9" target="MP3h6NOYgHEmSVx4VXWN-14" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-9" value="3" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-9" value="3" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="4354" y="3350" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-11" value="4" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-11" value="4" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="4250" y="3460" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="MP3h6NOYgHEmSVx4VXWN-14" value="5" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+        <mxCell id="MP3h6NOYgHEmSVx4VXWN-14" value="5" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="4440" y="3460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3YPoGdAeda6B-dxTKp2B-1" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="7490" y="-340" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
