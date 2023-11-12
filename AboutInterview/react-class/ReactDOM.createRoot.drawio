@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T11:06:27.927Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="lHzfW1j9T2HUK33t_MEZ" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T11:06:58.955Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="6JOOmQ3Gg3pR5w8pBArk" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2095" dy="2599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -919,8 +919,14 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-18" value="ensureRootIsScheduled&lt;br&gt;&lt;br&gt;创建一个performConcurrentWorkOnRoot&lt;br&gt;的回调函数，并传入 root" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="6441.88" y="5090" width="210" height="110" as="geometry" />
         </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-20" target="NOahR9SfHAQmdZWs11Yp-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-20" value="scheduleCallback$1" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="6486.88" y="5305" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-22" value="scheduleCallback" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="6486.88" y="5445" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
