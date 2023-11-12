@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T11:18:00.350Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="fH9EpW1_3NwZmW2GGEEp" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T11:18:32.637Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="v-Pb0VG767cY7JZMltrp" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2095" dy="2599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -955,8 +955,14 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-30" value="performWorkUntilDeadline&lt;br&gt;监听到 message后开始执行" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="6425.32" y="6040" width="243.12" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-32" target="NOahR9SfHAQmdZWs11Yp-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-32" value="scheduledHostCallback开始执行&lt;br&gt;&lt;br&gt;因为之前以及被赋值为flushWork&amp;nbsp;&lt;br&gt;所以实际就是执行flushWork&amp;nbsp;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="6452.04" y="6150" width="189.68" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-34" value="workLoop执行" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="6486.88" y="6365" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
