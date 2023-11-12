@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T11:41:25.206Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="cx3mbteuRpnQ7AsCF3Ak" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T11:42:06.280Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="KSxBahc-CeWer-r1a6Bl" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2095" dy="2599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -982,8 +982,8 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-45" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-42" target="NOahR9SfHAQmdZWs11Yp-44">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="NOahR9SfHAQmdZWs11Yp-42" value="workLoopSync&lt;br&gt;这是一个while循环&lt;br&gt;只要workInProgress 不为null&lt;br&gt;一直执行&lt;br&gt;performUnitOfWork(workInProgress)&lt;br&gt;&lt;br&gt;最开始 就从 root 构建的那个workInProgress开始" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="6425.320000000001" y="6850" width="244.69" height="130" as="geometry" />
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-42" value="workLoopSync&lt;br&gt;这是一个while循环&lt;br&gt;只要workInProgress 不为null&lt;br&gt;一直执行&lt;br&gt;performUnitOfWork(workInProgress)&lt;br&gt;&lt;br&gt;最开始 就从 root 构建的那个workInProgress开始&lt;br&gt;&lt;br&gt;所以只要有需要构建的fiber，直接赋值给&lt;br&gt;全局变量workInProgress即可" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="6425.32" y="6850" width="244.68" height="180" as="geometry" />
         </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-44" value="performUnitOfWork(workInProgress);" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="6406.5" y="7070" width="282.33" height="60" as="geometry" />
