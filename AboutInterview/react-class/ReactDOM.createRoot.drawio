@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T13:18:32.449Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="tVXHUnARuqAW75GVSnbt" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T13:19:51.807Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="yCXwA1gf-AUywLZb-Kf1" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2588" dy="2891" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -1081,8 +1081,20 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-75" value="HostComponent&lt;br&gt;创建普通元素真实DOM节点，将子fiber形成的真实DOM节点赋值给 当前父真实DOM节点&lt;br&gt;&lt;br&gt;返回的null" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="6893.75" y="7599" width="222.5" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="NOahR9SfHAQmdZWs11Yp-78" value="finishConcurrentRender&lt;br&gt;将创建的真实DOM渲染到页面上" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-83" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-78" target="NOahR9SfHAQmdZWs11Yp-82">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-78" value="finishConcurrentRender&lt;br&gt;将创建的真实DOM渲染到页面上" style="whiteSpace=wrap;html=1;rounded=0;fontColor=#FFD966;fillColor=#000000;" vertex="1" parent="1">
           <mxGeometry x="6790" y="6580" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-85" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-82" target="NOahR9SfHAQmdZWs11Yp-84">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-82" value="commitRoot&lt;br&gt;返回null" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="7240" y="6580" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-84" value="commitRootImpl" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="7440" y="6580" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
