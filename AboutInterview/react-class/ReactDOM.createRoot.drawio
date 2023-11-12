@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T12:31:22.288Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="qmD-Jt4C89q3H1W14r-_" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T12:32:40.814Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="DyDLym6ngW5zQoUB_1-t" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2095" dy="2599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -1043,7 +1043,7 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-65" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-62" target="NOahR9SfHAQmdZWs11Yp-64">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="NOahR9SfHAQmdZWs11Yp-62" value="createChild&lt;br&gt;&lt;br&gt;创建文本fiber节点_newFiber&lt;br&gt;将第一个赋值给resultingFirstChild以便后续返回" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-62" value="createChild&lt;br&gt;&lt;br&gt;创建文本fiber节点_newFiber&lt;br&gt;将第一个赋值给resultingFirstChild以便后续返回，使用previousNewFiber这个局部变量确定各fiber的兄弟关系" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="5894.2300000000005" y="8043" width="156.91" height="140" as="geometry" />
         </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-64" value="createFiberFromText&lt;br&gt;创建文本节点的fiber&lt;br&gt;并确立其父 fiber节点&lt;br&gt;&lt;br&gt;返回该文本 fiber&lt;br&gt;&lt;br&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
