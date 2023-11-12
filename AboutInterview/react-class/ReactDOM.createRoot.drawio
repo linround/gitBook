@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T12:50:22.281Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="1rZG1m1VO_D_xwwUEJte" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T12:51:47.317Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="mi10l2oFWdf1IdlF5ImQ" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2316" dy="2730" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -1060,7 +1060,7 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-71" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-66" target="NOahR9SfHAQmdZWs11Yp-70">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="NOahR9SfHAQmdZWs11Yp-66" value="completeUnitOfWork&lt;br&gt;开始从最内部fiber进行执行,&lt;br&gt;&lt;div&gt;这里接收返回值 next,在没有子节点的情况下&lt;/div&gt;&lt;div&gt;再将兄弟节点赋值给workInprogress&lt;br&gt;兄弟节点进入了&lt;br&gt;&amp;nbsp;performUnitOfWork=》beginWork$1。兄弟节点在没有 next的情况下，进入了completeUnitOfWork&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-66" value="completeUnitOfWork&lt;br&gt;开始从最内部fiber进行执行,&lt;br&gt;&lt;div&gt;这里接收返回值 next,在没有子节点的情况下&lt;/div&gt;&lt;div&gt;再将兄弟节点赋值给workInprogress&lt;br&gt;兄弟节点进入了&lt;br&gt;&amp;nbsp;performUnitOfWork=》beginWork$1。兄弟节点在没有 next的情况下，进入了completeUnitOfWork&lt;br&gt;&lt;br&gt;在兄弟fiber节点也处理完成后，进入了父fiber;&lt;br&gt;将父fiber赋值给了 workInprogress&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="6922.5" y="7167.5" width="270" height="165" as="geometry" />
         </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-73" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-70" target="NOahR9SfHAQmdZWs11Yp-72">
