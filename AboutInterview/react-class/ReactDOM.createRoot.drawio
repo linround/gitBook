@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T10:06:26.241Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="l7tG0d_ob9a4skGVv-Mw" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T10:08:10.645Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="1QzgFNHv1doDtNLtUnjy" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2183" dy="2651" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -895,8 +895,26 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-10" value="createUpdate&lt;br&gt;创建一个任务&lt;br&gt;这个任务的 payload&lt;br&gt;的element属性 就是要渲染的 ReactElement" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="5895" y="4910" width="125" height="140" as="geometry" />
         </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-12" target="NOahR9SfHAQmdZWs11Yp-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-12" value="&amp;nbsp;enqueueUpdate&lt;br&gt;&lt;br&gt;在rootFiber中创建初始的任务调用 单向链表" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="6102.5" y="4925" width="147.5" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-14" target="NOahR9SfHAQmdZWs11Yp-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-14" target="NOahR9SfHAQmdZWs11Yp-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-14" value="&amp;nbsp;scheduleUpdateOnFiber(root, current$1, lane, eventTime);&lt;br&gt;开始任务调度，传入 fiberRoot,rootFiber" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="6343.75" y="4950" width="406.25" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-16" value="entangleTransitions" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="6973.125" y="4950" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-18" value="" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="6486.875" y="5090" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
