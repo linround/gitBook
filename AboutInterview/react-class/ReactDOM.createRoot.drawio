@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T12:34:12.311Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="5NFFmVX9CuN6YKuRWAlO" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T12:35:27.840Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="bTFYQB9N3BLHf_FKi0e9" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2095" dy="2599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -1020,7 +1020,7 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-55" target="NOahR9SfHAQmdZWs11Yp-57">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="NOahR9SfHAQmdZWs11Yp-55" value="reconcileChildren&lt;br&gt;在这里会使用mountChildFibers&lt;br&gt;并且mountChildFibers的返回值赋值给了workInProgress.child，以便后续对子workInProgress的调用；这个子 即影响performUnitOfWork的next&lt;br&gt;&lt;br&gt;" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#000000;fontColor=#FFD966;" vertex="1" parent="1">
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-55" value="reconcileChildren&lt;br&gt;在这里会使用mountChildFibers&lt;br&gt;并且mountChildFibers的返回值赋值给了workInProgress.child，以便后续对子workInProgress的调用；这个子 即影响performUnitOfWork的next&lt;br&gt;&lt;br&gt;接收到子文本fiber,赋值给了next" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#000000;fontColor=#FFD966;" vertex="1" parent="1">
           <mxGeometry x="5913.09" y="7660" width="285.93" height="110" as="geometry" />
         </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-60" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-57" target="NOahR9SfHAQmdZWs11Yp-59">
