@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T13:29:49.099Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="HC8eqCCK-uZRJu3Tt-r-" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T13:31:38.952Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="8-gCJg9caYLvwETb95LG" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2588" dy="2891" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -1108,6 +1108,19 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-91" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-88" target="NOahR9SfHAQmdZWs11Yp-90">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-101" value="子模块" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="NOahR9SfHAQmdZWs11Yp-91">
+          <mxGeometry x="0.116" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-99" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-88" target="NOahR9SfHAQmdZWs11Yp-98">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-103" value="同级模块" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="NOahR9SfHAQmdZWs11Yp-99">
+          <mxGeometry x="-0.1203" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-88" value="commitMutationEffects(root, finishedWork, lanes);" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="8060" y="6570" width="470" height="80" as="geometry" />
         </mxCell>
@@ -1131,6 +1144,9 @@
         </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-96" value="insertOrAppendPlacementNodeIntoContainer&lt;br&gt;插入真实节点" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="9533.75" y="6580" width="276.25" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-98" value="" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="8235" y="6740" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
