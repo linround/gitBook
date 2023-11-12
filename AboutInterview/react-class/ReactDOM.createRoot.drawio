@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T11:30:48.821Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="rNXJfAyM1lJ4DDcfUNUb" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T11:39:41.784Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="ro4VB-mgWH06rNhdfCUp" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2095" dy="2599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -976,8 +976,8 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-40" target="NOahR9SfHAQmdZWs11Yp-42">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="NOahR9SfHAQmdZWs11Yp-40" value="renderRootSync" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="6486.880000000001" y="6720" width="120" height="60" as="geometry" />
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-40" value="renderRootSync&lt;br&gt;调用了prepareFreshStack，构建的root的 workInProgress" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="6475.31" y="6710" width="143.12" height="80" as="geometry" />
         </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-42" value="workLoopSync&lt;br&gt;这是一个while循环&lt;br&gt;只要workInProgress 不为null&lt;br&gt;一直执行&lt;br&gt;performUnitOfWork(workInProgress)" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="6425.320000000001" y="6850" width="244.69" height="130" as="geometry" />
