@@ -26987,7 +26987,7 @@
     //   unitOfWork => workInProgress fiber 树中的 rootFiber
     //   current => currentFiber树中的 rootFiber
     var current = unitOfWork.alternate;
-
+debugger
     // 将 unitOfWork 赋值给全局的 current
     setCurrentFiber(unitOfWork);
     var next;
@@ -28701,6 +28701,7 @@
   //    初始渲染 pendingProps 为null
   function createWorkInProgress(current, pendingProps) {
       // current ：currentFiber 中的RootFiber
+      debugger
 
 
     //   获取 current fiber 对应的 workInProgress fiber
