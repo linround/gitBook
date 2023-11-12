@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T12:35:27.840Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="bTFYQB9N3BLHf_FKi0e9" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T12:50:22.281Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="1rZG1m1VO_D_xwwUEJte" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
-    <mxGraphModel dx="2095" dy="2599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2316" dy="2730" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -994,8 +994,16 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-49" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-46" target="NOahR9SfHAQmdZWs11Yp-48">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="NOahR9SfHAQmdZWs11Yp-46" value="beginWork$1" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="6487.665" y="7210" width="120" height="60" as="geometry" />
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-67" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-46" target="NOahR9SfHAQmdZWs11Yp-66">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-68" value="传递最后创建的文本子fiber" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="NOahR9SfHAQmdZWs11Yp-67">
+          <mxGeometry x="-0.2085" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-46" value="beginWork$1&lt;br&gt;这里是为了确保最里面的文本子节点 也创建了fiber;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="6410.58" y="7220" width="272.34" height="60" as="geometry" />
         </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-48" target="NOahR9SfHAQmdZWs11Yp-50">
           <mxGeometry relative="1" as="geometry" />
@@ -1048,6 +1056,21 @@
         </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-64" value="createFiberFromText&lt;br&gt;创建文本节点的fiber&lt;br&gt;并确立其父 fiber节点&lt;br&gt;&lt;br&gt;返回该文本 fiber&lt;br&gt;&lt;br&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="5895" y="8250" width="155.36" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-71" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-66" target="NOahR9SfHAQmdZWs11Yp-70">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-66" value="completeUnitOfWork&lt;br&gt;开始从最内部fiber进行执行,&lt;br&gt;&lt;div&gt;这里接收返回值 next,在没有子节点的情况下&lt;/div&gt;&lt;div&gt;再将兄弟节点赋值给workInprogress&lt;br&gt;兄弟节点进入了&lt;br&gt;&amp;nbsp;performUnitOfWork=》beginWork$1。兄弟节点在没有 next的情况下，进入了completeUnitOfWork&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="6922.5" y="7167.5" width="270" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-73" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-70" target="NOahR9SfHAQmdZWs11Yp-72">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-70" value="completeWork&lt;br&gt;返回一个值" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="6922.5" y="7380" width="165" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-72" value="createTextInstance&lt;br&gt;创建真实DOm节点，并赋值给了&amp;nbsp;workInProgress.stateNode&amp;nbsp;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="6902.5" y="7530" width="205" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
