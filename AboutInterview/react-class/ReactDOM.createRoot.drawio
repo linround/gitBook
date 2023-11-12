@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T12:28:43.858Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="UUIsXfhVydJJZHFZ0m4Y" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T12:30:14.227Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="a0xT5tOxQWX2UlWZdIBk" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2095" dy="2599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -1046,8 +1046,8 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-62" value="createChild" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="5913.09" y="8040" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="NOahR9SfHAQmdZWs11Yp-64" value="createFiberFromText&lt;br&gt;创建文本节点的fiber&lt;br&gt;并确立其父 fiber节点&lt;br&gt;&lt;br&gt;返回该文本 fiber" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="5904.64" y="8150" width="136.91" height="90" as="geometry" />
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-64" value="createFiberFromText&lt;br&gt;创建文本节点的fiber&lt;br&gt;并确立其父 fiber节点&lt;br&gt;&lt;br&gt;返回该文本 fiber&lt;br&gt;&lt;br&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="5904.64" y="8150" width="155.36" height="170" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
