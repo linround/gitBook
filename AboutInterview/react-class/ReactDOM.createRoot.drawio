@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T11:40:12.770Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="GYshmA1t6kX_qCEt5-nu" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T11:40:56.630Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="C4YP1L2iEFfkixnGwxFO" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2095" dy="2599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -979,7 +979,7 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-40" value="renderRootSync&lt;br&gt;调用了prepareFreshStack，构建的root的 workInProgress" style="whiteSpace=wrap;html=1;rounded=0;fontColor=#FFD966;fillColor=#1A1A1A;" vertex="1" parent="1">
           <mxGeometry x="6475.31" y="6710" width="143.12" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="NOahR9SfHAQmdZWs11Yp-42" value="workLoopSync&lt;br&gt;这是一个while循环&lt;br&gt;只要workInProgress 不为null&lt;br&gt;一直执行&lt;br&gt;performUnitOfWork(workInProgress)" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-42" value="workLoopSync&lt;br&gt;这是一个while循环&lt;br&gt;只要workInProgress 不为null&lt;br&gt;一直执行&lt;br&gt;performUnitOfWork(workInProgress)&lt;br&gt;&lt;br&gt;最开始 就从 root 构建的那个workInProgress开始" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="6425.320000000001" y="6850" width="244.69" height="130" as="geometry" />
         </mxCell>
       </root>
