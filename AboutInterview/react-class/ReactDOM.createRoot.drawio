@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T13:04:02.404Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="q2bvIN6cF4CzUAVjznxd" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T13:06:27.220Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="jyHgTCRWYmUQ_fWgdUH0" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2202" dy="2662" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -1060,8 +1060,8 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-71" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-66" target="NOahR9SfHAQmdZWs11Yp-70">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="NOahR9SfHAQmdZWs11Yp-66" value="completeUnitOfWork&lt;br&gt;开始从最内部fiber进行执行,&lt;br&gt;&lt;div&gt;这里接收返回值 next,在没有子节点的情况下&lt;/div&gt;&lt;div&gt;。再将兄弟节点赋值给workInprogress&lt;br&gt;兄弟节点进入了&lt;br&gt;&amp;nbsp;performUnitOfWork=》beginWork$1。兄弟节点在没有 next的情况下，进入了completeUnitOfWork&lt;br&gt;&lt;br&gt;在兄弟fiber节点也处理完成后，进入了父fiber;&lt;br&gt;将父fiber赋值给了 workInprogress;同样也赋值给了completedWork，&lt;/div&gt;&lt;div&gt;completedWork是控制当前函数内的 while循环&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;由于next基本返回的都是null，所以可以认为completeUnitOfWork实际就是执行&lt;br&gt;创建 子 dom&lt;/div&gt;&lt;div&gt;创建子兄弟dom&lt;/div&gt;&lt;div&gt;创建 父DOM&lt;/div&gt;&lt;div&gt;创建 父兄弟DOM&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="6848.13" y="6950" width="313.75" height="270" as="geometry" />
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-66" value="completeUnitOfWork&lt;br&gt;开始从最内部fiber进行执行,&lt;br&gt;&lt;div&gt;这里接收返回值 next,在没有子节点的情况下&lt;/div&gt;&lt;div&gt;。再将兄弟节点赋值给workInprogress&lt;br&gt;兄弟节点进入了&lt;br&gt;&amp;nbsp;performUnitOfWork=》beginWork$1。兄弟节点在没有 next的情况下，进入了completeUnitOfWork&lt;br&gt;&lt;br&gt;在兄弟fiber节点也处理完成后，进入了父fiber;&lt;br&gt;将父fiber赋值给了 workInprogress;同样也赋值给了completedWork，&lt;/div&gt;&lt;div&gt;completedWork是控制当前函数内的 while循环&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;由于next基本返回的都是null，所以可以认为completeUnitOfWork实际就是执行&lt;br&gt;创建 子 dom&lt;/div&gt;&lt;div&gt;创建子兄弟dom&lt;/div&gt;&lt;div&gt;创建 父DOM&lt;/div&gt;&lt;div&gt;将父兄弟fiber 赋值给全局workInProgress.&lt;/div&gt;&lt;div&gt;父兄弟fiber进行创建子文本fiber和子DOM，父DOM的程序&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="6848.13" y="6870" width="313.75" height="350" as="geometry" />
         </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-73" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-70" target="NOahR9SfHAQmdZWs11Yp-72">
           <mxGeometry relative="1" as="geometry" />
