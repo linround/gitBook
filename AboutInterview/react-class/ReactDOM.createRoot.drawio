@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T11:49:29.124Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="sBwYFzzkXOaGXef6wMEH" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T11:49:56.720Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="VBY0WkpK3j1XbSC8bsoO" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2095" dy="2599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -991,8 +991,14 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-44" value="performUnitOfWork(workInProgress);&lt;br&gt;从父到子依次执行beginWork$1&lt;br&gt;因为beginWork$1会返回一个next，即其子或者兄弟节点&lt;br&gt;然后将这个next赋值给 全局变量 workInProgress&lt;br&gt;&lt;br&gt;会再次进行&amp;nbsp;performUnitOfWork(workInProgress)" style="whiteSpace=wrap;html=1;rounded=0;fillColor=#4D4D4D;fontColor=#FFD966;" vertex="1" parent="1">
           <mxGeometry x="6390" y="7070" width="313.5" height="120" as="geometry" />
         </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-49" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-46" target="NOahR9SfHAQmdZWs11Yp-48">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-46" value="beginWork$1" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="6487.665" y="7210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-48" value="beginWork" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="6487.665" y="7350" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
