@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T11:13:01.233Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="pnKmJwMewAsMm3TSgAEW" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T11:14:44.704Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="wY22iYMzOyyEKRIPBjgr" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2095" dy="2599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -943,8 +943,14 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-26" value="requestHostCallback 调用&lt;br&gt;传入flushWork 这个函数 作为参数&lt;br&gt;&lt;br&gt;将&amp;nbsp;flushWork 赋值给一个全局变量&lt;br&gt;scheduledHostCallback" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="6434.54" y="5740" width="224.68" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="NOahR9SfHAQmdZWs11Yp-28" value="schedulePerformWorkUntilDeadline" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-28" target="NOahR9SfHAQmdZWs11Yp-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-28" value="schedulePerformWorkUntilDeadline&lt;br&gt;开始调用 postMessage" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="6420.32" y="5940" width="253.12" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-30" value="performWorkUntilDeadline&lt;br&gt;监听到 message后开始执行" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="6425.32" y="6040" width="243.12" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
