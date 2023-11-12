@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T09:41:01.887Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="LOxL1UqdWDplKv_kH7i7" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T09:59:45.368Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="13ZqOlHExav6P4pq5SSE" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
-    <mxGraphModel dx="2410" dy="2786" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2183" dy="2651" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -883,8 +883,14 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-6" value="调用 root.render&amp;nbsp; 传入 要渲染的 ReactElement" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="5370" y="4950" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NOahR9SfHAQmdZWs11Yp-8" target="NOahR9SfHAQmdZWs11Yp-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="NOahR9SfHAQmdZWs11Yp-8" value="updateContainer 调用。&lt;br&gt;此处传入了 root 对象上的 fiberRootNode,以及要渲染的组件（作为子元素）" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="5560" y="4915" width="210" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-10" value="createUpdate&lt;br&gt;创建一个任务&lt;br&gt;这个任务的 payload&lt;br&gt;的element属性 就是要渲染的 ReactElement" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="5895" y="4950" width="125" height="140" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
