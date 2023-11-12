@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-12T12:57:57.624Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="L0kJefrA-qnXyj68kUBV" version="22.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-12T12:58:58.948Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="40LlAFSpZ8aqgJfIFEtH" version="22.1.0" type="github">
   <diagram name="第 1 页" id="xeJmlxO25Xf8dSQei4Fb">
     <mxGraphModel dx="2202" dy="2662" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -1075,7 +1075,7 @@
         <mxCell id="NOahR9SfHAQmdZWs11Yp-72" value="createTextInstance&lt;br&gt;创建真实DOm节点，并赋值给了&amp;nbsp;workInProgress.stateNode&amp;nbsp;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="6633.83" y="7550" width="205" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="NOahR9SfHAQmdZWs11Yp-75" value="HostComponent&lt;br&gt;创建普通元素真实DOM节点，将子fiber形成的真实DOM节点赋值给 当前父真实DOM节点" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+        <mxCell id="NOahR9SfHAQmdZWs11Yp-75" value="HostComponent&lt;br&gt;创建普通元素真实DOM节点，将子fiber形成的真实DOM节点赋值给 当前父真实DOM节点&lt;br&gt;&lt;br&gt;返回的null" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="6897.5" y="7590" width="215" height="60" as="geometry" />
         </mxCell>
       </root>
