@@ -19322,6 +19322,7 @@
        * 如果不是初始渲染的情况 要进行新旧 fiber 对比
        * 初始渲染时 则用不到 current
        * */
+      debugger
     if (current === null) {
       // If this is a fresh new component that hasn't been rendered yet, we
       // won't update its child set by applying minimal side-effects. Instead,
@@ -26897,6 +26898,7 @@
         //   直到一直构建完成
       // performUnitOfWork (传递一个fiber 对象，并构建其子级fiber对象)
         // 并一直循环，构建子级fiber
+        debugger
       performUnitOfWork(workInProgress);
     }
   }
@@ -26987,7 +26989,6 @@
     //   unitOfWork => workInProgress fiber 树中的 rootFiber
     //   current => currentFiber树中的 rootFiber
     var current = unitOfWork.alternate;
-debugger
     // 将 unitOfWork 赋值给全局的 current
     setCurrentFiber(unitOfWork);
     var next;
@@ -27058,6 +27059,7 @@ debugger
         if ( (completedWork.mode & ProfileMode) === NoMode) {
           //   重点代码 二
             // 创建节点真实DOM 对象 并将其添加到 stateNode 属性中
+            debugger
           next = completeWork(current, completedWork, subtreeRenderLanes);
         } else {
           startProfilerTimer(completedWork);
@@ -27071,6 +27073,7 @@ debugger
         resetCurrentFiber();
         // 重点代码(一)
         //   如果子级存在
+          // 可以认为 这里的情况不会 出现
         if (next !== null) {
           // Completing this fiber spawned new work. Work on that next.
           //   执行结束 将next 赋值给 workInProgress
