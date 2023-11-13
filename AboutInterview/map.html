@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>点聚合</title>
+<!--    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>-->
+    <style>
+      html, body, #container {
+        height: 100%;
+        width: 100%;
+      }
+
+      .input-card {
+        width: 25rem;
+      }
+
+      .input-card .btn {
+        width: 7rem;
+        margin-right: .7rem;
+      }
+
+      .input-card .btn:last-child {
+        margin-right: 0;
+      }
+    </style>
+</head>
+<body>
+<div id="container" class="map" tabindex="0"></div>
+<div class="input-card">
+    <h4>聚合点效果切换</h4>
+    <div class="input-item">
+        <input type="button" class="btn" value="默认样式" id="add0" onclick='addCluster(0)'/>
+        <input type="button" class="btn" value="自定义图标" id="add1" onclick='addCluster(1)'/>
+        <input type="button" class="btn" value="完全自定义" id="add2" onclick='addCluster(2)'/>
+    </div>
+</div>
+<script src="//a.amap.com/jsapi_demos/static/china.js"></script>
+<script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.15&key=3863668d08ee9603e2ba46f6547f7080&plugin=AMap.MarkerClusterer"></script>
+<script type="text/javascript">
+  var cluster, markers = [];
+
+  var map = new AMap.Map("container", {
+    resizeEnable: true,
+    center: [105, 34],
+    zoom: 4
+  });
+
+  for (var i = 0; i < points.length; i += 1) {
+    markers.push(new AMap.Marker({
+      position: points[i]['lnglat'],
+    }))
+  }
+
+  var count = markers.length;
+  var _renderClusterMarker = function (context) {
+    var div = document.createElement('div');
+    var Hue = 180;
+    var bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
+    var fontColor = 'hsla(' + Hue + ',100%,20%,1)';
+    var borderColor = 'hsla(' + Hue + ',100%,40%,1)';
+    var shadowColor = 'hsla(' + Hue + ',100%,50%,1)';
+    div.style.backgroundColor = bgColor;
+    var size = 50;
+    div.style.width = div.style.height = size + 'px';
+    div.style.border = 'solid 1px ' + borderColor;
+    div.style.borderRadius = size / 2 + 'px';
+    div.style.boxShadow = '0 0 1px ' + shadowColor;
+    div.innerHTML = context.count;
+    div.style.lineHeight = size + 'px';
+    div.style.color = fontColor;
+    div.style.fontSize = '18px';
+    div.style.textAlign = 'center';
+    div.style.cursor='pointer'
+    context.marker.setContent(div)
+    console.log(context)
+  };
+
+  addCluster();
+
+  function addCluster() {
+    //完全自定义
+    cluster = new AMap.MarkerClusterer(map, markers, {
+      gridSize: 100,
+      renderClusterMarker: _renderClusterMarker
+    });
+  }
+
+
+</script>
+</body>
+</html>
