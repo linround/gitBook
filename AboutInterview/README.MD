@@ -24,5 +24,5 @@ function performUnitOfWork(unitOfWork) {
     } else {
         workInProgress = next;
     }
-}
+}  
 ```
