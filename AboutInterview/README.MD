@@ -5,24 +5,6 @@
 - [x] [onload-ondomcontentloaded](https://javascript.info/onload-ondomcontentloaded)
 - [ ] 离线缓存技术
 - [x] [b strong i em](./web/b-strong-i-em)
-
-
-performUnitOfWork
-```javascript
-
-function performUnitOfWork(unitOfWork) {
-    var current = unitOfWork.alternate;
-    var next;
-
-    if (condition) {
-        next = beginWork$1(current, unitOfWork, subtreeRenderLanes);
-     } else {
-        next = beginWork$1(current, unitOfWork, subtreeRenderLanes);
-    }
-    if (next === null) {
-        completeUnitOfWork(unitOfWork);
-    } else {
-        workInProgress = next;
-    }
-}               
-```
+- [x] [react 源码搭建](../React/README.md)
+- [x] [React 组件的渲染](./react-class/readme.md)
+- [x] [react-setState](./react-setState/README.md)

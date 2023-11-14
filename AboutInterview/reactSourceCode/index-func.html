@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React without JSX</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./redux.js"></script>
+    <script src="./babel.js" crossorigin></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react,stage-3">
+   function App({name}){
+       return (
+           <div>
+               <div>{name} 1</div>
+               <div>{name} 2</div>
+           </div>
+       )
+   }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"),{
+        identifierPrefix:'react-class'
+    })
+    // ReactDOMRoot的原型上具有render方法
+    root.render(<App name={'app-name'} />);
+</script>
+</body>
+
+</html>

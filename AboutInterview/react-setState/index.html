@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React without JSX</title>
+    <script src="../reactSourceCode/react.development.js" crossorigin></script>
+    <script src="../reactSourceCode/react-dom.development.js" crossorigin></script>
+    <script src="../reactSourceCode/redux.js"></script>
+    <script src="../reactSourceCode/babel.js" crossorigin></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react,stage-3">
+    class App extends React.Component{
+        constructor(props) {
+            super()
+            const {name} = props
+            this.render = this.render.bind(this)
+            this.change = this.change.bind(this)
+            this.ref = React.createRef()
+            this.state = {
+                name:name
+            }
+            console.log('MyComponent constructor')
+        }
+        componentDidMount(){
+            console.log('MyComponent componentDidMount')
+        }
+        change(){
+            this.setState({
+                name:'my component new name'
+            })
+        }
+        render(){
+            console.log('MyComponent render')
+            const {name} = this.state
+            return (
+                <div ref={this.ref} onClick={this.change}>
+                    {name}
+                </div>
+            )
+        }
+
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"),{
+        identifierPrefix:'react-class'
+    })
+    // ReactDOMRoot的原型上具有render方法
+    root.render(<App name={'app-name'} />);
+</script>
+</body>
+
+</html>

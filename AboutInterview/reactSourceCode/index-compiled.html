@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React without JSX</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./redux.js"></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script>
+    class App extends React.Component {
+        constructor(props) {
+            super();
+            const {
+                name
+            } = props;
+            this.render = this.render.bind(this);
+            this.change = this.change.bind(this);
+            this.state = {
+                name: name
+            };
+            console.log('MyComponent constructor');
+        }
+
+        componentDidMount() {
+            console.log('MyComponent componentDidMount');
+        }
+
+        change() {
+            this.setState({
+                name: 'my component new name'
+            });
+        }
+
+        render() {
+            console.log('MyComponent render');
+            const {
+                name
+            } = this.state;
+            return React.createElement(
+                "div",
+                null,
+                React.createElement("div", null, name, " 1"),
+                React.createElement("div", null, name, " 2")
+            );
+        }
+
+    }
+
+
+    const root = ReactDOM.createRoot(document.getElementById("root"), {
+        identifierPrefix: 'react-class'
+    }); // ReactDOMRoot的原型上具有render方法
+    const reactElement =  React.createElement(App, {
+        name: 'app-name'
+    })
+    console.log('root:',root)
+    console.log('reactElement:',reactElement)
+    debugger
+    root.render(reactElement);
+</script>
+</body>
+
+</html>
