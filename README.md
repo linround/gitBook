@@ -107,7 +107,7 @@
 - `拓扑`
 
 # 操作流程问题记录
-+ git
++ [git commit 合并](./gitCommitMerge.md)
 # 学习资料
 - [高级着色器语言](https://docs.microsoft.com/zh-cn/windows/win32/direct3dhlsl/dx-graphics-hlsl)
 - [Unity Shader入门精要](https://www.epubit.com/bookDetails?id=N12469)
