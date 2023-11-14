@@ -35,5 +35,4 @@
 
 ![img_1.png](/img/img_5.png)
 
-
-### 最后。commit 1 之前的四个 commit 2、 commit 3、 commit 4、 commit 5、被合并成了一个commit
+commit 1 之前的四个 commit 2、 commit 3、 commit 4、 commit 5、被合并成了一个commit
