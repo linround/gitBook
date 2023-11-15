@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>方法的后台任务协作调度演示 requestIdleCallback</title>
+    <style>
+      body {
+        font-family: "Open Sans", "Lucida Grande", "Arial", sans-serif;
+        font-size: 16px;
+      }
+
+      #logBox {
+        margin-top: 16px;
+        width: 400px;
+        height: 500px;
+        border-radius: 6px;
+        border: 1px solid black;
+        box-shadow: 4px 4px 2px black;
+      }
+
+      .logHeader {
+        margin: 0;
+        padding: 0 6px 4px;
+        height: 22px;
+        background-color: lightblue;
+        border-bottom: 1px solid black;
+        border-radius: 6px 6px 0 0;
+      }
+
+      #log {
+        font:
+          12px "Courier",
+          monospace;
+        padding: 6px;
+        overflow: auto;
+        overflow-y: scroll;
+        width: 388px;
+        height: 460px;
+      }
+
+      #container {
+        width: 400px;
+        padding: 6px;
+        border-radius: 6px;
+        border: 1px solid black;
+        box-shadow: 4px 4px 2px black;
+        display: block;
+        overflow: auto;
+      }
+
+      .label {
+        display: inline-block;
+      }
+
+      .counter {
+        text-align: right;
+        padding-top: 4px;
+        float: right;
+      }
+
+      .button {
+        padding-top: 2px;
+        padding-bottom: 4px;
+        width: 100px;
+        display: inline-block;
+        float: left;
+        border: 1px solid black;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 0;
+        color: white;
+        background-color: darkgreen;
+      }
+
+      #progress {
+        width: 100%;
+        padding-top: 6px;
+      }
+    </style>
+</head>
+<body>
+<p>使用 <code>requestIdleCallback()</code> 方法的后台任务协作调度演示。</p>
+<div id="container">
+    <div class="label">解码量子丝极谱发射中...</div>
+    <progress id="progress" value="0"></progress>
+    <div class="button" id="startButton">开始</div>
+    <div class="label counter">
+        任务
+        <span id="currentTaskNumber">0</span> /
+        <span id="totalTaskCount">0</span>
+    </div>
+</div>
+<div id="logBox">
+    <div class="logHeader">记录</div>
+    <div id="log">
+        <div></div>
+    </div>
+</div>
+</body>
+<script>
+  // 待运行得任务
+  const taskList = [];
+  // 个已被添加到队列的任务数量计数器
+  let totalTaskCount = 0;
+  // 用于追踪到现在为止已处理了多少任务
+  let currentTaskNumber = 0;
+  // 对当前处理中任务的一个引用
+  let taskHandle = null;
+
+  // 用于插入我们在进度框显示状态中创建的任务总数
+  const totalTaskCountElem = document.getElementById("totalTaskCount");
+  // 用来呈现到当前为止处理过的任务数的元素
+  const currentTaskNumberElem = document.getElementById("currentTaskNumber");
+  // 用它来呈现到当前为止处理过任务的百分比
+  const progressBarElem = document.getElementById("progress");
+  // 是开始按钮。
+  const startButtonElem = document.getElementById("startButton");
+  // 中显示记录过的文本信息
+  const logElem = document.getElementById("log");
+
+  let logFragment = null;
+  // 用它来追踪我们是否已经为即将到来的帧安排了状态显示框的更新，所以我们每一帧只执行一次
+  let statusRefreshScheduled = false;
+
+  requestIdleCallback =
+    requestIdleCallback ||
+    ((handler) => {
+      const startTime = Date.now();
+
+      return setTimeout(() => {
+        handler({
+          didTimeout: false,
+          timeRemaining() {
+            return Math.max(0, 50.0 - (Date.now() - startTime));
+          },
+        });
+      }, 1);
+    });
+
+  cancelIdleCallback =
+    cancelIdleCallback ||
+    ((id) => {
+      clearTimeout(id);
+    });
+
+  function enqueueTask(taskHandler, taskData) {
+    taskList.push({
+      handler: taskHandler,// 被调用来处理任务
+      data: taskData,// 被当作参数传递给 taskHandler
+    });
+
+    totalTaskCount++;
+
+    if (!taskHandle) {
+      // runTaskQueue 1000 毫秒后
+      // runTaskQueue 未被调用，就会将该任务 放入事件循环队列中
+      // 即确保 回调再1秒左右会执行
+      taskHandle = requestIdleCallback(runTaskQueue, { timeout: 1000 });
+    }
+
+    scheduleStatusRefresh();
+  }
+
+  function runTaskQueue(deadline) {
+    while (
+      (deadline.timeRemaining() > 0 || deadline.didTimeout) &&
+      taskList.length
+      ) {
+      const task = taskList.shift();
+      currentTaskNumber++;
+
+      task.handler(task.data);
+      scheduleStatusRefresh();
+    }
+
+    if (taskList.length) {
+      taskHandle = requestIdleCallback(runTaskQueue, { timeout: 1000 });
+    } else {
+      taskHandle = 0;
+    }
+  }
+
+  function scheduleStatusRefresh() {
+    if (!statusRefreshScheduled) {
+      requestAnimationFrame(updateDisplay);
+      statusRefreshScheduled = true;
+    }
+  }
+
+  function updateDisplay() {
+    // 判断是否滚动到底部得方式
+    // 整个滚动得高度 <= 向上已经滚动得高度+元素自身得高度
+
+    const scrolledToEnd =
+      logElem.scrollHeight <= logElem.scrollTop + logElem.clientHeight + 1;
+
+    if (totalTaskCount) {
+      if (progressBarElem.max !== totalTaskCount) {
+        totalTaskCountElem.textContent = totalTaskCount;
+        progressBarElem.max = totalTaskCount;
+      }
+
+      if (progressBarElem.value !== currentTaskNumber) {
+        currentTaskNumberElem.textContent = currentTaskNumber;
+        progressBarElem.value = currentTaskNumber;
+      }
+    }
+
+    if (logFragment) {
+      logElem.appendChild(logFragment);
+      logFragment = null;
+    }
+
+    if (scrolledToEnd) {
+      logElem.scrollTop = logElem.scrollHeight - logElem.clientHeight;
+    }
+
+    statusRefreshScheduled = false;
+  }
+
+  function log(text) {
+    if (!logFragment) {
+      logFragment = document.createDocumentFragment();
+    }
+    const el = document.createElement("div");
+    el.textContent = text;
+    logFragment.appendChild(el);
+  }
+
+  function logTaskHandler(data) {
+    log(`运行任务 #${currentTaskNumber}`);
+
+    for (let i = 0; i < data.count; i += 1) {
+      log(`${(i + 1).toString()}. ${data.text}`);
+    }
+  }
+
+  function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function decodeTechnoStuff() {
+    totalTaskCount = 0;
+    currentTaskNumber = 0;
+    updateDisplay();
+
+    // const n = getRandomIntInclusive(100, 200);
+    const n = 3;
+
+    for (let i = 0; i < n; i++) {
+      const taskData = {
+        // count: getRandomIntInclusive(75, 150),
+        count: 5,
+        text: `该文本来自任务 ${i + 1}/${n}`,
+      };
+
+      enqueueTask(logTaskHandler, taskData);
+    }
+  }
+
+  document
+    .getElementById("startButton")
+    .addEventListener("click", decodeTechnoStuff, false);
+
+</script>
+</html>
