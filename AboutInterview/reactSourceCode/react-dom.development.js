@@ -15375,6 +15375,7 @@
         newChildren,
         lanes
     ) {
+        debugger
       // This algorithm can't optimize by searching from both ends since we
       // don't have backpointers on fibers. I'm trying to see how far we can get
       // with that model. If it ends up not being worth the tradeoffs, we can
@@ -15786,6 +15787,7 @@
     function reconcileSingleElement(returnFiber, currentFirstChild, element, lanes) {
       var key = element.key;
       var child = currentFirstChild;
+      debugger
 
       while (child !== null) {
         // TODO: If key === null and child.key === null, then this only applies to
@@ -15933,6 +15935,7 @@
           case REACT_ELEMENT_TYPE:
             //   为fiber 对象设置 effectTag 属性
               // 返回创建好的子fiber
+              debugger
             return placeSingleChild(
                 reconcileSingleElement(
                     returnFiber,
@@ -19322,7 +19325,6 @@
        * 如果不是初始渲染的情况 要进行新旧 fiber 对比
        * 初始渲染时 则用不到 current
        * */
-      debugger
     if (current === null) {
       // If this is a fresh new component that hasn't been rendered yet, we
       // won't update its child set by applying minimal side-effects. Instead,
@@ -25902,7 +25904,6 @@
         // scheduleCallbackForFiber to preserve the ability to schedule a callback
         // without immediately flushing it. We only do this for user-initiated
         // updates, to preserve historical behavior of legacy mode.
-             debugger
           // 这里 暂时不知道 何时会触发 所以加个 断点
         resetRenderTimer();
         flushSyncCallbacksOnlyInLegacyMode();
@@ -25981,7 +25982,6 @@
 
     if (existingCallbackNode != null) {
       // Cancel the existing callback. We'll schedule a new one below.
-        debugger
       //   不知道和何时执行，加上断点
       cancelCallback$1(existingCallbackNode);
     } // Schedule a new callback.
@@ -25989,7 +25989,6 @@
 
     var newCallbackNode;
     if (newCallbackPriority === SyncLane) {
-        debugger
         //   不知道和何时执行，加上断点
       // Special case: Sync React callbacks are scheduled on a special
       // internal queue
@@ -26898,7 +26897,6 @@
         //   直到一直构建完成
       // performUnitOfWork (传递一个fiber 对象，并构建其子级fiber对象)
         // 并一直循环，构建子级fiber
-        debugger
       performUnitOfWork(workInProgress);
     }
   }
@@ -27059,7 +27057,6 @@
         if ( (completedWork.mode & ProfileMode) === NoMode) {
           //   重点代码 二
             // 创建节点真实DOM 对象 并将其添加到 stateNode 属性中
-            debugger
           next = completeWork(current, completedWork, subtreeRenderLanes);
         } else {
           startProfilerTimer(completedWork);
@@ -28704,7 +28701,6 @@
   //    初始渲染 pendingProps 为null
   function createWorkInProgress(current, pendingProps) {
       // current ：currentFiber 中的RootFiber
-      debugger
 
 
     //   获取 current fiber 对应的 workInProgress fiber

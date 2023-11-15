@@ -15933,6 +15933,7 @@
           case REACT_ELEMENT_TYPE:
             //   为fiber 对象设置 effectTag 属性
               // 返回创建好的子fiber
+              debugger
             return placeSingleChild(
                 reconcileSingleElement(
                     returnFiber,
@@ -15954,6 +15955,7 @@
 
         // new children 是数组的情况
         if (isArray(newChild)) {
+            debugger
           return reconcileChildrenArray(
               returnFiber,
               currentFirstChild,
