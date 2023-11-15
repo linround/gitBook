@@ -162,6 +162,8 @@
   }
 
   function runTaskQueue(deadline) {
+    // 获取当前空闲时间
+    // 回调是否在超时时间前已经执行的状态
     while (
       (deadline.timeRemaining() > 0 || deadline.didTimeout) &&
       taskList.length
