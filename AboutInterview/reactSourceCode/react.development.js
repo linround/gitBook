@@ -802,6 +802,7 @@
     var source = null;
 
     if (config != null) {
+      // 将 config 处理后 赋值给 props
       if (hasValidRef(config)) {
         ref = config.ref;
 
@@ -833,6 +834,7 @@
 
 
     var childrenLength = arguments.length - 2;
+    // 处理 children ,会被赋值 给 props.children
 
     if (childrenLength === 1) {
       props.children = children;

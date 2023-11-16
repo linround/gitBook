@@ -15784,10 +15784,19 @@
     }
 
     // 处理子元素是单个对象的情况
-    function reconcileSingleElement(returnFiber, currentFirstChild, element, lanes) {
+
+          //  workInProgress,// 生成的fiber
+          //  current.child,// 之前的子fiber
+          // nextChildren,// 子元素
+          // lanes// 初始渲染为16  表示同步任务
+    function reconcileSingleElement(
+      returnFiber,
+      currentFirstChild,
+      element,
+      lanes
+    ) {
       var key = element.key;
       var child = currentFirstChild;
-      debugger
 
       while (child !== null) {
         // TODO: If key === null and child.key === null, then this only applies to
@@ -15901,6 +15910,11 @@
     // children and the parent.
 
 
+        //  workInProgress,// 生成的fiber
+          //  current.child,// 之前的子fiber
+            // nextChildren,// 子元素
+          // lanes// 初始渲染为16  表示同步任务
+
     function reconcileChildFibers(
         returnFiber,// 父级fiber
         currentFirstChild,// 旧的第一个子fiber 初始为null
@@ -15935,7 +15949,6 @@
           case REACT_ELEMENT_TYPE:
             //   为fiber 对象设置 effectTag 属性
               // 返回创建好的子fiber
-              debugger
             return placeSingleChild(
                 reconcileSingleElement(
                     returnFiber,
@@ -19333,7 +19346,8 @@
       //   我们可以通过不跟踪副作用来优化这个协调过程。
       // we can optimize this reconciliation pass by not tracking side-effects.
 
-        //
+        // 首次时
+      // 创建新的 子fiber 节点
       workInProgress.child = mountChildFibers(workInProgress, null, nextChildren, renderLanes);
     } else {
       // If the current child is the same as the work in progress, it means that
@@ -19341,7 +19355,16 @@
       // the clone algorithm to create a copy of all the current children.
       // If we had any progressed work already, that is invalid at this point so
       // let's throw it out.
-      workInProgress.child = reconcileChildFibers(workInProgress, current.child, nextChildren, renderLanes);
+
+      // 更新的时候
+      // 对于update ,会将当前组件与上次更新时对应的fiber节点 比较（也就是Diff 算法），
+      // 将比较的结果生成新的Fiber节点
+      workInProgress.child = reconcileChildFibers(
+        workInProgress,// 生成的fiber
+        current.child,// 之前的子fiber
+        nextChildren,// 子元素
+        renderLanes
+      );
     }
   }
 
@@ -20117,6 +20140,8 @@
     }
 
     markRef(current, workInProgress);
+
+    // 对当前的 这个 workInProgress 创建其子 fiber
     reconcileChildren(current, workInProgress, nextChildren, renderLanes);
     return workInProgress.child;
   }
@@ -21713,11 +21738,24 @@
   *
   * 从父到子 构建 fiber 节点对象
   * */
-  function beginWork(current, workInProgress, renderLanes) {
+  function beginWork(
+    current,// 当前组件对应的 fiber 节点在上一次更新时的fiber 节点。即 workInProgress.alternate
+    workInProgress,// 当前组件对应的 fiber 节点
+    renderLanes // 优先级相关。与scheduler 相关
+  ) {
     {
       if (workInProgress._debugNeedsRemount && current !== null) {
         // This will restart the begin phase with a new fiber.
-        return remountFiber(current, workInProgress, createFiberFromTypeAndProps(workInProgress.type, workInProgress.key, workInProgress.pendingProps, workInProgress._debugOwner || null, workInProgress.mode, workInProgress.lanes));
+        return remountFiber(
+          current,
+          workInProgress,
+          createFiberFromTypeAndProps(
+            workInProgress.type,
+            workInProgress.key,
+            workInProgress.pendingProps,
+            workInProgress._debugOwner || null,
+            workInProgress.mode,
+            workInProgress.lanes));
       }
     }
     // 判断是否 有 旧的 fiber 对象
@@ -21736,14 +21774,21 @@
       } else {
         // Neither props nor legacy context changes. Check if there's a pending
         // update or context change.
-        var hasScheduledUpdateOrContext = checkScheduledUpdateOrContext(current, renderLanes);
+        var hasScheduledUpdateOrContext = checkScheduledUpdateOrContext(
+          current,
+          renderLanes
+        );
 
         if (!hasScheduledUpdateOrContext && // If this is the second pass of an error or suspense boundary, there
           // may not be work scheduled on `current`, so we check for this flag.
           (workInProgress.flags & DidCapture) === NoFlags) {
           // No pending updates or context. Bail out now.
           didReceiveUpdate = false;
-          return attemptEarlyBailoutIfNoScheduledUpdate(current, workInProgress, renderLanes);
+          return attemptEarlyBailoutIfNoScheduledUpdate(
+            current,
+            workInProgress,
+            renderLanes
+          );
         }
 
         if ((current.flags & ForceUpdateForLegacySuspense) !== NoFlags) {
@@ -21789,6 +21834,8 @@
       // 3  代表 id为root  的 div
       // 2 代表 app 组件
     // 5 代表 app 组件里面的 div
+
+    // 根据不同的tag 创建不同的fiber 节点
     switch (workInProgress.tag) {
       //   2 函数组件在第一次被渲染时使用
       case IndeterminateComponent:
@@ -21999,7 +22046,13 @@
     updateHostContainer = function (current, workInProgress) {// Noop
     };
 
-    updateHostComponent$1 = function (current, workInProgress, type, newProps, rootContainerInstance) {
+    updateHostComponent$1 = function (
+      current,
+      workInProgress,
+      type,
+      newProps,
+      rootContainerInstance
+    ) {
       // If we have an alternate, that means this is an update and we need to
       // schedule a side-effect to do the updates.
       var oldProps = current.memoizedProps;
@@ -22019,7 +22072,16 @@
       // component is hitting the resume path. Figure out why. Possibly
       // related to `hidden`.
 
-      var updatePayload = prepareUpdate(instance, type, oldProps, newProps, rootContainerInstance, currentHostContext); // TODO: Type this specific to this type of component.
+      // updatePayload 为数组形式，
+      // 他的偶数索引的值为变化的 prop key ,奇数索引的值为变化的prop value
+      var updatePayload = prepareUpdate(
+        instance,
+        type,
+        oldProps,
+        newProps,
+        rootContainerInstance,
+        currentHostContext
+      ); // TODO: Type this specific to this type of component.
 
       workInProgress.updateQueue = updatePayload; // If the update payload indicates that there is a change or if there
       // is a new ref we mark this as an update. All the work is done in commitWork.
@@ -22391,7 +22453,19 @@
 
         // 初始渲染不执行 current = null
         if (current !== null && workInProgress.stateNode != null) {
-          updateHostComponent$1(current, workInProgress, type, newProps, rootContainerInstance);
+          // update 时，fiber节点已经存在 对应的 DOM节点
+          // 不需要生成DOM节点
+          // 需要做的处理
+          // onclick onchange 等回调函数的注册
+          // 处理 style prop
+          // ······
+          updateHostComponent$1(
+            current,
+            workInProgress,
+            type,
+            newProps,
+            rootContainerInstance
+          );
 
           if (current.ref !== workInProgress.ref) {
             markRef$1(workInProgress);
@@ -22426,6 +22500,7 @@
 
             //   创建节点实例对象 <div></div> <span></span>
 
+            // 为fiber 创建对应的DOM节点
             var instance = createInstance(
                 type,
                 newProps,
@@ -22441,11 +22516,19 @@
              * */
             appendAllChildren(instance, workInProgress, false, false);
             // 为fiber 添加 stateNode 属性
+            // DOM节点 添加带 fiber.stateNode
             workInProgress.stateNode = instance; // Certain renderers require commit-time effects for initial mount.
             // (eg DOM renderer supports auto-focus for certain elements).
             // Make sure such renderers get scheduled for later work.
 
-            if (finalizeInitialChildren(instance, type, newProps, rootContainerInstance)) {
+            // 与update逻辑中的 updateHostComponent 类似的处理props 的过程
+            if (
+              finalizeInitialChildren(
+                instance,
+                type,
+                newProps,
+                rootContainerInstance
+              )) {
               markUpdate(workInProgress);
             }
           }
@@ -24921,7 +25004,7 @@
     // before the effects on this fiber have fired.
     var flags = finishedWork.flags;
 
-      
+
     // 正对该节点 及子节点 进行插入操作
     //   初始会对 root节点 进行插入操作
     if (flags & Placement) {
@@ -26068,6 +26151,7 @@
   //   root  fiberRoot
   function performConcurrentWorkOnRoot(root, didTimeout) {
 
+
     {
       resetNestedUpdateFlag();
     } // Since we know we're in a React event, we can clear the current
@@ -26503,7 +26587,11 @@
       // Before exiting, make sure there's a callback scheduled for the next
     //   render 阶段结束
     //   进入commit阶段
-    commitRoot(root, workInProgressRootRecoverableErrors, workInProgressTransitions);
+    commitRoot(
+      root,
+      workInProgressRootRecoverableErrors,
+      workInProgressTransitions
+    );
     // pending level.
 
     ensureRootIsScheduled(root, now());
@@ -27025,7 +27113,7 @@
    * 1.创建 fiber 对象
    * 2.创建每一个节点的真实 DOM 对象 并将其 添加到 stateNode 属性中
    * 3.（在子级向父级回退的过程中） 收集要执行 DOM操作的 fiber 节点 组件 effect 链表结构（逻辑暂时不清晰）
-   * 
+   *
    * **/
   function completeUnitOfWork(unitOfWork) {
     // Attempt to complete the current unit of work, then move to the next
@@ -27155,7 +27243,11 @@
     }
   }
 
-  function commitRoot(root, recoverableErrors, transitions) {
+  function commitRoot(
+    root,
+    recoverableErrors,
+    transitions
+  ) {
     // TODO: This no longer makes any sense. We already wrap the mutation and
     // layout phases. Should be able to remove.
     //   获取任务优先级  0=》 普通优先级
@@ -27168,7 +27260,12 @@
       //   1是最高优先级
 
       setCurrentUpdatePriority(DiscreteEventPriority);
-      commitRootImpl(root, recoverableErrors, transitions, previousUpdateLanePriority);
+      commitRootImpl(
+        root,
+        recoverableErrors,
+        transitions,
+        previousUpdateLanePriority
+      );
     } finally {
       ReactCurrentBatchConfig$3.transition = prevTransition;
       setCurrentUpdatePriority(previousUpdateLanePriority);
@@ -27177,7 +27274,9 @@
     return null;
   }
 
-  function commitRootImpl(root, recoverableErrors, transitions, renderPriorityLevel) {
+  function commitRootImpl(
+    root, recoverableErrors,
+    transitions, renderPriorityLevel) {
     do {
       // `flushPassiveEffects` will call `flushSyncUpdateQueue` at the end, which
       // means `flushPassiveEffects` will sometimes result in additional
@@ -27200,8 +27299,11 @@
     }
 
     // 获取待提交的fiber 对象 rootFiber
+    // root 指 fiberRootNode
+    // root.finishedWork 指当前应用的rootFiber
     var finishedWork = root.finishedWork;
 
+    // 与优先级相关
     var lanes = root.finishedLanes;
 
     {
@@ -27237,16 +27339,20 @@
 
     //   commitRoot 是最后阶段，不会再被异步调用
       // 清除callback相关的属性
+    // 重置Scheduler 绑定的回调函数
     root.callbackNode = null;
     root.callbackPriority = NoLane; // Update the first and last pending times on this root. The new first
     // pending time is whatever is left on the root fiber.
 
-    var remainingLanes = mergeLanes(finishedWork.lanes, finishedWork.childLanes);
+    var remainingLanes = mergeLanes(
+      finishedWork.lanes,
+      finishedWork.childLanes);
 
     // 重置优先级相关变量
     markRootFinished(root, remainingLanes);
 
     // false
+    // 重置全局变量
     if (root === workInProgressRoot) {
       // We can reset these now that they are finished.
       workInProgressRoot = null;
@@ -27258,7 +27364,9 @@
     // TODO: Delete all other places that schedule the passive effect callback
     // They're redundant.
 
-    if ((finishedWork.subtreeFlags & PassiveMask) !== NoFlags || (finishedWork.flags & PassiveMask) !== NoFlags) {
+    if (
+      (finishedWork.subtreeFlags & PassiveMask) !== NoFlags ||
+      (finishedWork.flags & PassiveMask) !== NoFlags) {
       if (!rootDoesHavePassiveEffects) {
         rootDoesHavePassiveEffects = true;
         // to store it in pendingPassiveTransitions until they get processed
@@ -27283,8 +27391,14 @@
     // Reconsider whether this is necessary.
 
 
-    var subtreeHasEffects = (finishedWork.subtreeFlags & (BeforeMutationMask | MutationMask | LayoutMask | PassiveMask)) !== NoFlags;
-    var rootHasEffect = (finishedWork.flags & (BeforeMutationMask | MutationMask | LayoutMask | PassiveMask)) !== NoFlags;
+    var subtreeHasEffects = (
+      finishedWork.subtreeFlags &
+      (BeforeMutationMask | MutationMask | LayoutMask | PassiveMask))
+      !== NoFlags;
+    var rootHasEffect = (
+      finishedWork.flags &
+      (BeforeMutationMask | MutationMask | LayoutMask | PassiveMask))
+      !== NoFlags;
 
     if (subtreeHasEffects || rootHasEffect) {
       var prevTransition = ReactCurrentBatchConfig$3.transition;
@@ -27308,7 +27422,8 @@
       //   getSnapshotBeforeUpdate 只在更新阶段执行
         //
         // 执行DOM操作前
-      var shouldFireAfterActiveInstanceBlur = commitBeforeMutationEffects(root, finishedWork);
+      var shouldFireAfterActiveInstanceBlur =
+        commitBeforeMutationEffects(root, finishedWork);
 
       {
         // Mark the current commit time to be shared by all Profilers in this
@@ -28553,11 +28668,14 @@
       key,// null
       mode // ConcurrentMode
   ) {
+    // 作为静态数据结构的属性
     // Instanc
-      // 标记不同的组件类型
+      // 标记不同的组件类型 function class host
     this.tag = tag;
     //
     this.key = key;
+
+    // 对于 functionComponent 指函数本身，对于classComponent 指class;对于 hostComponent ，指 DOM节点 tagName
     this.elementType = null;
     // 组件类型 div span 函数组件
 
@@ -28568,6 +28686,20 @@
     this.stateNode = null; // Fiber
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // 用于连接其他fiber 节点 形成的fiber 树
       /*构建fiber树相关*/
 
       // 指向自己的父级对象
@@ -28579,6 +28711,20 @@
 
     this.index = 0;
     this.ref = null;
+
+
+
+
+
+
+
+
+
+
+
+
+    // 作为动态的工作单元属性
+    // 保存本次更新造成的状态改变相关信息
     // 即将跟新的props
     this.pendingProps = pendingProps;
     // 旧的props
@@ -28587,16 +28733,16 @@
       // 旧的state
       this.memoizedState = null;
 
-
-
-
-
     // 该fiber对应的组件产生的状态更新会存放在这个队列中
       // 例如setState调用后，会将该组件放在更新队列中
     this.updateQueue = null;
     this.dependencies = null;
     // 记录当前组件及其子组件处于何种渲染模式
     this.mode = mode; // ConcurrentMode
+
+
+
+
 
     this.flags = NoFlags; // 0
     this.subtreeFlags = NoFlags;// 0
@@ -28607,6 +28753,8 @@
       // 称为 current 《==》workinprogress
     //   在渲染完成之后他们会交换位置
     //   alternate指向 当前fiber在 workinprogress 树中的对应的fiber
+
+    // 指向改fiber 在另一次更新时对应的fiber
     this.alternate = null;
 
     {
@@ -30275,7 +30423,7 @@
   //   创建过程如下
   //   非服务端渲染，先清除container下免得所有直接点
     // 然后创建rootFiber和fiberRoot
-    
+
     // 标记 container
     //   container下面的一个随机属性指向 fiberRoot
 
