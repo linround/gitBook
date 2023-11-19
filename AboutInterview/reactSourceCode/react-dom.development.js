@@ -23278,7 +23278,7 @@
 
   // 第一个子阶段
   //   getSnapshotBeforeUpdate 只在更新阶段执行
-  function commitBeforeMutationEffects(root, firstChild) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      function commitBeforeMutationEffects(root, firstChild) {
     focusedInstanceHandle = prepareForCommit(root.containerInfo);
     nextEffect = firstChild;
     commitBeforeMutationEffects_begin(); // We no longer need to track the active instance fiber
@@ -27475,6 +27475,7 @@
 
     var rootDidHavePassiveEffects = rootDoesHavePassiveEffects;
 
+    // useEffect 相关
     if (rootDoesHavePassiveEffects) {
       // This commit has passive effects. Stash a reference to them. But don't
       // schedule a callback until after flushing layout work.
@@ -27527,6 +27528,7 @@
     // additional work on this root is scheduled.
 
 
+          // 在 commitRoot 啊啊含糊调用前，触发一次 新的调度。确保任何附加的任务被调度
     ensureRootIsScheduled(root, now());
 
     if (recoverableErrors !== null) {
@@ -27584,7 +27586,7 @@
       nestedUpdateCount = 0;
     } // If layout work was scheduled, flush it now.
 
-
+    // 执行同步任务。这样同步任务不需要等到下次事件循环 再执行
     flushSyncCallbacks();
 
     {
@@ -27720,7 +27722,7 @@
 
   function isAlreadyFailedLegacyErrorBoundary(instance) {
     return legacyErrorBoundariesThatAlreadyFailed !== null && legacyErrorBoundariesThatAlreadyFailed.has(instance);
-  }
+      rootWithPendingPassiveEffects
   function markLegacyErrorBoundaryAsFailed(instance) {
     if (legacyErrorBoundariesThatAlreadyFailed === null) {
       legacyErrorBoundariesThatAlreadyFailed = new Set([instance]);
