@@ -25068,6 +25068,7 @@
             // This is the root of a reappearing boundary. Turn its layout effects
             // back on.
             nextEffect = fiber;
+            // 这里会赋值Ref
             reappearLayoutEffects_begin(fiber);
           }
 
@@ -27449,6 +27450,10 @@
 
         //   commit 第三个子阶段
         // 执行DOM  操作后  调用生命周期和钩子函数
+
+        // commitLayoutEffectOnFiber（调用生命周期钩子和hook相关操作）
+        // commitAttachRef（赋值 ref）
+
       commitLayoutEffects(finishedWork, root, lanes);
 
       {
