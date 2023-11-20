@@ -1,13 +1,13 @@
-<mxfile host="app.diagrams.net" modified="2023-11-20T08:42:04.749Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="-C9P1ABJaVvIZQbzXFce" version="22.1.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-20T08:50:25.884Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="rCjOE6rGKtPIzJN5JOsS" version="22.1.3" type="github">
   <diagram name="第 1 页" id="3YBVpO7ZpEj_d3O6oqKE">
-    <mxGraphModel dx="2261" dy="758" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1889" dy="1730" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="BOhbTPmh6wwlVowSZ8-B-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="BOhbTPmh6wwlVowSZ8-B-1" target="BOhbTPmh6wwlVowSZ8-B-2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="BOhbTPmh6wwlVowSZ8-B-1" value="setState&lt;br&gt;两个参数&amp;nbsp;partialState, callback" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="BOhbTPmh6wwlVowSZ8-B-1" value="setState&lt;br&gt;两个参数&amp;nbsp;partialState, callback" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#FFFF1C;fillColor=#A680B8;fontColor=#FFF82B;" vertex="1" parent="1">
           <mxGeometry x="-240" y="100" width="210" height="60" as="geometry" />
         </mxCell>
         <mxCell id="BOhbTPmh6wwlVowSZ8-B-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="BOhbTPmh6wwlVowSZ8-B-2" target="BOhbTPmh6wwlVowSZ8-B-6">
@@ -16,10 +16,10 @@
         <mxCell id="BOhbTPmh6wwlVowSZ8-B-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="BOhbTPmh6wwlVowSZ8-B-2" target="BOhbTPmh6wwlVowSZ8-B-8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="BOhbTPmh6wwlVowSZ8-B-2" value="enqueueSetState(this, partialState, callback, &#39;setState&#39;)&lt;br&gt;在beginWork阶段，修改了类组件实例的updater对象" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+        <mxCell id="BOhbTPmh6wwlVowSZ8-B-2" value="enqueueSetState(this, partialState, callback, &#39;setState&#39;)&lt;br&gt;在beginWork阶段，修改了类组件实例的updater对象" style="whiteSpace=wrap;html=1;rounded=1;fontColor=#F8FF26;strokeColor=#000000;fillColor=#3B396E;" vertex="1" parent="1">
           <mxGeometry x="40" y="100" width="350" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="BOhbTPmh6wwlVowSZ8-B-6" value="创建update对象。将partialState 传递给，payload属性" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+        <mxCell id="BOhbTPmh6wwlVowSZ8-B-6" value="创建update对象。将partialState 传递给，payload属性" style="whiteSpace=wrap;html=1;rounded=1;strokeColor=#6E6E6E;" vertex="1" parent="1">
           <mxGeometry x="32.5" y="240" width="365" height="60" as="geometry" />
         </mxCell>
         <mxCell id="BOhbTPmh6wwlVowSZ8-B-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="BOhbTPmh6wwlVowSZ8-B-8" target="BOhbTPmh6wwlVowSZ8-B-10">
@@ -31,7 +31,7 @@
         <mxCell id="BOhbTPmh6wwlVowSZ8-B-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="BOhbTPmh6wwlVowSZ8-B-10" target="BOhbTPmh6wwlVowSZ8-B-14">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="BOhbTPmh6wwlVowSZ8-B-10" value="enqueueConcurrentClassUpdate(fiber, sharedQueue, update, lane)&lt;br&gt;1.创建一个update 循环链表。（next属性）&lt;br&gt;2.将这个循环链表赋值给&amp;nbsp;queue.interleaved（sharedQueue）" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+        <mxCell id="BOhbTPmh6wwlVowSZ8-B-10" value="enqueueConcurrentClassUpdate(fiber, sharedQueue, update, lane)&lt;br&gt;1.创建一个update 循环链表。（next属性）&lt;br&gt;2.将这个循环链表赋值给&amp;nbsp;queue.interleaved（sharedQueue）" style="whiteSpace=wrap;html=1;rounded=1;strokeColor=#000000;fillColor=#3B396E;fontColor=#FFF021;" vertex="1" parent="1">
           <mxGeometry x="748" y="100" width="392" height="170" as="geometry" />
         </mxCell>
         <mxCell id="BOhbTPmh6wwlVowSZ8-B-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="BOhbTPmh6wwlVowSZ8-B-14" target="BOhbTPmh6wwlVowSZ8-B-17">
@@ -42,6 +42,9 @@
         </mxCell>
         <mxCell id="BOhbTPmh6wwlVowSZ8-B-17" value="&amp;nbsp;ensureRootIsScheduled" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="1640" y="155.01" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BOhbTPmh6wwlVowSZ8-B-19" value="以下标记颜色的是update过程在前期特有的；未标注的，是update和初始时共有的函数执行过程" style="rounded=1;whiteSpace=wrap;html=1;fontColor=#7936FF;fillColor=#9AC7BF;fontSize=18;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="90" y="-90" width="950" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
