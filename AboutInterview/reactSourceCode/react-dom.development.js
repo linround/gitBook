@@ -14096,6 +14096,7 @@
     }
   }
 
+  // 会在beginWork 阶段，赋值给类组件的 updater 属性；
   var classComponentUpdater = {
     isMounted: isMounted,
     enqueueSetState: function (inst, payload, callback) {
@@ -14103,6 +14104,7 @@
       var eventTime = requestEventTime();
       var lane = requestUpdateLane(fiber);
       var update = createUpdate(eventTime, lane);
+      // 将传递的状态值赋值给 update 对象的
       update.payload = payload;
 
       if (callback !== undefined && callback !== null) {
@@ -20235,6 +20237,7 @@
   }
 
   function mountIncompleteClassComponent(_current, workInProgress, Component, nextProps, renderLanes) {
+
     resetSuspendedCurrentOnMountInLegacyMode(_current, workInProgress); // Promote the fiber to a class and try rendering again.
 
     workInProgress.tag = ClassComponent; // The rest of this function is a fork of `updateClassComponent`
