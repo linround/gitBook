@@ -13,6 +13,7 @@ function pipsAreValid(pips: number|false): Boolean {
     )
 }
 // create
+// @ts-ignore
 function test(count:number) {
     if(pipsAreValid(count)){
         switch (count){
