@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-20T08:39:17.303Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="TSe6nmL9sp6ud1btZrq4" version="22.1.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-20T08:42:04.749Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="-C9P1ABJaVvIZQbzXFce" version="22.1.3" type="github">
   <diagram name="第 1 页" id="3YBVpO7ZpEj_d3O6oqKE">
     <mxGraphModel dx="2261" dy="758" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -34,8 +34,14 @@
         <mxCell id="BOhbTPmh6wwlVowSZ8-B-10" value="enqueueConcurrentClassUpdate(fiber, sharedQueue, update, lane)&lt;br&gt;1.创建一个update 循环链表。（next属性）&lt;br&gt;2.将这个循环链表赋值给&amp;nbsp;queue.interleaved（sharedQueue）" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="748" y="100" width="392" height="170" as="geometry" />
         </mxCell>
+        <mxCell id="BOhbTPmh6wwlVowSZ8-B-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="BOhbTPmh6wwlVowSZ8-B-14" target="BOhbTPmh6wwlVowSZ8-B-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="BOhbTPmh6wwlVowSZ8-B-14" value="&amp;nbsp;scheduleUpdateOnFiber(root, fiber, lane, eventTime)&lt;br&gt;此时的fiber.updateQueue 已经有了一个循环链表结构" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="1180" y="155.63" width="420" height="58.75" as="geometry" />
+        </mxCell>
+        <mxCell id="BOhbTPmh6wwlVowSZ8-B-17" value="&amp;nbsp;ensureRootIsScheduled" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="155.01" width="220" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
