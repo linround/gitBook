@@ -33,7 +33,14 @@
         componentDidMount() {
             console.log('MyComponent componentDidMount');
         }
+        componentWillUpdate(){
+            console.log('componentWillUpdate')
 
+        }
+        shouldComponentUpdate(){
+            console.log('shouldComponentUpdate')
+            return true
+        }
         change() {
             debugger
             this.setState({
