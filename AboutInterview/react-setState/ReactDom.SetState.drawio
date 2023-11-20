@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-20T08:50:25.884Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="rCjOE6rGKtPIzJN5JOsS" version="22.1.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-20T09:13:07.310Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="1hzJHUCdAUAeWrBR2oEr" version="22.1.3" type="github">
   <diagram name="第 1 页" id="3YBVpO7ZpEj_d3O6oqKE">
     <mxGraphModel dx="1889" dy="1730" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -40,11 +40,17 @@
         <mxCell id="BOhbTPmh6wwlVowSZ8-B-14" value="&amp;nbsp;scheduleUpdateOnFiber(root, fiber, lane, eventTime)&lt;br&gt;此时的fiber.updateQueue 已经有了一个循环链表结构" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="1180" y="155.63" width="420" height="58.75" as="geometry" />
         </mxCell>
+        <mxCell id="BOhbTPmh6wwlVowSZ8-B-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="BOhbTPmh6wwlVowSZ8-B-17" target="BOhbTPmh6wwlVowSZ8-B-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="BOhbTPmh6wwlVowSZ8-B-17" value="&amp;nbsp;ensureRootIsScheduled" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="1640" y="155.01" width="220" height="60" as="geometry" />
         </mxCell>
         <mxCell id="BOhbTPmh6wwlVowSZ8-B-19" value="以下标记颜色的是update过程在前期特有的；未标注的，是update和初始时共有的函数执行过程" style="rounded=1;whiteSpace=wrap;html=1;fontColor=#7936FF;fillColor=#9AC7BF;fontSize=18;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="90" y="-90" width="950" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BOhbTPmh6wwlVowSZ8-B-20" value="scheduleSyncCallback(performSyncWorkOnRoot.bind(null, root));" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#050621;fontColor=#FFEF12;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="154.38" width="370" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
