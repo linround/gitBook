@@ -716,7 +716,7 @@
 
 
   var ReactElement = function (type, key, ref, self, source, owner, props) {
-    
+
     var element = {
       // This tag allows us to uniquely identify this as a React Element
       // 组件的类型，十六进制数值或者Symbol值
