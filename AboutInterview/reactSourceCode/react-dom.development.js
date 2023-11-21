@@ -15800,13 +15800,19 @@
       var key = element.key;
       var child = currentFirstChild;
 
+      // 判断是否存在对应的DOM节点
       while (child !== null) {
         // TODO: If key === null and child.key === null, then this only applies to
         // the first item in the list.
+
+        // 上一次存在DOM节点，接下来判断是否可以复用
+        // 首先比较 Key 是否相同
         if (child.key === key) {
+
           var elementType = element.type;
 
           if (elementType === REACT_FRAGMENT_TYPE) {
+
             if (child.tag === Fragment) {
               deleteRemainingChildren(returnFiber, child.sibling);
               var existing = useFiber(child, element.props.children);
@@ -15820,12 +15826,17 @@
               return existing;
             }
           } else {
+
+            // 在Key 相同的条件下，比较type 是否相同
             if (child.elementType === elementType || ( // Keep this check inline so it only runs on the false path:
                 isCompatibleFamilyForHotReloading(child, element) ) || // Lazy types should reconcile their resolved type.
               // We need to do this after the Hot Reloading check above,
               // because hot reloading has different semantics than prod because
               // it doesn't resuspend. So we can't let the call below suspend.
-              typeof elementType === 'object' && elementType !== null && elementType.$$typeof === REACT_LAZY_TYPE && resolveLazy(elementType) === child.type) {
+              typeof elementType === 'object' && elementType !== null &&
+              elementType.$$typeof === REACT_LAZY_TYPE &&
+              resolveLazy(elementType) === child.type) {
+
               deleteRemainingChildren(returnFiber, child.sibling);
 
               var _existing = useFiber(child, element.props);
@@ -15838,19 +15849,26 @@
                 _existing._debugOwner = element._owner;
               }
 
+              // type 相同 表示可以复用
               return _existing;
             }
           } // Didn't match.
 
-
+          // 在此处：key相同 但是type不同
+          // 将fiber 及其兄弟fiber 标记为删除
           deleteRemainingChildren(returnFiber, child);
           break;
         } else {
+          // key 不同，将该fiber 标记为删除
           deleteChild(returnFiber, child);
         }
 
         child = child.sibling;
       }
+
+      // 以下都是 创建fiber。并返回fiber
+
+
       // 查看子vdom 对象 是否表示 fragment
       //   false
       if (element.type === REACT_FRAGMENT_TYPE) {
