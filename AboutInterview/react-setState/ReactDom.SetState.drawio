@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-21T08:22:38.705Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="3c0_Zu0MznwaXHWUDq5C" version="22.1.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-21T08:25:06.841Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="8cybyB3-j5lkAPPoYSq_" version="22.1.3" type="github">
   <diagram name="第 1 页" id="3YBVpO7ZpEj_d3O6oqKE">
     <mxGraphModel dx="2261" dy="1927" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -249,14 +249,22 @@
         <mxCell id="jXGPF6tWEDYVgl1Ts_CV-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jXGPF6tWEDYVgl1Ts_CV-11" target="jXGPF6tWEDYVgl1Ts_CV-13">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="3560" y="640" />
-              <mxPoint x="3180" y="640" />
+              <mxPoint x="3560" y="620" />
+              <mxPoint x="2630" y="620" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="jXGPF6tWEDYVgl1Ts_CV-15" value="第一阶段" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="jXGPF6tWEDYVgl1Ts_CV-14">
           <mxGeometry x="0.131" y="-1" relative="1" as="geometry">
             <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="jXGPF6tWEDYVgl1Ts_CV-11" target="jXGPF6tWEDYVgl1Ts_CV-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-25" value="第二阶段" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="jXGPF6tWEDYVgl1Ts_CV-24">
+          <mxGeometry x="-0.2265" y="2" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="jXGPF6tWEDYVgl1Ts_CV-11" value="commitRootImpl" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
@@ -266,22 +274,25 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="jXGPF6tWEDYVgl1Ts_CV-13" value="commitBeforeMutationEffects(root, finishedWork)" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="3020" y="680" width="320" height="60" as="geometry" />
+          <mxGeometry x="2470" y="661" width="320" height="60" as="geometry" />
         </mxCell>
         <mxCell id="jXGPF6tWEDYVgl1Ts_CV-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jXGPF6tWEDYVgl1Ts_CV-16" target="jXGPF6tWEDYVgl1Ts_CV-18">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="jXGPF6tWEDYVgl1Ts_CV-16" value="commitBeforeMutationEffects_begin&lt;br&gt;构建fiber 链表&lt;br&gt;从上到下" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="3060" y="790" width="240" height="60" as="geometry" />
+          <mxGeometry x="2510" y="771" width="240" height="60" as="geometry" />
         </mxCell>
         <mxCell id="jXGPF6tWEDYVgl1Ts_CV-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jXGPF6tWEDYVgl1Ts_CV-18" target="jXGPF6tWEDYVgl1Ts_CV-20">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="jXGPF6tWEDYVgl1Ts_CV-18" value="commitBeforeMutationEffects_complete&lt;br&gt;构建fiber链表，从下到上" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="3030" y="890" width="300" height="60" as="geometry" />
+          <mxGeometry x="2480" y="871" width="300" height="60" as="geometry" />
         </mxCell>
         <mxCell id="jXGPF6tWEDYVgl1Ts_CV-20" value="commitBeforeMutationEffectsOnFiber" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="3060" y="990" width="240" height="60" as="geometry" />
+          <mxGeometry x="2510" y="971" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-22" value="commitMutationEffects" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="3140" y="811" width="220" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
