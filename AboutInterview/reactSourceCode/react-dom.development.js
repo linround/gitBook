@@ -13360,6 +13360,8 @@
     }
 
     queue.interleaved = update;
+
+    //从触发状态更新的fiber，一致向上遍历到 rootFiber,并返回rootFiber
     return markUpdateLaneFromFiberToRoot(fiber, lane);
   }
   function enqueueConcurrentHookUpdateAndEagerlyBailout(fiber, queue, update, lane) {
@@ -13403,6 +13405,7 @@
 
   var unsafe_markUpdateLaneFromFiberToRoot = markUpdateLaneFromFiberToRoot;
 
+  //从触发状态更新的fiber，一致向上遍历到 rootFiber,并返回rootFiber
   function markUpdateLaneFromFiberToRoot(sourceFiber, lane) {
 
     // Update the source fiber's lanes
@@ -13468,8 +13471,7 @@
   function initializeUpdateQueue(fiber) {
     var queue = {
       //   上以此更新之后的state,作为下一次更新的基础
-      baseState: fiber.memoizedState,
-      firstBaseUpdate: null,
+      baseState: fiber.memoizedState, // 本次更新前 该节点的 state,update基于该state计算 更新后的state
       lastBaseUpdate: null,
       shared: {
         pending: null,
@@ -13487,11 +13489,18 @@
     var currentQueue = current.updateQueue;
 
     if (queue === currentQueue) {
+      // ClassComponent与HostRoot使用的UpdateQueue结构
       var clone = {
-        baseState: currentQueue.baseState,
+        baseState: currentQueue.baseState,// 本次更新前该Fiber节点的state，Update基于该state计算更新后的state
+
+        // 本次更新前该Fiber节点已保存的Update
+        // 链表形式存在，链表头为firstBaseUpdate，链表尾为lastBaseUpdate
         firstBaseUpdate: currentQueue.firstBaseUpdate,
         lastBaseUpdate: currentQueue.lastBaseUpdate,
+        // 触发更新时，产生的Update会保存在shared.pending中形成单向环状链表。
+        // 当由Update计算state时这个环会被剪开并连接在lastBaseUpdate后面
         shared: currentQueue.shared,
+        // 数组。保存update.callback !== null的Update
         effects: currentQueue.effects
       };
       workInProgress.updateQueue = clone;
@@ -17705,6 +17714,7 @@
         }
       }
 
+      //从触发状态更新的fiber，一致向上遍历到 rootFiber,并返回rootFiber
       var root = enqueueConcurrentHookUpdate(fiber, queue, update, lane);
 
       if (root !== null) {
@@ -25997,7 +26007,7 @@
           markRootSuspended$1(root, workInProgressRootRenderLanes);
         }
       }
-
+      // 通知scheduler 根据优先级，决定以同步还是异步的方式 调度本次更新
       ensureRootIsScheduled(root, eventTime);
       if (lane === SyncLane &&
           executionContext === NoContext &&
