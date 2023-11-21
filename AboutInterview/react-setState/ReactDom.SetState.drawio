@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-21T08:25:06.841Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="8cybyB3-j5lkAPPoYSq_" version="22.1.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-21T08:35:08.780Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="Ppf6jgMlVpzpJSbrEyVj" version="22.1.3" type="github">
   <diagram name="第 1 页" id="3YBVpO7ZpEj_d3O6oqKE">
     <mxGraphModel dx="2261" dy="1927" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -267,6 +267,19 @@
             <mxPoint x="1" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jXGPF6tWEDYVgl1Ts_CV-11" target="jXGPF6tWEDYVgl1Ts_CV-36">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="3620" y="630" />
+              <mxPoint x="3722" y="630" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-39" value="第三阶段" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="jXGPF6tWEDYVgl1Ts_CV-37">
+          <mxGeometry x="0.0597" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="jXGPF6tWEDYVgl1Ts_CV-11" value="commitRootImpl" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="3530" y="420" width="120" height="60" as="geometry" />
         </mxCell>
@@ -291,8 +304,41 @@
         <mxCell id="jXGPF6tWEDYVgl1Ts_CV-20" value="commitBeforeMutationEffectsOnFiber" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="2510" y="971" width="240" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-22" value="commitMutationEffects" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jXGPF6tWEDYVgl1Ts_CV-22" target="jXGPF6tWEDYVgl1Ts_CV-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-22" value="commitMutationEffects&lt;br&gt;对DOM节点进行增删改操作" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="3140" y="811" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jXGPF6tWEDYVgl1Ts_CV-26" target="jXGPF6tWEDYVgl1Ts_CV-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-26" value="finishedWork" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="3105" y="940" width="290" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jXGPF6tWEDYVgl1Ts_CV-28" target="jXGPF6tWEDYVgl1Ts_CV-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-28" value="commitMutationEffectsOnFiber&lt;br&gt;从上到下，对DOM节点进行增删改" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="3120" y="1050" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jXGPF6tWEDYVgl1Ts_CV-30" target="jXGPF6tWEDYVgl1Ts_CV-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-30" value="commitReconciliationEffects" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="3140" y="1150" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jXGPF6tWEDYVgl1Ts_CV-32" target="jXGPF6tWEDYVgl1Ts_CV-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-32" value="commitUpdate" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="3190" y="1290" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-34" value="updateProperties" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="3190" y="1430" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-36" value="commitLayoutEffects" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="3597" y="780" width="250" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
