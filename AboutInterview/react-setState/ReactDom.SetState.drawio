@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-21T08:35:08.780Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="Ppf6jgMlVpzpJSbrEyVj" version="22.1.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-21T08:37:12.459Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="G14t_FaHzn60qkqVJsmt" version="22.1.3" type="github">
   <diagram name="第 1 页" id="3YBVpO7ZpEj_d3O6oqKE">
     <mxGraphModel dx="2261" dy="1927" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -337,8 +337,20 @@
         <mxCell id="jXGPF6tWEDYVgl1Ts_CV-34" value="updateProperties" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="3190" y="1430" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jXGPF6tWEDYVgl1Ts_CV-36" target="jXGPF6tWEDYVgl1Ts_CV-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="jXGPF6tWEDYVgl1Ts_CV-36" value="commitLayoutEffects" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="3597" y="780" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jXGPF6tWEDYVgl1Ts_CV-40" target="jXGPF6tWEDYVgl1Ts_CV-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-40" value="commitLayoutEffects_begin" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="3603" y="890" width="238" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-42" value="commitLayoutMountEffects_complete&lt;br&gt;调用生命钩子函数" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="3583" y="1000" width="278" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
