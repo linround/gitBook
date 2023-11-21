@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-21T08:00:51.795Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="WG_mCC11UtsasB0ef1NO" version="22.1.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-21T08:12:38.247Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="LztFKWX1aARzL0G82t1f" version="22.1.3" type="github">
   <diagram name="第 1 页" id="3YBVpO7ZpEj_d3O6oqKE">
     <mxGraphModel dx="2261" dy="1927" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -70,6 +70,14 @@
         <mxCell id="gff9xbBirFWEVuY0ia5b-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="gff9xbBirFWEVuY0ia5b-5" target="gff9xbBirFWEVuY0ia5b-7" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-10" value="开始构建fiber 树，并生成DOM" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" vertex="1" connectable="0" parent="gff9xbBirFWEVuY0ia5b-8">
+          <mxGeometry x="0.0571" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="gff9xbBirFWEVuY0ia5b-5" target="jXGPF6tWEDYVgl1Ts_CV-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="gff9xbBirFWEVuY0ia5b-5" value="performSyncWorkOnRoot" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="2950" y="155" width="220" height="60" as="geometry" />
         </mxCell>
@@ -77,13 +85,13 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="gff9xbBirFWEVuY0ia5b-7" value="renderRootSync&lt;br&gt;构建workInProgress,并进入workLoopSync阶段" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="3250" y="154.38" width="260" height="60" as="geometry" />
+          <mxGeometry x="3380" y="154.38" width="260" height="60" as="geometry" />
         </mxCell>
         <mxCell id="gff9xbBirFWEVuY0ia5b-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="gff9xbBirFWEVuY0ia5b-9" target="gff9xbBirFWEVuY0ia5b-17" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="gff9xbBirFWEVuY0ia5b-9" value="workLoopSync&lt;br&gt;根据workInProgress，进入performUnitOfWork" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="3580" y="154.38" width="280" height="60" as="geometry" />
+          <mxGeometry x="3670" y="154.38" width="280" height="60" as="geometry" />
         </mxCell>
         <mxCell id="gff9xbBirFWEVuY0ia5b-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="gff9xbBirFWEVuY0ia5b-11" target="gff9xbBirFWEVuY0ia5b-13" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -219,8 +227,17 @@
         <mxCell id="jXGPF6tWEDYVgl1Ts_CV-1" value="completeWork&lt;br&gt;返回一个next" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="5760" y="345" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-3" value="" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="6020" y="202.19" width="120" height="60" as="geometry" />
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jXGPF6tWEDYVgl1Ts_CV-3" target="jXGPF6tWEDYVgl1Ts_CV-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-3" value="updateHostComponent$1" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="6010" y="180" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-6" value="diffProperties" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="6420" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jXGPF6tWEDYVgl1Ts_CV-8" value="&lt;br&gt;commit 阶段" style="whiteSpace=wrap;html=1;fillColor=#050621;fontColor=#FFEF12;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="3000" y="295" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
