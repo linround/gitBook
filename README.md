@@ -6,6 +6,7 @@
 - [contributors-win11React](https://github.com/blueedgetechno/win11React/graphs/contributors)
 - [quaternion issue](https://github.com/Krasjet/quaternion/issues/37)
 - [esBook](https://tc39.es/ecma262/)
+- [2024](./2024.md)
 
 # CSS
 - flex（缩放控制是重点）
