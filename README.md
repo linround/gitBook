@@ -7,7 +7,7 @@
 - [quaternion issue](https://github.com/Krasjet/quaternion/issues/37)
 - [esBook](https://tc39.es/ecma262/)
 - [2024](./2024.md)
-- [一些工作建议](./txt.md)
+- [一些零散的工作建议](./txt.md)
 
 # CSS
 - flex（缩放控制是重点）
