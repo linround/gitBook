@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React without Func</title>
+    <script src="../reactSourceCode/react.development.js" crossorigin></script>
+    <script src="../reactSourceCode/react-dom.development.js" crossorigin></script>
+    <script src="../reactSourceCode/redux.js"></script>
+    <script src="../reactSourceCode/babel.js" crossorigin></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script>
+
+    function App() {
+        let [num, setNum] = React.useState(0);
+
+        const onClick = () => {
+            const v = num + 1;
+            setNum(v);
+        };
+
+        return /*#__PURE__*/React.createElement("button", {
+            onClick: onClick
+        }, num);
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"), {
+        identifierPrefix: 'react-class'
+    }); // ReactDOMRoot的原型上具有render方法
+
+    root.render( /*#__PURE__*/React.createElement(App, {
+        name: 'app-name'
+    }));
+</script>
+</body>
+
+</html>

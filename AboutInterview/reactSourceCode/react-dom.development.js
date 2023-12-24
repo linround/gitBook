@@ -19778,6 +19778,7 @@
 
   function updateFunctionComponent(current, workInProgress, Component, nextProps, renderLanes) {
     {
+
       if (workInProgress.type !== workInProgress.elementType) {
         // Lazy component props can't be validated in createElement
         // because they're only guaranteed to be resolved here.

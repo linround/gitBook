@@ -17,12 +17,20 @@
 <script type="text/babel" data-presets="react,stage-3">
   function App() {
     let [num,setNum]  = React.useState(0)
+      const ref = React.useRef()
     const onClick = ()=>{
       const v = num+1
-      setNum(num++)
+      setNum(v)
+        console.log('同步任务中:',ref.current.innerText)
+        Promise.resolve().then(()=>{
+            console.log('微任务中:',ref.current.innerText)
+        })
+        setTimeout(()=>{
+            console.log('宏任务中:',ref.current.innerText)
+        },0)
     }
     return(
-      <div onClick={onClick}>{num}</div>
+      <div onClick={onClick} ref={ref}>{num}</div>
     )
   }
 
