@@ -18,3 +18,10 @@ vite 只对.ts 文件进行转译,而不执行类型检查。
 
 - 对于生产构建，除了构建命令，也可运行` tsc --noEmit  `
 - 在开发时，如果您需要的不仅仅是IDE 提示，可以在单独的进程中运行` tsc --noEmit --watch  `;也课利用vite-plugin-checker 进行检查。
+
+## typeScript 编译选项
+`tsconfig.json`中，以下编译选项需要特别注意。
+
+- isolatedModules
+
+  应该被设置为true。 因为esbuild 只进行无类型信息的转译，不支持某些功能，例如 const 枚举和隐式纯类型导入。
