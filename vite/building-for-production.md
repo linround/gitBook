@@ -32,3 +32,5 @@
 .env.[mode].local // 在指定模式下加载，git 会忽略
 
 ```
+可查看 [dotenv](https://github.com/motdotla/dotenv)
+- 使用VITE前缀可选择性暴露变量
