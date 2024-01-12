@@ -133,7 +133,7 @@
 - [ ] 复习css基础
 - [ ] 复习 webpack 的使用
 - [ ] 复习 gulp 的使用
-- [ ] [复习 vite的使用](vite/vite.md)
+- [x] [复习 vite的使用](vite/vite.md)
 - [ ] 复习浏览器原理
 - [ ] 复习SEO 相关知识点 
 - [ ] 复习计算机网络基础
