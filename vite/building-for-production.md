@@ -34,3 +34,10 @@
 ```
 可查看 [dotenv](https://github.com/motdotla/dotenv)
 - 使用VITE前缀可选择性暴露变量
+
+## html Env Replacement
+
+`import.meta.env`中的任何属性都可以在HTML文件中使用。只需要使用该语法：`%ENV_NAME%`；
+
+## vite 可构建的ssr项目
+- [react](https://github.com/bluwy/create-vite-extra/tree/master/template-ssr-react)
