@@ -40,11 +40,11 @@
 ---------------------------------------------
 
 - [x] 参数转str 
-- [ ] 将 str 进行 encodeURI 编码
+- [ ] 将 str 进行 encodeURIComponent 编码
 - [ ] 编码后的 转成 base64
 - [x] base64 拼接到 url上
 - [x] 前端从 url 获取 base64，然后进行 atob 解码
-- [ ] 进行decodeURI 解码
+- [ ] 进行 decodeURIComponent 解码
 - [x] 最终获得解码的参数
 
 
