@@ -46,3 +46,14 @@
 - [x] 前端从 url 获取 base64，然后进行 atob 解码
 - [ ] 进行decodeURI 解码
 - [x] 最终获得解码的参数
+
+
+## links
+
+------------------------------------------------
+需要注意一下： encodeURI 自身无法产生能适用于 HTTP GET 或 POST 请求的 URI
+
+------------------------------------------------
+
+- [encodeURI](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/encodeURI)
+- [encodeURIComponent](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
