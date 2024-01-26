@@ -10,3 +10,4 @@
 - 超级有趣的图片mosh https://photomosh.com/
 - 自由绘画 https://www.autodraw.com/
 - web画板 https://github.com/dogezhou/web-whiteboard
+- gif产品demo https://giphy.com/
