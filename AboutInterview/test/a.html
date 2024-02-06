@@ -5,6 +5,11 @@
     <title>Title</title>
 </head>
 <body>  <div style="height:1px;overflow:hidden;background:red"></div>
+<form oninput="v.value=parseInt(a.value)+parseInt(b.value)">
+    <input type="range" name="b" value="50" /> +
+    <input type="number" name="a" value="10" /> =
+    <output name="v"></output>
+</form>
 
 </body>
 </html>

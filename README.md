@@ -131,7 +131,7 @@
 - [ ] 复习vue2 vue3的使用
 - [ ] 复习js基础
 - [ ] 复习css基础
-- [ ] [HTML 基础](https://github.com/CavsZhouyou/Front-End-Interview-Notebook/blob/master/Html/Html.md)  
+- [x] [HTML 基础](https://github.com/CavsZhouyou/Front-End-Interview-Notebook/blob/master/Html/Html.md)  
   附1
 
 - [x] 复习 webpack 的使用
