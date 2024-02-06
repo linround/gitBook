@@ -20,9 +20,23 @@
     <div></div>
 
 </div>
+<h3>目录</h3>
+<ol>
+    <li><a href="#p1">跳转到第一个段落！</a></li>
+    <li><a href="#p2">跳转到第二个段落！</a></li>
+    <li><a href="#nowhere">此链接不会跳转，因为目标不存在。</a></li>
+</ol>
+
+<h3>我的趣味文章</h3>
+<p id="p1">你可以使用 URL 片段定位此<i>段落</i>。点击上面的链接试试吧！</p>
+<p id="p2">这是<i>另一个段落</i>，也可以从上面的链接访问。这不是很愉快吗？</p>
 </body>
 </html>
 <style>
+  p:target {
+    background-color: gold;
+  }
+
     /* 选择不包含子元素和内容的div*/
   .test div:empty{
     height: 50px;
