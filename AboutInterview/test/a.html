@@ -10,6 +10,45 @@
     <input type="number" name="a" value="10" /> =
     <output name="v"></output>
 </form>
+<div class="test">
+    <p  class="p">1</p>
+    <p  class="p">2</p>
+    <p class="p">3</p>
+    <p  class="p">4</p>
+    <h1> h1 </h1>
+    <p  class="p">5</p>
+    <div></div>
 
+</div>
 </body>
 </html>
+<style>
+    /* 选择不包含子元素和内容的div*/
+  .test div:empty{
+    height: 50px;
+    width: 50px;
+    border: 1px solid blue;
+    background: crimson;
+  }
+  .test h1:only-of-type{
+    background: red;
+  }
+  .test p:first-of-type{
+    color: yellow;
+  }
+
+  .test p{
+    background: red;
+  }
+  .test #p{
+    background: yellow;
+  }
+  .test .p{
+    background: #0d1bd0;
+  }
+    .test{
+      height: 300px;
+      width: 300px;
+      border: 1px solid crimson;
+    }
+</style>
