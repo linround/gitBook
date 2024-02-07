@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="a-box">
+    <div class="b-box"></div>
+</div>
+
+<ul>
+    <li class="li">li-1</li>
+    <li class="li hidden">li-2</li>
+    <li class="li display">li-3</li>
+    <li class="li">li-4</li>
+</ul>
+<div class="container">
+  <div class="box"></div>
+</div>
+<style>
+  .a-box{
+    border: 1px solid blue;
+    width: 200px;
+    height: 200px;
+    padding: 30px;
+    margin: 40px;
+  }
+  .b-box{
+
+    width: auto;
+    height: 100px;
+    background: #0d1bd0;
+  }
+  .display{
+    display: none;
+  }
+  .hidden{
+    visibility: hidden;
+  }
+  .li{
+    border: 1px solid blue;
+  }
+  .container{
+    width: 600px;
+    height: 300px;
+    border: 1px solid black;
+    position: relative;
+  }
+  .box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    background: yellowgreen;
+    width: 200px;
+    height: 100px;
+    border: 1px solid blue;
+  }
+</style>
+</body>
+</html>
