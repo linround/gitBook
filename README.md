@@ -130,7 +130,7 @@
 - [ ] 学习 react 源码 细节
 - [ ] 复习vue2 vue3的使用
 - [ ] 复习js基础
-- [ ] 复习css基础
+- [x] 复习css基础
 - [x] [HTML 基础](https://github.com/CavsZhouyou/Front-End-Interview-Notebook/blob/master/Html/Html.md)  
   附1
 
