@@ -143,6 +143,9 @@
 - [ ] 复习设计模式
 - [ ] 学习 webpack 源码
 - [ ] 学习 vite 源码
+- 网页性能
+  - [监测指标](https://web.dev/articles/vitals?hl=zh-cn) 
+  - [SEO 文档](https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=zh-cn)
 ## 浏览器
 + [路由事件(hashChange和popState)](Browser/popStataAndHashChange.md)
 + [drag事件](drag/drag.md)
