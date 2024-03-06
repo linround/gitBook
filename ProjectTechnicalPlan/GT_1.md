@@ -32,3 +32,6 @@ TARGET_DIST=/home/dev/dockers/nginx/html
 npm run build && \
 scp -r ./$DIST/* dev@$SERVER_HOST:$TARGET_DIST
 ```
+
+### 缺陷
+- 未考虑到前端服务器的备份
