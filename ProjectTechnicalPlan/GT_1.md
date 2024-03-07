@@ -35,3 +35,9 @@ scp -r ./$DIST/* dev@$SERVER_HOST:$TARGET_DIST
 
 ### 缺陷
 - 未考虑到前端服务器的备份
+
+
+### SEO方面的demo
+来源：https://www.svelte.cn/blog/virtual-dom-is-pure-overhead
+
+例如：代码文本使用code 标签包裹，这样在用户使用翻译插件的时候就不会翻译该模块。
