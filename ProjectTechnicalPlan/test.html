@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+  console.time('test1')
+
+  function test1() {
+    for (let i = 0; i < 1000000; i++) {
+
+    }
+  }
+
+  test1()
+  console.timeEnd()
+
+  console.time('test2')
+
+  function test2() {
+    for (let i = 0; i < 10000000; i++) {
+
+    }
+  }
+
+  test2()
+  console.timeEnd()
+
+
+  console.time('test3')
+
+  function test3() {
+    for (let i = 0; i < 100000000; i++) {
+
+    }
+  }
+
+  test3()
+  console.timeEnd()
+</script>
