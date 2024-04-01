@@ -8,6 +8,10 @@
 - [esBook](https://tc39.es/ecma262/)
 - [2024](./2024.md)
 - [一些零散的工作建议](./txt.md)
+# 一些工具类
+## 富文本编辑
+- https://github.com/facebook/lexical
+- https://draftjs.org/docs/getting-started
 
 # CSS
 - flex（缩放控制是重点）
