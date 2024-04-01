@@ -12,6 +12,7 @@
 ## 富文本编辑
 - https://github.com/facebook/lexical
 - https://draftjs.org/docs/getting-started
+- https://tiptap.dev/docs/editor/introduction
 
 # CSS
 - flex（缩放控制是重点）
