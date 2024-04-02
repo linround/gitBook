@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-04-02T06:49:41.202Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="jRunJzSYlErYGJ_s7pI1" version="24.2.1" type="github">
+<mxfile host="app.diagrams.net" modified="2024-04-02T07:10:06.116Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="8-uN4oFsvQZHGdgcKyaR" version="24.2.1" type="github">
   <diagram name="第 1 页" id="z2x4UcJcFMROci2A8Mf3">
     <mxGraphModel dx="1434" dy="796" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -40,8 +40,14 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="IfcWRajiX3WYb2eG6ur--15" value="" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="IfcWRajiX3WYb2eG6ur--12" target="IfcWRajiX3WYb2eG6ur--14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="IfcWRajiX3WYb2eG6ur--12" value="ReactElement&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;以函数组件为例。ReactElement的type 属性&lt;/div&gt;&lt;div&gt;就是该函数。使用$$typeof标记为&lt;/div&gt;&lt;div&gt;REACT_ELEMENT_TYPE&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="1100" y="168.75" width="261" height="132.5" as="geometry" />
+        </mxCell>
+        <mxCell id="IfcWRajiX3WYb2eG6ur--14" value="initEvent&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;初始化事件系统&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="142.5" width="208.5" height="185" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
