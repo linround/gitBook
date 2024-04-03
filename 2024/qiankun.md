@@ -19,6 +19,9 @@
 ![img.png](img/img1.png)
 ## 无界
 链接：https://github.com/Tencent/wujie
+
+无界的界面加载方式是通过一个shadowDOM来实现的，这样就不会出现样式污染的问题。
+![img.png](img/img4.png)
 ### 运行环境
 建议node版本 v16。
 ### 项目启动
