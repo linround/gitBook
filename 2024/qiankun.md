@@ -42,5 +42,6 @@
 1. 子应用之间的路由跳转
 2. 主应用跳转子应用
 #### state管理
+1. 通过 EventBus 进行状态管理和通信
 ## micro-app
 链接：https://github.com/micro-zoe/micro-app
