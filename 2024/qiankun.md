@@ -35,7 +35,12 @@
 目前成功运行了vite，vue3和react17三个子应用，足够测试为前端的大部分功能了。
 ![img.png](img/img3.png)
 ### 通信
+1. props 注入机制
+2. window.parent 通信机制（通过postMessage）
+3. 去中心化的通信机制（EventBus）
 #### 路由管理
+1. 子应用之间的路由跳转
+2. 主应用跳转子应用
 #### state管理
 ## micro-app
 链接：https://github.com/micro-zoe/micro-app
