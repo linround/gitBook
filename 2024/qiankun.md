@@ -32,7 +32,10 @@
 - 进入examples/vue3目录；运行yarn install；yarn start
 ### 体验
 运行wujie微前端之后，切换子应用的时候，没有出现异常,但是打开弹框后却发生了滚动。
-目前成功运行了vite和react17两个子应用，足够测试为前端的大部分功能了。
+目前成功运行了vite，vue3和react17三个子应用，足够测试为前端的大部分功能了。
 ![img.png](img/img3.png)
+### 通信
+#### 路由管理
+#### state管理
 ## micro-app
 链接：https://github.com/micro-zoe/micro-app
