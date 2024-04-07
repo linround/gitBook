@@ -29,6 +29,7 @@
 - 进入examples/main-vue 目录；运行 yarn install ; yarn start
 - 进入examples/react17 目录；运行 yarn start
 - 进入examples/vite 目录；运行 yarn install ; yarn start
+- 进入examples/vue3目录；运行yarn install；yarn start
 ### 体验
 运行wujie微前端之后，切换子应用的时候，没有出现异常,但是打开弹框后却发生了滚动。
 目前成功运行了vite和react17两个子应用，足够测试为前端的大部分功能了。
