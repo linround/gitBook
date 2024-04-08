@@ -41,6 +41,11 @@
 #### 路由管理
 1. 子应用之间的路由跳转
 2. 主应用跳转子应用
+
+![img.png](img/img5.png)
+![img.png](img/img6.png)
+子应用路由中的location 来自iframe.contentWindow
+
 #### state管理
 1. 通过 EventBus 进行状态管理和通信
 ## micro-app
