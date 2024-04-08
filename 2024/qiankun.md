@@ -57,3 +57,7 @@
 链接：https://github.com/micro-zoe/micro-app
 
 micro-app是基于 webComponent + qiankun sandbox 的微前端方案
+
+
+## 总结
+1. 乾坤的sandbox 是自己内部实现的一套沙箱机制，无界是基于浏览器的shadowDOM实现的沙箱机制。
