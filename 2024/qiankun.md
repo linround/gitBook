@@ -61,3 +61,4 @@ micro-app是基于 webComponent + qiankun sandbox 的微前端方案
 
 ## 总结
 1. 乾坤的sandbox 是自己内部实现的一套沙箱机制，无界是基于浏览器的shadowDOM实现的沙箱机制。
+2. 乾坤的渲染是通过操作dom 挂在实现的，无界是通过shadowDOM实现的。
