@@ -55,3 +55,5 @@
 1. 通过 EventBus 进行状态管理和通信
 ## micro-app
 链接：https://github.com/micro-zoe/micro-app
+
+micro-app是基于 webComponent + qiankun sandbox 的微前端方案
