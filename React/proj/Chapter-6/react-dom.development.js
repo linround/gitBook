@@ -15104,6 +15104,7 @@
     }
 
     function createChild(returnFiber, newChild, lanes) {
+
       if (typeof newChild === 'string' && newChild !== '' || typeof newChild === 'number') {
         // Text nodes don't have keys. If the previous node is implicitly keyed
         // we can continue to replace it without aborting even if it is not a text
@@ -15412,6 +15413,7 @@
         // If we don't have any more existing children we can choose a fast path
         // since the rest will all be insertions.
         for (; newIdx < newChildren.length; newIdx++) {
+          debugger
           var _newFiber = createChild(returnFiber, newChildren[newIdx], lanes);
 
           if (_newFiber === null) {
@@ -15603,6 +15605,7 @@
       }
 
       if (oldFiber === null) {
+
         // If we don't have any more existing children we can choose a fast path
         // since the rest will all be insertions.
         for (; !step.done; newIdx++, step = newChildren.next()) {
@@ -19308,6 +19311,7 @@
         }
       }
 
+
       var child = createFiberFromTypeAndProps(Component.type, null, nextProps, workInProgress, workInProgress.mode, renderLanes);
       child.ref = workInProgress.ref;
       child.return = workInProgress;
@@ -21529,7 +21533,6 @@
   }
 
   function beginWork(current, workInProgress, renderLanes) {
-
     {
       if (workInProgress._debugNeedsRemount && current !== null) {
         // This will restart the begin phase with a new fiber.
@@ -26567,6 +26570,7 @@
     var current = unitOfWork.alternate;
     setCurrentFiber(unitOfWork);
     var next;
+    debugger
 
     if ( (unitOfWork.mode & ProfileMode) !== NoMode) {
       startProfilerTimer(unitOfWork);

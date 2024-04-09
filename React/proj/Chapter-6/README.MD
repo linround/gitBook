@@ -224,3 +224,13 @@ var b = {
 shallowEqual(a,b) // false
 ```
 
+## 总结
+React.memo 通过 创建一个 REACT_MEMO_TYPE 类型的元素，
+- performUnitOfWork
+- beginWork$1
+- reconcileChildren
+- createChild
+- createFiberFromElement
+- createFiberFromTypeAndProps
+
+REACT_MEMO_TYPE 元素 通过上述步骤的调用，创建了 tag为 MemoComponent 的fiber.  此后即可执行 MemoComponent相关的初始逻辑和更新逻辑。
