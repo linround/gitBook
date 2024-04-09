@@ -15413,7 +15413,6 @@
         // If we don't have any more existing children we can choose a fast path
         // since the rest will all be insertions.
         for (; newIdx < newChildren.length; newIdx++) {
-          debugger
           var _newFiber = createChild(returnFiber, newChildren[newIdx], lanes);
 
           if (_newFiber === null) {
@@ -26570,7 +26569,6 @@
     var current = unitOfWork.alternate;
     setCurrentFiber(unitOfWork);
     var next;
-    debugger
 
     if ( (unitOfWork.mode & ProfileMode) !== NoMode) {
       startProfilerTimer(unitOfWork);
