@@ -234,3 +234,8 @@ React.memo 通过 创建一个 REACT_MEMO_TYPE 类型的元素，
 - createFiberFromTypeAndProps
 
 REACT_MEMO_TYPE 元素 通过上述步骤的调用，创建了 tag为 MemoComponent 的fiber.  此后即可执行 MemoComponent相关的初始逻辑和更新逻辑。
+
+
+## 遗留问题
+- [ ] [performUnitOfWork 中的 workInProgress 在一开始是如何创建的呢？]()
+- [ ] [React中的ReactElement、fiber、Dom之间的关系？]()
