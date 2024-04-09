@@ -16274,6 +16274,7 @@
   }
 
   function renderWithHooks(current, workInProgress, Component, props, secondArg, nextRenderLanes) {
+    console.log('renderWithHooks:',11111111111)
     renderLanes = nextRenderLanes;
     currentlyRenderingFiber$1 = workInProgress;
 
@@ -19271,6 +19272,7 @@
   }
 
   function updateMemoComponent(current, workInProgress, Component, nextProps, renderLanes) {
+
     if (current === null) {
       var type = Component.type;
 
@@ -19565,6 +19567,8 @@
   }
 
   function updateFunctionComponent(current, workInProgress, Component, nextProps, renderLanes) {
+    console.log('updateFunctionComponent:',1111111111)
+
     {
       if (workInProgress.type !== workInProgress.elementType) {
         // Lazy component props can't be validated in createElement
@@ -21525,6 +21529,7 @@
   }
 
   function beginWork(current, workInProgress, renderLanes) {
+
     {
       if (workInProgress._debugNeedsRemount && current !== null) {
         // This will restart the begin phase with a new fiber.
@@ -27434,6 +27439,7 @@
       var originalWorkInProgressCopy = assignFiberPropertiesInDEV(dummyFiber, unitOfWork);
 
       try {
+
         return beginWork(current, unitOfWork, lanes);
       } catch (originalError) {
         if (didSuspendOrErrorWhileHydratingDEV() || originalError !== null && typeof originalError === 'object' && typeof originalError.then === 'function') {

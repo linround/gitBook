@@ -18,26 +18,41 @@
 <body>
 <div id="root"></div>
 
-<script type="text/babel" data-presets="react,stage-3">function MyApp() {
+<script type="text/babel" data-presets="react,stage-3">
+function MyApp() {
   const [name, setName] = React.useState('');
   const [address, setAddress] = React.useState('');
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("label", null, "Name", ': ', /*#__PURE__*/React.createElement("input", {
-    value: name,
-    onChange: e => setName(e.target.value)
-  })), /*#__PURE__*/React.createElement("label", null, "Address", ': ', /*#__PURE__*/React.createElement("input", {
-    value: address,
-    onChange: e => setAddress(e.target.value)
-  })), /*#__PURE__*/React.createElement(Greeting, {
-    name: name
-  }));
+
+  const greetElement = React.createElement(Greeting, {name: name});
+  const inputNameElement = React.createElement("input", {value: name, onChange: e => setName(e.target.value)});
+  const inputAddressElement = React.createElement("input", {value: address, onChange: e => {
+        console.log('set address')
+      setAddress(e.target.value)
+    }
+  });
+  const labelNameElement = React.createElement("label", null, "Name", ': ', inputNameElement);
+  const labelAddressElement = React.createElement("label", null, "Address", ': ', inputAddressElement);
+
+  console.log("greetElement",greetElement)
+  console.log("inputNameElement",inputNameElement)
+  return React.createElement(
+    'div',
+    null,
+    labelNameElement,
+    labelAddressElement,
+    greetElement
+  );
 }
 
 const Greeting = React.memo(function Greeting({name}) {
   console.log("Greeting重复渲染", new Date().toLocaleTimeString());
-  return /*#__PURE__*/React.createElement("h3", null, "Hello", name && ', ', name, "!");
+  return React.createElement("h3", null, "Hello", name && ', ', name, "!");
 });
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render( /*#__PURE__*/React.createElement(MyApp, null));
+const myAppElement = React.createElement(MyApp, null);
+console.log("myAppElement", myAppElement);
+root.render( myAppElement);
+console.log("end========", );
 </script>
 </body>
 

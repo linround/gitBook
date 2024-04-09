@@ -104,3 +104,123 @@ const Profile = memo(function Profile({ name, age }) {
 ```
 
 ## memo源码分析
+
+总体执行逻辑：
+- 初始渲染 
+  - beginWork。（这个时候还是 MemoComponent）
+  - updateMemoComponent。标记 `workInProgress.tag = SimpleMemoComponent`;
+  - updateSimpleMemoComponent
+  - updateFunctionComponent
+- 执行更新
+  - beginWork。（已经被标记为了 SimpleMemoComponent）
+  - updateSimpleMemoComponent。执行浅比较（props,ref，type）,如果都相等只需要执行赋值。不进入
+  - updateFunctionComponent（浅比较结果为false,就会进入这里）
+
+###  updateFunctionComponent
+- 执行 renderWithHooks，执行函数组件的逻辑，传入了nextProps和context，生成child（ReactElement）。
+- 执行 reconcileChildren，生成childFiber。
+
+```javascript
+
+  function memo(type, compare) {
+    {
+      if (!isValidElementType(type)) {
+        error('memo: The first argument must be a component. Instead ' + 'received: %s', type === null ? 'null' : typeof type);
+      }
+    }
+
+    var elementType = {
+      $$typeof: REACT_MEMO_TYPE,
+      type: type,
+      compare: compare === undefined ? null : compare
+    };
+
+    {
+      var ownName;
+      Object.defineProperty(elementType, 'displayName', {
+        enumerable: false,
+        configurable: true,
+        get: function () {
+          return ownName;
+        },
+        set: function (name) {
+          ownName = name; // The inner component shouldn't inherit this display name in most cases,
+          // because the component may be used elsewhere.
+          // But it's nice for anonymous functions to inherit the name,
+          // so that our component-stack generation logic will display their frames.
+          // An anonymous function generally suggests a pattern like:
+          //   React.memo((props) => {...});
+          // This kind of inner function is not used elsewhere so the side effect is okay.
+
+          if (!type.name && !type.displayName) {
+            type.displayName = name;
+          }
+        }
+      });
+    }
+
+    return elementType;
+  }
+```
+创建了一个 `REACT_MEMO_TYPE`类型的元素。
+
+
+- 为了找出处理重复渲染的逻辑，找到关键的入口处 `renderRootSync`，`workLoopSync`，`updateSimpleMemoComponent`，
+
+- 进行浅比较.因为并没有递归的对每一个属性值进行比较。
+```javascript
+
+/**
+ * 执行浅比较
+ * 如果值相等返回true （认为相等）
+ * objA 不是 对象或者是null，或者objB 不是对象或者是null，返回false（认为不相等）
+ * 如果objA 和 objB 的key的数量不相等，返回false（认为不相等）
+ * 遍历objA 的key，如果objB 不包含该key，或者objA 和 objB 的key对应的值不相等，返回false（认为不相等）
+ * 其他情况返回true（认为相等）
+ * **/
+  function shallowEqual(objA, objB) {
+    if (objectIs(objA, objB)) {
+      return true;
+    }
+
+    if (typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null) {
+      return false;
+    }
+
+    var keysA = Object.keys(objA);
+    var keysB = Object.keys(objB);
+
+    if (keysA.length !== keysB.length) {
+      return false;
+    } // Test for A's keys different from B.
+
+
+    for (var i = 0; i < keysA.length; i++) {
+      var currentKey = keysA[i];
+
+      if (!hasOwnProperty.call(objB, currentKey) || !objectIs(objA[currentKey], objB[currentKey])) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+
+/**
+ * 浅比较存在的问题
+ * 以下 a和b实际来看，最终的渲染结果应该是相同的，但是浅比较会认为不相等。这个时候就会造成页面重新刷新。
+ * */
+var a = {
+  "name": {
+    "v": "1"
+  }
+}
+var b = {
+  "name": {
+    "v": "1"
+  }
+}
+shallowEqual(a,b) // false
+```
+

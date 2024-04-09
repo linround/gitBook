@@ -1522,11 +1522,16 @@
     }
 
     if (typeof type === 'object' && type !== null) {
-      if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+      if (type.$$typeof === REACT_LAZY_TYPE ||
+        type.$$typeof === REACT_MEMO_TYPE ||
+        type.$$typeof === REACT_PROVIDER_TYPE ||
+        type.$$typeof === REACT_CONTEXT_TYPE ||
+        type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
         // types supported by any Flight configuration anywhere since
         // we don't know which Flight build this will end up being used
         // with.
-        type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== undefined) {
+        type.$$typeof === REACT_MODULE_REFERENCE
+        || type.getModuleId !== undefined) {
         return true;
       }
     }
@@ -1541,6 +1546,7 @@
       }
     }
 
+    //
     var elementType = {
       $$typeof: REACT_MEMO_TYPE,
       type: type,
@@ -1556,6 +1562,7 @@
           return ownName;
         },
         set: function (name) {
+
           ownName = name; // The inner component shouldn't inherit this display name in most cases,
           // because the component may be used elsewhere.
           // But it's nice for anonymous functions to inherit the name,
@@ -2251,9 +2258,13 @@
 
       if (typeof type === 'function') {
         propTypes = type.propTypes;
-      } else if (typeof type === 'object' && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
+      } else if (typeof type === 'object' &&
+        (type.$$typeof === REACT_FORWARD_REF_TYPE ||
+        // Note: Memo only checks outer props here.
         // Inner props are checked in the reconciler.
-        type.$$typeof === REACT_MEMO_TYPE)) {
+        type.$$typeof === REACT_MEMO_TYPE)
+      ) {
+
         propTypes = type.propTypes;
       } else {
         return;
@@ -2458,6 +2469,7 @@
   }
 
   function siftDown(heap, node, i) {
+
     var index = i;
     var length = heap.length;
     var halfLength = length >>> 1;
@@ -2490,6 +2502,7 @@
   }
 
   function compare(a, b) {
+
     // Compare sort index first, then task id.
     var diff = a.sortIndex - b.sortIndex;
     return diff !== 0 ? diff : a.id - b.id;
