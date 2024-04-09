@@ -7,4 +7,9 @@
 
 在学习之前也看了其他人学习的react 笔记。例如：
 - [五年前端三年面试](https://fe.azhubaby.com/)
+- [React 官方文档](https://react.dev/reference/react)
 
+通过官网的介绍，进一步详细的理解React的各种用法。
+
+## API
+- [memo](../../React/proj/Chapter-6/README.MD)
