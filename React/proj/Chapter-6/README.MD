@@ -234,6 +234,8 @@ React.memo 通过 创建一个 REACT_MEMO_TYPE 类型的元素，
 - createFiberFromTypeAndProps
 
 REACT_MEMO_TYPE 元素 通过上述步骤的调用，创建了 tag为 MemoComponent 的fiber.  此后即可执行 MemoComponent相关的初始逻辑和更新逻辑。
+在执行 updateFunctionComponent 的逻辑中，通过对属性（props,ref,type）的浅比较,从而避免了函数组件重新执行，避免创建新的ReactElement和fiber.
+也就避免了重新生成DOM，更新DOM的过程。
 
 
 ## 遗留问题
