@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React without JSX</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./redux.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script>
+  const store = Redux.createStore(Redux.combineReducers({
+    counter: (state = 0, action) => {
+      switch (action.type) {
+        case 'INCREMENT':
+          return state + 1;
+
+        case 'DECREMENT':
+          return state - 1;
+
+        default:
+          return state;
+      }
+    },
+    random: (state = 0, action) => {
+      switch (action.type) {
+        case 'RANDOM':
+          return Math.random();
+
+        default:
+          return state;
+      }
+    }
+  }));
+
+  function MyReduxComponent() {
+    console.log('MyReduxComponent render');
+    const [state, setState] = React.useState(store.getState());
+    React.useEffect(() => {
+      const unsubscribe = store.subscribe(() => {
+        setState(store.getState());
+      });
+      return () => unsubscribe();
+    }, [setState]);
+
+    const Increment = () => {
+      store.dispatch({
+        type: 'INCREMENT'
+      });
+    };
+
+    const Decrement = () => {
+      store.dispatch({
+        type: 'DECREMENT'
+      });
+    };
+
+    const Random = () => {
+      store.dispatch({
+        type: 'RANDOM'
+      });
+    };
+
+    return /*#__PURE__*/React.createElement(
+      "div",
+      null,
+      /*#__PURE__*/React.createElement("h1", null, "redux"),
+      /*#__PURE__*/React.createElement("div", null,
+        /*#__PURE__*/React.createElement(
+          "button", {
+              onClick: Increment
+            },
+          "+"),
+        /*#__PURE__*/React.createElement(
+          "button", {
+              onClick: Decrement
+            }, "-"),
+        "counter:",
+        state.counter),
+      /*#__PURE__*/React.createElement(
+        "div",
+        null,
+        /*#__PURE__*/React.createElement(
+          "button", {
+              onClick: Random
+            }, "Random"),
+        "random:",
+        state.random));
+  }
+
+  class MyComponent extends React.Component {
+    constructor() {
+      super();
+      this.render = this.render.bind(this);
+      this.change = this.change.bind(this);
+      this.state = {
+        name: 'my component state name'
+      };
+      console.log('MyComponent constructor');
+    }
+
+    change() {
+      this.setState({
+        name: 'my component new name'
+      });
+    }
+
+    render() {
+      console.log('MyComponent render');
+      const {
+        name
+      } = this.state;
+      return /*#__PURE__*/React.createElement(
+        "div",
+        null,
+        /*#__PURE__*/React.createElement("h1", null, "MyComponent"),
+        /*#__PURE__*/React.createElement("div", null, name),
+        /*#__PURE__*/React.createElement("button", {
+        onClick: this.change
+      }, "changeName"));
+    }
+
+  }
+
+  const Example = () => {
+    const [count, setCount] = React.useState(0);
+    React.useEffect(() => {
+      document.title = `You clicked ${count} times`;
+    });
+
+    const handleClick = () => {
+      setCount(count + 1);
+    };
+
+    console.log('Example render');
+    return /*#__PURE__*/React.createElement(
+      "div",
+      null,
+      /*#__PURE__*/React.createElement(MyComponent, null),
+      /*#__PURE__*/React.createElement(MyReduxComponent, null),
+      /*#__PURE__*/React.createElement("h1", null, "Example"),
+      /*#__PURE__*/React.createElement("p", null, "You clicked ", count, " times"),
+      /*#__PURE__*/React.createElement("button", {
+      onClick: handleClick
+    }, "Click me"));
+  };
+
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  root.render( /*#__PURE__*/React.createElement(Example, null));
+</script>
+
+</body>
+</html>
