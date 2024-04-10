@@ -237,5 +237,37 @@ REACT_MEMO_TYPE 元素 通过上述步骤的调用，创建了 tag为 MemoCompon
 
 
 ## 遗留问题
-- [ ] [performUnitOfWork 中的 workInProgress 在一开始是如何创建的呢？]()
+- [performUnitOfWork 中的 workInProgress 在一开始是如何创建的呢？]()
+    - workLoop 中。从 taskQueue 中获取 task.
+    - task 中的回调进入 performConcurrentWorkOnRoot
+    - 进入 prepareFreshStack
+    - createWorkInProgress。传入[root.current](),创建完成最初的fiber
+    - 进入 workLoopSync，进入 performUnitOfWork
+
+- 关于root
+  - root.current 最开始是一个 uninitializedFiber，uninitializedFiber.stateNode指向了root.
+  - 调用root的render方法，传入要渲染的ReactElement:MyApp。
+  - MyApp 放在 update.payload.element 中。
+  - 处理 uninitializedFiber 和 update。
+  - 处理 uninitializedFiber.updateQueue.shared.interleaved 赋值了 update
+  - 最终root.current就和MyApp 进行了关联
+  - scheduleCallback$1调用。创建 performConcurrentWorkOnRoot传入了root的回调函数。
+  - 创建一个包含该回调函数的task,放入taskQueue中。
+  - 通过postMessage调用 performWorkUntilDeadline
+  - 进入 workLoop,获取任务队列中的任务，并调用任务的回调（performConcurrentWorkOnRoot）。
+  - 进入 renderRootSync，进入 prepareFreshStack。
+  - 进入 workLoopSync
+  - updateHostRoot
+  - element 进入了 newBaseState，并赋值给了 queue.baseState.(workInProgress.updateQueue.baseState)
+  - 开始reconcileChildren(传入了 workInProgress,ReactElement)
+  - 创建MyApp的fiber
+  - 调用 renderWithHooks，继续生成ReactElement.
+  - 再次进入 reconcileChildren，生成childFiber
+  - 以此循环的生成 fiber 链表
+  - [ ] [fiber 链表生成后，Dom 的生成时机在什么时候]()
+  - [ ] [fiber 链表生成后，Dom 生成并且父子关系的时机在什么时候]()
+  - commitRoot，获取 finishedWork
+  - commitBeforeMutationEffects ，传入 finishedWork
+  - commitMutationEffects，传入 finishedWork
+  - commitMutationEffectsOnFiber（将fiber 上的DOM渲染刀页面上）
 - [ ] [React中的ReactElement、fiber、Dom之间的关系？]()
