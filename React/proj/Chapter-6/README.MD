@@ -266,9 +266,12 @@ REACT_MEMO_TYPE 元素 通过上述步骤的调用，创建了 tag为 MemoCompon
   - 以此循环的生成 fiber 链表
   - [ ] [fiber 链表生成后，Dom 的生成时机在什么时候]()
     - 关键入口处 `reconcileChildren`
+    - 从父到子创建fiber，beginWork是生成fiber 链表
+    - 进入 completeUnitOfWork,从子到父生成DOM。并appendChild到父节点上。
   - [ ] [fiber 链表生成后，Dom 生成并且父子关系的时机在什么时候]()
   - commitRoot，获取 finishedWork
   - commitBeforeMutationEffects ，传入 finishedWork
   - commitMutationEffects，传入 finishedWork
   - commitMutationEffectsOnFiber（将fiber 上的DOM渲染刀页面上）
 - [ ] [React中的ReactElement、fiber、Dom之间的关系？]()
+  - 通过逐个调用ReactElement生成Fiber链表，通过深度fiber链表生成完成之后再生成Dom 树（深度优先遍历的方式）。
