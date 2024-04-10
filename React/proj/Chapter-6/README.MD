@@ -265,6 +265,7 @@ REACT_MEMO_TYPE 元素 通过上述步骤的调用，创建了 tag为 MemoCompon
   - 再次进入 reconcileChildren，生成childFiber
   - 以此循环的生成 fiber 链表
   - [ ] [fiber 链表生成后，Dom 的生成时机在什么时候]()
+    - 关键入口处 `reconcileChildren`
   - [ ] [fiber 链表生成后，Dom 生成并且父子关系的时机在什么时候]()
   - commitRoot，获取 finishedWork
   - commitBeforeMutationEffects ，传入 finishedWork
