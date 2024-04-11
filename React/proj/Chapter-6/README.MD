@@ -237,6 +237,8 @@ REACT_MEMO_TYPE 元素 通过上述步骤的调用，创建了 tag为 MemoCompon
 在执行 updateFunctionComponent 的逻辑中，通过对属性（props,ref,type）的浅比较,从而避免了函数组件重新执行，避免创建新的ReactElement和fiber.
 也就避免了重新生成DOM，更新DOM的过程。
 
+纯渲染组件，建议使用React.memo包裹，可以避免不必要的重新渲染。
+
 
 ## 遗留问题
 - 💬 performUnitOfWork 中的 workInProgress 在一开始是如何创建的呢？

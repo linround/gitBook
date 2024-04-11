@@ -16,29 +16,116 @@
 </head>
 
 <body>
+<style>
+    .dark {
+        background-color: #333;
+        color: #fff;
+    }
+    .light {
+        background-color: #fff;
+        color: #333;
+    }
+</style>
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
 
-  const Example = () => {
-    const [count, setCount] = React.useState(0);
-    React.useEffect(() => {
-      document.title = `You clicked ${count} times`;
-    });
-    const handleClick = ()=>{
-      setCount(count + 1)
+
+
+  function createTodos() {
+    const todos = [];
+    for (let i = 0; i < 5; i++) {
+      todos.push({
+        id: i,
+        text: "Todo " + (i + 1),
+        completed: Math.random() > 0.5
+      });
     }
-    console.log('Example render')
+    return todos;
+  }
+
+  function filterTodos(todos, tab) {
+    console.log('正在过滤 ' + todos.length + ' todos for "' + tab + '" tab.');
+    let startTime = performance.now();
+    while (performance.now() - startTime < 500) {
+      // 500ms 不执行任何操作，模拟一些耗时的代码
+    }
+
+    return todos.filter(todo => {
+      if (tab === 'all') {
+        return true;
+      } else if (tab === 'active') {
+        return !todo.completed;
+      } else if (tab === 'completed') {
+        return todo.completed;
+      }
+    });
+  }
+
+  function TodoList({ todos, theme, tab }) {
+    // 此处如果使用 useMemo,会导致theme 变化时也发生计算，从而导致性能问题
+    const visibleTodos = React.useMemo(
+      () => filterTodos(todos, tab),
+      [todos, tab]
+    );
     return (
-      <div>
-        <h1>Example</h1>
-        <p>You clicked {count} times</p>
-        <button onClick={handleClick}>
-          Click me
-        </button>
+      <div className={theme}>
+        <p><b>Note: <code>filterTodos</code></b></p>
+        <ul>
+          {visibleTodos.map(todo => (
+            <li key={todo.id}>
+              {todo.completed ?
+                <s>{todo.text}</s> :
+                todo.text
+              }
+            </li>
+          ))}
+        </ul>
       </div>
     );
-  };
+  }
+
+
+
+  const todos = createTodos();
+
+
+
+   function App() {
+    const [tab, setTab] = React.useState('all');
+    const [isDark, setIsDark] = React.useState(false);
+    return (
+      <>
+
+        <button onClick={() => setTab('all')}>
+          All
+        </button>
+        <button onClick={() => setTab('active')}>
+          Active
+        </button>
+        <button onClick={() => setTab('completed')}>
+          Completed
+        </button>
+        <br />
+        <label>
+          <input
+            type="checkbox"
+            checked={isDark}
+            onChange={e => setIsDark(e.target.checked)}
+          />
+          Dark mode
+        </label>
+        <hr />
+        <TodoList
+          todos={todos}
+          tab={tab}
+          theme={isDark ? 'dark' : 'light'}
+        />
+      </>
+    );
+  }
+
+
 
 
 
@@ -46,7 +133,7 @@
 
   const root = ReactDOM.createRoot(document.getElementById("root"))
   root.render(
-    <Example/>
+    <App/>
   )
 </script>
 </body>
