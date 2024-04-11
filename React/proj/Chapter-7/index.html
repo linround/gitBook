@@ -100,7 +100,8 @@
 
     const labelElement = React.createElement("label", null, checkElement, "Dark mode")
 
-    const todoListElement  = React.createElement(TodoList, {
+    const todoListElement  = React.createElement(
+      TodoList, {
       todos: todos,
       tab: tab,
       theme: isDark ? 'dark' : 'light'
