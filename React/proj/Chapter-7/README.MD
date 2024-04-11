@@ -73,3 +73,34 @@ function TodoList({ todos, tab, theme }) {
 - 代码可读性降低
 
 ## 源码分析
+### React.useMemo 做了什么？
+- 传入了create 函数和依赖项 deps 数组.在updateMemo 中，首先会传入nextCreate和新的deps，会获取之前的memoizedState，然后获取之前的
+prvDeps,将新的deps 和 prevDeps 进行对比，
+
+如果相等，就返回之前的 prevState.
+
+如果不相等，就继续执行nextCreate,之后更新 memoizedState,并返回nextValue。
+
+```javascript
+
+  function updateMemo(nextCreate, deps) {
+    var hook = updateWorkInProgressHook();
+    var nextDeps = deps === undefined ? null : deps;
+    var prevState = hook.memoizedState;
+
+    if (prevState !== null) {
+      // Assume these are defined. If they're not, areHookInputsEqual will warn.
+      if (nextDeps !== null) {
+        var prevDeps = prevState[1];
+
+        if (areHookInputsEqual(nextDeps, prevDeps)) {
+          return prevState[0];
+        }
+      }
+    }
+
+    var nextValue = nextCreate();
+    hook.memoizedState = [nextValue, nextDeps];
+    return nextValue;
+  }
+```

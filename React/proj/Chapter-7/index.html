@@ -63,7 +63,18 @@
 
   function TodoList({todos, theme, tab}) {
     // 此处如果使用 useMemo,会导致theme 变化时也发生计算，从而导致性能问题
+    debugger
     const visibleTodos = React.useMemo(() => filterTodos(todos, tab), [todos, tab]);
+    const tabName = React.useMemo(() => {
+      if (tab === 'all') {
+        return 'All';
+      } else if (tab === 'active') {
+        return 'Active';
+      } else if (tab === 'completed') {
+        return 'Completed';
+      }
+    }, [tab]);
+
     const liElements = visibleTodos.map(todo => React.createElement("li", {key: todo.id},
       todo.completed ? React.createElement("s", null, todo.text) : todo.text))
 
@@ -71,7 +82,7 @@
 
     return React.createElement("div", {
       className: theme
-    },ulElement );
+    },ulElement,tabName );
   }
 
   const todos = createTodos();
