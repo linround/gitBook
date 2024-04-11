@@ -107,4 +107,45 @@ prvDeps,将新的deps 和 prevDeps 进行对比，
   }
 ```
 - updateWorkInProgressHook 获取的是什么？
+  - 渲染某个组件时，会 将该组件 赋值到一个全局变量 currentlyRenderingFiber$1。
+然后执行该函数组件
+  - 更新时执行 updateMemo 时，并从之前的fiber 中获取到之前的 memoizedState.
+  - 对传入的依赖进行对比，如果依赖相等，就将之前的计算结果返回。如果依赖不相等，就重新执行计算函数，重新生成结果，并更新 memoizedState。
 - memoizedState 是什么时候被赋值的？
+  - 在mountMemo 中，当时渲染的fiber的memoizedState 会被赋值。
+  - 在 updateMemo 中，当依赖发生变化时，会重新赋值。
+- 再次回顾ReactElement,fiber,dom之间的关系
+  - enqueueConcurrentClassUpdate(fiber, sharedQueue, update, lane);
+    - fiber, root上的 
+    - sharedQueue, root 上的
+    - update,包含着 更新的 ReactElement
+    - 将 update于root.fiber 完成了关联。即ReactElement 与 root.fiber 完成了关联
+  - 进入 scheduleUpdateOnFiber
+  - root 传入 performConcurrentWorkOnRoot
+  - prepareFreshStack
+  - createWorkInProgress。传入根fiber,将 updateQueue赋值给了 workInProgress.
+  - workLoopSync，performUnitOfWork。开始对workInProgress 进行处理。
+  - ReactElement 被提升到了 baseState
+  - reconcileChildren.从ReactElement 创建了fiber
+  - 返回子集fiber.并赋值给了 workProgress.然后继续处理，不断的创建子集fiber。
+  - fiber 从ReactElement创建，形成了链表结构。然后从内往外生成DOM结构。 
+```javascript
+  function Demo() {
+    console.log('Demo render');
+    const [data, setData] = React.useState(100);
+    return /*#__PURE__*/React.createElement("div", {
+      onClick: () => {
+        debugger
+        setData(1)
+      }
+    }, "改变",data);
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+
+  const demoElement = React.createElement(Demo, null)
+  root.render( /*#__PURE__*/ demoElement);
+```
+例如：root=>demoElement=>Demo=>divReactElement
+
+首先 从ReactElement 创建fiber链表，然后由fiber链表生成DOM结构。最终挂载DOM即可。

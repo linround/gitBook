@@ -13887,7 +13887,7 @@
       if (newLastBaseUpdate === null) {
         newBaseState = newState;
       }
-debugger
+
       queue.baseState = newBaseState;
       queue.firstBaseUpdate = newFirstBaseUpdate;
       queue.lastBaseUpdate = newLastBaseUpdate; // Interleaved updates are stored on a separate queue. We aren't going to

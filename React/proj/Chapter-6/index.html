@@ -21,24 +21,19 @@
 <script type="text/babel" data-presets="react,stage-3">
   function Demo() {
     console.log('Demo render');
-    const [data, setData] = React.useState({
-      foo: {
-        bar: {
-          baz: 1
-        }
-      }
-    });
+    const [data, setData] = React.useState(100);
     return /*#__PURE__*/React.createElement("div", {
       onClick: () => {
         debugger
         setData(1)
       }
-    }, "改变");
+    }, "改变",data);
   }
 
   const root = ReactDOM.createRoot(document.getElementById("root"));
-
-  root.render( /*#__PURE__*/React.createElement(Demo, null));
+debugger
+  const demoElement = React.createElement(Demo, null)
+  root.render( /*#__PURE__*/ demoElement);
 </script>
 </body>
 

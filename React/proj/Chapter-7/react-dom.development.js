@@ -16277,6 +16277,7 @@
     renderLanes = nextRenderLanes;
     currentlyRenderingFiber$1 = workInProgress;
 
+
     {
       hookTypesDev = current !== null ? current._debugHookTypes : null;
       hookTypesUpdateIndexDev = -1; // Used for hot reloading:
