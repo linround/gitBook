@@ -18,36 +18,109 @@
 <body>
 <div id="root"></div>
 
+<style>
+  .dark {
+    background-color: #333;
+    color: #fff;
+  }
+  .light {
+    background-color: #fff;
+    color: #333;
+  }
+</style>
 <script type="text/babel" data-presets="react,stage-3">
+  function createTodos() {
+    const todos = [];
 
-  const Example = () => {
-    const [count, setCount] = React.useState(0);
-    React.useEffect(() => {
-      document.title = `You clicked ${count} times`;
-    });
-    const handleClick = ()=>{
-      setCount(count + 1)
+    for (let i = 0; i < 5; i++) {
+      todos.push({
+        id: i,
+        text: "Todo " + (i + 1),
+        completed: Math.random() > 0.5
+      });
     }
-    console.log('Example render')
-    return (
-      <div>
-        <h1>Example</h1>
-        <p>You clicked {count} times</p>
-        <button onClick={handleClick}>
-          Click me
-        </button>
-      </div>
+
+    return todos;
+  }
+
+  function filterTodos(todos, tab) {
+    console.log('正在过滤 ' + todos.length + ' todos for "' + tab + '" tab.');
+    let startTime = performance.now();
+
+    while (performance.now() - startTime < 500) {// 500ms 不执行任何操作，模拟一些耗时的代码
+    }
+
+    return todos.filter(todo => {
+      if (tab === 'all') {
+        return true;
+      } else if (tab === 'active') {
+        return !todo.completed;
+      } else if (tab === 'completed') {
+        return todo.completed;
+      }
+    });
+  }
+
+  function TodoList({todos, theme, tab}) {
+    // 此处如果使用 useMemo,会导致theme 变化时也发生计算，从而导致性能问题
+    const visibleTodos = React.useMemo(() => filterTodos(todos, tab), [todos, tab]);
+    const liElements = visibleTodos.map(todo => React.createElement("li", {key: todo.id},
+      todo.completed ? React.createElement("s", null, todo.text) : todo.text))
+
+    const ulElement = React.createElement("ul", null,liElements )
+
+    return React.createElement("div", {
+      className: theme
+    },ulElement );
+  }
+
+  const todos = createTodos();
+
+  function App() {
+    const [tab, setTab] = React.useState('all');
+    const [isDark, setIsDark] = React.useState(false);
+
+    const allElement = React.createElement("button", {
+      onClick: () => setTab('all')
+    }, "All")
+    const activeElement = React.createElement("button", {
+      onClick: () => setTab('active')
+    }, "Active")
+    const completedElement = React.createElement("button", {
+      onClick: () => setTab('completed')
+    }, "Completed")
+
+    const hrElement = React.createElement("hr", null)
+
+    const checkElement = React.createElement("input", {
+      type: "checkbox",
+      checked: isDark,
+      onChange: e => setIsDark(e.target.checked)
+    })
+
+    const labelElement = React.createElement("label", null, checkElement, "Dark mode")
+
+    const todoListElement  = React.createElement(TodoList, {
+      todos: todos,
+      tab: tab,
+      theme: isDark ? 'dark' : 'light'
+    })
+    return React.createElement(
+      React.Fragment,
+      null,
+      allElement,
+      activeElement,
+      completedElement,
+      hrElement,
+      labelElement,
+      hrElement,
+      todoListElement
     );
-  };
+  }
 
-
-
-
-
-  const root = ReactDOM.createRoot(document.getElementById("root"))
-  root.render(
-    <Example/>
-  )
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  const appElement = React.createElement(App, null);
+  root.render(appElement);
 </script>
 </body>
 
