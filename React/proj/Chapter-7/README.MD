@@ -84,8 +84,10 @@ prvDeps,将新的deps 和 prevDeps 进行对比，
 ```javascript
 
   function updateMemo(nextCreate, deps) {
+  // 关键点 updateWorkInProgressHook 获取的是什么？
     var hook = updateWorkInProgressHook();
     var nextDeps = deps === undefined ? null : deps;
+    // memoizedState 是什么时候被赋值的？
     var prevState = hook.memoizedState;
 
     if (prevState !== null) {
@@ -104,3 +106,5 @@ prvDeps,将新的deps 和 prevDeps 进行对比，
     return nextValue;
   }
 ```
+- updateWorkInProgressHook 获取的是什么？
+- memoizedState 是什么时候被赋值的？
