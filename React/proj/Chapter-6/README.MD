@@ -239,11 +239,11 @@ REACT_MEMO_TYPE 元素 通过上述步骤的调用，创建了 tag为 MemoCompon
 
 
 ## 遗留问题
-- <span style="color:yellow">performUnitOfWork 中的 workInProgress 在一开始是如何创建的呢？</span> 
+- 💬 performUnitOfWork 中的 workInProgress 在一开始是如何创建的呢？
     - workLoop 中。从 taskQueue 中获取 task.
     - task 中的回调进入 performConcurrentWorkOnRoot
     - 进入 prepareFreshStack
-    - createWorkInProgress。传入  <font color="yellow">root.current</font>,创建完成最初的fiber
+    - createWorkInProgress。传入💬root.current,创建完成最初的fiber
     - 进入 workLoopSync，进入 performUnitOfWork
 
 - 关于root
@@ -266,14 +266,14 @@ REACT_MEMO_TYPE 元素 通过上述步骤的调用，创建了 tag为 MemoCompon
   - 调用 renderWithHooks，继续生成ReactElement.
   - 再次进入 reconcileChildren，生成childFiber
   - 以此循环的生成 fiber 链表
-  - [x] <span style="color:yellow">>fiber 链表生成后，Dom 的生成时机在什么时候?</span>
+  - [x] 💬fiber 链表生成后，Dom 的生成时机在什么时候
     - 关键入口处 `reconcileChildren`
     - 从父到子创建fiber，beginWork是生成fiber 链表
     - 进入 completeUnitOfWork,从子到父生成DOM。并appendChild到父节点上。
-  - [x] <span style="color:yellow">fiber 链表生成后，Dom 生成并且父子关系的时机在什么时候?</span>
+  - [x] 💬fiber 链表生成后，Dom 生成并且父子关系的时机在什么时候
   - commitRoot，获取 finishedWork
   - commitBeforeMutationEffects ，传入 finishedWork
   - commitMutationEffects，传入 finishedWork
   - commitMutationEffectsOnFiber（将fiber 上的DOM渲染刀页面上）
-- [x] <span style="color:yellow">React中的ReactElement、fiber、Dom之间的关系？</span>
+- [x] 💬React中的ReactElement、fiber、Dom之间的关系？
   - 通过逐个调用ReactElement生成Fiber链表，通过深度fiber链表生成完成之后再生成Dom 树（深度优先遍历的方式）。
