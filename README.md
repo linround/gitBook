@@ -8,6 +8,7 @@
 - [esBook](https://tc39.es/ecma262/)
 - [2024](./2024.md)
 - [一些零散的工作建议](./txt.md)
+- 个人项目
 # 一些工具类
 ## 富文本编辑
 - https://github.com/facebook/lexical
