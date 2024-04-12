@@ -77,9 +77,9 @@ function TodoList({ todos, tab, theme }) {
 - 传入了create 函数和依赖项 deps 数组.在updateMemo 中，首先会传入nextCreate和新的deps，会获取之前的memoizedState，然后获取之前的
 prvDeps,将新的deps 和 prevDeps 进行对比，
 
-如果相等，就返回之前的 prevState.
+  如果相等，就返回之前的 prevState.
 
-如果不相等，就继续执行nextCreate,之后更新 memoizedState,并返回nextValue。
+  如果不相等，就继续执行nextCreate,之后更新 memoizedState,并返回nextValue。
 
 ```javascript
 
@@ -106,15 +106,15 @@ prvDeps,将新的deps 和 prevDeps 进行对比，
     return nextValue;
   }
 ```
-- updateWorkInProgressHook 获取的是什么？
+- **updateWorkInProgressHook 获取的是什么？**
   - 渲染某个组件时，会 将该组件 赋值到一个全局变量 currentlyRenderingFiber$1。
 然后执行该函数组件
   - 更新时执行 updateMemo 时，并从之前的fiber 中获取到之前的 memoizedState.
   - 对传入的依赖进行对比，如果依赖相等，就将之前的计算结果返回。如果依赖不相等，就重新执行计算函数，重新生成结果，并更新 memoizedState。
-- memoizedState 是什么时候被赋值的？
+- **memoizedState 是什么时候被赋值的？**
   - 在mountMemo 中，当时渲染的fiber的memoizedState 会被赋值。
   - 在 updateMemo 中，当依赖发生变化时，会重新赋值。
-- 再次回顾ReactElement,fiber,dom之间的关系
+- **再次回顾ReactElement,fiber,dom之间的关系**
   - enqueueConcurrentClassUpdate(fiber, sharedQueue, update, lane);
     - fiber, root上的 
     - sharedQueue, root 上的
