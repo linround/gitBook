@@ -149,3 +149,11 @@ prvDeps,将新的deps 和 prevDeps 进行对比，
 例如：root=>demoElement=>Demo=>divReactElement
 
 首先 从ReactElement 创建fiber链表，然后由fiber链表生成DOM结构。最终挂载DOM即可。
+
+
+- **更新时，对应 workInProgress 之前的状态是如何保存的呢？**
+  - dispatchSetState 已经绑定了fiber（fiber链表形成时，各种状态已经绑定了fiber）.
+  - 调用，setState 时，就可以访问之前的 fiber.进而进行精准的组件更新
+
+  - 关于useMemo：因为组件更新时，fiber 会被放在全局上。
+    - updateWorkInProgressHook 获取的是当前的fiber，然后获取之前的memoizedState。然后和新的 deps 进行对比。如果相等，就返回之前的状态。如果不相等，就重新计算。 

@@ -63,7 +63,6 @@
 
   function TodoList({todos, theme, tab}) {
     // 此处如果使用 useMemo,会导致theme 变化时也发生计算，从而导致性能问题
-    debugger
     const visibleTodos = React.useMemo(() => filterTodos(todos, tab), [todos, tab]);
     const tabName = React.useMemo(() => {
       if (tab === 'all') {
@@ -106,7 +105,11 @@
     const checkElement = React.createElement("input", {
       type: "checkbox",
       checked: isDark,
-      onChange: e => setIsDark(e.target.checked)
+      onChange: e => {
+
+        console.log('theme changed')
+        setIsDark(e.target.checked)
+      }
     })
 
     const labelElement = React.createElement("label", null, checkElement, "Dark mode")
