@@ -27,18 +27,23 @@
     return <div>context:{value}</div>;
   }
 
-
+  function App() {
+    const [value,setValue] = React.useState(1);
+    return (
+      <div>
+        <MyContext.Provider value={{value}}>
+          <Demo />
+        </MyContext.Provider>
+        <button onClick={() => setValue(value+1)}>change</button>
+      </div>
+    )
+  }
 
 
 
 
   const root = ReactDOM.createRoot(document.getElementById("root"))
-  // root.render(<Example />);
-  root.render(
-    <MyContext.Provider value={{value:'change context'}}>
-      <Demo />
-    </MyContext.Provider>
-  )
+  root.render(<App />)
 </script>
 </body>
 

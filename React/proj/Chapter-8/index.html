@@ -19,20 +19,30 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
+  const MyContext = React.createContext({
+    value: 'myContext'
+  });
+
   function Demo() {
-    console.log('Demo render');
-    const [data, setData] = React.useState(100);
-    return /*#__PURE__*/React.createElement("div", {
-      onClick: () => {
-        debugger
-        setData(1)
-      }
-    }, "改变",data);
+    const {value} = React.useContext(MyContext);
+    return React.createElement("div", null, "context:", value);
+  }
+
+  function App() {
+    const [value, setValue] = React.useState(1);
+    const buttonElement = React.createElement("button", {onClick: () => setValue(value + 1)}, "change");
+    const demoElement = React.createElement(Demo, null);
+    const providerElement = React.createElement(MyContext.Provider, {value: {value}}, demoElement);
+    return React.createElement(
+      "div",
+      null,
+      providerElement,
+      buttonElement
+    );
   }
 
   const root = ReactDOM.createRoot(document.getElementById("root"));
-  const demoElement = React.createElement(Demo, null)
-  root.render( /*#__PURE__*/ demoElement);
+  root.render( React.createElement(App, null));
 </script>
 </body>
 
