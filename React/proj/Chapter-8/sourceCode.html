@@ -19,10 +19,12 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
+  const MyContext = React.createContext({
+    value:'myContext'
+  });
   function Demo() {
-    console.log('Demo render')
-    const [data, setData] = React.useState({ foo: { bar: { baz: 1 } } });
-    return <div onClick={() => setData(1)}>改变</div>;
+    const {value} = React.useContext(MyContext);
+    return <div>context:{value}</div>;
   }
 
 
@@ -33,7 +35,9 @@
   const root = ReactDOM.createRoot(document.getElementById("root"))
   // root.render(<Example />);
   root.render(
-    <Demo />
+    <MyContext.Provider value={{value:'change context'}}>
+      <Demo />
+    </MyContext.Provider>
   )
 </script>
 </body>
