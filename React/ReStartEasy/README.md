@@ -20,3 +20,4 @@
 
 ## 工具
 - [react developer tools profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html)
+- [startViewTransition](https://mdn.github.io/dom-examples/view-transitions/)
