@@ -60,3 +60,11 @@ const MyContext = React.createContext({
     value: 'myContext'
   });
 ```
+创建了一个context 对象。该context 对象包含了一个Provider和Consumer
+- Provider
+
+  $$typeof 是 REACT_PROVIDER_TYPE；
+
+- Consumer
+
+  $$typeof 是 REACT_CONTEXT_TYPE；
