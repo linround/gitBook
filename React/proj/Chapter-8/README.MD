@@ -18,7 +18,7 @@ const MyContext = React.createContext({
 }
 ```
 ### Context.Consumer
-使用 `Context.Consumer` 来使用 `MyContext` 的值
+使用 `Context.Consumer` 来使用 `MyContext` 的值；目前推荐使用useContext。
 ```javascript
 function ConsumerDemo() {
   return (
@@ -27,6 +27,25 @@ function ConsumerDemo() {
     </MyContext.Consumer>
   )
 }
+```
+
+## 相关疑问
+### 为什么 推荐使用useContext呢？相比Consumer有什么优势？
+### Provider的作用是什么？对于子元素 是如何处理的呢？
+```javascript
+
+  function App() {
+    const [value,setValue] = React.useState(1);
+    return (
+      <div>
+        <MyContext.Provider value={{value}}>
+          <Demo />
+          <ConsumerDemo/>
+        </MyContext.Provider>
+        <button onClick={() => setValue(value+1)}>change</button>
+      </div>
+    )
+  }
 ```
 
 ## 源码分析
