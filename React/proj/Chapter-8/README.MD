@@ -1,4 +1,9 @@
 # createContext
+示例代码：[链接](./index.html)
+
+createContext 返回一个 context 对象。
+- 组件可以通过 useContext 来订阅 context 的变化。
+- 组件可以通过 Consumer 来订阅 context 的变化。
 ```javascript
 const MyContext = React.createContext({
     value:'myContext'
