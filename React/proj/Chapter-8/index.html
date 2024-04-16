@@ -20,13 +20,11 @@
 
 <script type="text/babel" data-presets="react,stage-3">
 
-debugger
   const MyContext = React.createContext({
     value: 'myContext'
   });
 
   function Demo() {
-    debugger
     const {num} = React.useContext(MyContext);
     return React.createElement("div", null, "context:", num);
   }
@@ -59,7 +57,9 @@ debugger
   }
 
   const root = ReactDOM.createRoot(document.getElementById("root"));
-  root.render( React.createElement(App, null));
+  const appElement = React.createElement(App, null);
+  debugger
+  root.render(appElement);
 </script>
 </body>
 

@@ -95,6 +95,15 @@ _currentValue 就是传入的 值。 此时 父级的 context的 _currentValue �
 ### Consumer 是如何获取 context 传入的数据？
 对于Component fiber,调用 updateContextConsumer。获取context的值，然后调用 对应的函数，传入获取的值。最终返回child.
 
+### 使用 setState的时候的fiber和当前所在的函数组件之间的关系是什么？
+因为在调用 setState 的时候，会传入fiber。
+
+例如：[代码文件](./index.html)
+
+在 appElement 渲染时。使用appElement 创建完成fiber 之后，该fiber 变成 workInProgress。
+然后渲染该 workInProgress，并调用函数组件。所以在函数组件中使用的 hook ,绑定的组件fiber就是当前该函数组件，因此可以精准的进行状态更新和
+重新渲染。
+```javascript
 
 ## 总结
 createContext 就是创建了一个context对象。
