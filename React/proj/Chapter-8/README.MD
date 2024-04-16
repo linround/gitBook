@@ -60,11 +60,38 @@ const MyContext = React.createContext({
     value: 'myContext'
   });
 ```
-创建了一个context 对象。该context 对象包含了一个Provider和Consumer
+创建了一个context 对象。该context 对象包含了一个Provider和Consumer;
+![img.png](img.png)
+
 - Provider
 
   $$typeof 是 REACT_PROVIDER_TYPE；
 
 - Consumer
 
-  $$typeof 是 REACT_CONTEXT_TYPE；
+  - $$typeof 是 REACT_CONTEXT_TYPE;
+  - Consumer又定义了Provider 属性，返回 context.Provider 的值;
+### 组件是如何获取 context 传入的数据？
+#### useContext
+```javascript
+function Demo() {
+    const {value} = React.useContext(MyContext);
+    return React.createElement("div", null, "context:", value);
+  }
+```
+useContext 的本质就是通过 readContext(context) 来获取 `传入的context` 的值。
+说明 传入通过 Provider 传入的值，修改的是context 的引用值。
+
+### 是如何修改 的Provider的值？Provider 的值与 context 值，引用关系是如何的？
+![img_1.png](img_1.png)
+
+从上图的引用关系来看，_currentValue 最终的来源都是 context。
+
+对于 Provider fiber,调用 updateContextProvider。修改Provider 的引用值 _currentValue。
+_currentValue 就是传入的 值。 此时 父级的 context的 _currentValue 就被修改了。但是 _currentValue2的之并没有被修改。 
+此时子函数组件调用，再使用useContext 获取的值 _currentValue，就是修改后的值。
+
+
+### Consumer 是如何获取 context 传入的数据？
+对于Component fiber,调用 updateContextConsumer。获取context的值，然后调用 对应的函数，传入获取的值。最终返回child.
+

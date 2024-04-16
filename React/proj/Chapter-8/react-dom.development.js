@@ -13268,7 +13268,7 @@
 
     var value =  context._currentValue ;
 
-    if (lastFullyObservedContext === context) ; else {
+    if (lastFullyObservedContext === context){}  else {
       var contextItem = {
         context: context,
         memoizedValue: value,

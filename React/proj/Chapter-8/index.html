@@ -20,25 +20,36 @@
 
 <script type="text/babel" data-presets="react,stage-3">
 
-
+debugger
   const MyContext = React.createContext({
     value: 'myContext'
   });
 
   function Demo() {
     debugger
-    const {value} = React.useContext(MyContext);
-    return React.createElement("div", null, "context:", value);
+    const {num} = React.useContext(MyContext);
+    return React.createElement("div", null, "context:", num);
   }
   function ConsumerDemo() {
-    return React.createElement(MyContext.Consumer, null, ({value}) =>
-      React.createElement("div", null, "ConsumerDemo:", value));
+    return React.createElement(MyContext.Consumer, null, ({num}) =>{
+      return React.createElement("div", null, "ConsumerDemo:", num)
+      }
+    );
   }
   function App() {
     const [value, setValue] = React.useState(1);
     const buttonElement = React.createElement("button", {onClick: () => setValue(value + 1)}, "change");
+
     const demoElement = React.createElement(Demo, null);
-    const providerElement = React.createElement(MyContext.Provider, {value: {value}}, demoElement,React.createElement(ConsumerDemo, null));
+    const consumerElement = React.createElement(ConsumerDemo, null);
+
+    const providerElement = React.createElement(
+      MyContext.Provider,
+      {value: {num:value}},
+      demoElement,
+      consumerElement
+    );
+
     return React.createElement(
       "div",
       null,
