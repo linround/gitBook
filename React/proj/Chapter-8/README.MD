@@ -103,7 +103,6 @@ _currentValue 就是传入的 值。 此时 父级的 context的 _currentValue �
 在 appElement 渲染时。使用appElement 创建完成fiber 之后，该fiber 变成 workInProgress。
 然后渲染该 workInProgress，并调用函数组件。所以在函数组件中使用的 hook ,绑定的组件fiber就是当前该函数组件，因此可以精准的进行状态更新和
 重新渲染。
-```javascript
 
 ## 总结
 createContext 就是创建了一个context对象。
