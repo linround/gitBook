@@ -95,3 +95,11 @@ _currentValue 就是传入的 值。 此时 父级的 context的 _currentValue �
 ### Consumer 是如何获取 context 传入的数据？
 对于Component fiber,调用 updateContextConsumer。获取context的值，然后调用 对应的函数，传入获取的值。最终返回child.
 
+
+## 总结
+createContext 就是创建了一个context对象。
+该对象包含了Provider和Consumer。
+
+- 在Provider中，调用 updateContextProvider的过程就是修改Provider 的引用值 _currentValue。然后在子级中使用useContext来获取 已经修改的值。
+- 在Consumer中，调用 updateContextConsumer的过程就是获取context的值，然后调用对应的函数，传入获取的值。最终返回child。
+
