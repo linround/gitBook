@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React without JSX</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./remix-router.js"></script>
+    <script src="./react-router.js" ></script>
+    <script src="./react-router-dom.js"></script>
+    <script src="./redux.js"></script>
+    <script src="./babel.js" crossorigin></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react,stage-3">
+  function MyApp() {
+    const [name, setName] = React.useState('');
+    const [address, setAddress] = React.useState('');
+    return (
+      <>
+        <label>
+          Name{': '}
+          <input value={name} onChange={e => setName(e.target.value)} />
+        </label>
+        <label>
+          Address{': '}
+          <input value={address} onChange={e => setAddress(e.target.value)} />
+        </label>
+        <Greeting name={name} />
+      </>
+    );
+  }
+
+  const Greeting = React.memo(function Greeting({ name }) {
+    console.log("Greeting重复渲染", new Date().toLocaleTimeString());
+    return <h3>Hello{name && ', '}{name}!</h3>;
+  });
+
+  const root = ReactDOM.createRoot(document.getElementById("root"))
+  root.render(
+    <MyApp />
+  )
+</script>
+</body>
+
+</html>
