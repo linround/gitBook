@@ -115,4 +115,5 @@ createContext 就是创建了一个context对象。
 
 ![img_2.png](img_2.png)
 - context 的值的变化规律。参考源码：[链接](./index2.html).
-  在fiber树形成过程中都是不断地在改变同一个引用之，并将前一个值存在栈中，然后在DOM构建时又恢复对应的Context值。
+  在fiber树形成过程中都是不断地在改变同一个引用之，并将前一个值存在栈中，然后在DOM构建时又恢复对应的Context值。所以虽然是同一个引用值，但是却实现
+  了在兄弟级Provider,父子级Provider 之间的值的正确的传递。
