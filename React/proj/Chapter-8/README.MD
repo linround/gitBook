@@ -104,6 +104,8 @@ _currentValue 就是传入的 值。 此时 父级的 context的 _currentValue �
 然后渲染该 workInProgress，并调用函数组件。所以在函数组件中使用的 hook ,绑定的组件fiber就是当前该函数组件，因此可以精准的进行状态更新和
 重新渲染。
 
+### 
+
 ## 总结
 createContext 就是创建了一个context对象。
 该对象包含了Provider和Consumer。
@@ -111,3 +113,6 @@ createContext 就是创建了一个context对象。
 - 在Provider中，调用 updateContextProvider的过程就是修改Provider 的引用值 _currentValue。然后在子级中使用useContext来获取 已经修改的值。
 - 在Consumer中，调用 updateContextConsumer的过程就是获取context的值，然后调用对应的函数，传入获取的值。最终返回child。
 
+![img_2.png](img_2.png)
+- context 的值的变化规律。参考源码：[链接](./index2.html).
+  在fiber树形成过程中都是不断地在改变同一个引用之，并将前一个值存在栈中，然后在DOM构建时又恢复对应的Context值。

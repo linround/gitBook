@@ -21127,6 +21127,7 @@
   var hasWarnedAboutUsingNoValuePropOnContextProvider = false;
 
   function updateContextProvider(current, workInProgress, renderLanes) {
+
     var providerType = workInProgress.type;
     var context = providerType._context;
     var newProps = workInProgress.pendingProps;
@@ -22080,6 +22081,7 @@
   }
 
   function completeWork(current, workInProgress, renderLanes) {
+
     var newProps = workInProgress.pendingProps; // Note: This intentionally doesn't check if we're hydrating because comparing
     // to the current tree provider fiber is just as fast and less error-prone.
     // Ideally we would have a special version of the work loop only

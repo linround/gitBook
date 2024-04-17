@@ -115,6 +115,9 @@ prvDeps,将新的deps 和 prevDeps 进行对比，
   - 在mountMemo 中，当时渲染的fiber的memoizedState 会被赋值。
   - 在 updateMemo 中，当依赖发生变化时，会重新赋值。
 - **再次回顾ReactElement,fiber,dom之间的关系**
+
+  
+
   - enqueueConcurrentClassUpdate(fiber, sharedQueue, update, lane);
     - fiber, root上的 
     - sharedQueue, root 上的

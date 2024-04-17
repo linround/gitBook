@@ -40,7 +40,9 @@
       <div>
         <MyContext.Provider value={{value}}>
           <Demo />
-          <ConsumerDemo/>
+        </MyContext.Provider>
+        <MyContext.Provider value={{value:1000}}>
+          <Demo />
         </MyContext.Provider>
         <button onClick={() => setValue(value+1)}>change</button>
       </div>

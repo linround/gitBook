@@ -1278,6 +1278,7 @@
         },
         _currentValue: {
           get: function () {
+            console.log('===1=====')
             return context._currentValue;
           },
           set: function (_currentValue) {
