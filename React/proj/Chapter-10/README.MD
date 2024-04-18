@@ -67,7 +67,8 @@ useCallback 缓存函数，当函数的依赖项变化时，函数才会重新�
     <Demo />
   )
 ```
-
+## 总结
+- 禁止在循环中使用useCallback：[链接](https://react.dev/reference/react/useCallback#i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed)
 
 ## 源码分析
 ### 传递多个依赖，同时更新这多个依赖。useCallback的执行情况是怎样的呢？

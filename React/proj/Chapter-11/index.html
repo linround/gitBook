@@ -20,24 +20,32 @@
 
 <script type="text/babel" data-presets="react,stage-3">
   function Demo() {
-    const [data, setData] = React.useState(100);
-    const [age, setAge] = React.useState(100);
-    const [name, setName] = React.useState(100);
+    debugger
+    var [data, setData] = React.useState(100);
+    debugger
+    const [age, setAge] = React.useState(200);
+    debugger
+    const [name, setName] = React.useState(300);
 
     const change = () => {
-      setData(1);
-      setAge(2);
-      setName(3);
+      debugger
+      setData(data+1);
+      debugger
+      setAge(age+1);
+      debugger
+      setName(name+1);
     };
 
-    return /*#__PURE__*/React.createElement("div", {
+    return React.createElement("div", {
       onClick: () => change()
     }, "data:", data, ", age:", age, ", name:", name);
   }
-
+  function App() {
+    return React.createElement(Demo, null);
+  }
   const root = ReactDOM.createRoot(document.getElementById("root")); // root.render(<Example />);
-
-  root.render( /*#__PURE__*/React.createElement(Demo, null));
+ const app = React.createElement(App, null);
+  root.render( app);
 </script>
 </body>
 

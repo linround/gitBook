@@ -16357,7 +16357,6 @@
 
 
     ReactCurrentDispatcher$1.current = ContextOnlyDispatcher;
-
     {
       workInProgress._debugHookTypes = hookTypesDev;
     } // This check uses currentHook so that it works the same in DEV and prod bundles.
@@ -26350,6 +26349,7 @@
   }
 
   function pushDispatcher() {
+    console.log('pushDispatcher')
     var prevDispatcher = ReactCurrentDispatcher$2.current;
     ReactCurrentDispatcher$2.current = ContextOnlyDispatcher;
 
