@@ -19,10 +19,39 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
+
+  const Log = React.memo(function Log({print}) {
+    console.log('Log render')
+    return (
+      <div>
+        <button onClick={print}>print</button>
+      </div>
+    );
+  });
   function Demo() {
     console.log('Demo render')
-    const [data, setData] = React.useState({ foo: { bar: { baz: 1 } } });
-    return <div onClick={() => setData(1)}>改变</div>;
+
+    const [count, setCount] = React.useState(0);
+    const [name, setName] = React.useState('张三');
+
+
+    /**
+     *
+     * 改变 count， print 会重新创建
+     * 会触发 Log 组件的重新渲染
+     *
+     **/
+    const print = React.useCallback(()=>{
+      console.log('print',count)
+    },[count])
+
+    return (
+      <div>
+        <button onClick={() => setCount(count+1)}>改变count:{count}</button>
+        <button onClick={() => setName(`张三${count}`)}>改变 name:{name}</button>
+        <Log print={print} />
+      </div>
+    );
   }
 
 

@@ -19,19 +19,49 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
-  function Demo() {
+
+  const Log = React.memo(function Log({print}) {
+    console.log('Log render');
+    const buttonElement = React.createElement("button", {
+      onClick: print
+    }, "print");
+    return React.createElement("div", null,buttonElement);
+  });
+
+  function App() {
     console.log('Demo render');
-    const [data, setData] = React.useState(100);
-    return /*#__PURE__*/React.createElement("div", {
-      onClick: () => {
-        setData(1)
-      }
-    }, "改变",data);
+    const [count, setCount] = React.useState(0);
+    const [name, setName] = React.useState('张三');
+    /**
+     *
+     * 改变 count， print 会重新创建
+     * 会触发 Log 组件的重新渲染
+     *
+     **/
+
+    const print = React.useCallback(() => {
+      console.log('print', count);
+    }, [count]);
+
+    const countButtonElement = React.createElement("button", {
+      onClick: () => setCount(count + 1)
+    }, "改变 count:", count);
+
+    const nameButtonElement = React.createElement("button", {
+      onClick: () => setName(`张三${count}`)
+    }, "改变 name:", name);
+
+    const logElement = React.createElement(Log, {
+      print: print
+    });
+
+    return React.createElement("div", null, countButtonElement, nameButtonElement,logElement);
   }
 
-  const root = ReactDOM.createRoot(document.getElementById("root"));
-  const demoElement = React.createElement(Demo, null)
-  root.render( /*#__PURE__*/ demoElement);
+  const root = ReactDOM.createRoot(document.getElementById("root")); // root.render(<Example />);
+
+  const appElement = React.createElement(App, null);
+  root.render( appElement);
 </script>
 </body>
 
