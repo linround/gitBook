@@ -13379,7 +13379,7 @@
     queue.interleaved = update;
   }
   function enqueueConcurrentClassUpdate(fiber, queue, update, lane) {
-      debugger
+
     var interleaved = queue.interleaved;
 
     if (interleaved === null) {
@@ -13509,7 +13509,7 @@
   // 将任务update 存放于 任务队列(updateQueue)中
     //  创建单项链表解构存放update， next用来串联update
   function enqueueUpdate(
-      fiber, 
+      fiber,
       update,
       lane
   ) {
@@ -13561,7 +13561,7 @@
 
       return unsafe_markUpdateLaneFromFiberToRoot(fiber, lane);
     } else {
-        debugger
+
       return enqueueConcurrentClassUpdate(fiber, sharedQueue, update, lane);
     }
   }
@@ -24916,7 +24916,7 @@
     // before the effects on this fiber have fired.
     var flags = finishedWork.flags;
 
-      
+
     // 正对该节点 及子节点 进行插入操作
     //   初始会对 root节点 进行插入操作
     if (flags & Placement) {
@@ -27013,7 +27013,7 @@
    * 1.创建 fiber 对象
    * 2.创建每一个节点的真实 DOM 对象 并将其 添加到 stateNode 属性中
    * 3.（在子级向父级回退的过程中） 收集要执行 DOM操作的 fiber 节点 组件 effect 链表结构（逻辑暂时不清晰）
-   * 
+   *
    * **/
   function completeUnitOfWork(unitOfWork) {
     // Attempt to complete the current unit of work, then move to the next
@@ -29417,7 +29417,7 @@
       parentComponent,// 父组件 初始渲染为null
       callback// 渲染完成执行的回调函数
     ) {
-debugger
+
     {
       onScheduleRoot(container, element);
     }
@@ -29974,7 +29974,7 @@ debugger
   };
 
   ReactDOMHydrationRoot.prototype.unmount = ReactDOMRoot.prototype.unmount = function () {
-      debugger
+
     {
       if (typeof arguments[0] === 'function') {
         error('unmount(...): does not support a callback argument. ' + 'To execute a side effect after rendering, declare it in a component body with useEffect().');
@@ -30212,7 +30212,7 @@ debugger
   //   创建过程如下
   //   非服务端渲染，先清除container下免得所有直接点
     // 然后创建rootFiber和fiberRoot
-    
+
     // 标记 container
     //   container下面的一个随机属性指向 fiberRoot
 

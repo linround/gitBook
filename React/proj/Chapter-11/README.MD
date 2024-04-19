@@ -38,9 +38,26 @@ const [state, setState] = useState(initialState)
 - 将新的 update 放在 queue.interleaved,多个setState会放在 concurrentQueues 中
 - 会创建一个微任务执行更新，但是继续同步的执行另外的setState。所以因为setState 在处理值的时候是同步的，但是更新 函数组件时 是异步的。所以
   如果一个setState 执行更新多次，该setState函数始终是上一次创建的，所以访问的状态也始终是上一次的。 
-- disPatcher 的起点是 fiberRootNode。
-
+- disPatcher 的起点是 fiberRootNode,在向下更新时，会判断子fiber 是否需要更新（`attemptEarlyBailoutIfNoScheduledUpdate 函数`），如果不需要更新就不会重新执行函数组件，而直接进入下一个孙fiber.
+- disPatcher 传入的fiber的作用就是能够获取之前的状态数据，形成state 链表,并且精准标记 该fiber 需要更新
+### 是如何 使用setState 标记 fiber 可更新的呢？
+- 因为触发了事件，那么就会存在一个 任务。有可能是更新、动画等。那么就可以标记了
+- 状态值改变，进入 enqueueConcurrentHookUpdate ，对fiber 进行标记。
 ## updateState 的过程
 ### 两个新的state链表是如何进行更新的呢？
 - concurrentQueues 中 interleaved属性值转移至 pending
 ### currentHook 在 mountState 和 updateState 中的作用是什么呢？
+
+
+## 总结
+### 创建时
+- 将fiber 放在全局，创建绑定该fiber 的 disPatcher 方法
+- 多个 useState 会创建一个 state 链表
+### 更新时
+- 调用之前创建的 disPatcher 方法，此时获取状态信息。状态变化，对fiber 进行更新的标记，并进入从root fiber 开始的更新过程，在更新过程中会跳过没有被标记的组件。
+- 如果 disPatcher 方法 没有改变，那么就不会对fiber 进行更新标记，更不会进入更新过程。
+- 对于多个 disPatcher 方法调用
+
+### state 的形成和渲染调用的 联系
+渲染被放在了微任务中，disPatcher 方法是同步的，多个disPatcher 方法调用，会形成一个state链表，而渲染时，会根据state链表，进行更新。
+disPatcher 方法调用完成后就会进入渲染函数的调用。

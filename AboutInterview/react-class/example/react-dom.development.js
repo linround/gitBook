@@ -15933,7 +15933,7 @@
           case REACT_ELEMENT_TYPE:
             //   为fiber 对象设置 effectTag 属性
               // 返回创建好的子fiber
-              debugger
+
             return placeSingleChild(
                 reconcileSingleElement(
                     returnFiber,
@@ -15955,7 +15955,7 @@
 
         // new children 是数组的情况
         if (isArray(newChild)) {
-            debugger
+
           return reconcileChildrenArray(
               returnFiber,
               currentFirstChild,
@@ -19324,7 +19324,7 @@
        * 如果不是初始渲染的情况 要进行新旧 fiber 对比
        * 初始渲染时 则用不到 current
        * */
-      debugger
+
     if (current === null) {
       // If this is a fresh new component that hasn't been rendered yet, we
       // won't update its child set by applying minimal side-effects. Instead,
@@ -24921,7 +24921,7 @@
     // before the effects on this fiber have fired.
     var flags = finishedWork.flags;
 
-      
+
     // 正对该节点 及子节点 进行插入操作
     //   初始会对 root节点 进行插入操作
     if (flags & Placement) {
@@ -25983,7 +25983,7 @@
 
     if (existingCallbackNode != null) {
       // Cancel the existing callback. We'll schedule a new one below.
-        debugger
+
       //   不知道和何时执行，加上断点
       cancelCallback$1(existingCallbackNode);
     } // Schedule a new callback.
@@ -27029,7 +27029,7 @@
    * 1.创建 fiber 对象
    * 2.创建每一个节点的真实 DOM 对象 并将其 添加到 stateNode 属性中
    * 3.（在子级向父级回退的过程中） 收集要执行 DOM操作的 fiber 节点 组件 effect 链表结构（逻辑暂时不清晰）
-   * 
+   *
    * **/
   function completeUnitOfWork(unitOfWork) {
     // Attempt to complete the current unit of work, then move to the next
@@ -30281,7 +30281,7 @@
   //   创建过程如下
   //   非服务端渲染，先清除container下免得所有直接点
     // 然后创建rootFiber和fiberRoot
-    
+
     // 标记 container
     //   container下面的一个随机属性指向 fiberRoot
 
