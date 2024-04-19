@@ -67,6 +67,10 @@ useCallback 缓存函数，当函数的依赖项变化时，函数才会重新�
     <Demo />
   )
 ```
+## 使用
+- 用于缓存传递给子组件的函数。结合memo使用，可以减少子组件的重复渲染，同时又能保证函数的实时更新。
+- 自定义钩子，在必要时可以进行自动的更新方法。
+
 ## 总结
 - 禁止在循环中使用useCallback：[链接](https://react.dev/reference/react/useCallback#i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed)
 

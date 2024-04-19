@@ -25,9 +25,7 @@
       /*
       *
       * 触发 setName，name会发生变化
-      * useCallback 会触发
-      * useEffect 会触发
-      * useEffect unmount 会触发 此时的name是上一次的name
+      *
       *
       * */
       setName((prev)=>{
@@ -39,7 +37,7 @@
     React.useEffect(()=>{
       console.log("useEffect")
       return ()=>{
-        console.log("useEffect unmount",name)
+        console.log("useEffect unmount")
       }
     },[handleChangeName])
 
