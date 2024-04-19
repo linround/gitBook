@@ -33,7 +33,7 @@ function App() {
       console.log("prev",prev)
       return prev+1;
     });
-  })
+  },[])
   React.useEffect(()=>{
     console.log("useEffect")
   },[handleChangeA])

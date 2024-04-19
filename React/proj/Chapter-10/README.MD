@@ -85,6 +85,9 @@ useCallback 缓存函数，当函数的依赖项变化时，函数才会重新�
 - 修改无关state 不会触发useCallback重新执行
 
 ## 问题
+### 传递 空数组时，修改无关state 不会触发useCallback重新执行，但是setState 还是能够正确的引用该值，为什么呢？
+传递空数组依赖，在进行对比的时候。会认为这两个空数组依赖是相等的，所以useCallback返回的是之前的值。
+
 ### 为什么不传递依赖，修改无关还是有关state 都会触发 useCallback 呢？
 如果不传递依赖，只要组件发生重新渲染，useCallback都会执行，返回新的值。
 ```javascript
