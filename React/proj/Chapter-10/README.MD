@@ -76,4 +76,36 @@ useCallback 缓存函数，当函数的依赖项变化时，函数才会重新�
 
 ## 源码分析
 ### 传递多个依赖，同时更新这多个依赖。useCallback的执行情况是怎样的呢？
-### 没有传递依赖时以及传递一个空依赖的时候，重复渲染时useCallback的执行情况是怎样的？
+
+### 不传递依赖时
+- 修改有关state 会触发useCallback重新执行
+- 修改无关state 会触发useCallback重新执行
+### 传递空数组依赖时
+- 修改有关state 不会触发useCallback重新执行
+- 修改无关state 不会触发useCallback重新执行
+
+## 问题
+### 为什么不传递依赖，修改无关还是有关state 都会触发 useCallback 呢？
+```javascript
+ function updateCallback(callback, deps) {
+    var hook = updateWorkInProgressHook();
+    // dep 未传递时，nextDeps 为 null
+    var nextDeps = deps === undefined ? null : deps;
+    var prevState = hook.memoizedState;
+
+    if (prevState !== null) {
+      // nextDeps 为 null 时，不会进行比较，直接返回新的函数
+      if (nextDeps !== null) {
+        var prevDeps = prevState[1];
+
+        if (areHookInputsEqual(nextDeps, prevDeps)) {
+          return prevState[0];
+        }
+      }
+    }
+
+    hook.memoizedState = [callback, nextDeps];
+    console.log('updateCallback 触发')
+    return callback;
+  }
+```

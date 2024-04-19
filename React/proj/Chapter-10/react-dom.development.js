@@ -17210,6 +17210,7 @@
     var hook = mountWorkInProgressHook();
     var nextDeps = deps === undefined ? null : deps;
     hook.memoizedState = [callback, nextDeps];
+    console.log('mountCallback')
     return callback;
   }
 

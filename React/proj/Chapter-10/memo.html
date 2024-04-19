@@ -20,32 +20,32 @@
 
 <script type="text/babel" data-presets="react,stage-3">
 function App() {
-  const [name, setName] = React.useState(1);
-  const handleChangeName = React.useCallback(()=>{
+  const [A, setA] = React.useState(1);
+
+  const handleChangeA = React.useCallback(()=>{
     /*
     *
     * 触发 setName，name会发生变化
     *
     *
     * */
-    setName((prev)=>{
+    setA((prev)=>{
       console.log("prev",prev)
       return prev+1;
     });
-  },[name])
-
+  })
   React.useEffect(()=>{
     console.log("useEffect")
-  },[handleChangeName])
+  },[handleChangeA])
 
-  const [age,setAge] = React.useState(1);
+  const [B,setB] = React.useState(1);
 
   return (
     <div>
-      name:{name},age{age}
-      <button onClick={handleChangeName}>Change Name</button>
-      <button onClick={()=>setName(name+1)}>setName</button>
-      <button onClick={()=>setAge(age+1)}>setAge</button>
+      A:{A},B{B}
+      <button onClick={handleChangeA}>handleChangeA</button>
+      <button onClick={()=>setA(A+1)}>setA</button>
+      <button onClick={()=>setB(B+1)}>setB</button>
     </div>
   )
 }
