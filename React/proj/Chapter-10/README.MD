@@ -86,6 +86,7 @@ useCallback 缓存函数，当函数的依赖项变化时，函数才会重新�
 
 ## 问题
 ### 为什么不传递依赖，修改无关还是有关state 都会触发 useCallback 呢？
+如果不传递依赖，只要组件发生重新渲染，useCallback都会执行，返回新的值。
 ```javascript
  function updateCallback(callback, deps) {
     var hook = updateWorkInProgressHook();
