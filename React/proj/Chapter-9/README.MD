@@ -23,3 +23,7 @@ function Demo() {
     return React.createElement("div", null, "context:", value);
   }
 ```
+
+## 总结
+ useContext 的作用就是获取引用值 _currentValue, 因为 _currentValue  会在Provider 渲染过程中 会被赋一个 context 栈中最近的那个值。
+所以useContext 能获取到最近的那个context提供的值。
