@@ -52,12 +52,17 @@ const [state, setState] = useState(initialState)
 ## 总结
 ### 创建时
 - 将fiber 放在全局，创建绑定该fiber 的 disPatcher 方法
-- 多个 useState 会创建一个 state 链表
+
 ### 更新时
 - 调用之前创建的 disPatcher 方法，此时获取状态信息。状态变化，对fiber 进行更新的标记，并进入从root fiber 开始的更新过程，在更新过程中会跳过没有被标记的组件。
 - 如果 disPatcher 方法 没有改变，那么就不会对fiber 进行更新标记，更不会进入更新过程。
-- 对于多个 disPatcher 方法调用
-
+- disPatcher 方法调用,会在对应的fiber queue上创建对应的 pending 值，然后在组件渲染渲染的获取该 pending 值即可
+- 多个disPatcher 同时调用
+  - dispatchSetState，enqueueConcurrentHookUpdate，scheduleUpdateOnFiber，ensureRootIsScheduled，scheduleSyncCallback
+  - scheduleSyncCallback，传递一个 performSyncWorkOnRoot 函数，参数是root。该函数放入了 syncQueue。
+  - state 的pending 
 ### state 的形成和渲染调用的 联系
-渲染被放在了微任务中，disPatcher 方法是同步的，多个disPatcher 方法调用，会形成一个state链表，而渲染时，会根据state链表，进行更新。
+- 渲染被放在了微任务中，disPatcher 方法是同步的，多个disPatcher 方法调用，而渲染时，会根据state链表，进行更新。
 disPatcher 方法调用完成后就会进入渲染函数的调用。
+- 实际就是 state的pending状态是同步设置的，通过一个微任务触发 从根fiber的一个更新，
+  在更新过程中，会获取到 state的pending 状态的值。最终进行渲染
