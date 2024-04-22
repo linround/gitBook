@@ -67,25 +67,34 @@ useCallback 缓存函数，当函数的依赖项变化时，函数才会重新�
     <Demo />
   )
 ```
+
 ## 使用
+
 - 用于缓存传递给子组件的函数。结合memo使用，可以减少子组件的重复渲染，同时又能保证函数的实时更新。
 - 自定义钩子，在必要时可以进行自动的更新方法。
 
 ## 源码分析
 
 ### 不传递依赖时
+
 - 修改有关state 会触发useCallback重新执行
 - 修改无关state 会触发useCallback重新执行
+
 ### 传递空数组依赖时
+
 - 修改有关state 不会触发useCallback重新执行
 - 修改无关state 不会触发useCallback重新执行
 
 ## 问题
+
 ### 传递 空数组时，修改无关state 不会触发useCallback重新执行，但是setState 还是能够正确的引用该值，为什么呢？
+
 传递空数组依赖，在进行对比的时候。会认为这两个空数组依赖是相等的，所以useCallback返回的是之前的值。
 
 ### 为什么不传递依赖，修改无关的或修改有关的 state 都会触发 useCallback 呢？
+
 如果不传递依赖，只要组件发生重新渲染，useCallback都会执行，返回新的值。因为在 updateCallback 的逻辑中，nextDeps 为 null 时，不会进行比较，直接返回新的函数。
+
 ```javascript
  function updateCallback(callback, deps) {
     var hook = updateWorkInProgressHook();
@@ -111,5 +120,6 @@ useCallback 缓存函数，当函数的依赖项变化时，函数才会重新�
 ```
 
 ## 总结
+
 - 禁止在循环中使用useCallback：[链接](https://react.dev/reference/react/useCallback#i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed)
 - useCallback 和 useMemo 比较相似。useCallback 返回的是一个函数， useMemo 返回的的函数执行后得到的值
