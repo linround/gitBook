@@ -21,27 +21,20 @@
 <script type="text/babel" data-presets="react,stage-3">
   function App() {
     const [name, setName] = React.useState(1);
-    const handleChangeName = React.useCallback(()=>{
-      /*
-      *
-      * 触发 setName，name会发生变化
-      *
-      *
-      * */
+    const [age,setAge] = React.useState(1);
+    const handleChangeName = ()=>{
       setName((prev)=>{
-        console.log("prev",prev)
         return prev+1;
       });
-    },[name])
+    }
 
     React.useEffect(()=>{
       console.log("useEffect")
       return ()=>{
         console.log("useEffect unmount")
       }
-    },[handleChangeName])
+    },[name,age])
 
-    const [age,setAge] = React.useState(1);
 
     return (
       <div>

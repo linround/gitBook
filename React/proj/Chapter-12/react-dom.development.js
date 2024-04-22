@@ -19569,7 +19569,6 @@
   }
 
   function updateFunctionComponent(current, workInProgress, Component, nextProps, renderLanes) {
-    console.log('updateFunctionComponent:',1111111111)
 
     {
       if (workInProgress.type !== workInProgress.elementType) {
