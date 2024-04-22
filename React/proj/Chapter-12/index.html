@@ -20,11 +20,17 @@
 
 <script type="text/babel" data-presets="react,stage-3">
   function App() {
-    debugger
     const [a, addA] = React.useState(1);
     const [b, addB] = React.useState(1);
 
     React.useEffect(() => {
+      /*
+      * 此处即可获取到 DOM
+      * */
+      const buttons = document.querySelectorAll('button')
+      console.log('*****buttons******11111*')
+      console.log(buttons.length,buttons)
+      console.log('*****buttons******22222*')
       console.log("useEffect");
       return () => {
         console.log("useEffect unmount");

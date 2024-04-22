@@ -6,6 +6,7 @@ useEffect(setup, dependencies?)
 ## 使用
 - useEffect 的返回值
 ## 疑问
+### useEffect 执行时机是什么时候，因为 通过useEffect 可以访问真实DOM？
 ### useEffect 未传递参数时，会执行多次吗？
 - 当未传递参数时，useEffect 在组件的每次渲染都会执行。这和 useCallback 是一样的。
 - 当传递空数组的时候，useEffect 指挥执行初始的这一次。
