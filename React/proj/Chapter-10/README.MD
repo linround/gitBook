@@ -71,11 +71,7 @@ useCallback 缓存函数，当函数的依赖项变化时，函数才会重新�
 - 用于缓存传递给子组件的函数。结合memo使用，可以减少子组件的重复渲染，同时又能保证函数的实时更新。
 - 自定义钩子，在必要时可以进行自动的更新方法。
 
-## 总结
-- 禁止在循环中使用useCallback：[链接](https://react.dev/reference/react/useCallback#i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed)
-
 ## 源码分析
-### 传递多个依赖，同时更新这多个依赖。useCallback的执行情况是怎样的呢？
 
 ### 不传递依赖时
 - 修改有关state 会触发useCallback重新执行
@@ -113,3 +109,7 @@ useCallback 缓存函数，当函数的依赖项变化时，函数才会重新�
     return callback;
   }
 ```
+
+## 总结
+- 禁止在循环中使用useCallback：[链接](https://react.dev/reference/react/useCallback#i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed)
+- useCallback 和 useMemo 比较相似。useCallback 返回的是一个函数， useMemo 返回的的函数执行后得到的值
