@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React without JSX</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./remix-router.js"></script>
+    <script src="./react-router.js" ></script>
+    <script src="./react-router-dom.js"></script>
+    <script src="./redux.js"></script>
+    <script src="./babel.js" crossorigin></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react,stage-3">
+   class FadeInAnimation {
+    constructor(node) {
+      this.node = node;
+    }
+    start(duration) {
+      this.duration = duration;
+      if (this.duration === 0) {
+        // Jump to end immediately
+        this.onProgress(1);
+      } else {
+        this.onProgress(0);
+        // Start animating
+        this.startTime = performance.now();
+        this.frameId = requestAnimationFrame(() => this.onFrame());
+      }
+    }
+    onFrame() {
+      const timePassed = performance.now() - this.startTime;
+      const progress = Math.min(timePassed / this.duration, 1);
+      this.onProgress(progress);
+      if (progress < 1) {
+        // We still have more frames to paint
+        this.frameId = requestAnimationFrame(() => this.onFrame());
+      }
+    }
+    onProgress(progress) {
+      this.node.style.opacity = progress;
+    }
+    stop() {
+      cancelAnimationFrame(this.frameId);
+      this.startTime = null;
+      this.frameId = null;
+      this.duration = 0;
+    }
+  }
+  const style={
+     opacity: 0,
+       color: 'white',
+       padding: 50,
+       textAlign: 'center',
+       fontSize: 50,
+       backgroundImage: 'radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)'
+   }
+
+
+
+   function DemoUseRef() {
+     console.log("UseRef,render")
+     const ref = React.useRef(null);
+     React.useEffect(() => {
+       console.log("UseRef,useEffect")
+       const animation = new FadeInAnimation(ref.current);
+       animation.start(1000);
+       return () => {
+         console.log("UseRef,NO useEffect")
+         animation.stop();
+       };
+     }, []);
+     return <button style={style} ref={ref}>DemoUseRef</button>;
+   }
+   function DemoCreateRef() {
+     console.log("CreateRef,render")
+     const ref = React.createRef(null);
+     React.useEffect(() => {
+       console.log("CreateRef,useEffect")
+       const animation = new FadeInAnimation(ref.current);
+       animation.start(1000);
+       return () => {
+         console.log("CreateRef,NO useEffect")
+         animation.stop();
+       };
+     }, []);
+     return <button style={style} ref={ref}>DemoCreateRef</button>;
+   }
+
+
+
+
+
+  function App(){
+     const [show,setShow] = React.useState(false)
+     return (
+       <div>
+         <button onClick={()=>setShow(!show)}>{show?'remove':'show'}</button>
+         {show && (
+           <div>
+             <DemoUseRef />
+             <DemoCreateRef />
+           </div>
+         )}
+       </div>
+     )
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root"))
+  // root.render(<Example />);
+  root.render(
+    <App />
+  )
+</script>
+</body>
+
+</html>
