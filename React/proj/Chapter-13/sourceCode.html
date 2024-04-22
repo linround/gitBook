@@ -100,6 +100,10 @@
 
   function App(){
      const [show,setShow] = React.useState(false)
+    /*
+    * show 为 true 的时候，可能在挂载该 fiber dom的时候 触发 该 fiber 的useEffect
+    * show 为 false 的时候，可能在卸载该 fiber dom的时候 触发 该 fiber 的useEffect
+    * */
      return (
        <div>
          <button onClick={()=>setShow(!show)}>{show?'remove':'show'}</button>
