@@ -15,9 +15,13 @@ useEffect(setup, dependencies?)
 
 ## 疑问
 
-### useEffect 执行时机是什么时候，因为 通过useEffect 可以访问真实DOM？
+### useEffect 执行时机是什么时候，为什么 通过useEffect 可以访问真实DOM？
 
 ### 基于 useEffect 的自定义钩子，此时的fiber 来源是什么？
+
+代码参考：[链接](./customHook.html)  
+
+
 
 ### useEffect 未传递参数时，会执行多次吗？
 
