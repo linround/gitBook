@@ -9,12 +9,13 @@ useEffect(setup, dependencies?)
 ## 使用
 
 - useEffect 可以用来与外部系统建立相应的连接。[也就是能够很好的进行解耦](https://react.dev/reference/react/useEffect#examples-connecting)
-
+- 在使用useEffect 的时候，注意消除请求的条件竞争。参考[这里](https://react.dev/reference/react/useEffect#fetching-data-with-effects)
 
 ## 关于自定义钩子的示例
 
 ## 疑问
-
+### 条件竞争的形成和解决方法是什么？
+源码示例参考[这里](./raceConditions.html)
 ### useEffect 执行时机是什么时候，为什么 通过useEffect 可以访问真实DOM？
 
 ### 基于 useEffect 的自定义钩子，此时的fiber 来源是什么？
