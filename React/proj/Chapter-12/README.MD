@@ -22,19 +22,36 @@ useEffect(setup, dependencies?)
 
 ## 源码分析
 ### useEffect 函数是怎样的呢？
+
+
 在函数组件App 调用的时候。如果存在钩子调用 首先会 对 workInProgressHook进行赋值。
 对于多个钩子，会形成 workInProgressHook 链表。在当前这个 hook.memoizedState 中存储当前 effect，
 effect包括了deps,create,和 destroy(初始是 undefined)。继续在 当前 fiber 的updateQueue中创建 effect 链表。
 
+整个过程就是 workLoop会 不断地从 taskQueue 中取出任务，然后执行任务。然而在渲染过程中 遇到useEffect 会创建一个新任务，放在taskQueue中。
+
+![img.png](img.png)
+以上是`两个 useState `和`一个 useEffect` 形成的 memoizedState 链表。
+
+
 - 执行 mountEffect.
 - 传入的参数 callback 会被放在 taskQueue 中
-- 调用函数 
-  - flushPassiveEffects 
+- 调用函数
+  - commitRoot
+  - commitRootImpl
+  - flushPassiveEffects (被放在了任务队列中)
   - flushPassiveEffectsImpl 
   - commitPassiveMountEffects 
-  - commitPassiveMountEffects_begin 
+  - commitPassiveMountEffects_begin
+    - 找到被标记的 fiber
   - commitPassiveMountEffects_complete
   - commitPassiveMountOnFiber
+  - commitHookEffectListMount
+    - 获取 effect 的 create函数。
+    - 执行 create 函数,并获取返回值。返回值作为 destroy 函数，这个时候destroy 函数相当于闭包，此时可以缓存了上一次的相关数据。
+    - 这里的 effect 是从 fiber.updateQueue 中获取的。
+
+
 ### 条件竞争的形成和解决方法是什么？
 源码示例参考[这里](./raceConditions.html)
 ### useEffect 执行时机是什么时候，为什么 通过useEffect 可以访问真实DOM？
@@ -44,7 +61,12 @@ useEffect 中的函数实在DOM挂载到页面上之后才执行的
 
 代码参考：[链接](./customHook.html)  
 
+此时 fiber 的来源是通过访问一个全局的 currentlyRenderingFiber$1 来获取的。
+
 ### useEffect 和 useLayoutEffect 的区别是什么？
+- useEffect、useLayoutEffect 中都可以访问真实的DOM。
+- useLayoutEffect 会比 useEffect 先执行。
+- useEffect 相对于 渲染是异步的；useLayoutEffect 是同步的。所以 useEffect 有可能造成页面显示闪烁的问题。
 
 ### useEffect 未传递参数时，会执行多次吗？
 
@@ -55,3 +77,12 @@ useEffect 中的函数实在DOM挂载到页面上之后才执行的
 
 setState 执行后，state 的pending状态就绪后。然后执行从rootFiber 执行渲染,这个时候 useEffect
 的依赖就会重新获取，如果依赖发生了变化，那么就会重新执行useEffect。
+
+
+
+## 总结
+useEffect 会放在 updateQueue 中（多个形成链表）；useState会放在memoizedState中（多个形成链表）。
+
+hook 对象会创建自己的memoizedState，然后在fiber.updateQueue中创建effect链表。
+
+fiber 也有自己的 memoizedState，用来存储当前的 useState 链表、
