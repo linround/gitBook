@@ -66,7 +66,8 @@ useEffect 中的函数实在DOM挂载到页面上之后才执行的
 ### useEffect 和 useLayoutEffect 的区别是什么？
 - useEffect、useLayoutEffect 中都可以访问真实的DOM。
 - useLayoutEffect 会比 useEffect 先执行。
-- useEffect 相对于 渲染是异步的；useLayoutEffect 是同步的。所以 useEffect 有可能造成页面显示闪烁的问题。
+
+### useEffect 相对于 渲染是异步的；useLayoutEffect 是同步的。所以 useEffect 有可能造成页面显示闪烁的问题？为什么 useLayoutEffect 会阻塞渲染，而useEffect 没有阻塞渲染呢？
 
 ### useEffect 未传递参数时，会执行多次吗？
 
