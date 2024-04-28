@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React without JSX</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./remix-router.js"></script>
+    <script src="./react-router.js" ></script>
+    <script src="./react-router-dom.js"></script>
+    <script src="./redux.js"></script>
+    <script src="./babel.js" crossorigin></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react,stage-3">
+
+  function GroundSun() {
+
+    const [a, addA] = React.useState(1000);
+    const [b,addB] = React.useState(1000);
+
+    React.useEffect(()=>{
+      debugger
+      console.log("GroundSun useEffect")
+      return ()=>{
+        console.log("GroundSun useEffect unmount")
+      }
+    },[a,b])
+debugger
+    React.useLayoutEffect(()=>{
+      debugger
+      console.log("GroundSun useLayoutEffect")
+      return ()=>{
+        console.log("GroundSun useLayoutEffect unmount")
+      }
+    },[a])
+
+    return (
+      <div>
+        a:{a},b:{b}
+        <button onClick={()=>addA(a+1)}>addA</button>
+        <button onClick={()=>addB(b+1)}>addB</button>
+      </div>
+    )
+  }
+
+  function Child() {
+    const [b,addB] = React.useState(100);
+    React.useEffect(()=>{
+      debugger
+      console.log("child useEffect")
+      return ()=>{
+        console.log("child useEffect unmount")
+      }
+    },[b])
+
+    debugger
+    React.useLayoutEffect(()=>{
+      debugger
+      console.log("child useLayoutEffect")
+      return ()=>{
+        console.log("child useLayoutEffect unmount")
+      }
+    },[b])
+
+    return (
+      <div>
+        <GroundSun />
+        <button>child</button>
+      </div>
+    )
+
+  }
+  function App() {
+    const [a, addA] = React.useState(1);
+    const [b,addB] = React.useState(1);
+
+    React.useEffect(()=>{
+      debugger
+      console.log("parent useEffect")
+      return ()=>{
+        console.log("parent useEffect unmount")
+      }
+    },[a,b])
+debugger
+    React.useLayoutEffect(()=>{
+      debugger
+      console.log("parent useLayoutEffect")
+      return ()=>{
+        console.log("parent useLayoutEffect unmount")
+      }
+    },[a])
+
+    return (
+      <div>
+        a:{a},b:{b}
+        <Child />
+        <button onClick={()=>addA(a+1)}>addA</button>
+        <button onClick={()=>addB(b+1)}>addB</button>
+      </div>
+    )
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  const myAppElement = React.createElement(App, null);
+  root.render( myAppElement);
+</script>
+</body>
+
+</html>

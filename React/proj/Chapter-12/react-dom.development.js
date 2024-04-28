@@ -26770,7 +26770,7 @@
     // TODO: Delete all other places that schedule the passive effect callback
     // They're redundant.
 
-
+debugger
     if ((finishedWork.subtreeFlags & PassiveMask) !== NoFlags || (finishedWork.flags & PassiveMask) !== NoFlags) {
       if (!rootDoesHavePassiveEffects) {
         rootDoesHavePassiveEffects = true;

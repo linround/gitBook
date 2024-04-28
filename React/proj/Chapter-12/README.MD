@@ -82,7 +82,8 @@ useEffect 中的函数实在DOM挂载到页面上之后才执行的
 setState 执行后，state 的pending状态就绪后。然后执行从rootFiber 执行渲染,这个时候 useEffect
 的依赖就会重新获取，如果依赖发生了变化，那么就会重新执行useEffect。
 
-
+### 子级 useEffect,父级useEffect，子级useLayoutEffect,父级useLayoutEffect 的执行顺序是怎样的呢？
+![img_1.png](img_1.png)
 
 ## 总结
 useEffect 会放在 updateQueue 中（多个形成链表）；useState会放在memoizedState中（多个形成链表）。
