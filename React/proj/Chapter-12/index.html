@@ -32,26 +32,26 @@
       console.log('*****buttons******22222*',name)
     }
 
-    React.useEffect(() => {
-      /*
-      * 此处即可获取到 DOM
-      * */
-      debugger
-      logElement('useEffect')
-      console.log("useEffect");
-
-      // let i = 0
-      // while (i < 1000000000 ){
-      //   i++
-      // }
-      // addA(100)
-
-
-
-      return () => {
-        console.log("useEffect unmount");
-      };
-    }, [a, b]);
+    // React.useEffect(() => {
+    //   /*
+    //   * 此处即可获取到 DOM
+    //   * */
+    //   debugger
+    //   logElement('useEffect')
+    //   console.log("useEffect");
+    //
+    //   // let i = 0
+    //   // while (i < 1000000000 ){
+    //   //   i++
+    //   // }
+    //   // addA(100)
+    //
+    //
+    //
+    //   return () => {
+    //     console.log("useEffect unmount");
+    //   };
+    // }, [a, b]);
 
     React.useLayoutEffect(() => {
       debugger

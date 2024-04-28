@@ -39,6 +39,7 @@ effect包括了deps,create,和 destroy(初始是 undefined)。继续在 当前 f
 - 调用函数
   - commitRoot
   - commitRootImpl
+    - 在任务队列中添加一个 调用flushPassiveEffects 的 函数
   - flushPassiveEffects (被放在了任务队列中)
   - flushPassiveEffectsImpl 
   - commitPassiveMountEffects 
@@ -69,6 +70,8 @@ useEffect 中的函数实在DOM挂载到页面上之后才执行的
 
 ### useEffect 相对于 渲染是异步的；useLayoutEffect 是同步的。所以 useEffect 有可能造成页面显示闪烁的问题？为什么 useLayoutEffect 会阻塞渲染，而useEffect 没有阻塞渲染呢？
 
+- 首先是执行 commitLayoutEffects，在此会执行useLayoutEffect的相关回调；然后 useEffect 由于是被放在任务队列中，所以才会在之后执行。
+- 两者都会 在 commitHookEffectListMount 中调用 回调。
 ### useEffect 未传递参数时，会执行多次吗？
 
 - 当未传递参数时，useEffect 在组件的每次渲染都会执行。这和 useCallback 是一样的。
@@ -87,3 +90,15 @@ useEffect 会放在 updateQueue 中（多个形成链表）；useState会放在m
 hook 对象会创建自己的memoizedState，然后在fiber.updateQueue中创建effect链表。
 
 fiber 也有自己的 memoizedState，用来存储当前的 useState 链表、
+
+
+useEffect 的调用是通过 workLoop 在调度 任务 来执行的。useLayoutEffect,则和任务队列无关。
+
+因为在渲染执行过程中  useEffect 是放在了任务队列中（排渲染函数后），而 useLayoutEffect,是在当前渲染函数执行时，首先在fiber.updateQueue 中创建了 effect,
+然后等DOM挂载完了直接执行。
+
+
+### workLoop 的作用
+- 可以接收一开始 fiberRoot，从而进入渲染流程 
+- 可以接收 useEffect 的回调
+
