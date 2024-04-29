@@ -85,6 +85,14 @@ setState 执行后，state 的pending状态就绪后。然后执行从rootFiber 
 ### 子级 useEffect,父级useEffect，子级useLayoutEffect,父级useLayoutEffect 的执行顺序是怎样的呢？
 ![img_1.png](img_1.png)
 
+整个DOM形成并挂载了，此刻到达了fiberRoot,从这理开始进行 commitLayoutEffects。再找到最内部存在的useLayoutEffect，开始由内而外的逐个调用fiber中的effect.
+（同一个fiber 中的 effect 会再该fiber中形成链表）；
+#### 为什么不是 每一个fiber 都将自己的 useEffect 推入任务队列来执行呢？
+因为是从 根 fiber 开始。所以只是一次行的添加 flushPassiveEffects 回调。
+而useLayoutEffect的调用过，又再次从最内部的fiber到最外部的fiber 逐个开始调用的。
+
+flushPassiveEffects 在调用 useEffect 的 回调时，也是从最内部的fiber 到最外部的fiber逐个进行调用的。
+
 ## 总结
 useEffect 会放在 updateQueue 中（多个形成链表）；useState会放在memoizedState中（多个形成链表）。
 
