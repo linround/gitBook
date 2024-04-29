@@ -27,7 +27,7 @@
 - [useContext](../../React/proj/Chapter-9/README.MD)
 - [useState](../../React/proj/Chapter-11/README.MD)
 - [useCallback](../../React/proj/Chapter-10/README.MD)
-- [ ] [useEffect](../../React/proj/Chapter-12/README.MD)
+- [useEffect](../../React/proj/Chapter-12/README.MD)
 - [ ] [useRef](../../React/proj/Chapter-13/README.MD)
 - [ ] [createRef](../../React/proj/Chapter-13/README.MD)
 
