@@ -22,41 +22,14 @@
   function App() {
     debugger
     const [a, addA] = React.useState(1);
-    const [b, addB] = React.useState(2);
+    const [b, addB] = React.useState(100);
 
-    function logElement(name) {
-
-      const elements = document.querySelectorAll('p')
-      console.log('*****buttons******11111*',name)
-      console.log(elements.length,elements,name)
-      console.log('*****buttons******22222*',name)
-    }
-
-    // React.useEffect(() => {
-    //   /*
-    //   * 此处即可获取到 DOM
-    //   * */
-    //   debugger
-    //   logElement('useEffect')
-    //   console.log("useEffect");
-    //
-    //   // let i = 0
-    //   // while (i < 1000000000 ){
-    //   //   i++
-    //   // }
-    //   // addA(100)
-    //
-    //
-    //
-    //   return () => {
-    //     console.log("useEffect unmount");
-    //   };
-    // }, [a, b]);
 
     React.useLayoutEffect(() => {
-
-      logElement('useLayoutEffect')
       console.log("useLayoutEffect");
+    }, [a]);
+    React.useEffect(() => {
+      console.log("useEffect");
     }, [a]);
 
     const aButton = React.createElement("button", {
@@ -70,8 +43,7 @@
       }
     }, "addB");
 
-    // return React.createElement("div", null, "a:", a, ",b:", b, aButton, bButton);
-    return React.createElement("p", null,aButton );
+    return React.createElement("div", null, "a:", a,"b:", b, aButton,bButton);
   }
 
   const root = ReactDOM.createRoot(document.getElementById("root"));
