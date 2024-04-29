@@ -19,108 +19,35 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
-   class FadeInAnimation {
-    constructor(node) {
-      this.node = node;
-    }
-    start(duration) {
-      this.duration = duration;
-      if (this.duration === 0) {
-        // Jump to end immediately
-        this.onProgress(1);
-      } else {
-        this.onProgress(0);
-        // Start animating
-        this.startTime = performance.now();
-        this.frameId = requestAnimationFrame(() => this.onFrame());
-      }
-    }
-    onFrame() {
-      const timePassed = performance.now() - this.startTime;
-      const progress = Math.min(timePassed / this.duration, 1);
-      this.onProgress(progress);
-      if (progress < 1) {
-        // We still have more frames to paint
-        this.frameId = requestAnimationFrame(() => this.onFrame());
-      }
-    }
-    onProgress(progress) {
-      this.node.style.opacity = progress;
-    }
-    stop() {
-      cancelAnimationFrame(this.frameId);
-      this.startTime = null;
-      this.frameId = null;
-      this.duration = 0;
-    }
+  function Demo() {
+    console.log('Demo render')
+    const useRef = React.useRef(10);
+    const createRef = React.createRef(100);
+    React.useEffect(() => {
+      console.log('useRef',useRef)
+      console.log('createRef',createRef)
+    }, []);
+
+    const [data, setData] = React.useState(0);
+    return <div>
+        <h1 ref={useRef}>useRef</h1>
+        <h2 ref={createRef}>createRef</h2>
+        <div>useState: {data}</div>
+        <button onClick={() => setData(data + 1)}>改变</button>
+    </div>;
   }
-  const style={
-     opacity: 0,
-       color: 'white',
-       padding: 50,
-       textAlign: 'center',
-       fontSize: 50,
-       backgroundImage: 'radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)'
-   }
-
-
-
-   function DemoUseRef() {
-     console.log("UseRef,render")
-     const ref = React.useRef(null);
-     React.useEffect(() => {
-       console.log("UseRef,useEffect")
-       const animation = new FadeInAnimation(ref.current);
-       animation.start(1000);
-       return () => {
-         console.log("UseRef,NO useEffect")
-         animation.stop();
-       };
-     }, []);
-     return <button style={style} ref={ref}>DemoUseRef</button>;
-   }
-   function DemoCreateRef() {
-     console.log("CreateRef,render")
-     const ref = React.createRef(null);
-     React.useEffect(() => {
-       console.log("CreateRef,useEffect")
-       const animation = new FadeInAnimation(ref.current);
-       animation.start(1000);
-       return () => {
-         console.log("CreateRef,NO useEffect")
-         animation.stop();
-       };
-     }, []);
-     return <button style={style} ref={ref}>DemoCreateRef</button>;
-   }
 
 
 
 
 
-  function App(){
-     const [show,setShow] = React.useState(false)
-    /*
-    * show 为 true 的时候，可能在挂载该 fiber dom的时候 触发 该 fiber 的useEffect
-    * show 为 false 的时候，可能在卸载该 fiber dom的时候 触发 该 fiber 的useEffect
-    * */
-     return (
-       <div>
-         <button onClick={()=>setShow(!show)}>{show?'remove':'show'}</button>
-         {show && (
-           <div>
-             <DemoUseRef />
-             <DemoCreateRef />
-           </div>
-         )}
-       </div>
-     )
-  }
+
+
 
   const root = ReactDOM.createRoot(document.getElementById("root"))
-  // root.render(<Example />);
+
   root.render(
-    <App />
+    <Demo />
   )
 </script>
 </body>
