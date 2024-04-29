@@ -95,8 +95,11 @@ flushPassiveEffects 在调用 useEffect 的 回调时，也是从最内部的fib
 
 
 ## 关于状态更新时，useEffect 的执行情况
-- 改变依赖的状态，useEffect 和 useLayoutEffect `都会执行`。 
-- 但是useEffect，useEffect 和 useLayoutEffect `都不会执行` 。
+- 改变依赖的state，useEffect 和 useLayoutEffect `都会执行`。 
+- 改变非依赖的state,useEffect，useEffect 和 useLayoutEffect `都不会执行` 。
+
+### 那么，在依赖的state更新时，effect 是怎么执行的呢 ？
+示例:[demo](./depsEffect.html)
 
 ## 总结
 useEffect 会放在 updateQueue 中（多个形成链表）；useState会放在memoizedState中（多个形成链表）。
