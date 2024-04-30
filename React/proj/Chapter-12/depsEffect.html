@@ -36,12 +36,12 @@
       onClick: () => {
         addA(a + 1)
       }
-    }, "addA");
+    }, "改变相关依赖");
     const bButton = React.createElement("button", {
       onClick: () => {
         addB(b + 1)
       }
-    }, "addB");
+    }, "改变无关依赖");
 
     return React.createElement("div", null, "a:", a,"b:", b, aButton,bButton);
   }
