@@ -11,3 +11,5 @@ mountRef、mountState、useEffect、useLayoutEffect。因此以上的函数都�
 然而 createRef 的值，是不存在该链表上的。
 
 ### createRef 与 useRef 的区别
+### forwardRef 的作用是什么？
+forwardRef 是一个高阶函数，用于将 ref 属性转发给子组件。
