@@ -19,19 +19,72 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
+
+  const aObj = {a: { value:1 }};
+  const bObj = {b: { value:100 }};
+
+  const a = aObj.a
+  const b = bObj.b
+
+  setTimeout(()=>{
+    aObj.a.value++;
+    bObj.b.value++;
+  }, 100)
+
+  setTimeout(()=>{
+    console.log('a', a);
+    console.log('b', b);
+    console.log('aObj', aObj);
+    console.log('bObj', bObj);
+  }, 2000)
+
+
   function Demo() {
+    debugger
     console.log('Demo render');
-    const [data, setData] = React.useState(100);
-    return /*#__PURE__*/React.createElement("div", {
-      onClick: () => {
-        setData(1)
-      }
-    }, "改变",data);
+
+
+    const useRef = React.useRef(10);
+    const [data, setData] = React.useState(0);
+    const createRef = React.createRef(100);
+
+    console.log('useRef1', useRef);
+    console.log('createRef1', createRef);
+
+    // 那么 useRef 和 createRef 应该都是一个引用值
+    // 在这种情况下 异步执行是就会 获取到修改后的引用值
+    // 一般在 useEffect 中使用 ref 时，都会使用 ref.current
+    React.useEffect(() => {
+      console.log('useRef', useRef);
+      console.log('createRef', createRef);
+    }, [data]);
+
+    const h1Element = React.createElement("h1", {
+      ref: useRef
+    }, "useRef");
+
+    const h2Element = React.createElement("h2", {
+      ref: createRef
+    }, "createRef");
+
+    const divElement = React.createElement("div", null, "useState: ", data);
+
+    const buttonElement = React.createElement("button", {
+      onClick: () => setData(data + 1)
+    }, "改变");
+
+    return React.createElement(
+      "div",
+      null,
+      h1Element,
+      h2Element,
+      divElement,
+      buttonElement
+    );
   }
 
   const root = ReactDOM.createRoot(document.getElementById("root"));
-  const demoElement = React.createElement(Demo, null)
-  root.render( /*#__PURE__*/ demoElement);
+  root.render( React.createElement(Demo, null));
 </script>
 </body>
 
