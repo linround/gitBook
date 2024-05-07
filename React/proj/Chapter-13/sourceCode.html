@@ -24,9 +24,9 @@
     const useRef = React.useRef(10);
     const createRef = React.createRef(100);
     React.useEffect(() => {
-      console.log('useRef',useRef)
+      console.log('useRef===============',useRef)
       console.log('createRef',createRef)
-    }, []);
+    }, [createRef]);
 
     const [data, setData] = React.useState(0);
     return <div>
