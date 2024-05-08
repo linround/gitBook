@@ -21,6 +21,7 @@ mountRef、mountState、useEffect、useLayoutEffect。因此以上的函数都�
 - 现象
   - useEffect 的依赖是 useRef 创建的 ref 对象，当组件更新时，useEffect 不会重新执行。
   - useEffect 的依赖是 createRef 创建的 ref 对象，当组件更新时，useEffect 会重新执行。
+  - 初始的时候 createRef 不需要传入初值。因为传入的初值是不会用到的
 - 原因
   - 在更新的时候，useRef 是从 链表上获取的旧的ref对象；而 createRef 每次都会重新执行创建一个新的 ref 对象。
   - 在 React 框架中 useRef 在初始化时调用的 mountRef 函数，在更新时调用的是 updateRef；
@@ -29,3 +30,5 @@ mountRef、mountState、useEffect、useLayoutEffect。因此以上的函数都�
   - 因为 useEffect 和 useLayoutEffect 都是在dom 形成之后执行的，所以在两者传入的回调中都可以访问 真实DOM
 ### forwardRef 的作用是什么？
 forwardRef 是一个高阶函数，用于将 ref 属性转发给子组件。
+
+### ref.current 赋值的时机是什么
