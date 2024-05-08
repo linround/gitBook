@@ -26837,7 +26837,6 @@
       {
         markLayoutEffectsStarted(lanes);
       }
-
       commitLayoutEffects(finishedWork, root, lanes);
 
       {
