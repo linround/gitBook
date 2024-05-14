@@ -22,21 +22,24 @@
     function Demo() {
         const useRef = React.useRef(10);
         const createRef = React.createRef(100);
+
         React.useEffect(() => {
-            console.log('useRef===============',useRef)
-            console.log('createRef',createRef)
-        }, [createRef,useRef]);
+            console.log('useRef===============', useRef);
+            console.log('createRef', createRef);
+        }, [createRef, useRef]);
 
         const [data, setData] = React.useState(0);
-        return (
-            <div>
-                <button onClick={() => setData(data + 1)}>改变{data}</button>
-            </div>
-        );
+
+
+        const buttonElement = React.createElement("button", {
+            onClick: () => setData(data + 1)
+        }, "改变", data);
+
+        return React.createElement("div", null, buttonElement);
     }
 
-    const root = ReactDOM.createRoot(document.getElementById("root"))
-    root.render(<Demo />)
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render( React.createElement(Demo, null));
 </script>
 </body>
 
