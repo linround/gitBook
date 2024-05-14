@@ -19,34 +19,24 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
-  function Demo() {
-    console.log('Demo render')
-    const useRef = React.useRef(10);
-    const createRef = React.createRef(100);
-    React.useEffect(() => {
-      console.log('useRef===============',useRef)
-      console.log('createRef',createRef)
-    }, [createRef]);
+    function Demo() {
+        const useRef = React.useRef(10);
+        const createRef = React.createRef(100);
+        React.useEffect(() => {
+            console.log('useRef===============',useRef)
+            console.log('createRef',createRef)
+        }, [createRef,useRef]);
 
-    const [data, setData] = React.useState(0);
-    return <div>
-        <h1 ref={useRef}>useRef</h1>
-        <h2 ref={createRef}>createRef</h2>
-        <div>useState: {data}</div>
-        <button onClick={() => setData(data + 1)}>改变</button>
-    </div>;
-  }
+        const [data, setData] = React.useState(0);
+        return (
+            <div>
+                <button onClick={() => setData(data + 1)}>改变{data}</button>
+            </div>
+        );
+    }
 
-
-
-
-
-
-
-
-  const root = ReactDOM.createRoot(document.getElementById("root"))
-
-  root.render(<Demo />)
+    const root = ReactDOM.createRoot(document.getElementById("root"))
+    root.render(<Demo />)
 </script>
 </body>
 

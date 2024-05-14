@@ -55,6 +55,7 @@
     // 在这种情况下 异步执行是就会 获取到修改后的引用值
     // 一般在 useEffect 中使用 ref 时，都会使用 ref.current
     React.useEffect(() => {
+
       console.log('useRef', useRef.current);
       console.log('createRef', createRef.current);
     }, [data]);
