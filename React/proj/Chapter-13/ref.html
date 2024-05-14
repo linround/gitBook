@@ -20,6 +20,7 @@
 
 <script type="text/babel" data-presets="react,stage-3">
     function Demo() {
+        console.log('Demo render');
         const useRef = React.useRef(10);
         const createRef = React.createRef(100);
 
@@ -27,15 +28,27 @@
             console.log('useRef===============', useRef);
             console.log('createRef', createRef);
         }, [createRef, useRef]);
-
         const [data, setData] = React.useState(0);
 
+        const useRefElement = React.createElement("h1", {
+            ref: useRef
+        }, "useRef")
+
+        const createRefElement = React.createElement("h2", {
+            ref: createRef
+        }, "createRef")
 
         const buttonElement = React.createElement("button", {
             onClick: () => setData(data + 1)
         }, "改变", data);
 
-        return React.createElement("div", null, buttonElement);
+        return React.createElement(
+            "div",
+            null,
+            useRefElement,
+            createRefElement,
+            buttonElement
+        );
     }
 
     const root = ReactDOM.createRoot(document.getElementById("root"));
