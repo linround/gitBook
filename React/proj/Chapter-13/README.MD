@@ -33,3 +33,7 @@ forwardRef 是一个高阶函数，用于将 ref 属性转发给子组件。
 
 ### ref.current 赋值的时机是什么
 
+- useEffect 是在形成 effect 链表。dom 挂载后就会调用 effect 链表中的回调函数
+
+
+那么 ref.current 是在
