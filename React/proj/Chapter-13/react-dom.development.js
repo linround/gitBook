@@ -23269,7 +23269,8 @@
   }
 
   function commitLayoutEffectOnFiber(finishedRoot, current, finishedWork, committedLanes) {
-    if ((finishedWork.flags & LayoutMask) !== NoFlags) {
+    debugger
+      if ((finishedWork.flags & LayoutMask) !== NoFlags) {
       switch (finishedWork.tag) {
         case FunctionComponent:
         case ForwardRef:
@@ -23518,6 +23519,7 @@
     if ( !offscreenSubtreeWasHidden) {
       {
         if (finishedWork.flags & Ref) {
+            debugger
           commitAttachRef(finishedWork);
         }
       }

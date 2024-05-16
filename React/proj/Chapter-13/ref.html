@@ -25,6 +25,11 @@
         const createRef = React.createRef(100);
 
         debugger
+        React.useLayoutEffect(() => {
+            debugger
+            console.log('useRef=======useLayoutEffect========', useRef);
+            console.log('createRef====useLayoutEffect=====', createRef);
+        }, [createRef, useRef])
         React.useEffect(() => {
             console.log('useRef===============', useRef);
             console.log('createRef', createRef);

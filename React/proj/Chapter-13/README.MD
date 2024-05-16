@@ -33,7 +33,13 @@ forwardRef 是一个高阶函数，用于将 ref 属性转发给子组件。
 
 ### ref.current 赋值的时机是什么
 
+- ref 在 ReactNode 中是一个属性，而不是props子属性 。ref 与 props 同级；
+![img.png](img.png)
+
 - useEffect 是在形成 effect 链表。dom 挂载后就会调用 effect 链表中的回调函数
 
 
-那么 ref.current 是在
+那么 ref.current 调用情况如下：（从内到外的顺序）
+
+- commitAttachRef
+- commitLayoutEffectOnFiber
