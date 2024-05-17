@@ -43,3 +43,7 @@ forwardRef 是一个高阶函数，用于将 ref 属性转发给子组件。
 
 - commitAttachRef
 - commitLayoutEffectOnFiber
+- commitLayoutMountEffects_complete
+- commitLayoutEffects
+- commitRootImpl
+- commitRoot
