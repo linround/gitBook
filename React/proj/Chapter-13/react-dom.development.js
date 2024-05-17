@@ -24636,6 +24636,7 @@
   }
 
   function commitLayoutEffects_begin(subtreeRoot, root, committedLanes) {
+
     // Suspense layout effects semantics don't change for legacy roots.
     var isModernRoot = (subtreeRoot.mode & ConcurrentMode) !== NoMode;
 

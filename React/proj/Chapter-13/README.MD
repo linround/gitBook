@@ -47,3 +47,10 @@ forwardRef 是一个高阶函数，用于将 ref 属性转发给子组件。
 - commitLayoutEffects
 - commitRootImpl
 - commitRoot
+
+
+## 总结
+- useRef 属于 hooks 的一种。其创建的对象会被链接到effect 链表中。所以在更新的时候是从链表中获取，从而保持了对象不变
+- createRef 在初次和更新的时候都会创建一个新的对象。
+- 两者创建的对象都会被放在 ref 属性中，ref.current 会在 整个dom 挂载到页面后，调用 commitLayoutEffects 的时候为 ref.current 赋值。
+- forwardRef 是一个高阶函数，用于将 ref 属性转发给子组件。
