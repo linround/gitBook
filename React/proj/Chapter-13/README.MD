@@ -43,8 +43,13 @@ forwardRef 是一个高阶函数，用于将 ref 属性转发给子组件。
 
 - commitAttachRef
 - commitLayoutEffectOnFiber
-- commitLayoutMountEffects_complete
-- commitLayoutEffects
+- commitLayoutMountEffects_begin
+  - 对于普通DOM 形成的 fiberNode 会根据情况对 ref.current进行赋值。
+  - 对于 函数组件形成的 fiberNode 会触发 useLayoutEffect 链表的回调函数。
+- commitLayoutMountEffects_complete(从内部FiberNode往外为 ref.current进行赋值)
+- commitLayoutEffects_begin.(进入到最内部的那个FiberNode)
+- commitLayoutEffects （此处执行完成了 layoutEffect 回调函数）
+
 - commitRootImpl
 - commitRoot
 

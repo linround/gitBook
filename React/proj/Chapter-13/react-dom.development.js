@@ -24632,6 +24632,7 @@
 
     commitLayoutEffects_begin(finishedWork, root, committedLanes);
     inProgressLanes = null;
+    debugger
     inProgressRoot = null;
   }
 
