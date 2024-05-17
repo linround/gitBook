@@ -23269,7 +23269,7 @@
   }
 
   function commitLayoutEffectOnFiber(finishedRoot, current, finishedWork, committedLanes) {
-    debugger
+
       if ((finishedWork.flags & LayoutMask) !== NoFlags) {
       switch (finishedWork.tag) {
         case FunctionComponent:
@@ -24629,6 +24629,7 @@
     inProgressLanes = committedLanes;
     inProgressRoot = root;
     nextEffect = finishedWork;
+
     commitLayoutEffects_begin(finishedWork, root, committedLanes);
     inProgressLanes = null;
     inProgressRoot = null;
@@ -24673,7 +24674,6 @@
 
           while (child !== null) {
             nextEffect = child;
-            debugger
             commitLayoutEffects_begin(child, // New root; bubble back up to here and stop.
               root, committedLanes);
             child = child.sibling;
@@ -26840,7 +26840,6 @@
       {
         markLayoutEffectsStarted(lanes);
       }
-
       commitLayoutEffects(finishedWork, root, lanes);
 
       {
