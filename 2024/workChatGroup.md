@@ -1,7 +1,7 @@
 # 寒气逼人的情况下，大家抱团讨论一下
 这是一份共享文档的链接，可以发布自己的招聘需求，也可以发布自己的求职需求，希望能够多一份机会。
 
-[https://365.kdocs.cn/l/cqoDJ6LS7qdn](https://365.kdocs.cn/l/cqoDJ6LS7qdn){:target="_blank"}    
+<a href="https://365.kdocs.cn/l/cqoDJ6LS7qdn" target="_blank">https://365.kdocs.cn/l/cqoDJ6LS7qdna
 
 
 
