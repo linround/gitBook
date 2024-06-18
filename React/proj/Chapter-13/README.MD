@@ -31,6 +31,14 @@ mountRef、mountState、useEffect、useLayoutEffect。因此以上的函数都�
 ### forwardRef 的作用是什么？
 forwardRef 是一个高阶函数，用于将 ref 属性转发给子组件。
 
+- 父组件创建了一个 ref,并将其传递给子组件。
+- 子组件是由 forwardRef 创建的一个函数组件。
+- forwardRef 会将 ref 属性转发给子组件。
+  - 通过测试，普通组件中的ref 是一个对象.但是不会被赋值
+  - forwardRef 创建的函数组件，render 函数的第二个参数 ref 会被赋值 真实DOM
+  - 问题来了，父组件 使用props 传递的 ref,是如何转发给 函数组件的第二个函数，赋值后却没有影响到 组件props的 ref 呢？
+  - 普通组件的 props ref 属性是undefined,而正常的forward 函数转发的 ref 属性是一个具有 current 属性的对象
+  - 组件本省具有正常的props ref 属性。 但是在forward 创建的函数组件中，是如何进行转发的呢？
 ### ref.current 赋值的时机是什么
 
 - commitAttachRef

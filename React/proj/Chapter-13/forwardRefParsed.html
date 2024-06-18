@@ -19,25 +19,30 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
+  debugger
   const MyForwardRef = React.forwardRef(function MyInput(props, ref) {
     return React.createElement("button", {
       ref: ref
     }, "forwardRef");
   });
 
-  function Demo({ref}) {
+  function Demo() {
     console.log('Demo render');
     const useRef = React.createRef();
     React.useEffect(() => {
       console.log('useRef===============2', useRef.current);
     }, [useRef]);
+    window.myUseRef = useRef;
+
+debugger
     return React.createElement(MyForwardRef, {
       ref: useRef
     });
   }
 
   const root = ReactDOM.createRoot(document.getElementById("root"));
-  root.render( React.createElement(Demo, null));
+  const demoElement = React.createElement(Demo, null);
+  root.render( demoElement);
 </script>
 </body>
 

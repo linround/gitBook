@@ -1208,6 +1208,7 @@
     if (typeof type === 'object') {
       switch (type.$$typeof) {
         case REACT_FORWARD_REF_TYPE:
+
           return describeFunctionComponentFrame(type.render);
 
         case REACT_MEMO_TYPE:
@@ -1349,6 +1350,7 @@
           return getContextName(provider._context) + '.Provider';
 
         case REACT_FORWARD_REF_TYPE:
+
           return getWrappedName(type, type.render, 'ForwardRef');
 
         case REACT_MEMO_TYPE:
@@ -23519,7 +23521,7 @@
     if ( !offscreenSubtreeWasHidden) {
       {
         if (finishedWork.flags & Ref) {
-            debugger
+
           commitAttachRef(finishedWork);
         }
       }
@@ -24632,7 +24634,7 @@
 
     commitLayoutEffects_begin(finishedWork, root, committedLanes);
     inProgressLanes = null;
-    debugger
+
     inProgressRoot = null;
   }
 
@@ -27744,6 +27746,7 @@
         case ForwardRef:
         {
           if ($$typeofNextType === REACT_FORWARD_REF_TYPE) {
+
             needsCompareFamilies = true;
           } else if ($$typeofNextType === REACT_LAZY_TYPE) {
             needsCompareFamilies = true;
@@ -28153,6 +28156,7 @@
       var $$typeof = Component.$$typeof;
 
       if ($$typeof === REACT_FORWARD_REF_TYPE) {
+
         return ForwardRef;
       }
 
@@ -28426,6 +28430,7 @@
                 break getTag;
 
               case REACT_FORWARD_REF_TYPE:
+                debugger
                 fiberTag = ForwardRef;
 
               {

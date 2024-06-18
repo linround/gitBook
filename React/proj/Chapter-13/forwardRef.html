@@ -20,7 +20,15 @@
 
 <script type="text/babel" data-presets="react,stage-3">
 
+  const MyNormalComponent = function (props) {
+    console.log('MyNormalComponent props:',props)
+    return (
+      <div>normal component</div>
+    )
+  }
+
   const MyForwardRef = React.forwardRef(function MyInput(props, ref) {
+    console.log('MyForwardRef props:',props,ref)
 
     return (
         <button ref={ref}>forwardRef</button>
@@ -28,15 +36,18 @@
   });
 
 
-  function Demo({ref}) {
-    console.log('Demo render')
-    const useRef = React.createRef();
+  function Demo() {
+    const useRef1 = React.createRef();
+    const useRef2 = React.createRef();
     React.useEffect(() => {
-      console.log('useRef===============2',useRef.current)
-    }, [useRef]);
+      console.log(useRef1.current)
+    }, [useRef1]);
 
     return (
-        <MyForwardRef ref={useRef} />
+      <>
+        <MyForwardRef ref={useRef1} />
+        <MyNormalComponent ref={useRef2} />
+      </>
     )
   }
 
