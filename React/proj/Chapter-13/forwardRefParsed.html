@@ -19,7 +19,6 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
-
   const MyForwardRef = React.forwardRef(function MyInput(props, ref) {
     return React.createElement("button", {
       ref: ref
@@ -32,9 +31,9 @@
     React.useEffect(() => {
       console.log('useRef===============2', useRef.current);
     }, [useRef]);
-    return React.createElement(React.Fragment, null, React.createElement(MyForwardRef, {
+    return React.createElement(MyForwardRef, {
       ref: useRef
-    }));
+    });
   }
 
   const root = ReactDOM.createRoot(document.getElementById("root"));
