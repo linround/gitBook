@@ -19239,6 +19239,7 @@
     {
       ReactCurrentOwner$1.current = workInProgress;
       setIsRendering(true);
+      debugger
       nextChildren = renderWithHooks(current, workInProgress, render, nextProps, ref, renderLanes);
       hasId = checkDidRenderIdHook();
 
