@@ -39,6 +39,16 @@ forwardRef 是一个高阶函数，用于将 ref 属性转发给子组件。
   - 问题来了，父组件 使用props 传递的 ref,是如何转发给 函数组件的第二个函数，赋值后却没有影响到 组件props的 ref 呢？
   - 组件本省具有正常的props ref 属性。 但是在forward 创建的函数组件中，是如何进行转发的呢？
 ### ref.current 赋值的时机是什么
+- 创建 forwardRef 创建的函数组件的 fiberNode 时，element 的 ref 赋值给 fiberNode的 ref 属性
+- 普通的函数组件 的 ReactElement 的 ref 属性时null。 
+- 若给组件传递了 ref,搞ref 属性在 reconcileSingleElement 函数中，都会赋值给 fiberNode 的 ref属性。
+- forwardRef 创建的 fiberNode 保存了这个 ref 属性 
+- 进入 forwardRef 创建的 fiberNode(作为workInProgress) 的beginWork 函数中
+- beginWork 函数 返回的 workInProgress 的child.
+- 这个时候就会执行 之前传递给 forwardRef 的函数的函数组件。
+- 执行 updateForwardRef，取得 workInProgress 的 render 函数 最为组件进行执行，创建子fiberNode
+- 此时进入 renderWithHooks,只不过 使用 render 函数作为了 Component 。
+- 
 
 - commitAttachRef
   
