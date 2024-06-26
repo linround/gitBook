@@ -19,19 +19,10 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
-
-
-
   function Demo() {
-    const [query, setQuery] = React.useState('')
-    return (
-      <div>
-        <div>
-          搜索：
-          <input value={query} onChange={(e)=>setQuery(e.target.value)} />
-        </div>
-      </div>
-    );
+    console.log('Demo render')
+    const [data, setData] = React.useState({ foo: { bar: { baz: 1 } } });
+    return <div onClick={() => setData(1)}>改变</div>;
   }
 
 

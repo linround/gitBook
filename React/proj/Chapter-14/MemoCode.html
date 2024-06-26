@@ -19,30 +19,32 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
-
-
-
-  function Demo() {
-    const [query, setQuery] = React.useState('')
+  function MyApp() {
+    const [name, setName] = React.useState('');
+    const [address, setAddress] = React.useState('');
     return (
-      <div>
-        <div>
-          搜索：
-          <input value={query} onChange={(e)=>setQuery(e.target.value)} />
-        </div>
-      </div>
+      <>
+        <label>
+          Name{': '}
+          <input value={name} onChange={e => setName(e.target.value)} />
+        </label>
+        <label>
+          Address{': '}
+          <input value={address} onChange={e => setAddress(e.target.value)} />
+        </label>
+        <Greeting name={name} />
+      </>
     );
   }
 
-
-
-
-
+  const Greeting = React.memo(function Greeting({ name }) {
+    console.log("Greeting重复渲染", new Date().toLocaleTimeString());
+    return <h3>Hello{name && ', '}{name}!</h3>;
+  });
 
   const root = ReactDOM.createRoot(document.getElementById("root"))
-  // root.render(<Example />);
   root.render(
-    <Demo />
+    <MyApp />
   )
 </script>
 </body>

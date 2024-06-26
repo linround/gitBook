@@ -19,19 +19,44 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
-  function Demo() {
-    console.log('Demo render');
-    const [data, setData] = React.useState(100);
-    return /*#__PURE__*/React.createElement("div", {
-      onClick: () => {
-        setData(1)
-      }
-    }, "改变",data);
+
+
+  function SearchResults({text}) {
+
+    return (
+      text
+    )
+  }
+  const Suspense = React.Suspense
+  function Loading() {
+    return <h2>loading...</h2>
   }
 
-  const root = ReactDOM.createRoot(document.getElementById("root"));
-  const demoElement = React.createElement(Demo, null)
-  root.render( /*#__PURE__*/ demoElement);
+  function Demo() {
+    const [query, setQuery] = React.useState('')
+    return (
+      <div>
+        <div>
+          搜索：
+          <input value={query} onChange={(e)=>setQuery(e.target.value)} />
+        </div>
+        <Suspense fallback={<Loading/>}>
+          <SearchResults text={query} />
+        </Suspense>
+      </div>
+    );
+  }
+
+
+
+
+
+
+  const root = ReactDOM.createRoot(document.getElementById("root"))
+  // root.render(<Example />);
+  root.render(
+    <Demo />
+  )
 </script>
 </body>
 
