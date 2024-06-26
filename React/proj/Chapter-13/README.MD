@@ -48,7 +48,14 @@ forwardRef 是一个高阶函数，用于将 ref 属性转发给子组件。
 - 这个时候就会执行 之前传递给 forwardRef 的函数的函数组件。
 - 执行 updateForwardRef，取得 workInProgress 的 render 函数 最为组件进行执行，创建子fiberNode
 - 此时进入 renderWithHooks,只不过 使用 render 函数作为了 Component 。
-- 
+- 将ref的引用传递给了 子ReactElement 的 ref 属性。
+
+- 总结
+  - forwardRef 创建了一个特殊的组件，该组件存在一个render 函数，这个render 函数
+  接收的第二个参数是父级传递下来的ref 对象的引用。 此时在子组件中直接使用 该引用对象。
+  通过对该引用对象的赋值，就可以将真实的子组件的DOM传递给 父组件了。
+
+
 
 - commitAttachRef
   

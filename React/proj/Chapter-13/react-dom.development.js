@@ -16278,7 +16278,7 @@
   }
 
   function renderWithHooks(current, workInProgress, Component, props, secondArg, nextRenderLanes) {
-
+debugger
     renderLanes = nextRenderLanes;
     currentlyRenderingFiber$1 = workInProgress;
 
@@ -19573,7 +19573,6 @@
   }
 
   function updateFunctionComponent(current, workInProgress, Component, nextProps, renderLanes) {
-
 
     {
       if (workInProgress.type !== workInProgress.elementType) {
