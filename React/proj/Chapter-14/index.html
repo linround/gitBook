@@ -19,19 +19,91 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
-  function Demo() {
-    console.log('Demo render');
-    const [data, setData] = React.useState(100);
-    return /*#__PURE__*/React.createElement("div", {
-      onClick: () => {
-        setData(1)
-      }
-    }, "改变",data);
+
+  let cache = new Map();
+
+  async function getSearchResults(query) {
+    // Add a fake delay to make waiting noticeable.
+    await new Promise(resolve => {
+      setTimeout(resolve, 500);
+    });
+
+
+    return ("结果是：");
+  }
+  async function getData(url) {
+    return await getSearchResults(url.slice('/search?q='.length))
   }
 
-  const root = ReactDOM.createRoot(document.getElementById("root"));
-  const demoElement = React.createElement(Demo, null)
-  root.render( /*#__PURE__*/ demoElement);
+  function fetchData(url) {
+    if (!cache.has(url)) {
+      cache.set(url, getData(url));
+    }
+    console.log(cache.get(url),"======cache====")
+    return cache.get(url);
+  }
+
+  function SearchResults({ query }) {
+    const albums = use(fetchData(`/search?q=${query}`));
+    return (
+      <ul>
+        {albums}{query}
+      </ul>
+    );
+  }
+  function use(promise) {
+    if (promise.status === 'fulfilled') {
+      return promise.value;
+    } else if (promise.status === 'rejected') {
+      throw promise.reason;
+    } else if (promise.status === 'pending') {
+      throw promise;
+    } else {
+      promise.status = 'pending';
+      promise.then(
+        result => {
+          promise.status = 'fulfilled';
+          promise.value = result;
+        },
+        reason => {
+          promise.status = 'rejected';
+          promise.reason = reason;
+        },
+      );
+      throw promise;
+    }
+  }
+
+  const Suspense = React.Suspense
+  function Loading() {
+    return <h2>loading...</h2>
+  }
+
+  function Demo() {
+    const [query, setQuery] = React.useState('');
+    return (
+      <>
+        <label>
+          搜索：
+          <input value={query} onChange={e => setQuery(e.target.value)} />
+        </label>
+        <Suspense fallback={<Loading/>}>
+          <SearchResults query={query} />
+        </Suspense>
+      </>
+    );
+  }
+
+
+
+
+
+
+  const root = ReactDOM.createRoot(document.getElementById("root"))
+  // root.render(<Example />);
+  root.render(
+    <Demo />
+  )
 </script>
 </body>
 
