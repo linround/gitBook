@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+  function use(promise) {
+    if (promise.status === 'fulfilled') {
+      return promise.value;
+    } else if (promise.status === 'rejected') {
+      throw promise.reason;
+    } else if (promise.status === 'pending') {
+      throw promise;
+    } else {
+      promise.status = 'pending';
+      promise.then(result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      }, reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      });
+      throw promise;
+    }
+  }
+    async function f() {
+      await new Promise(resolve => {
+        setTimeout(resolve, 1000)
+      });
+      return "hello";
+    }
+
+    async function f1() {
+      return  await f();
+    }
+
+    function f2() {
+      return f1();
+    }
+
+    const res = use(f2())
+  console.log(res, "======res====");
+
+</script>

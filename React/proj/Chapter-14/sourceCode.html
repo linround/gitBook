@@ -19,10 +19,79 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
+
+  let cache = new Map();
+
+  async function getSearchResults(query) {
+    // Add a fake delay to make waiting noticeable.
+    await new Promise(resolve => {
+      setTimeout(resolve, 500);
+    });
+
+
+    return ("结果是：");
+  }
+  async function getData(url) {
+    return await getSearchResults(url.slice('/search?q='.length))
+  }
+
+  function fetchData(url) {
+    if (!cache.has(url)) {
+      cache.set(url, getData(url));
+    }
+    console.log(cache.get(url),"======cache====")
+    return cache.get(url);
+  }
+
+  function SearchResults({ query }) {
+    const albums = use(fetchData(`/search?q=${query}`));
+    return (
+      <ul>
+        {albums}{query}
+      </ul>
+    );
+  }
+  function use(promise) {
+    if (promise.status === 'fulfilled') {
+      return promise.value;
+    } else if (promise.status === 'rejected') {
+      throw promise.reason;
+    } else if (promise.status === 'pending') {
+      throw promise;
+    } else {
+      promise.status = 'pending';
+      promise.then(
+        result => {
+          promise.status = 'fulfilled';
+          promise.value = result;
+        },
+        reason => {
+          promise.status = 'rejected';
+          promise.reason = reason;
+        },
+      );
+      throw promise;
+    }
+  }
+
+  const Suspense = React.Suspense
+  function Loading() {
+    return <h2>loading...</h2>
+  }
+
   function Demo() {
-    console.log('Demo render')
-    const [data, setData] = React.useState({ foo: { bar: { baz: 1 } } });
-    return <div onClick={() => setData(1)}>改变</div>;
+    const [query, setQuery] = React.useState('');
+    return (
+      <>
+        <label>
+          搜索：
+          <input value={query} onChange={e => setQuery(e.target.value)} />
+        </label>
+        <Suspense fallback={<Loading/>}>
+          <SearchResults query={query} />
+        </Suspense>
+      </>
+    );
   }
 
 
