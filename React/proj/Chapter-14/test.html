@@ -29,22 +29,28 @@
       throw promise;
     }
   }
-    async function f() {
-      await new Promise(resolve => {
-        setTimeout(resolve, 1000)
-      });
-      return "hello";
+
+  let cache = new Map();
+
+  async function getSearchResults() {
+    await new Promise(resolve => {
+      setTimeout(resolve, 500);
+    });
+    return "结果是：";
+  }
+
+  async function getData(url) {
+    return await getSearchResults(url.slice('/search?q='.length));
+  }
+
+  function fetchData(url) {
+    if (!cache.has(url)) {
+      cache.set(url, getData(url));
     }
 
-    async function f1() {
-      return  await f();
-    }
+    return cache.get(url);
+  }
 
-    function f2() {
-      return f1();
-    }
-
-    const res = use(f2())
-  console.log(res, "======res====");
-
+  const s = use(fetchData(`/search?q=react`));
+  console.log(s, "======s====");
 </script>

@@ -25893,6 +25893,7 @@
   }
 
   function finishConcurrentRender(root, exitStatus, lanes) {
+    debugger
     switch (exitStatus) {
       case RootInProgress:
       case RootFatalErrored:
