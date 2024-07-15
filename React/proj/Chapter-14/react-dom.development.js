@@ -25824,6 +25824,7 @@
 
         root.finishedWork = finishedWork;
         root.finishedLanes = lanes;
+        debugger
         finishConcurrentRender(root, exitStatus, lanes);
       }
     }
