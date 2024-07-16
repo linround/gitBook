@@ -6,7 +6,7 @@
 在执行 workLoopSync 阶段，
 - demo组件执行，返回 子ReactElement
 - 子ReactElement 变成子FiberNode
-- 子FiberNode 进入 beginWork阶段
+- 子 FiberNode 进入 beginWork阶段
 - 进入 SearchResults 的 组件执行时触发了报错
 - 记录报错的 workInProgress.赋值给 erroredWork
 - 进入 finishConcurrentRender 阶段，挂载 loading
