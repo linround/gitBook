@@ -12,6 +12,7 @@
 - 进入 finishConcurrentRender 阶段，挂载 loading
 
 
+
 ## 进入 finishConcurrentRender 的目的是什么呢？
 首先，无 Suspense 的情况，会执行一次  finishConcurrentRender；当加上 Suspense 时，会执行两次 finishConcurrentRender。
 

@@ -26282,6 +26282,7 @@
 
   function handleError(root, thrownValue) {
     do {
+      debugger
       var erroredWork = workInProgress;
 
       try {
