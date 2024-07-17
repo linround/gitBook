@@ -38,13 +38,14 @@
       cache.set(url, getData(url));
     }
 
-    console.log(cache.get(url), "======cache====");
+    console.log(cache.get(url), "======fetchData111111111111====");
     return cache.get(url);
   }
 
   function SearchResults({query}) {
+
     const albums = use(fetchData(`/search?q=${query}`));
-    console.log(albums, "======albums====");
+    console.log(albums, "======SearchResults==222222222222222==");
     return React.createElement("ul", null, albums, query);
   }
 
@@ -75,6 +76,7 @@
   }
 
   function Demo() {
+    console.log("Demo render========33333333333==");
     const [query, setQuery] = React.useState('');
     const inputElement = React.createElement("input", {
       value: query,
@@ -90,6 +92,7 @@
       fallback: fallbackElement
     }, searchResultsElement);
 
+    console.log("Demo render========444444==");
 
     return React.createElement(React.Fragment, null, labelElement, suspenseElement);
   }

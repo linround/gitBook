@@ -12,6 +12,13 @@
 - 进入 finishConcurrentRender 阶段，挂载 loading
 
 
+在 beginWork 阶段会调用两次 updateSuspenseComponent
+- 第一次是正常的渲染流程下
+- 第二次渲染到 SearchResults 在使用use的时候，产生一个 pending 状态的 Promise;
+- 第三次 执行，产生的是 fulfilled 状态的 Promise.
+- 
+
+
 
 ## 进入 finishConcurrentRender 的目的是什么呢？
 首先，无 Suspense 的情况，会执行一次  finishConcurrentRender；当加上 Suspense 时，会执行两次 finishConcurrentRender。

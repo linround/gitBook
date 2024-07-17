@@ -20355,6 +20355,7 @@
         }
       }
 
+      debugger
       var nextPrimaryChildren = nextProps.children;
       var nextFallbackChildren = nextProps.fallback;
 
@@ -21639,6 +21640,7 @@
         return updateHostText(current, workInProgress);
 
       case SuspenseComponent:
+        debugger
         return updateSuspenseComponent(current, workInProgress, renderLanes);
 
       case HostPortal:
@@ -25824,7 +25826,7 @@
 
         root.finishedWork = finishedWork;
         root.finishedLanes = lanes;
-        debugger
+
         finishConcurrentRender(root, exitStatus, lanes);
       }
     }
@@ -26282,7 +26284,6 @@
 
   function handleError(root, thrownValue) {
     do {
-      debugger
       var erroredWork = workInProgress;
 
       try {
