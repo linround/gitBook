@@ -15,6 +15,8 @@
 在 beginWork 阶段会调用两次 updateSuspenseComponent
 - 第一次是正常的渲染流程下
 - 第二次渲染到 SearchResults 在使用use的时候，产生一个 pending 状态的 Promise;
+  - 在第二次阶段执行 commitRoot 之后。这个时候挂载的是loading 组件
+  - 进入第三次 updateSuspenseComponent
 - 第三次 执行，产生的是 fulfilled 状态的 Promise.
 - 
 
