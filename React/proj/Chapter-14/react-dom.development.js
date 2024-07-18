@@ -18829,6 +18829,7 @@
     }
 
     if (!threadIDs.has(lanes)) {
+      debugger
       // Memoize using the thread ID to prevent redundant listeners.
       threadIDs.add(lanes);
       var ping = pingSuspendedRoot.bind(null, root, wakeable, lanes);
@@ -19041,6 +19042,7 @@
         markSuspenseBoundaryShouldCapture(suspenseBoundary, returnFiber, sourceFiber, root, rootRenderLanes); // We only attach ping listeners in concurrent mode. Legacy Suspense always
         // commits fallbacks synchronously, so there are no pings.
 
+        debugger
         if (suspenseBoundary.mode & ConcurrentMode) {
           attachPingListener(root, wakeable, rootRenderLanes);
         }
@@ -19058,6 +19060,7 @@
           // the fallbacks anyway.)
           //
           // This case also applies to initial hydration.
+          debugger
           attachPingListener(root, wakeable, rootRenderLanes);
           renderDidSuspendDelayIfPossible();
           return;
@@ -26330,6 +26333,7 @@
           }
         }
 
+        debugger
         throwException(root, erroredWork.return, erroredWork, thrownValue, workInProgressRootRenderLanes);
         completeUnitOfWork(erroredWork);
       } catch (yetAnotherThrownValue) {
@@ -26456,6 +26460,7 @@
         workLoopSync();
         break;
       } catch (thrownValue) {
+        debugger
         handleError(root, thrownValue);
       }
     } while (true);
@@ -26527,6 +26532,7 @@
         workLoopConcurrent();
         break;
       } catch (thrownValue) {
+        debugger
         handleError(root, thrownValue);
       }
     } while (true);

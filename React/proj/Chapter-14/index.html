@@ -43,8 +43,9 @@
   }
 
   function SearchResults({query}) {
-
+debugger
     const albums = use(fetchData(`/search?q=${query}`));
+    debugger
     console.log(albums, "======SearchResults==222222222222222==");
     return React.createElement("ul", null, albums, query);
   }
@@ -63,9 +64,11 @@
       debugger
       promise.status = 'pending';
       promise.then(result => {
+        debugger
         promise.status = 'fulfilled';
         promise.value = result;
       }, reason => {
+        debugger
         promise.status = 'rejected';
         promise.reason = reason;
       });
