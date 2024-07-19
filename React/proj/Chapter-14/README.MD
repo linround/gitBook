@@ -48,7 +48,19 @@ pingSuspendedRoot 由内而外执行如下：
 handleError 是对 workLoop 进行catch 捕获所得的值进行的处理
 
 
+
+
 ## 进入 finishConcurrentRender 的目的是什么呢？
 首先，无 Suspense 的情况，会执行一次  finishConcurrentRender；当加上 Suspense 时，会执行两次 finishConcurrentRender。
 
 ### 那么 Suspense 的作用为什么会多触发一次 finishConcurrentRender 呢？
+
+# 总结
+
+首先会正常的执行一个渲染，然后遇到 use 函数，产生了一个 pending 状态的 Promise;
+将这个 Promise 当中异常抛出。这个 Promise 被缓存在了 root.pingCache中。直到本次同步执行的渲染
+完成。此刻继续执行微任务，微任务改变了 Promise 的状态，并且赋了一个新值。
+
+继续执行到 使用 use 的组件中，再从之前的缓存中获取到了这个Promise,此时该 Promise 已经执行完毕，
+此时 use 是直接获取了该 Promise 的值。从而同步的往下执行，而非借助 throwException 来处理，从而重新渲染。
+
