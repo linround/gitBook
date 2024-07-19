@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suspense</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./remix-router.js"></script>
+    <script src="./react-router.js" ></script>
+    <script src="./react-router-dom.js"></script>
+    <script src="./redux.js"></script>
+    <script src="./babel.js" crossorigin></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react,stage-3">
+
+  let cache = new Map();
+
+  async function getSearchResults() {
+    await new Promise(resolve => {
+      setTimeout(resolve, 500);
+    });
+    return "结果是：";
+  }
+
+  async function getData(url) {
+    return await getSearchResults(url.slice('/search?q='.length));
+  }
+
+  function fetchData(url) {
+    if (!cache.has(url)) {
+      cache.set(url, getData(url));
+    }
+
+    console.log(cache.get(url), "======fetchData111111111111====");
+    return cache.get(url);
+  }
+
+  function SearchResults({query}) {
+debugger
+    const albums = use(fetchData(`/search?q=${query}`));
+    debugger
+    console.log(albums, "======SearchResults==222222222222222==");
+    return React.createElement("ul", null, albums, query);
+  }
+
+  function use(promise) {
+    if (promise.status === 'fulfilled') {
+      debugger
+      return promise.value;
+    } else if (promise.status === 'rejected') {
+      debugger
+      throw promise.reason;
+    } else if (promise.status === 'pending') {
+      debugger
+      throw promise;
+    } else {
+      debugger
+      promise.status = 'pending';
+      promise.then(result => {
+        debugger
+        promise.status = 'fulfilled';
+        promise.value = result;
+      }, reason => {
+        debugger
+        promise.status = 'rejected';
+        promise.reason = reason;
+      });
+      throw promise;
+    }
+  }
+
+  const Suspense = React.Suspense;
+
+  function Loading() {
+    return React.createElement("h2", null, "loading...");
+  }
+
+  function Demo() {
+    console.log("Demo render========33333333333==");
+    const [query, setQuery] = React.useState('');
+    const inputElement = React.createElement("input", {
+      value: query,
+      onChange: e => setQuery(e.target.value)
+    })
+    const labelElement = React.createElement("label", null, "搜索：", inputElement);
+    const fallbackElement = React.createElement(Loading, null);
+    const searchResultsElement = React.createElement(SearchResults, {
+      query: query
+    });
+
+    const suspenseElement = React.createElement(Suspense, {
+      fallback: fallbackElement
+    }, searchResultsElement);
+
+    console.log("Demo render========444444==");
+
+    return React.createElement(React.Fragment, null, labelElement, suspenseElement);
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root")); // root.render(<Example />);
+
+  const demoElement = React.createElement(Demo, null);
+  root.render( demoElement);
+</script>
+</body>
+
+</html>

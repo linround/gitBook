@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+  function use(promise) {
+    if (promise.status === 'fulfilled') {
+      return promise.value;
+    } else if (promise.status === 'rejected') {
+      throw promise.reason;
+    } else if (promise.status === 'pending') {
+      throw promise;
+    } else {
+      promise.status = 'pending';
+      promise.then(result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      }, reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      });
+      throw promise;
+    }
+  }
+
+  let cache = new Map();
+
+  async function getSearchResults() {
+    await new Promise(resolve => {
+      setTimeout(resolve, 500);
+    });
+    return "结果是：";
+  }
+
+  async function getData(url) {
+    return await getSearchResults(url.slice('/search?q='.length));
+  }
+
+  function fetchData(url) {
+    if (!cache.has(url)) {
+      cache.set(url, getData(url));
+    }
+
+    return cache.get(url);
+  }
+
+  const s = use(fetchData(`/search?q=react`));
+  console.log(s, "======s====");
+</script>

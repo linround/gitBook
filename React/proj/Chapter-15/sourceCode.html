@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React without JSX</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./remix-router.js"></script>
+    <script src="./react-router.js" ></script>
+    <script src="./react-router-dom.js"></script>
+    <script src="./redux.js"></script>
+    <script src="./babel.js" crossorigin></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react,stage-3">
+
+  let cache = new Map();
+
+  async function getSearchResults(query) {
+    // Add a fake delay to make waiting noticeable.
+    await new Promise(resolve => {
+      setTimeout(resolve, 500);
+    });
+
+
+    return ("结果是：");
+  }
+  async function getData(url) {
+    return await getSearchResults(url.slice('/search?q='.length))
+  }
+
+  function fetchData(url) {
+    if (!cache.has(url)) {
+      cache.set(url, getData(url));
+    }
+    console.log(cache.get(url),"======cache====")
+    return cache.get(url);
+  }
+
+  function SearchResults({ query }) {
+    const albums = use(fetchData(`/search?q=${query}`));
+    return (
+      <ul>
+        {albums}{query}
+      </ul>
+    );
+  }
+  function use(promise) {
+    if (promise.status === 'fulfilled') {
+      return promise.value;
+    } else if (promise.status === 'rejected') {
+      throw promise.reason;
+    } else if (promise.status === 'pending') {
+      throw promise;
+    } else {
+      promise.status = 'pending';
+      promise.then(
+        result => {
+          promise.status = 'fulfilled';
+          promise.value = result;
+        },
+        reason => {
+          promise.status = 'rejected';
+          promise.reason = reason;
+        },
+      );
+      throw promise;
+    }
+  }
+
+  const Suspense = React.Suspense
+  function Loading() {
+    return <h2>loading...</h2>
+  }
+
+  function Demo() {
+    const [query, setQuery] = React.useState('');
+    return (
+      <>
+        <label>
+          搜索：
+          <input value={query} onChange={e => setQuery(e.target.value)} />
+        </label>
+        <Suspense fallback={<Loading/>}>
+          <SearchResults query={query} />
+        </Suspense>
+      </>
+    );
+  }
+
+
+
+
+
+
+  const root = ReactDOM.createRoot(document.getElementById("root"))
+  // root.render(<Example />);
+  root.render(
+    <Demo />
+  )
+</script>
+</body>
+
+</html>
