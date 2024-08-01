@@ -44,6 +44,7 @@
 
   function SearchResults({query}) {
 debugger
+      console.log(query, "======SearchResults==33333333333333==");
     const albums = use(fetchData(`/search?q=${query}`));
     debugger
     console.log(albums, "======SearchResults==222222222222222==");
