@@ -21,10 +21,11 @@
 <script type="text/babel" data-presets="react,stage-3">
   let cache = new Map();
 
-   function fetchData(url) {
+  function fetchData(url) {
     if (!cache.has(url)) {
       cache.set(url, getData(url));
     }
+
     return cache.get(url);
   }
 
@@ -35,14 +36,13 @@
       throw Error('Not implemented');
     }
   }
+
   async function getSearchResults(query) {
     await new Promise(resolve => {
       setTimeout(resolve, 1000);
     });
-
     return "结果是：";
   }
-
 
   function use(promise) {
     if (promise.status === 'fulfilled') {
@@ -53,70 +53,48 @@
       throw promise;
     } else {
       promise.status = 'pending';
-      promise.then(
-        result => {
-          promise.status = 'fulfilled';
-          promise.value = result;
-        },
-        reason => {
-          promise.status = 'rejected';
-          promise.reason = reason;
-        },
-      );
+      promise.then(result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      }, reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      });
       throw promise;
     }
   }
-   function SearchResults({ query }) {
 
+  function SearchResults({
+                           query
+                         }) {
     const albums = use(fetchData(`/search?q=${query}`));
-
-    return (
-      <ul>
-        {albums}{query}
-      </ul>
-    );
+    return /*#__PURE__*/React.createElement("ul", null, albums, query);
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   function Loading() {
     return React.createElement("h2", null, "loading...");
   }
 
   const Suspense = React.Suspense;
+
   function Demo() {
     const [query, setQuery] = React.useState('');
     const deferredQuery = React.useDeferredValue(query);
-
-
-    return (
-      <>
-        <label>
-          Search albums:
-          <input value={query} onChange={e => setQuery(e.target.value)} />
-        </label>
-        <Suspense fallback={<Loading/>}>
-          <SearchResults query={deferredQuery} />
-        </Suspense>
-      </>
-    );
+    return React.createElement(React.Fragment, null,
+      React.createElement("label", null, "搜索：",React.createElement("input", {
+      value: query,
+      onChange: e => setQuery(e.target.value)
+    })), /*#__PURE__*/React.createElement(Suspense, {
+      fallback: /*#__PURE__*/React.createElement(Loading, null)
+    }, /*#__PURE__*/React.createElement(SearchResults, {
+      query: deferredQuery
+    })));
   }
 
   const root = ReactDOM.createRoot(document.getElementById("root")); // root.render(<Example />);
 
   const demoElement = React.createElement(Demo, null);
-  root.render( demoElement);
+  root.render(demoElement);
 </script>
 </body>
 
