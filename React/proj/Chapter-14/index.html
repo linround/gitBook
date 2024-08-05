@@ -86,21 +86,18 @@ debugger
   function Demo() {
     console.log("Demo render========33333333333==");
     const [query, setQuery] = React.useState('');
+
     const inputElement = React.createElement("input", {
       value: query,
       onChange: e => setQuery(e.target.value)
     })
     const labelElement = React.createElement("label", null, "搜索：", inputElement);
+
+
     const fallbackElement = React.createElement(Loading, null);
-    const searchResultsElement = React.createElement(SearchResults, {
-      query: query
-    });
+    const searchResultsElement = React.createElement(SearchResults, {query: query});
+    const suspenseElement = React.createElement(Suspense, {fallback: fallbackElement}, searchResultsElement);
 
-    const suspenseElement = React.createElement(Suspense, {
-      fallback: fallbackElement
-    }, searchResultsElement);
-
-    console.log("Demo render========444444==");
 
     return React.createElement(React.Fragment, null, labelElement, suspenseElement);
   }

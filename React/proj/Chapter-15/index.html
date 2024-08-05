@@ -67,11 +67,9 @@
 
     return cache.get(url);
   }
-  function SearchResults({
-                           query
-                         }) {
+  function SearchResults({query}) {
     const albums = use(fetchData(`/search?q=${query}`));
-    return /*#__PURE__*/React.createElement("ul", null, albums, query);
+    return React.createElement("ul", null, albums, query);
   }
 
   function Loading() {
@@ -83,15 +81,20 @@
   function Demo() {
     const [query, setQuery] = React.useState('');
     const deferredQuery = React.useDeferredValue(query);
-    return React.createElement(React.Fragment, null,
-      React.createElement("label", null, "搜索：",React.createElement("input", {
+
+    const inputElement = React.createElement("input", {
       value: query,
       onChange: e => setQuery(e.target.value)
-    })), React.createElement(Suspense, {
-      fallback:React.createElement(Loading, null)
-    }, React.createElement(SearchResults, {
-      query: deferredQuery
-    })));
+    })
+    const labelElement = React.createElement("label", null, "搜索：",inputElement);
+
+
+    const fallback = React.createElement(Loading, null);
+    const searchResultsElement = React.createElement(SearchResults, {query: deferredQuery});
+    const suspenseElement = React.createElement(Suspense, {fallback: fallback}, searchResultsElement);
+
+
+    return React.createElement(React.Fragment, null, labelElement, suspenseElement);
   }
 
   const root = ReactDOM.createRoot(document.getElementById("root")); // root.render(<Example />);
