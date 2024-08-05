@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>React without JSX</title>
+    <title>use Deferred Value</title>
     <script src="./react.development.js" crossorigin></script>
     <script src="./react-dom.development.js" crossorigin></script>
     <script src="./remix-router.js"></script>
@@ -19,38 +19,31 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
-
   let cache = new Map();
-
-  async function getSearchResults(query) {
-    // Add a fake delay to make waiting noticeable.
-    await new Promise(resolve => {
-      setTimeout(resolve, 500);
-    });
-
-
-    return ("结果是：");
-  }
-  async function getData(url) {
-    return await getSearchResults(url.slice('/search?q='.length))
-  }
 
   function fetchData(url) {
     if (!cache.has(url)) {
       cache.set(url, getData(url));
     }
-    console.log(cache.get(url),"======cache====")
     return cache.get(url);
   }
 
-  function SearchResults({ query }) {
-    const albums = use(fetchData(`/search?q=${query}`));
-    return (
-      <ul>
-        {albums}{query}
-      </ul>
-    );
+  async function getData(url) {
+    if (url.startsWith('/search?q=')) {
+      return await getSearchResults(url.slice('/search?q='.length));
+    } else {
+      throw Error('Not implemented');
+    }
   }
+  async function getSearchResults(query) {
+    await new Promise(resolve => {
+      setTimeout(resolve, 1000);
+    });
+
+    return "结果是：";
+  }
+
+
   function use(promise) {
     if (promise.status === 'fulfilled') {
       return promise.value;
@@ -73,24 +66,14 @@
       throw promise;
     }
   }
+  function SearchResults({ query }) {
 
-  const Suspense = React.Suspense
-  function Loading() {
-    return <h2>loading...</h2>
-  }
+    const albums = use(fetchData(`/search?q=${query}`));
 
-  function Demo() {
-    const [query, setQuery] = React.useState('');
     return (
-      <>
-        <label>
-          搜索：
-          <input value={query} onChange={e => setQuery(e.target.value)} />
-        </label>
-        <Suspense fallback={<Loading/>}>
-          <SearchResults query={query} />
-        </Suspense>
-      </>
+      <ul>
+        {albums}{query}
+      </ul>
     );
   }
 
@@ -99,11 +82,41 @@
 
 
 
-  const root = ReactDOM.createRoot(document.getElementById("root"))
-  // root.render(<Example />);
-  root.render(
-    <Demo />
-  )
+
+
+
+
+
+
+
+
+  function Loading() {
+    return React.createElement("h2", null, "loading...");
+  }
+
+  const Suspense = React.Suspense;
+  function Demo() {
+    const [query, setQuery] = React.useState('');
+    const deferredQuery = React.useDeferredValue(query);
+
+
+    return (
+      <>
+        <label>
+          Search albums:
+          <input value={query} onChange={e => setQuery(e.target.value)} />
+        </label>
+        <Suspense fallback={<Loading/>}>
+          <SearchResults query={deferredQuery} />
+        </Suspense>
+      </>
+    );
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root")); // root.render(<Example />);
+
+  const demoElement = React.createElement(Demo, null);
+  root.render( demoElement);
 </script>
 </body>
 
