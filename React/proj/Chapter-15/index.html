@@ -19,30 +19,9 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
-  let cache = new Map();
 
-  function fetchData(url) {
-    if (!cache.has(url)) {
-      cache.set(url, getData(url));
-    }
 
-    return cache.get(url);
-  }
 
-  async function getData(url) {
-    if (url.startsWith('/search?q=')) {
-      return await getSearchResults(url.slice('/search?q='.length));
-    } else {
-      throw Error('Not implemented');
-    }
-  }
-
-  async function getSearchResults(query) {
-    await new Promise(resolve => {
-      setTimeout(resolve, 1000);
-    });
-    return "结果是：";
-  }
 
   function use(promise) {
     if (promise.status === 'fulfilled') {
@@ -64,6 +43,30 @@
     }
   }
 
+
+  async function getSearchResults(query) {
+    await new Promise(resolve => {
+      setTimeout(resolve, 1000);
+    });
+    return "结果是：";
+  }
+
+  async function getData(url) {
+    if (url.startsWith('/search?q=')) {
+      return await getSearchResults(url.slice('/search?q='.length));
+    } else {
+      throw Error('Not implemented');
+    }
+  }
+  let cache = new Map();
+
+  function fetchData(url) {
+    if (!cache.has(url)) {
+      cache.set(url, getData(url));
+    }
+
+    return cache.get(url);
+  }
   function SearchResults({
                            query
                          }) {
@@ -84,9 +87,9 @@
       React.createElement("label", null, "搜索：",React.createElement("input", {
       value: query,
       onChange: e => setQuery(e.target.value)
-    })), /*#__PURE__*/React.createElement(Suspense, {
-      fallback: /*#__PURE__*/React.createElement(Loading, null)
-    }, /*#__PURE__*/React.createElement(SearchResults, {
+    })), React.createElement(Suspense, {
+      fallback:React.createElement(Loading, null)
+    }, React.createElement(SearchResults, {
       query: deferredQuery
     })));
   }
