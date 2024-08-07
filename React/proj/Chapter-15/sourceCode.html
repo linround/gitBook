@@ -68,7 +68,9 @@
   }
   function SearchResults({ query }) {
 
+    console.log("SearchResults 组件执行渲染了 44444444444")
     const albums = use(fetchData(`/search?q=${query}`));
+    console.log("SearchResults albums 被获取了 55555555")
 
     return (
       <ul>
@@ -91,13 +93,16 @@
 
 
   function Loading() {
+    console.log("loading 组件执行渲染了 3333333333")
     return React.createElement("h2", null, "loading...");
   }
 
   const Suspense = React.Suspense;
   function Demo() {
+    console.log("demo 组件执行渲染了 111111111111")
     const [query, setQuery] = React.useState('');
     const deferredQuery = React.useDeferredValue(query);
+    console.log("useDeferredValue 创建了deferredQuery 222222222")
 
 
     return (
