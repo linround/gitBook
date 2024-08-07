@@ -28,4 +28,5 @@ useDeferredValue 允许延迟更新一部分UI。
 
 ## useDeferredValue 的使用
 
-使用useState
+使用useState 创建数据A，对数据A 使用 useDeferredValue 进行延迟更新。 
+然后将数据A传递给 SearchResults 组件，此时由于 数据A 的更新是延迟的，所以 SearResults 组件的更新渲染也是延迟的。
