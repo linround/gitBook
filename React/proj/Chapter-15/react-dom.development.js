@@ -16143,7 +16143,6 @@
   // does not get reset if we do another render pass; only when we're completely
   // finished evaluating this component. This is an optimization so we know
   // whether we need to clear render phase updates after a throw.
-  window.myWorkInProgressHook = workInProgress
 
 
   var didScheduleRenderPhaseUpdate = false; // Where an update was scheduled only during the current render pass. This
