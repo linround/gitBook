@@ -80,6 +80,7 @@
 
   function Demo() {
     const [query, setQuery] = React.useState('');
+    debugger
     const deferredQuery = React.useDeferredValue(query);
 
     const inputElement = React.createElement("input", {
