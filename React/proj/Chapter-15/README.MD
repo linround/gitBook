@@ -31,4 +31,16 @@ useDeferredValue 允许延迟更新一部分UI。
 使用useState 创建数据A，对数据A 使用 useDeferredValue 进行延迟更新。 
 然后将数据A传递给 SearchResults 组件，此时由于 数据A 的更新是延迟的，所以 SearResults 组件的更新渲染也是延迟的。
 
+在示例中，input 组件中query 值是立即发生了更新；SearchResults组件传入了 deferredQuery;
+此时 SearchResults 组件的更新渲染是延迟的。
+
+###  分析
+
+useDeferredValue 不会立即返回新的值，会等到上次返回的新结果处理完才会继续返回。在useDeferredValue的返回新结果之间，并不会影响父组件的渲染，也就避免了父组件中部分的卡顿问题。
+
+
 ## 在初始渲染阶段 useDeferredValue 的使用
+创建了一个hook，该 hook.memoizedState 就是传递给 useDeferredValue 的值。
+
+
+
