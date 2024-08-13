@@ -17330,8 +17330,16 @@
   }
 
   function startTransition(setPending, callback, options) {
+    // startTransition 在调用时已经传入了setPending 第一个参数
+    // callback 是用户传入的第二个回调，主要用来执行用户的逻辑
+    debugger
     var previousPriority = getCurrentUpdatePriority();
+    // 设置优先级
     setCurrentUpdatePriority(higherEventPriority(previousPriority, ContinuousEventPriority));
+
+
+    // 设置 pending 状态 告知开始渲染。之前设置的渲染优先级会影响页面的渲染
+    // 优先级是如何影响渲染顺序的
     setPending(true);
     var prevTransition = ReactCurrentBatchConfig$2.transition;
     ReactCurrentBatchConfig$2.transition = {};

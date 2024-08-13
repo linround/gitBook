@@ -2663,7 +2663,10 @@
         currentPriorityLevel = currentTask.priorityLevel;
         var didUserCallbackTimeout = currentTask.expirationTime <= currentTime;
 
+        // 渲染的中断和恢复
+        debugger
         var continuationCallback = callback(didUserCallbackTimeout);
+        debugger
         currentTime = getCurrentTime();
 
         if (typeof continuationCallback === 'function') {

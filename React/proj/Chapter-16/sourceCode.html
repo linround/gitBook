@@ -80,6 +80,7 @@
   }
 
   function TabContainer() {
+    debugger
     const [isPending, startTransition] = React.useTransition();
     const [tab, setTab] = React.useState('about');
     console.log('isPending',isPending);
@@ -90,6 +91,11 @@
         setTab(nextTab);
       });
     }
+    // function selectTab(nextTab) {
+    //   debugger
+    //
+    //   setTab(nextTab);
+    // }
 
     return (
       <>
