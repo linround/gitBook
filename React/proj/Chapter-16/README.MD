@@ -23,4 +23,6 @@ useTransition 返回一个数组，包含两个元素：
 
 ## 关于场景
 - [在切换tab 时间，假设三个tabA、tabB、tabC。](https://codesandbox.io/s/tkyfgs?file=/src/App.js&utm_medium=sandpack)tabB 渲染时间很长，在渲染渲染 tabB的时间内，点击了tabC.这个时候就会使得tabC的渲染处在等待中。如果使用 transition 组件，就可以立即渲染tabC.
-
+- 
+## 总结
+- transition 是一个非常有用的 hook，可以用于优化用户体验.比如终止某个页面的渲染过渡。

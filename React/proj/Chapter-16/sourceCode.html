@@ -19,11 +19,7 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react,stage-3">
-  function AboutTab() {
-    return (
-      <p>Welcome to my profile!</p>
-    );
-  }
+
   function ContactTab() {
     return (
       <>
@@ -39,24 +35,11 @@
   }
 
 
-  const PostsTab = React.memo(function PostsTab() {
-    // Log once. The actual slowdown is inside SlowPost.
-    console.log('[ARTIFICIALLY SLOW] Rendering 500 <SlowPost />');
 
-    let items = [];
-    for (let i = 0; i < 500; i++) {
-      items.push(<SlowPost key={i} index={i} />);
-    }
-    return (
-      <ul className="items">
-        {items}
-      </ul>
-    );
-  });
 
   function SlowPost({ index }) {
     let startTime = performance.now();
-    while (performance.now() - startTime < 1) {
+    while (performance.now() - startTime < 2) {
       // Do nothing for 1 ms per item to emulate extremely slow code
     }
 
@@ -66,6 +49,23 @@
       </li>
     );
   }
+  const PostsTab = function PostsTab() {
+    // Log once. The actual slowdown is inside SlowPost.
+    console.log('[ARTIFICIALLY SLOW] Rendering 500 <SlowPost />');
+    console.time('PostsTab');
+
+    let items = [];
+    for (let i = 0; i < 500; i++) {
+      items.push(<SlowPost key={i} index={i} />);
+    }
+
+    console.timeEnd('PostsTab');
+    return (
+      <ul className="items">
+        {items}
+      </ul>
+    );
+  };
   function TabButton({ children, isActive, onClick }) {
     if (isActive) {
       return <b>{children}</b>
@@ -82,8 +82,10 @@
   function TabContainer() {
     const [isPending, startTransition] = React.useTransition();
     const [tab, setTab] = React.useState('about');
+    console.log('isPending',isPending);
 
     function selectTab(nextTab) {
+      debugger
       startTransition(() => {
         setTab(nextTab);
       });
@@ -110,7 +112,7 @@
           Contact
         </TabButton>
         <hr />
-        {tab === 'about' && <AboutTab />}
+        {tab }
         {tab === 'posts' && <PostsTab />}
         {tab === 'contact' && <ContactTab />}
       </>
