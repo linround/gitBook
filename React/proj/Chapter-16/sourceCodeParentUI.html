@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>useTransition parent ui</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./remix-router.js"></script>
+    <script src="./react-router.js" ></script>
+    <script src="./react-router-dom.js"></script>
+    <script src="./redux.js"></script>
+    <script src="./babel.js" crossorigin></script>
+</head>
+
+<style>
+
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+    padding: 0;
+  }
+
+  h1 {
+    margin-top: 0;
+    font-size: 22px;
+  }
+
+  h2 {
+    margin-top: 0;
+    font-size: 20px;
+  }
+
+  h3 {
+    margin-top: 0;
+    font-size: 18px;
+  }
+
+  h4 {
+    margin-top: 0;
+    font-size: 16px;
+  }
+
+  h5 {
+    margin-top: 0;
+    font-size: 14px;
+  }
+
+  h6 {
+    margin-top: 0;
+    font-size: 12px;
+  }
+
+  code {
+    font-size: 1.2em;
+  }
+
+  ul {
+    padding-inline-start: 20px;
+  }
+
+  button { margin-right: 10px }
+  b { display: inline-block; margin-right: 10px; }
+  .pending { color: #777; }
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+    padding: 0;
+  }
+
+  h1 {
+    margin-top: 0;
+    font-size: 22px;
+  }
+
+  h2 {
+    margin-top: 0;
+    font-size: 20px;
+  }
+
+  h3 {
+    margin-top: 0;
+    font-size: 18px;
+  }
+
+  h4 {
+    margin-top: 0;
+    font-size: 16px;
+  }
+
+  h5 {
+    margin-top: 0;
+    font-size: 14px;
+  }
+
+  h6 {
+    margin-top: 0;
+    font-size: 12px;
+  }
+
+  code {
+    font-size: 1.2em;
+  }
+
+  ul {
+    padding-inline-start: 20px;
+  }
+
+  button { margin-right: 10px }
+  b { display: inline-block; margin-right: 10px; }
+  .pending { color: #777; }
+
+</style>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react,stage-3">
+
+  function ContactTab() {
+    return (
+      <>
+        <p>
+          You can find me online here:
+        </p>
+        <ul>
+          <li>admin@mysite.com</li>
+          <li>+123456789</li>
+        </ul>
+      </>
+    );
+  }
+  function AboutTab() {
+    return (
+      <p>Welcome to my profile!</p>
+    );
+  }
+
+
+
+  const PostsTab = (function PostsTab() {
+    // Log once. The actual slowdown is inside SlowPost.
+    console.log('[ARTIFICIALLY SLOW] Rendering 500 <SlowPost />');
+
+    let items = [];
+    for (let i = 0; i < 500; i++) {
+      items.push(<SlowPost key={i} index={i} />);
+    }
+    return (
+      <ul className="items">
+        {items}
+      </ul>
+    );
+  });
+
+  function SlowPost({ index }) {
+    let startTime = performance.now();
+    while (performance.now() - startTime < 1) {
+      // Do nothing for 1 ms per item to emulate extremely slow code
+    }
+
+    return (
+      <li className="item">
+        Post #{index + 1}
+      </li>
+    );
+  }
+
+
+  function TabButton({ children, isActive, onClick }) {
+    debugger
+    const [isPending, startTransition] = React.useTransition();
+    if (isActive) {
+      return <b>{children}</b>
+    }
+    if (isPending) {
+      return <b className="pending">{children}</b>;
+    }
+    return (
+      <button onClick={() => {
+        debugger
+        startTransition(() => {
+          onClick();
+        });
+      }}>
+        {children}
+      </button>
+    );
+  }
+
+
+
+  function TabContainer() {
+    const [tab, setTab] = React.useState('about');
+    return (
+      <>
+        <TabButton
+          isActive={tab === 'about'}
+          onClick={() => setTab('about')}
+        >
+          About
+        </TabButton>
+        <TabButton
+          isActive={tab === 'posts'}
+          onClick={() => setTab('posts')}
+        >
+          Posts (slow)
+        </TabButton>
+        <TabButton
+          isActive={tab === 'contact'}
+          onClick={() => setTab('contact')}
+        >
+          Contact
+        </TabButton>
+        <hr />
+        {tab === 'about' && <AboutTab />}
+        {tab === 'posts' && <PostsTab />}
+        {tab === 'contact' && <ContactTab />}
+      </>
+    );
+  }
+
+
+
+  const root = ReactDOM.createRoot(document.getElementById("root"))
+  // root.render(<Example />);
+  root.render(
+    <TabContainer />
+  )
+</script>
+</body>
+
+</html>
