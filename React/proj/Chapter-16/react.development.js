@@ -2579,6 +2579,8 @@
         // Timer fired. Transfer to the task queue.
         pop(timerQueue);
         timer.sortIndex = timer.expirationTime;
+        debugger
+        console.log("taskQueue==push===========",)
         push(taskQueue, timer);
       } else {
         // Remaining timers are pending.
@@ -2646,6 +2648,7 @@
   }
 
   function workLoop(hasTimeRemaining, initialTime) {
+    console.log("workLoop==========taskQueue======",taskQueue.length)
     var currentTime = initialTime;
     advanceTimers(currentTime);
     currentTask = peek(taskQueue);
@@ -2835,6 +2838,8 @@
       }
     } else {
       newTask.sortIndex = expirationTime;
+      debugger
+      console.log("newTask====push8888888888==",newTask)
       push(taskQueue, newTask);
       // wait until the next time we yield.
 

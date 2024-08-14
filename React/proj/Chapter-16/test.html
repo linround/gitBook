@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>use Deferred Value</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./remix-router.js"></script>
+    <script src="./react-router.js" ></script>
+    <script src="./react-router-dom.js"></script>
+    <script src="./redux.js"></script>
+    <script src="./babel.js" crossorigin></script>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react,stage-3">
+  let cache = new Map();
+
+  function fetchData(url) {
+    if (!cache.has(url)) {
+      cache.set(url, getData(url));
+    }
+    return cache.get(url);
+  }
+
+  async function getData(url) {
+    if (url.startsWith('/search?q=')) {
+      return await getSearchResults(url.slice('/search?q='.length));
+    } else {
+      throw Error('Not implemented');
+    }
+  }
+  async function getSearchResults(query) {
+    await new Promise(resolve => {
+      setTimeout(resolve, 1000);
+    });
+
+    return "结果是：";
+  }
+
+
+  function use(promise) {
+    if (promise.status === 'fulfilled') {
+      return promise.value;
+    } else if (promise.status === 'rejected') {
+      throw promise.reason;
+    } else if (promise.status === 'pending') {
+      throw promise;
+    } else {
+      promise.status = 'pending';
+      promise.then(
+        result => {
+          promise.status = 'fulfilled';
+          promise.value = result;
+        },
+        reason => {
+          promise.status = 'rejected';
+          promise.reason = reason;
+        },
+      );
+      throw promise;
+    }
+  }
+  function SearchResults({ query }) {
+
+    console.log("SearchResults 组件执行渲染了 44444444444")
+    const albums = use(fetchData(`/search?q=${query}`));
+    console.log("SearchResults albums 被获取了 55555555")
+
+    return (
+      <ul>
+        {albums}{query}
+      </ul>
+    );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  function Loading() {
+    console.log("loading 组件执行渲染了 3333333333")
+    return React.createElement("h2", null, "loading...");
+  }
+
+  const Suspense = React.Suspense;
+  function Demo() {
+    console.log("demo 组件执行渲染了 111111111111")
+    const [query, setQuery] = React.useState('');
+    const deferredQuery = React.useDeferredValue(query);
+    console.log("useDeferredValue 创建了deferredQuery 222222222")
+
+
+    return (
+      <>
+        <label>
+          搜索：
+          <input value={query} onChange={e => setQuery(e.target.value)} />
+        </label>
+        <Suspense fallback={<Loading/>}>
+          <SearchResults query={deferredQuery} />
+        </Suspense>
+      </>
+    );
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root")); // root.render(<Example />);
+
+  const demoElement = React.createElement(Demo, null);
+  root.render( demoElement);
+</script>
+</body>
+
+</html>

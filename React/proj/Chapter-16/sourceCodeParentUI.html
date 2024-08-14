@@ -172,14 +172,13 @@
 
     return (
       <li className="item">
-        Post #{index + 1}
+        {index}
       </li>
     );
   }
 
 
   function TabButton({ children, isActive, onClick }) {
-    debugger
     const [isPending, startTransition] = React.useTransition();
     if (isActive) {
       return <b>{children}</b>

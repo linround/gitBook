@@ -32,6 +32,17 @@ useTransition 返回一个数组，包含两个元素：
 - isPending 提供了一个标志。
 - 有一个组件ui渲染的时间很长，这个时候使用 startTransition 启用并发渲染，防止该组件的渲染阻塞后续的渲染。
 
+## 关于并发渲染的分析
+### workLoopConcurrent
+在执行 过程中会判断 shouldYield；在子fiber 较深较多的情况下，会中断渲染。
+
+#### shouldYield
+计算当前时间与开始时间的渲染过程是否超过了 5ms。如果超过了就会被中断该fiber。
+使用保持taskQueue中有一个任务，然后不断的执行这个任务，就能逐渐的进行并发更新。
+### workLoopSync
+由于workLoopSync 
+
+
 ## 是在那里标记了某个组件是并发渲染的呢？
 
 ## 总结

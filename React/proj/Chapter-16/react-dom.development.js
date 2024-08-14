@@ -17332,7 +17332,7 @@
   function startTransition(setPending, callback, options) {
     // startTransition 在调用时已经传入了setPending 第一个参数
     // callback 是用户传入的第二个回调，主要用来执行用户的逻辑
-    debugger
+    // debugger
     var previousPriority = getCurrentUpdatePriority();
     // 设置优先级
     setCurrentUpdatePriority(higherEventPriority(previousPriority, ContinuousEventPriority));
@@ -26542,10 +26542,11 @@
 
     if (workInProgress !== null) {
       // Still work remaining.
+
+      console.log("workLoopConcurrent:",workInProgress)
       {
         markRenderYielded();
       }
-
       return RootInProgress;
     } else {
       // Completed the tree.
@@ -26565,9 +26566,14 @@
 
   function workLoopConcurrent() {
     // Perform work until Scheduler asks us to yield
+
+    console.log(!shouldYield())
     while (workInProgress !== null && !shouldYield()) {
+      console.log(workInProgress)
       performUnitOfWork(workInProgress);
     }
+    debugger
+    console.log("跳出循环",workInProgress)
   }
 
   function performUnitOfWork(unitOfWork) {
