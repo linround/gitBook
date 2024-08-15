@@ -64,4 +64,5 @@ useTransition 返回一个数组，包含两个元素：
 ![img_1.png](img_1.png)
 
 
-因为set函数是同步执行的，当某个同步任务执行时间很长，就会造成阻塞，所以使用useTransition可以解决这个问题。
+因为set函数是任务执行时间很长，就会造成阻塞，所以使用useTransition可以解决这个问题。
+set函数的渲染也可以认为是异步，因为是通过postMessage来实现的。
