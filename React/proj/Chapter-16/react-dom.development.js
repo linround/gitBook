@@ -12008,6 +12008,7 @@
   var includesLegacySyncCallbacks = false;
   var isFlushingSyncQueue = false;
   function scheduleSyncCallback(callback) {
+    console.log("scheduleSyncCallback=======================================")
     // Push this callback into an internal queue. We'll flush these either in
     // the next tick, or earlier if something calls `flushSyncCallbackQueue`.
     if (syncQueue === null) {
@@ -25646,13 +25647,13 @@
     var newCallbackNode;
 
     if (newCallbackPriority === SyncLane) {
+      console.log("newCallbackPriority============555555555555555")
       // Special case: Sync React callbacks are scheduled on a special
       // internal queue
       if (root.tag === LegacyRoot) {
         if ( ReactCurrentActQueue$1.isBatchingLegacy !== null) {
           ReactCurrentActQueue$1.didScheduleLegacyUpdate = true;
         }
-
         scheduleLegacySyncCallback(performSyncWorkOnRoot.bind(null, root));
       } else {
         scheduleSyncCallback(performSyncWorkOnRoot.bind(null, root));
@@ -26572,8 +26573,12 @@
       console.log(workInProgress)
       performUnitOfWork(workInProgress);
     }
-    debugger
-    console.log("跳出循环",workInProgress)
+    // debugger
+    myCount+=1
+    if(myCount>100){
+      // debugger
+    }
+    console.log("跳出循环",workInProgress,myCount)
   }
 
   function performUnitOfWork(unitOfWork) {

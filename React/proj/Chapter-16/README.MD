@@ -48,3 +48,11 @@ useTransition 返回一个数组，包含两个元素：
 ## 总结
 - transition 是一个非常有用的 hook，可以用于优化用户体验.比如终止某个页面的渲染过渡。
 - useTransition 带来的是“可中断”的异步UI渲染。可优化实际工作中遇到的卡顿现象。
+- 通过 startTransition 函数，可以告诉React这个更新不是非常紧急的，从而启动并发更新。
+- 在并发渲染过程中，workLoopConcurrent 会判断 shouldYield，如果超过了5ms，就会中断该fiber的渲染。
+- 并返回一个回调函数
+- workLoop 返回一个布尔值，表明是否存在任务。
+- 布尔值传递给 requestHostCallback
+- 在requestHostCallback中，performWorkUntilDeadline会通过定时器调用 flushWork
+- flushWork 会异步调用调用 workLoop
+- 通过并发调度由此不断的异步执行渲染任务即可实现并发渲染。

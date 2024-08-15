@@ -7,6 +7,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+var myCount =0;
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -2579,7 +2581,6 @@
         // Timer fired. Transfer to the task queue.
         pop(timerQueue);
         timer.sortIndex = timer.expirationTime;
-        debugger
         console.log("taskQueue==push===========",)
         push(taskQueue, timer);
       } else {
@@ -2609,6 +2610,7 @@
     }
   }
 
+  // 返回workLoop是否有任务
   function flushWork(hasTimeRemaining, initialTime) {
 
 
@@ -2647,12 +2649,14 @@
     }
   }
 
+  console.log("count==========",myCount)
   function workLoop(hasTimeRemaining, initialTime) {
-    console.log("workLoop==========taskQueue======",taskQueue.length)
     var currentTime = initialTime;
     advanceTimers(currentTime);
     currentTask = peek(taskQueue);
 
+
+    console.log("workLoop==========taskQueue======",taskQueue.length)
     while (currentTask !== null && !(enableSchedulerDebugging )) {
       if (currentTask.expirationTime > currentTime && (!hasTimeRemaining || shouldYieldToHost())) {
         // This currentTask hasn't expired, and we've reached the deadline.
@@ -2667,9 +2671,7 @@
         var didUserCallbackTimeout = currentTask.expirationTime <= currentTime;
 
         // 渲染的中断和恢复
-        debugger
         var continuationCallback = callback(didUserCallbackTimeout);
-        debugger
         currentTime = getCurrentTime();
 
         if (typeof continuationCallback === 'function') {
@@ -2838,7 +2840,6 @@
       }
     } else {
       newTask.sortIndex = expirationTime;
-      debugger
       console.log("newTask====push8888888888==",newTask)
       push(taskQueue, newTask);
       // wait until the next time we yield.
@@ -2846,6 +2847,9 @@
 
       if (!isHostCallbackScheduled && !isPerformingWork) {
         isHostCallbackScheduled = true;
+        console.log('66666666666666666666666666')
+        // flushWork 返回的是是一个bool值
+        // 表面是否有任务函数
         requestHostCallback(flushWork);
       }
     }
