@@ -25706,7 +25706,6 @@
           schedulerPriorityLevel = NormalPriority;
           break;
       }
-
       newCallbackNode = scheduleCallback$1(schedulerPriorityLevel, performConcurrentWorkOnRoot.bind(null, root));
     }
 
@@ -27563,6 +27562,7 @@
   var fakeActCallbackNode = {};
 
   function scheduleCallback$1(priorityLevel, callback) {
+
     {
       // If we're currently inside an `act` scope, bypass Scheduler and push to
       // the `act` queue instead.

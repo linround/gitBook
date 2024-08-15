@@ -56,3 +56,12 @@ useTransition 返回一个数组，包含两个元素：
 - 在requestHostCallback中，performWorkUntilDeadline会通过定时器调用 flushWork
 - flushWork 会异步调用调用 workLoop
 - 通过并发调度由此不断的异步执行渲染任务即可实现并发渲染。
+![img.png](img.png)
+
+任务队列中的任务是被可以通过中断、恢复这套机制来执行的。
+- performConcurrentWorkOnRoot是可以被中断的
+- 因为 workLoopConcurrent 不断地跳出循环 再执行 workLoopConcurrent
+![img_1.png](img_1.png)
+
+
+因为set函数是同步执行的，当某个同步任务执行时间很长，就会造成阻塞，所以使用useTransition可以解决这个问题。

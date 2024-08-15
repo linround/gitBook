@@ -2947,6 +2947,7 @@ var myCount =0;
         if (hasMoreWork) {
           // If there's more work, schedule the next message event at the end
           // of the preceding one.
+          console.log("hasMoreWork")
           schedulePerformWorkUntilDeadline();
         } else {
           isMessageLoopRunning = false;
