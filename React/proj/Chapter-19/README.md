@@ -6,3 +6,5 @@
 - [is](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/is);原生的html目前可以自定义组件，基于原生的标签进行封装，实现自定义元素。
 - [compositionstart](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/compositionstart_event)；检测输入法输入时的字符，此时还未完全输入文字。
 - [onWheel](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/wheel_event) 不一定触发 onscroll；
+- tabindex为负值时；表示元素是可聚焦的，但是不能通过键盘导航来访问到该元素。
+- tabindex为0时；表示元素是可聚焦的，并且可以通过键盘导航来聚焦到该元素，它的相对顺序是当前处于的 DOM 结构来决定的；
