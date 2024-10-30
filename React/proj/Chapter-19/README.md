@@ -10,3 +10,4 @@
 - tabindex为0时；表示元素是可聚焦的，并且可以通过键盘导航来聚焦到该元素，它的相对顺序是当前处于的 DOM 结构来决定的；
 - 伪类的书写顺序。link > visited > hover > active > focus.
 - hash 路由主要是监听了hashchange事件，history 路由模式监听的是，pushState和replaceState事件。
+- remarkable;
