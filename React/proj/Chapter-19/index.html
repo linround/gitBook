@@ -31,7 +31,12 @@
     console.log('Demo render');
     const [data, setData] = React.useState(100);
     return /*#__PURE__*/React.createElement("div", {
-      onClick: () => {
+      onClick: (e) => {
+        console.log('事件：',e)
+        console.log('preventDefault()',e.preventDefault());
+        console.log('stopPropagation()',e.stopPropagation());
+        console.log('isDefaultPrevented()',e.isDefaultPrevented());
+        console.log('isPropagationStopped()',e.isPropagationStopped());
         setData(1)
       }
     }, "改变",data);
