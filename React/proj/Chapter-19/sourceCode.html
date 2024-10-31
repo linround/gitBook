@@ -16,16 +16,34 @@
 </head>
 
 <body>
+
+
+
 <div id="root"></div>
+<input disabled />
+<input  type="email" pattern="/123/" />
 
 <script type="text/babel" data-presets="react,stage-3">
 
 
-
+  function Search() {
+    function search(formData) {
+      const query = formData.get("query");
+      alert(`You searched for '${query}'`);
+    }
+    return (
+      <form action={search}>
+        <input name="query" />
+        <button type="submit">Search</button>
+      </form>
+    );
+  }
   function Demo() {
     const [query, setQuery] = React.useState('')
     return (
-      <div contentEditable="true" data-text={'sssssss'}>
+      <div  data-text={'sssssss'}>
+
+        <Search/>
         <div>
           搜索：
           <input value={query} onChange={(e)=>setQuery(e.target.value)} />

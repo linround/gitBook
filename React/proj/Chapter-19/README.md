@@ -11,3 +11,5 @@
 - 伪类的书写顺序。link > visited > hover > active > focus.
 - hash 路由主要是监听了hashchange事件，history 路由模式监听的是，pushState和replaceState事件。
 - [remarkable](https://github.com/jonschlinkert/remarkable);解析md格式的文本，使其可以在浏览器商渲染。
+- useDeferredValue.[可以在函数组件中，使用useDeferredValue，来延迟更新。](https://zh-hans.react.dev/reference/react-dom/components/input#optimizing-re-rendering-on-every-keystroke)
+- input 的值，确保其是一个字符串。类似的，checkbox的值尽量确保是布尔值。

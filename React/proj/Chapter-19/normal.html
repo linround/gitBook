@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>normal</title>
+    <script src="./react.development.js" crossorigin></script>
+    <script src="./react-dom.development.js" crossorigin></script>
+    <script src="./remix-router.js"></script>
+    <script src="./react-router.js" ></script>
+    <script src="./react-router-dom.js"></script>
+    <script src="./redux.js"></script>
+    <script src="./babel.js" crossorigin></script>
+</head>
+<body>
+<select>
+    <option value="someOption" disabled>Some option</option>
+    <option value="otherOption1">Other option1</option>
+    <option value="otherOption2">Other option2</option>
+    <option value="otherOption3">Other option3</option>
+</select>
+<div id="root"></div>
+
+</body>
+</html>
+<script type="text/babel" data-presets="react,stage-3">
+
+  function nowDate(){
+    const ttt = new Date().getTime()+1000*60*60*8
+    return new Date(ttt)
+  }
+  function Demo() {
+    const id = React.useId()
+    const [data,setData]=React.useState('')
+    return (
+      <div>
+        <input value={data} onChange={e=>setData(e.target.value)} />
+        id:{id}
+      </div>
+    );
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  const demoElement = React.createElement(Demo, null)
+  root.render( /*#__PURE__*/ demoElement);
+</script>
