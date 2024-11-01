@@ -14,3 +14,4 @@
 - useDeferredValue.[可以在函数组件中，使用useDeferredValue，来延迟更新。](https://zh-hans.react.dev/reference/react-dom/components/input#optimizing-re-rendering-on-every-keystroke)
 - input 的值，确保其是一个字符串。类似的，checkbox的值尽量确保是布尔值。 
 - 缓存优化方式：打包时利用hash值 对浏览器的缓存进行优化。避免重复生成静态资源。提取必要的公共资源，使用cdn的方式进行加载，减小打包的资源体积。
+- 关于中英文字体大小的差异。在textarea中。设置相同的fontSize，在同样的行宽下，中文字是英文字母的两倍宽度。
