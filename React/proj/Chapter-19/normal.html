@@ -31,11 +31,31 @@
     const ttt = new Date().getTime()+1000*60*60*8
     return new Date(ttt)
   }
+  function Progress() {
+      return (
+          <div>
+              <progress value={0}/>
+              <div></div>
+              <progress value={0.5}/>
+              <div></div>
+              <progress value={0.7}/>
+              <div></div>
+              <progress value={75} max={100}/>
+              <div></div>
+              <progress value={1}/>
+              <div></div>
+              <progress value={null}/>
+          </div>
+      )
+  }
+
+
   function Demo() {
     const id = React.useId()
     const [data,setData]=React.useState('')
     return (
       <div>
+          <Progress />
         <input value={data} onChange={e=>setData(e.target.value)} />
         id:{id}
       </div>
