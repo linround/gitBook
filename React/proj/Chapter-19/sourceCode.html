@@ -56,12 +56,16 @@
 
 
 
+const element = document.getElementById("root")
+  const root = ReactDOM.createRoot(element)
 
-  const root = ReactDOM.createRoot(document.getElementById("root"))
   // root.render(<Example />);
   root.render(
     <Demo />
   )
+
+  // ReactDOM.hydrateRoot(<Demo/>,element)
+  ReactDOM.prefetchDNS("https://example.com")
 </script>
 </body>
 
