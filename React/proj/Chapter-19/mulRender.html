@@ -19,35 +19,23 @@
 
 
 
-<div id="root"></div>
-<input disabled />
-<input  type="email" pattern="/123/" />
+<div id="root">
+</div>
+<div  id="demo2"/>
 
 <script type="text/babel" data-presets="react,stage-3">
 
 
-  function Search() {
-    function search(formData) {
-      const query = formData.get("query");
-      alert(`You searched for '${query}'`);
-    }
+  function Demo2() {
     return (
-      <form action={search}>
-        <input name="query" />
-        <button type="submit">Search</button>
-      </form>
+      <div>222222
+      </div>
     );
   }
   function Demo() {
-    const [query, setQuery] = React.useState('')
     return (
-      <div  data-text={'sssssss'}>
-
-        <Search/>
-        <div>
-          搜索：
-          <input value={query} onChange={(e)=>setQuery(e.target.value)} />
-        </div>
+      <div >
+        111111111
       </div>
     );
   }
@@ -56,17 +44,18 @@
 
 
 
-const element = document.getElementById("root")
-  const root = ReactDOM.createRoot(element)
 
-  // root.render(<Example />);
-  console.log('root:',root)
+  const root = ReactDOM.createRoot(document.getElementById("root"),{
+
+  })
   root.render(
     <Demo />
   )
 
-  // ReactDOM.hydrateRoot(<Demo/>,element)
-  ReactDOM.prefetchDNS("https://example.com")
+  const root2 = ReactDOM.createRoot(document.getElementById("demo2"))
+  root2.render(
+    <Demo2 />
+  )
 </script>
 </body>
 
