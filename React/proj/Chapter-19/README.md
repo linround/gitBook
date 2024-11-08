@@ -17,5 +17,6 @@
 - input 的值，确保其是一个字符串。类似的，checkbox的值尽量确保是布尔值。 
 - 缓存优化方式：打包时利用hash值 对浏览器的缓存进行优化。避免重复生成静态资源。提取必要的公共资源，使用cdn的方式进行加载，减小打包的资源体积。
 - 关于中英文字体大小的差异。在textarea中。设置相同的fontSize，在同样的行宽下，中文字是英文字母的两倍宽度。
-- link 标签可以设置 disabled 属性。    
+- link 标签可以设置 disabled 属性，来禁用链接。
+- preconnect与prefetchDNS.preconnect是提前连接到服务器;prefetchDNS是预解析DNS,提前找到服务器的IP地址；如果与大量的域名进行连接，prefetchDNS会比preconnect好，因为预连接的开销会很大。
 。
