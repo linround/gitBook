@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function runDemo() {
+      const n = 60
+      const b1 = new Uint8Array(n)
+      const b2 = new Uint8Array(n+10)
+      const str = 'This is a string'
+      for (let i = 0; i < str.length; i++) {
+        b1[i] = str.charCodeAt(i)
+        b2[i] = i+33
+
+      }
+      const buffer = b1.buffer
+      b1[22] = 255
+      b1[23] = 256
+      b1[24] = 257
+      b1[25] = 258
+      for (let i =str.length;i<n;i++){
+        b1[i] = i
+        debugger
+        b2[i] = n-i-1
+      }
+    }
+    runDemo()
+</script>
+</body>
+</html>

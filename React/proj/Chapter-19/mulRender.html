@@ -32,9 +32,28 @@
       </div>
     );
   }
+  function add(n){
+    if(n==1){
+      return n
+    }
+    return n+add(n-1)
+  }
   function Demo() {
+
+    const click = () => {
+      console.log('click', add(100))
+      let a = 1
+
+    }
+    let v = 1
+    var b = []
+    while (v<100000){
+      b.push(v)
+      debugger
+      v++
+    }
     return (
-      <div >
+      <div onClick={click}>
         111111111
       </div>
     );

@@ -40,7 +40,7 @@
 
 ## 问题记录
 - [使用 setState的时候的fiber和当前所在的函数组件之间的关系是什么？](../../React/proj/Chapter-8/README.MD#使用-setstate的时候的fiber和当前所在的函数组件之间的关系是什么)
-
+- [项目中的优化和数据处理细节](../../2024/antdReact.md)
 ## 工具
 - [react developer tools profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html)
 - [startViewTransition](https://mdn.github.io/dom-examples/view-transitions/)
