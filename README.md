@@ -11,6 +11,7 @@
 - [quaternion issue](https://github.com/Krasjet/quaternion/issues/37)
 - [esBook](https://tc39.es/ecma262/)
 - [2024](./2024.md)
+- [2025](./2025.md)
 - [一些零散的工作建议](./txt.md)
 - [个人项目](./personalProject.md)
 - [黄金价格趋势图](https://china.gold.org/goldhub/data)
